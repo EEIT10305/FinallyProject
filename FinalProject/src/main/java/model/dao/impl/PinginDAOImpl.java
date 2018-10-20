@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
 import model.PinginBean;
+import model.dao.PinginDAO;
 @Repository
 public class PinginDAOImpl implements PinginDAO {
 	@Autowired
@@ -87,7 +88,7 @@ public class PinginDAOImpl implements PinginDAO {
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 		System.out.println(2);
-		PinginDAO pinginDAO =context.getBean(PinginDAOImpl.class);
+		PinginDAO pinginDAO =context.getBean(PinginDAO.class);
 		System.out.println(3);
 		List<PinginBean> select = pinginDAO.select();
 		if(select.size()==0) {

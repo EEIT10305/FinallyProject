@@ -1,4 +1,4 @@
-package model.dao.impl;
+package model.dao;
 
 import java.sql.Blob;
 import java.util.List;
