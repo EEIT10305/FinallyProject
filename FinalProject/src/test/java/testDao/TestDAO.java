@@ -70,7 +70,7 @@ public class TestDAO {
 	SessionFactory factory;
 	Session session;
 	AnnotationConfigApplicationContext context;
-
+//衝突囉
 	@Before
 	public void init() {
 		context =new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
