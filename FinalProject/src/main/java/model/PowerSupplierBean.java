@@ -1,7 +1,11 @@
 package model;
 
 import javax.persistence.CascadeType;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,13 +16,22 @@ import javax.persistence.Table;
 @Table(name="powersupplier")
 public class PowerSupplierBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer powersupplier_id;
+	@Column(nullable=false)
 	private Integer proid;
+	@Column(nullable=false)
 	private String brand;
+	@Column(nullable=false)
 	private Integer categoryid;
+	@Column(nullable=false)
 	private String model;
+	@Column(nullable=false)
 	private Integer price;
+	@Column(nullable=false)
 	private String status;
+	@Column(nullable=false)
+
 	private Integer psu;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
