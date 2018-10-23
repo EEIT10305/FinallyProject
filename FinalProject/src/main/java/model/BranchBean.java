@@ -3,6 +3,8 @@ package model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="branch")
 public class BranchBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer branchid;
 	@Column(nullable=false)
 	private String name;
