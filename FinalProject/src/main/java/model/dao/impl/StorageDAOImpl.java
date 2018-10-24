@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.StorageBean;
+import model.bean.StorageBean;
 import model.dao.StorageDAO;
 @Repository
 public class StorageDAOImpl implements StorageDAO {

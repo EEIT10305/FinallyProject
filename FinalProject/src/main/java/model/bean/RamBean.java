@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,11 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cabinet")
-public class CabinetBean {
+@Table(name="ram")
+public class RamBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer cabinet_id;
+	private Integer ram_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -31,6 +31,8 @@ public class CabinetBean {
 	@Column(nullable=false)
 	private String status;
 	@Column(nullable=false)
+	private String ddr;
+	@Column(nullable=false)
 	private Integer psu;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
@@ -38,11 +40,42 @@ public class CabinetBean {
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public Integer getCabinet_id() {
-		return cabinet_id;
+	public RamBean() {
+		super();
 	}
-	public void setCabinet_id(Integer cabinet_id) {
-		this.cabinet_id = cabinet_id;
+	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String ddr, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+		super();
+		this.ram_id = ram_id;
+		this.proid = proid;
+		this.brand = brand;
+		this.categoryid = categoryid;
+		this.model = model;
+		this.price = price;
+		this.status = status;
+		this.ddr = ddr;
+		this.psu = psu;
+		this.categoryBean = categoryBean;
+		this.productBean = productBean;
+	}
+	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String ddr, Integer psu) {
+		super();
+		this.ram_id = ram_id;
+		this.proid = proid;
+		this.brand = brand;
+		this.categoryid = categoryid;
+		this.model = model;
+		this.price = price;
+		this.status = status;
+		this.ddr = ddr;
+		this.psu = psu;
+	}
+	public Integer getRam_id() {
+		return ram_id;
+	}
+	public void setRam_id(Integer ram_id) {
+		this.ram_id = ram_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -80,6 +113,12 @@ public class CabinetBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getDdr() {
+		return ddr;
+	}
+	public void setDdr(String ddr) {
+		this.ddr = ddr;
+	}
 	public Integer getPsu() {
 		return psu;
 	}
@@ -98,38 +137,5 @@ public class CabinetBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
-	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
-		super();
-		this.cabinet_id = cabinet_id;
-		this.proid = proid;
-		this.brand = brand;
-		this.categoryid = categoryid;
-		this.model = model;
-		this.price = price;
-		this.status = status;
-		this.psu = psu;
-		this.categoryBean = categoryBean;
-		this.productBean = productBean;
-	}
-	public CabinetBean() {
-		super();
-	}
-	
-	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
-		super();
-		this.cabinet_id = cabinet_id;
-		this.proid = proid;
-		this.brand = brand;
-		this.categoryid = categoryid;
-		this.model = model;
-		this.price = price;
-		this.status = status;
-		this.psu = psu;
-	}
-	
-	
-	
 	
 }

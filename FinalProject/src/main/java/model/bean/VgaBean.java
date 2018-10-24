@@ -1,9 +1,9 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,11 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="powersupplier")
-public class PowerSupplierBean {
+@Table(name="vga")
+public class VgaBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer powersupplier_id;
+	private Integer vga_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -31,7 +31,6 @@ public class PowerSupplierBean {
 	@Column(nullable=false)
 	private String status;
 	@Column(nullable=false)
-
 	private Integer psu;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
@@ -39,13 +38,13 @@ public class PowerSupplierBean {
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public PowerSupplierBean() {
+	public VgaBean() {
 		super();
 	}
-	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer price, String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
-		this.powersupplier_id = powersupplier_id;
+		this.vga_id = vga_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
@@ -56,10 +55,10 @@ public class PowerSupplierBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer price, String status, Integer psu) {
+	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, Integer psu) {
 		super();
-		this.powersupplier_id = powersupplier_id;
+		this.vga_id = vga_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
@@ -68,11 +67,11 @@ public class PowerSupplierBean {
 		this.status = status;
 		this.psu = psu;
 	}
-	public Integer getPowersupplier_id() {
-		return powersupplier_id;
+	public Integer getVga_id() {
+		return vga_id;
 	}
-	public void setPowersupplier_id(Integer powersupplier_id) {
-		this.powersupplier_id = powersupplier_id;
+	public void setVga_id(Integer vga_id) {
+		this.vga_id = vga_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -128,5 +127,6 @@ public class PowerSupplierBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
-
+	
+	
 }

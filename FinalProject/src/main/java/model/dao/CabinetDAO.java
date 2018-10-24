@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.CabinetBean;
+import model.bean.CabinetBean;
 
 public interface CabinetDAO {
 	 List<CabinetBean> selectAll();

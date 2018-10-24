@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
-import model.PinginBean;
+import model.bean.PinginBean;
 import model.dao.PinginDAO;
 @Repository
 public class PinginDAOImpl implements PinginDAO {

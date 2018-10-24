@@ -3,8 +3,7 @@ package model.dao;
 import java.sql.Blob;
 import java.util.List;
 
-
-import model.PinginBean;
+import model.bean.PinginBean;
 
 public interface PinginDAO {
 

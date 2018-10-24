@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.CartDetailBean;
+import model.bean.CartDetailBean;
 import model.dao.CartDetailDAO;
 
 @Repository

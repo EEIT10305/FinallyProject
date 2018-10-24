@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.TransferBean;
+import model.bean.TransferBean;
 import model.dao.TransferDAO;
 @Repository
 public class TransferDAOImpl implements TransferDAO {

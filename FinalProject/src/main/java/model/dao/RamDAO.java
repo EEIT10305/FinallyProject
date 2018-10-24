@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.RamBean;
+import model.bean.RamBean;
 
 public interface RamDAO {
 	 List<RamBean> selectAll();

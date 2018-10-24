@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.RamBean;
+import model.bean.RamBean;
 import model.dao.RamDAO;
 @Repository
 public class RamDAOImpl implements RamDAO {

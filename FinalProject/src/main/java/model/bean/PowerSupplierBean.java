@@ -1,9 +1,9 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,11 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cpu")
-public class CpuBean {
+@Table(name="powersupplier")
+public class PowerSupplierBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer cpu_id;
+	private Integer powersupplier_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -31,8 +31,7 @@ public class CpuBean {
 	@Column(nullable=false)
 	private String status;
 	@Column(nullable=false)
-	private String feet;
-	@Column(nullable=false)
+
 	private Integer psu;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
@@ -40,45 +39,40 @@ public class CpuBean {
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	
-	public CpuBean() {
+	public PowerSupplierBean() {
 		super();
 	}
-	
-	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
+			Integer price, String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
-		this.cpu_id = cpu_id;
+		this.powersupplier_id = powersupplier_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
 		this.status = status;
-		this.feet = feet;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	
-	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, Integer psu) {
+	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
+			Integer price, String status, Integer psu) {
 		super();
-		this.cpu_id = cpu_id;
+		this.powersupplier_id = powersupplier_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
 		this.status = status;
-		this.feet = feet;
 		this.psu = psu;
 	}
-	public Integer getCpu_id() {
-		return cpu_id;
+	public Integer getPowersupplier_id() {
+		return powersupplier_id;
 	}
-	public void setCpu_id(Integer cpu_id) {
-		this.cpu_id = cpu_id;
+	public void setPowersupplier_id(Integer powersupplier_id) {
+		this.powersupplier_id = powersupplier_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -116,12 +110,6 @@ public class CpuBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getFeet() {
-		return feet;
-	}
-	public void setFeet(String feet) {
-		this.feet = feet;
-	}
 	public Integer getPsu() {
 		return psu;
 	}
@@ -140,5 +128,5 @@ public class CpuBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
-	
+
 }

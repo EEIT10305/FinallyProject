@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,11 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mb")
-public class MbBean {
+@Table(name="cpu")
+public class CpuBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer mb_id;
+	private Integer cpu_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -33,25 +33,22 @@ public class MbBean {
 	@Column(nullable=false)
 	private String feet;
 	@Column(nullable=false)
-	private String ddr;
-	@Column(nullable=false)
 	private Integer psu;
-	@Column(nullable=false)
-	private String size;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
 	private CategoryBean categoryBean;
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public MbBean() {
+	
+	public CpuBean() {
 		super();
 	}
-	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size, CategoryBean categoryBean,
-			ProductBean productBean) {
+	
+	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String feet, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
-		this.mb_id = mb_id;
+		this.cpu_id = cpu_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
@@ -59,16 +56,15 @@ public class MbBean {
 		this.price = price;
 		this.status = status;
 		this.feet = feet;
-		this.ddr = ddr;
 		this.psu = psu;
-		this.size = size;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size) {
+	
+	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String feet, Integer psu) {
 		super();
-		this.mb_id = mb_id;
+		this.cpu_id = cpu_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
@@ -76,15 +72,13 @@ public class MbBean {
 		this.price = price;
 		this.status = status;
 		this.feet = feet;
-		this.ddr = ddr;
 		this.psu = psu;
-		this.size = size;
 	}
-	public Integer getMb_id() {
-		return mb_id;
+	public Integer getCpu_id() {
+		return cpu_id;
 	}
-	public void setMb_id(Integer mb_id) {
-		this.mb_id = mb_id;
+	public void setCpu_id(Integer cpu_id) {
+		this.cpu_id = cpu_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -128,23 +122,11 @@ public class MbBean {
 	public void setFeet(String feet) {
 		this.feet = feet;
 	}
-	public String getDdr() {
-		return ddr;
-	}
-	public void setDdr(String ddr) {
-		this.ddr = ddr;
-	}
 	public Integer getPsu() {
 		return psu;
 	}
 	public void setPsu(Integer psu) {
 		this.psu = psu;
-	}
-	public String getSize() {
-		return size;
-	}
-	public void setSize(String size) {
-		this.size = size;
 	}
 	public CategoryBean getCategoryBean() {
 		return categoryBean;

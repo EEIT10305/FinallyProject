@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,54 +12,54 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="wish")
-public class WishBean {
+@Table(name="cart_detail")
+public class CartDetailBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer wishid;
+	private Integer id;
 	@Column(nullable=false)
-	private Integer memberid;
+	private Integer cartid;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
-	private Integer tracked;
+	private Integer amount;
 	@ManyToOne
-	@JoinColumn(name="memberid",insertable=false,updatable=false)
-	private MemberBean memberBean;
+	@JoinColumn(name="cartid",insertable=false,updatable=false)
+	private CartBean cartBean;
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public WishBean() {
+	public CartDetailBean() {
 		super();
 	}
-	public WishBean(Integer wishid, Integer memberid, Integer proid, Integer tracked, MemberBean memberBean,
+	public CartDetailBean(Integer id, Integer cartid, Integer proid, Integer amount, CartBean cartBean,
 			ProductBean productBean) {
 		super();
-		this.wishid = wishid;
-		this.memberid = memberid;
+		this.id = id;
+		this.cartid = cartid;
 		this.proid = proid;
-		this.tracked = tracked;
-		this.memberBean = memberBean;
+		this.amount = amount;
+		this.cartBean = cartBean;
 		this.productBean = productBean;
 	}
-	public WishBean(Integer wishid, Integer memberid, Integer proid, Integer tracked) {
+	public CartDetailBean(Integer id, Integer cartid, Integer proid, Integer amount) {
 		super();
-		this.wishid = wishid;
-		this.memberid = memberid;
+		this.id = id;
+		this.cartid = cartid;
 		this.proid = proid;
-		this.tracked = tracked;
+		this.amount = amount;
 	}
-	public Integer getWishid() {
-		return wishid;
+	public Integer getId() {
+		return id;
 	}
-	public void setWishid(Integer wishid) {
-		this.wishid = wishid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public Integer getMemberid() {
-		return memberid;
+	public Integer getCartid() {
+		return cartid;
 	}
-	public void setMemberid(Integer memberid) {
-		this.memberid = memberid;
+	public void setCartid(Integer cartid) {
+		this.cartid = cartid;
 	}
 	public Integer getProid() {
 		return proid;
@@ -67,17 +67,17 @@ public class WishBean {
 	public void setProid(Integer proid) {
 		this.proid = proid;
 	}
-	public Integer getTracked() {
-		return tracked;
+	public Integer getAmount() {
+		return amount;
 	}
-	public void setTracked(Integer tracked) {
-		this.tracked = tracked;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
-	public MemberBean getMemberBean() {
-		return memberBean;
+	public CartBean getCartBean() {
+		return cartBean;
 	}
-	public void setMemberBean(MemberBean memberBean) {
-		this.memberBean = memberBean;
+	public void setCartBean(CartBean cartBean) {
+		this.cartBean = cartBean;
 	}
 	public ProductBean getProductBean() {
 		return productBean;
@@ -85,7 +85,6 @@ public class WishBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
-	
 	
 	
 }

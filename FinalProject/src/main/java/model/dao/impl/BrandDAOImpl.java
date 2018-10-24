@@ -7,8 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.BrandBean;
-import model.BrandBean;
+import model.bean.BrandBean;
 import model.dao.BrandDAO;
 @Repository
 public class BrandDAOImpl implements BrandDAO {

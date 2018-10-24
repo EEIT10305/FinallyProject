@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.ImportBean;
+import model.bean.ImportBean;
 import model.dao.ImportDAO;
 @Repository
 public class ImportDAOImpl implements ImportDAO {

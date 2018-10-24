@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,11 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="vga")
-public class VgaBean {
+@Table(name="cabinet")
+public class CabinetBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer vga_id;
+	private Integer cabinet_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -38,40 +38,11 @@ public class VgaBean {
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public VgaBean() {
-		super();
+	public Integer getCabinet_id() {
+		return cabinet_id;
 	}
-	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
-		super();
-		this.vga_id = vga_id;
-		this.proid = proid;
-		this.brand = brand;
-		this.categoryid = categoryid;
-		this.model = model;
-		this.price = price;
-		this.status = status;
-		this.psu = psu;
-		this.categoryBean = categoryBean;
-		this.productBean = productBean;
-	}
-	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
-		super();
-		this.vga_id = vga_id;
-		this.proid = proid;
-		this.brand = brand;
-		this.categoryid = categoryid;
-		this.model = model;
-		this.price = price;
-		this.status = status;
-		this.psu = psu;
-	}
-	public Integer getVga_id() {
-		return vga_id;
-	}
-	public void setVga_id(Integer vga_id) {
-		this.vga_id = vga_id;
+	public void setCabinet_id(Integer cabinet_id) {
+		this.cabinet_id = cabinet_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -127,6 +98,38 @@ public class VgaBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
+	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+		super();
+		this.cabinet_id = cabinet_id;
+		this.proid = proid;
+		this.brand = brand;
+		this.categoryid = categoryid;
+		this.model = model;
+		this.price = price;
+		this.status = status;
+		this.psu = psu;
+		this.categoryBean = categoryBean;
+		this.productBean = productBean;
+	}
+	public CabinetBean() {
+		super();
+	}
+	
+	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, Integer psu) {
+		super();
+		this.cabinet_id = cabinet_id;
+		this.proid = proid;
+		this.brand = brand;
+		this.categoryid = categoryid;
+		this.model = model;
+		this.price = price;
+		this.status = status;
+		this.psu = psu;
+	}
+	
+	
 	
 	
 }
