@@ -1,13 +1,14 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,12 +23,12 @@ public class BranchBean {
 	private String address;
 	@Column(nullable=false)
 	private String phone;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="branchBean")
-	private BranchStockBean branchStockBean ;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="branchBeanin")
-	private TransferBean transferBeanin ;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="branchBeanout")
-	private TransferBean transferBeanout ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="branchBean")
+	private Set<BranchStockBean> branchStockBean ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="branchBeanin")
+	private Set<TransferBean> transferBeanin ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="branchBeanout")
+	private Set<TransferBean> transferBeanout ;
 	public Integer getBranchid() {
 		return branchid;
 	}
@@ -52,26 +53,26 @@ public class BranchBean {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public BranchStockBean getBranchStockBean() {
+	public Set<BranchStockBean> getBranchStockBean() {
 		return branchStockBean;
 	}
-	public void setBranchStockBean(BranchStockBean branchStockBean) {
+	public void setBranchStockBean(Set<BranchStockBean> branchStockBean) {
 		this.branchStockBean = branchStockBean;
 	}
-	public TransferBean getTransferBeanin() {
+	public Set<TransferBean> getTransferBeanin() {
 		return transferBeanin;
 	}
-	public void setTransferBeanin(TransferBean transferBeanin) {
+	public void setTransferBeanin(Set<TransferBean> transferBeanin) {
 		this.transferBeanin = transferBeanin;
 	}
-	public TransferBean getTransferBeanout() {
+	public Set<TransferBean> getTransferBeanout() {
 		return transferBeanout;
 	}
-	public void setTransferBeanout(TransferBean transferBeanout) {
+	public void setTransferBeanout(Set<TransferBean> transferBeanout) {
 		this.transferBeanout = transferBeanout;
 	}
-	public BranchBean(Integer branchid, String name, String address, String phone, BranchStockBean branchStockBean,
-			TransferBean transferBeanin, TransferBean transferBeanout) {
+	public BranchBean(Integer branchid, String name, String address, String phone, Set<BranchStockBean> branchStockBean,
+			Set<TransferBean> transferBeanin, Set<TransferBean> transferBeanout) {
 		super();
 		this.branchid = branchid;
 		this.name = name;
@@ -82,7 +83,7 @@ public class BranchBean {
 		this.transferBeanout = transferBeanout;
 	}
 	
-	public BranchBean(Integer branchid, String name, String address, String phone) {
+	public BranchBean(Integer branchid, String address, String name, String phone) {
 		super();
 		this.branchid = branchid;
 		this.name = name;

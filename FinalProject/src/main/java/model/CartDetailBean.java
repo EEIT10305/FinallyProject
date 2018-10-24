@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -26,13 +29,13 @@ public class CartDetailBean {
 	@ManyToOne
 	@JoinColumn(name="cartid",insertable=false,updatable=false)
 	private CartBean cartBean;
-	@OneToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
 	public CartDetailBean() {
 		super();
 	}
-	public CartDetailBean(Integer id, Integer cartid, Integer proid, Integer amount, CartBean cartBean,
+	public CartDetailBean(Integer id, Integer amount,Integer cartid, Integer proid,  CartBean cartBean,
 			ProductBean productBean) {
 		super();
 		this.id = id;
@@ -42,7 +45,7 @@ public class CartDetailBean {
 		this.cartBean = cartBean;
 		this.productBean = productBean;
 	}
-	public CartDetailBean(Integer id, Integer cartid, Integer proid, Integer amount) {
+	public CartDetailBean(Integer id, Integer amount,Integer cartid, Integer proid ) {
 		super();
 		this.id = id;
 		this.cartid = cartid;

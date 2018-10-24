@@ -65,8 +65,8 @@ public class MbBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size) {
+	public MbBean(Integer mb_id,  String brand, Integer categoryid, String ddr,String feet,String model, Integer price,Integer proid,
+			Integer psu, String size,String status) {
 		super();
 		this.mb_id = mb_id;
 		this.proid = proid;

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +26,7 @@ public class BranchStockBean {
 	private Integer amount;
 	@Column(nullable=false)
 	private String status;
-	@OneToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="branchid",insertable=false,updatable=false)
 	private BranchBean branchBean ;
 	@OneToOne(cascade=CascadeType.MERGE)
@@ -85,7 +86,7 @@ public class BranchStockBean {
 		this.productBean = productBean;
 	}
 	
-	public BranchStockBean(Integer branch_stock_id, Integer branchid, Integer proid, Integer amount, String status) {
+	public BranchStockBean(Integer branch_stock_id, Integer amount, Integer branchid, Integer proid, String status) {
 		super();
 		this.branch_stock_id = branch_stock_id;
 		this.branchid = branchid;

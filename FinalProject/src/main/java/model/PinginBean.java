@@ -52,7 +52,7 @@ public class PinginBean {
 		this.pinginDetail = pinginDetail;
 		this.productBean = productBean;
 	}
-	public PinginBean(Integer pinginid, Integer proid, String name, Integer price, String status, Blob picture) {
+	public PinginBean(Integer pinginid,  String name, Blob picture, Integer price,Integer proid, String status) {
 		super();
 		this.pinginid = pinginid;
 		this.proid = proid;

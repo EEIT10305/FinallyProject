@@ -61,8 +61,8 @@ public class CpuBean {
 		this.productBean = productBean;
 	}
 	
-	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, Integer psu) {
+	public CpuBean(Integer cpu_id,String brand, Integer categoryid,String feet,String model, Integer price,Integer proid,
+			Integer psu,String status ) {
 		super();
 		this.cpu_id = cpu_id;
 		this.proid = proid;

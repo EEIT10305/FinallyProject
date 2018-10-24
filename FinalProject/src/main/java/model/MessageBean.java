@@ -24,7 +24,7 @@ public class MessageBean {
 	public MessageBean() {
 		super();
 	}
-	public MessageBean(Integer message_id, Integer memberidA, Integer memberidB, String date, String message) {
+	public MessageBean(Integer message_id, String date, Integer memberidA, Integer memberidB, String message) {
 		super();
 		this.message_id = message_id;
 		this.memberidA = memberidA;

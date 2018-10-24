@@ -77,8 +77,8 @@ public class AllStockBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public AllStockBean(Integer all_stock_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer unitprice, Integer stock, String status) {
+	public AllStockBean(Integer all_stock_id,  String brand, Integer categoryid, String model,Integer proid,
+			String status, Integer stock,Integer unitprice) {
 		super();
 		this.all_stock_id = all_stock_id;
 		this.proid = proid;

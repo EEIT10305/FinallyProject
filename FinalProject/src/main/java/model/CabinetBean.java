@@ -116,8 +116,8 @@ public class CabinetBean {
 		super();
 	}
 	
-	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
+	public CabinetBean(Integer cabinet_id, String brand, Integer categoryid, String model, Integer price, Integer proid,
+			 Integer psu,String status) {
 		super();
 		this.cabinet_id = cabinet_id;
 		this.proid = proid;

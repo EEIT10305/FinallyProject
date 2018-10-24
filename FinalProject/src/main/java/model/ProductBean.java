@@ -1,16 +1,17 @@
 package model;
 
 import java.sql.Blob;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,14 +34,14 @@ public class ProductBean {
 	private String status;
 	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
 	private PinginBean pinginBean ;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
-	private TransferBean transferBean ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="productBean")
+	private Set<TransferBean> transferBean ;
 	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
 	private BranchStockBean branchStockBean ;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
-	private CartDetailBean cartDetailBean ;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
-	private WishBean wishBean ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="productBean")
+	private Set<CartDetailBean> cartDetailBean ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="productBean")
+	private Set<WishBean> wishBean ;
 	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
 	private MbBean mbBean ;
 	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
@@ -61,16 +62,16 @@ public class ProductBean {
 	@ManyToOne
 	@JoinColumn(name="brandid",insertable=false,updatable=false)
 	private BrandBean brandBean;
-	@OneToOne(cascade=CascadeType.MERGE,mappedBy="productBean")
-	private ImportDetailBean importDetailBean ;
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="productBean")
+	private Set<ImportDetailBean> importDetailBean ;
 	public ProductBean() {
 		super();
 	}
 	public ProductBean(Integer proid, Integer brandid, Integer categoryid, String model, Integer price, Blob picture,
-			String status, PinginBean pinginBean, TransferBean transferBean, BranchStockBean branchStockBean,
-			CartDetailBean cartDetailBean, WishBean wishBean, MbBean mbBean, CpuBean cpuBean, StorageBean storageBean,
+			String status, PinginBean pinginBean, Set<TransferBean> transferBean, BranchStockBean branchStockBean,
+			Set<CartDetailBean> cartDetailBean, Set<WishBean> wishBean, MbBean mbBean, CpuBean cpuBean, StorageBean storageBean,
 			VgaBean vgaBean, CabinetBean cabinetBean, PowerSupplierBean powerSupplierBean, RamBean ramBean,
-			CategoryBean categoryBean, BrandBean brandBean, ImportDetailBean importDetailBean) {
+			CategoryBean categoryBean, BrandBean brandBean, Set<ImportDetailBean> importDetailBean) {
 		super();
 		this.proid = proid;
 		this.brandid = brandid;
@@ -154,10 +155,10 @@ public class ProductBean {
 	public void setPinginBean(PinginBean pinginBean) {
 		this.pinginBean = pinginBean;
 	}
-	public TransferBean getTransferBean() {
+	public Set<TransferBean> getTransferBean() {
 		return transferBean;
 	}
-	public void setTransferBean(TransferBean transferBean) {
+	public void setTransferBean(Set<TransferBean> transferBean) {
 		this.transferBean = transferBean;
 	}
 	public BranchStockBean getBranchStockBean() {
@@ -166,16 +167,16 @@ public class ProductBean {
 	public void setBranchStockBean(BranchStockBean branchStockBean) {
 		this.branchStockBean = branchStockBean;
 	}
-	public CartDetailBean getCartDetailBean() {
+	public Set<CartDetailBean> getCartDetailBean() {
 		return cartDetailBean;
 	}
-	public void setCartDetailBean(CartDetailBean cartDetailBean) {
+	public void setCartDetailBean(Set<CartDetailBean> cartDetailBean) {
 		this.cartDetailBean = cartDetailBean;
 	}
-	public WishBean getWishBean() {
+	public Set<WishBean> getWishBean() {
 		return wishBean;
 	}
-	public void setWishBean(WishBean wishBean) {
+	public void setWishBean(Set<WishBean> wishBean) {
 		this.wishBean = wishBean;
 	}
 	public MbBean getMbBean() {
@@ -232,10 +233,10 @@ public class ProductBean {
 	public void setBrandBean(BrandBean brandBean) {
 		this.brandBean = brandBean;
 	}
-	public ImportDetailBean getImportDetailBean() {
+	public Set<ImportDetailBean> getImportDetailBean() {
 		return importDetailBean;
 	}
-	public void setImportDetailBean(ImportDetailBean importDetailBean) {
+	public void setImportDetailBean(Set<ImportDetailBean> importDetailBean) {
 		this.importDetailBean = importDetailBean;
 	}
 	

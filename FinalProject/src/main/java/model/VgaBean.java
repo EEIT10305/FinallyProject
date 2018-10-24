@@ -55,8 +55,8 @@ public class VgaBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
+	public VgaBean(Integer vga_id,  String brand, Integer categoryid, String model, Integer price,Integer proid,
+			Integer psu,String status ) {
 		super();
 		this.vga_id = vga_id;
 		this.proid = proid;
