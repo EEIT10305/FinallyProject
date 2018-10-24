@@ -25,7 +25,10 @@ public class SpringMvcJavaConfigration implements WebMvcConfigurer {
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource RBMS =new ResourceBundleMessageSource();
+
 		RBMS.setBasename("error.message");
+		//多國語系錯誤訊息
+
 		return RBMS;
 	}
 	@Autowired
