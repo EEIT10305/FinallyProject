@@ -56,8 +56,8 @@ public class PowerSupplierBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer price, String status, Integer psu) {
+	public PowerSupplierBean(Integer powersupplier_id,  String brand, Integer categoryid, String model,
+			Integer price,Integer proid,Integer psu,String status) {
 		super();
 		this.powersupplier_id = powersupplier_id;
 		this.proid = proid;

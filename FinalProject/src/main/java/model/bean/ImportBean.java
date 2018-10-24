@@ -24,7 +24,7 @@ public class ImportBean {
 	private String arrivedate;
 	@Column(nullable=false)
 	private String status;
-	@OneToMany(cascade=CascadeType.MERGE,mappedBy="improt_detailid")
+	@OneToMany(cascade=CascadeType.MERGE,mappedBy="improtid")
 	private Set<ImportDetailBean> importDetailBean ;
 	public ImportBean() {
 		super();
@@ -38,7 +38,7 @@ public class ImportBean {
 		this.status = status;
 		this.importDetailBean = importDetailBean;
 	}
-	public ImportBean(Integer improtid, String orderdate, String arrivedate, String status) {
+	public ImportBean(Integer improtid,String arrivedate, String orderdate, String status) {
 		super();
 		this.improtid = improtid;
 		this.orderdate = orderdate;

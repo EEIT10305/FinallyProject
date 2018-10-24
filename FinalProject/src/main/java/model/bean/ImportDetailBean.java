@@ -1,14 +1,15 @@
 package model.bean;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 @Entity
 public class ImportDetailBean {
 	@Id
@@ -20,7 +21,7 @@ public class ImportDetailBean {
 	private Integer proid;
 	@Column(nullable=false)
 	private Integer amount;
-	@OneToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
 	public ImportDetailBean() {
@@ -35,7 +36,7 @@ public class ImportDetailBean {
 		this.amount = amount;
 		this.productBean = productBean;
 	}
-	public ImportDetailBean(Integer improt_detailid, Integer improtid, Integer proid, Integer amount) {
+	public ImportDetailBean(Integer improt_detailid, Integer amount, Integer improtid, Integer proid) {
 		super();
 		this.improt_detailid = improt_detailid;
 		this.improtid = improtid;

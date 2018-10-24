@@ -55,8 +55,8 @@ public class StorageBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public StorageBean(Integer storage_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
+	public StorageBean(Integer storage_id,String brand, Integer categoryid, String model, Integer price,Integer proid,
+			Integer psu, String status) {
 		super();
 		this.storage_id = storage_id;
 		this.proid = proid;

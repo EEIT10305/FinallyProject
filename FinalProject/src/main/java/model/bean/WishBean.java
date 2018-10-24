@@ -26,7 +26,7 @@ public class WishBean {
 	@ManyToOne
 	@JoinColumn(name="memberid",insertable=false,updatable=false)
 	private MemberBean memberBean;
-	@OneToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
 	public WishBean() {

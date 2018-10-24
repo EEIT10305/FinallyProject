@@ -58,8 +58,8 @@ public class RamBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String ddr, Integer psu) {
+	public RamBean(Integer ram_id, String brand, Integer categoryid, String ddr,String model, Integer price, Integer proid,
+			Integer psu, String status ) {
 		super();
 		this.ram_id = ram_id;
 		this.proid = proid;

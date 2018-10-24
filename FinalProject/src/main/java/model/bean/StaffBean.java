@@ -30,7 +30,7 @@ public class StaffBean {
 	public StaffBean() {
 		super();
 	}
-	public StaffBean(Integer staff_id, String name, String email, String password, String permission, String address, String phone) {
+	public StaffBean(Integer staff_id, String address, String email, String name, String password, String permission, String phone) {
 		super();
 		this.staff_id = staff_id;
 		this.name = name;
