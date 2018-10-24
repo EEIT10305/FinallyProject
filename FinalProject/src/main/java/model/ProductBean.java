@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import model.bean.BrandBean;
+import model.bean.CategoryBean;
+
 @Entity
 @Table(name="product")
 public class ProductBean {

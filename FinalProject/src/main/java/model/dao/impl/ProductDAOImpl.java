@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.ProductBean;
+import model.bean.ProductBean;
 import model.dao.ProductDAO;
 
 @Repository

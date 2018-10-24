@@ -7,8 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.OrderDetailBean;
-import model.OrderDetailBean;
+import model.bean.OrderDetailBean;
 import model.dao.OrderDetailDAO;
 @Repository
 public class OrderDetailDAOImpl implements OrderDetailDAO {

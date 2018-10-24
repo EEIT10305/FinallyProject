@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.PinginDetailBean;
+import model.bean.PinginDetailBean;
 
 public interface PinginDetailDAO {
 	 List<PinginDetailBean> selectAll();

@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.OrderDetailBean;
+import model.bean.OrderDetailBean;
 
 public interface OrderDetailDAO {
 	 List<OrderDetailBean> selectAll();

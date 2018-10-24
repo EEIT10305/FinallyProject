@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.PinginDetailBean;
+import model.bean.PinginDetailBean;
 import model.dao.PinginDetailDAO;
 @Repository
 public class PinginDetailDAOImpl implements PinginDetailDAO {

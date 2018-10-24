@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.PowerSupplierBean;
+import model.bean.PowerSupplierBean;
 
 public interface PowerSupplierDAO {
 	 List<PowerSupplierBean> selectAll();

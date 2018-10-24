@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.StaffBean;
+import model.bean.StaffBean;
 
 public interface StaffDAO {
 	 List<StaffBean> selectAll();

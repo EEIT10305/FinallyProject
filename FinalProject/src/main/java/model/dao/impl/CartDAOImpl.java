@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.CartBean;
+import model.bean.CartBean;
 import model.dao.CartDAO;
 @Repository
 public class CartDAOImpl implements CartDAO {

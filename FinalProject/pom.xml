@@ -15,6 +15,7 @@
 		<java-version>1.8</java-version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
@@ -58,7 +59,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -87,6 +87,7 @@
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>

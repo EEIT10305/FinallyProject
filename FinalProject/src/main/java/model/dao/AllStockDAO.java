@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.AllStockBean;
+import model.bean.AllStockBean;
 
 public interface AllStockDAO {
 	 List<AllStockBean> selectAll();

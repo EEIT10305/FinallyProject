@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.AllStockBean;
+import model.bean.AllStockBean;
 import model.dao.AllStockDAO;
 @Repository
 public class AllStockDAOImpl implements AllStockDAO {

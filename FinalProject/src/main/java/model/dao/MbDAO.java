@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.MbBean;
+import model.bean.MbBean;
 
 public interface MbDAO {
 	 List<MbBean> selectAll();

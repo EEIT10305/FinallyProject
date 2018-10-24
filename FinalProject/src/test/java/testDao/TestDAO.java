@@ -12,32 +12,32 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import misc.SpringJavaConfiguration;
 import misc.SystemUtils2018;
-import model.AllStockBean;
-import model.BranchBean;
-import model.BranchStockBean;
-import model.BrandBean;
-import model.CabinetBean;
-import model.CartBean;
-import model.CartDetailBean;
-import model.CategoryBean;
-import model.CpuBean;
-import model.ImportBean;
-import model.ImportDetailBean;
-import model.MbBean;
-import model.MemberBean;
-import model.MessageBean;
-import model.OrderDetailBean;
-import model.OrderListBean;
-import model.PinginBean;
-import model.PinginDetailBean;
-import model.PowerSupplierBean;
-import model.ProductBean;
-import model.RamBean;
-import model.StaffBean;
-import model.StorageBean;
-import model.TransferBean;
-import model.VgaBean;
-import model.WishBean;
+import model.bean.AllStockBean;
+import model.bean.BranchBean;
+import model.bean.BranchStockBean;
+import model.bean.BrandBean;
+import model.bean.CabinetBean;
+import model.bean.CartBean;
+import model.bean.CartDetailBean;
+import model.bean.CategoryBean;
+import model.bean.CpuBean;
+import model.bean.ImportBean;
+import model.bean.ImportDetailBean;
+import model.bean.MbBean;
+import model.bean.MemberBean;
+import model.bean.MessageBean;
+import model.bean.OrderDetailBean;
+import model.bean.OrderListBean;
+import model.bean.PinginBean;
+import model.bean.PinginDetailBean;
+import model.bean.PowerSupplierBean;
+import model.bean.ProductBean;
+import model.bean.RamBean;
+import model.bean.StaffBean;
+import model.bean.StorageBean;
+import model.bean.TransferBean;
+import model.bean.VgaBean;
+import model.bean.WishBean;
 import model.dao.AllStockDAO;
 import model.dao.BranchDAO;
 import model.dao.BranchStockDAO;
@@ -76,6 +76,7 @@ public class TestDAO {
 		context =new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 		factory = (SessionFactory)context.getBean("sessionFactory");
 		factory.getCurrentSession().beginTransaction();
+
 		System.out.println("交易開始");
 	}
 
@@ -95,10 +96,12 @@ public class TestDAO {
 	public void testCategoryDao() {
 		CategoryBean bean = new CategoryBean(null, "CPU", "cpu");
 		CategoryDAO dao = context.getBean(CategoryDAO.class);
+
 		dao.insert(bean);
 //		System.out.println(dao.selectAll());
 //		System.out.println(dao.selectById(1));
      //	System.out.println(dao.update(bean));
+
 	}
 	
 	

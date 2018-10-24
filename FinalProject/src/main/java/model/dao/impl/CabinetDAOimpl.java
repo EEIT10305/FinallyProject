@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.CabinetBean;
+import model.bean.CabinetBean;
 import model.dao.CabinetDAO;
 @Repository
 public class CabinetDAOimpl implements CabinetDAO {

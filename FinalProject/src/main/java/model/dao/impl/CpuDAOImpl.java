@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.CpuBean;
+import model.bean.CpuBean;
 import model.dao.CpuDAO;
 @Repository
 public class CpuDAOImpl implements CpuDAO {

@@ -7,9 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.MemberBean;
+import model.bean.MemberBean;
 import model.dao.MemberDAO;
-import model.MemberBean;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {

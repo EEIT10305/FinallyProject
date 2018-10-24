@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.CartBean;
+import model.bean.CartBean;
 
 public interface CartDAO {
 	 List<CartBean> selectAll();
