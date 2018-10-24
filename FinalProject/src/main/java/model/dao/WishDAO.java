@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.WishBean;
+import model.bean.WishBean;
 
 public interface WishDAO {
 	 List<WishBean> selectAll();

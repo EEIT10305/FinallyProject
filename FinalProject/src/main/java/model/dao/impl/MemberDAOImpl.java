@@ -6,8 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import member.model.MemberBean;
+import model.bean.MemberBean;
 import model.dao.MemberDAO;
 
 @Repository

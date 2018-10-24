@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.StaffBean;
+import model.bean.StaffBean;
 import model.dao.StaffDAO;
 @Repository
 public class StaffDAOImpl implements StaffDAO {

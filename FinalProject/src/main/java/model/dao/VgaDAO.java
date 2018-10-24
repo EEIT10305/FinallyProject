@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.VgaBean;
+import model.bean.VgaBean;
 
 public interface VgaDAO {
 	 List<VgaBean> selectAll();

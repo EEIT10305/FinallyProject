@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.BranchStockBean;
+import model.bean.BranchStockBean;
 import model.dao.BranchStockDAO;
 
 @Repository

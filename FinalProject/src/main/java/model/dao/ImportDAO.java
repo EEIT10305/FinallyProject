@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.ImportBean;
+import model.bean.ImportBean;
 
 public interface ImportDAO {
 	 List<ImportBean> selectAll();

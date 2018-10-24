@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.BranchBean;
+import model.bean.BranchBean;
 import model.dao.BranchDAO;
 @Repository
 public class BranchDAOImpl implements BranchDAO {

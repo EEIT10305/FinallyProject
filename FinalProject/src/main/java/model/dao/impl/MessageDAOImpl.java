@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.MessageBean;
+import model.bean.MessageBean;
 import model.dao.MessageDAO;
 @Repository
 public class MessageDAOImpl implements MessageDAO {

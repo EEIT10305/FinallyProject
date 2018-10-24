@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.MbBean;
+import model.bean.MbBean;
 import model.dao.MbDAO;
 @Repository
 public class MbDAOImpl implements MbDAO {

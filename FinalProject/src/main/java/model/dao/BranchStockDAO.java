@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.BranchStockBean;
+import model.bean.BranchStockBean;
 
 public interface BranchStockDAO {
 	 List<BranchStockBean> selectAll();
