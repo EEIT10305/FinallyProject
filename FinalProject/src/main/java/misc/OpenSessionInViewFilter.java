@@ -25,6 +25,7 @@ public class OpenSessionInViewFilter implements Filter {
 		ServletContext application = filterConfig.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+
 		sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 	}
 

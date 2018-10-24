@@ -76,7 +76,8 @@ public class TestDAO {
 		context =new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 		factory = (SessionFactory)context.getBean("sessionFactory");
 		factory.getCurrentSession().beginTransaction();
-		System.out.println("交易開始");   
+
+		System.out.println("交易開始");
 	}
 
 	@After
@@ -95,7 +96,8 @@ public class TestDAO {
 	public void testCategoryDao() {
 		CategoryBean bean = new CategoryBean(1, "CPU", "cpu");
 		CategoryDAO dao = context.getBean(CategoryDAO.class);
-		dao.insert(bean);
+//		dao.insert(bean);
+
 		System.out.println(dao.selectAll());
 		System.out.println(dao.selectById(1));
 //		System.out.println(dao.update(bean));

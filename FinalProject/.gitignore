@@ -1,8 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /.settings/
 /.classpath
 /target
 /.project
+=======
+/.classpath
+/.project
+/target/
+/.settings/
+/bin/
+>>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
 =======
 /.classpath
 /.project
