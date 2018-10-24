@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import member.model.MemberBean;
 @Entity
 @Table(name="order_list")
 public class OrderListBean {

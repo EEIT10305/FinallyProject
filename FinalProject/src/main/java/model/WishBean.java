@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import member.model.MemberBean;
 @Entity
 @Table(name="wish")
 public class WishBean {

@@ -1,4 +1,4 @@
-package model;
+package member.model;
 
 import java.util.Set;
 
@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import model.CartBean;
+import model.OrderListBean;
+import model.WishBean;
 
 @Entity
 @Table(name="member")

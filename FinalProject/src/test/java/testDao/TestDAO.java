@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import member.model.MemberBean;
 import misc.SpringJavaConfiguration;
 import misc.SystemUtils2018;
 import model.AllStockBean;
@@ -24,7 +25,6 @@ import model.CpuBean;
 import model.ImportBean;
 import model.ImportDetailBean;
 import model.MbBean;
-import model.MemberBean;
 import model.MessageBean;
 import model.OrderDetailBean;
 import model.OrderListBean;
