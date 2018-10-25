@@ -2,12 +2,16 @@ package model.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="message")
 public class MessageBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer message_id;
 	@Column(nullable=false)
 	private Integer memberidA;
@@ -20,7 +24,7 @@ public class MessageBean {
 	public MessageBean() {
 		super();
 	}
-	public MessageBean(Integer message_id, Integer memberidA, Integer memberidB, String date, String message) {
+	public MessageBean(Integer message_id, String date, Integer memberidA, Integer memberidB, String message) {
 		super();
 		this.message_id = message_id;
 		this.memberidA = memberidA;

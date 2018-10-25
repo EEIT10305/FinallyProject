@@ -5,6 +5,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +17,7 @@ import javax.persistence.Table;
 @Table(name="cart")
 public class CartBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer cartid;
 	@Column(nullable=false)
 	private Integer memberid;
@@ -29,7 +33,7 @@ public class CartBean {
 	public CartBean() {
 		super();
 	}
-	public CartBean(Integer cartid, Integer memberid, String date, String status, MemberBean memberBean,
+	public CartBean(Integer cartid,String date , Integer memberid, String status, MemberBean memberBean,
 			Set<CartDetailBean> cartDetailBean) {
 		super();
 		this.cartid = cartid;
@@ -39,7 +43,7 @@ public class CartBean {
 		this.memberBean = memberBean;
 		this.cartDetailBean = cartDetailBean;
 	}
-	public CartBean(Integer cartid, Integer memberid, String date, String status) {
+	public CartBean(Integer cartid, String date, Integer memberid, String status) {
 		super();
 		this.cartid = cartid;
 		this.memberid = memberid;

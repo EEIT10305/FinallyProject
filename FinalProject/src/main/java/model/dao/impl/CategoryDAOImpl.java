@@ -32,7 +32,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public CategoryBean insert(CategoryBean bean) {
 		if(bean!=null) {
 			if(true) {
-				System.out.println(bean.getCategoryid());
+//				System.out.println(bean.getCategoryid());
 				this.getSession().save(bean);
 				return bean;
 			}			

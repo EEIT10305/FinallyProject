@@ -3,6 +3,9 @@ package model.bean;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +16,7 @@ import javax.persistence.Table;
 @Table(name="ram")
 public class RamBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ram_id;
 	@Column(nullable=false)
 	private Integer proid;
@@ -54,8 +58,8 @@ public class RamBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String ddr, Integer psu) {
+	public RamBean(Integer ram_id, String brand, Integer categoryid, String ddr,String model, Integer price, Integer proid,
+			Integer psu, String status ) {
 		super();
 		this.ram_id = ram_id;
 		this.proid = proid;

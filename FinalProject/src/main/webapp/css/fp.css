@@ -1,0 +1,61 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.popoverwide{
+    width:300px;
+    text-align: center;
+}
+
+.navv {
+    padding: 10px;
+}
+
+.btnchoose {
+    padding: 10px 50px;
+    margin: 0px 10px;
+}
+
+li {
+    display: flex;
+}
+
+ul {
+    margin: 0px 25px;
+    list-style-type: none;
+}
+
+
+.search {
+    padding: 20px;
+    text-align: center;
+    background-color: #dad7cc;
+}
+
+.btnwidth {
+    width:200px;
+    padding: 0px 0px;
+    line-height: 60px;
+}
+
+.menustyle {
+    background-color: #6c757d;
+    -webkit-filter: opacity(0.7);
+}
+
+.menuitemstyle {
+    color: aliceblue;
+}
+
+.forcard {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.card{
+    margin:10px;
+}
+
+p {
+    margin: 0px;
+}

@@ -3,6 +3,9 @@ package model.bean;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,6 +15,7 @@ import javax.persistence.Table;
 @Table(name="wish")
 public class WishBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer wishid;
 	@Column(nullable=false)
 	private Integer memberid;
@@ -22,7 +26,7 @@ public class WishBean {
 	@ManyToOne
 	@JoinColumn(name="memberid",insertable=false,updatable=false)
 	private MemberBean memberBean;
-	@OneToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
 	public WishBean() {

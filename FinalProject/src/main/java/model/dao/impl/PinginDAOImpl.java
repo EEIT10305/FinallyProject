@@ -23,40 +23,31 @@ public class PinginDAOImpl implements PinginDAO {
 	}
 	
 
-	/* (non-Javadoc)
-	 * @see model.dao.impl.PinginDAO#select(java.lang.Integer)
-	 */
+
 	@Override
-	public PinginBean select(Integer pinginid) {
+	public PinginBean selectById(int pinginid) {
 		return this.getSession().get(PinginBean.class, pinginid);
 	}
-	/* (non-Javadoc)
-	 * @see model.dao.impl.PinginDAO#select()
-	 */
+	
 	@Override
-	public List<PinginBean> select() {
+	public List<PinginBean> selectAll() {
 		return this.getSession().createQuery(
 				"from PinginBean", PinginBean.class).list();
 	}
-	/* (non-Javadoc)
-	 * @see model.dao.impl.PinginDAO#update(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.sql.Blob)
-	 */
+	
 	@Override
-	public boolean update(String pinginid,String name, Integer price, String status,Blob picture) {
-		PinginBean temp = this.getSession().get(PinginBean.class, pinginid);
+	public boolean update(PinginBean bean) {
+		PinginBean temp = this.getSession().get(PinginBean.class, bean.getPinginid());
 		if(temp!=null) {
-			temp.setName(name);
-			temp.setPrice(price);
-			temp.setStatus(status);
-			temp.setPicture(picture);
+			temp.setName(bean.getName());
+			temp.setPrice(bean.getPrice());
+			temp.setStatus(bean.getStatus());
+			temp.setPicture(bean.getPicture());
 			return true;
 		}
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see model.dao.impl.PinginDAO#insert(model.PinginBean)
-	 */
 	@Override
 	public PinginBean insert(PinginBean bean) {
 		if(bean!=null) {
@@ -68,9 +59,7 @@ public class PinginDAOImpl implements PinginDAO {
 		}
 		return null;
 	}
-	/* (non-Javadoc)
-	 * @see model.dao.impl.PinginDAO#delete(java.lang.Integer)
-	 */
+	
 	@Override
 	public boolean delete(Integer pingin_id) {
 		PinginBean temp = this.getSession().get(PinginBean.class, pingin_id);
@@ -90,7 +79,7 @@ public class PinginDAOImpl implements PinginDAO {
 		System.out.println(2);
 		PinginDAO pinginDAO =context.getBean(PinginDAO.class);
 		System.out.println(3);
-		List<PinginBean> select = pinginDAO.select();
+		List<PinginBean> select = pinginDAO.selectAll();
 		if(select.size()==0) {
 			System.out.println("hahaha");
 		}

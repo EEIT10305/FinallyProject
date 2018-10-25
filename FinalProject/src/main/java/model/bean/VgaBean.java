@@ -3,6 +3,9 @@ package model.bean;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +16,7 @@ import javax.persistence.Table;
 @Table(name="vga")
 public class VgaBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer vga_id;
 	@Column(nullable=false)
 	private Integer proid;
@@ -51,8 +55,8 @@ public class VgaBean {
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu) {
+	public VgaBean(Integer vga_id,  String brand, Integer categoryid, String model, Integer price,Integer proid,
+			Integer psu,String status ) {
 		super();
 		this.vga_id = vga_id;
 		this.proid = proid;

@@ -46,8 +46,8 @@ public class PinginDetailBean {
 		this.price = price;
 		this.pinginBean = pinginBean;
 	}
-	public PinginDetailBean(Integer pingin_detail_id, Integer pinginid, String name, String brand, String category,
-			String model, Integer price) {
+	public PinginDetailBean(Integer pingin_detail_id, String brand, String category,String model, String name,Integer pinginid, 
+			 Integer price) {
 		super();
 		this.pingin_detail_id = pingin_detail_id;
 		this.pinginid = pinginid;

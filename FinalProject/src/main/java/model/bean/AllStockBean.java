@@ -2,6 +2,9 @@ package model.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +12,7 @@ import javax.persistence.Table;
 @Table(name="all_stock")
 public class AllStockBean {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer all_stock_id;
 	@Column(nullable=false)
 	private Integer proid;
@@ -73,8 +77,8 @@ public class AllStockBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public AllStockBean(Integer all_stock_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer unitprice, Integer stock, String status) {
+	public AllStockBean(Integer all_stock_id,  String brand, Integer categoryid, String model,Integer proid,
+			String status, Integer stock,Integer unitprice) {
 		super();
 		this.all_stock_id = all_stock_id;
 		this.proid = proid;
