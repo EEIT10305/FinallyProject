@@ -2,7 +2,7 @@ package model.dao;
 
 import java.util.List;
 
-import model.BrandBean;
+import model.bean.BrandBean;
 
 public interface BrandDAO {
 	 List<BrandBean> selectAll();

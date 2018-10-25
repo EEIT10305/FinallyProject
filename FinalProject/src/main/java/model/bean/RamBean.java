@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,10 +10,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mb")
-public class MbBean {
+@Table(name="ram")
+public class RamBean {
 	@Id
-	private Integer mb_id;
+	private Integer ram_id;
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
@@ -27,60 +27,51 @@ public class MbBean {
 	@Column(nullable=false)
 	private String status;
 	@Column(nullable=false)
-	private String feet;
-	@Column(nullable=false)
 	private String ddr;
 	@Column(nullable=false)
 	private Integer psu;
-	@Column(nullable=false)
-	private String size;
 	@ManyToOne
 	@JoinColumn(name="categoryid",insertable=false,updatable=false)
 	private CategoryBean categoryBean;
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
-	public MbBean() {
+	public RamBean() {
 		super();
 	}
-	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size, CategoryBean categoryBean,
-			ProductBean productBean) {
+	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String ddr, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
-		this.mb_id = mb_id;
+		this.ram_id = ram_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
 		this.status = status;
-		this.feet = feet;
 		this.ddr = ddr;
 		this.psu = psu;
-		this.size = size;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
-	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size) {
+	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
+			String status, String ddr, Integer psu) {
 		super();
-		this.mb_id = mb_id;
+		this.ram_id = ram_id;
 		this.proid = proid;
 		this.brand = brand;
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
 		this.status = status;
-		this.feet = feet;
 		this.ddr = ddr;
 		this.psu = psu;
-		this.size = size;
 	}
-	public Integer getMb_id() {
-		return mb_id;
+	public Integer getRam_id() {
+		return ram_id;
 	}
-	public void setMb_id(Integer mb_id) {
-		this.mb_id = mb_id;
+	public void setRam_id(Integer ram_id) {
+		this.ram_id = ram_id;
 	}
 	public Integer getProid() {
 		return proid;
@@ -118,12 +109,6 @@ public class MbBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getFeet() {
-		return feet;
-	}
-	public void setFeet(String feet) {
-		this.feet = feet;
-	}
 	public String getDdr() {
 		return ddr;
 	}
@@ -135,12 +120,6 @@ public class MbBean {
 	}
 	public void setPsu(Integer psu) {
 		this.psu = psu;
-	}
-	public String getSize() {
-		return size;
-	}
-	public void setSize(String size) {
-		this.size = size;
 	}
 	public CategoryBean getCategoryBean() {
 		return categoryBean;

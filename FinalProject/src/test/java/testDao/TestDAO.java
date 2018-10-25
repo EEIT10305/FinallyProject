@@ -13,9 +13,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import misc.SpringJavaConfiguration;
 import misc.SystemUtils2018;
-import model.BrandBean;
-import model.CategoryBean;
-import model.ProductBean;
+import model.bean.BrandBean;
+import model.bean.CategoryBean;
+import model.bean.ProductBean;
 import model.dao.BrandDAO;
 import model.dao.CategoryDAO;
 import model.dao.ProductDAO;
