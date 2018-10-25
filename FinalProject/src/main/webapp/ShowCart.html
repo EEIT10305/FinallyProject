@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/fp.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <title>購物車頁</title>
+    <style>
+        aside {
+            float: left;
+            width: 20%;
+            margin: 10px;
+        }
+
+        article {
+
+            width: 75%;
+            margin: 10px;
+            padding: 100px;
+        }
+        .btn-mystylelink {
+    font-weight: 400;
+    color: grey;
+    background-color: transparent;
+}
+    </style>
+    <script>
+        var flag1 = false;
+        $(document).ready(function () {
+            $("form > select").hide();
+            $('button[name="becheckbtn"]').next().hide();
+            $('button.menuitemstyle').click(function () {
+                $(this).parent().siblings(".btnwidth").text($(this).text());
+            })
+            $('button[name="category"]').click(function () {
+                flag1 = true;
+
+                $('button[name="becheckbtn"]').hide();
+                $('button[name="becheckbtn"]').next().show();
+                // 這裡可以加動態產生的品牌或價格選項
+            })
+            $("#inlineRadio4").click(function(){
+                $("form > select").show();
+            })
+            $("#inlineRadio3").click(function(){
+                $("form > select").hide();
+            })
+
+        }
+        )
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                container: 'body',
+                html: true,
+                content: "<a href='ShowCart.html'><button class='btn btn-dark'>查看購物車</button></a>",
+                trigger: "manual",
+                template: '<div class="popover popoverwide" role="tooltip"><div class="arrow"></div><div class="dropdown-divider"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
+            }).on("mouseover", function () {
+                var _this = this;
+                $(this).popover("show");
+            }).on("mouseout", function () {
+                var _this = this;
+                //   setTimeout(function () {
+                if (!$(".popover:hover").length) {
+                    $(_this).popover("hide")
+                }
+                //   }, 100);
+            });
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <div style="align-items:baseline;" class="d-flex justify-content-between">
+            <div class="navv">
+                <li>
+                    <ul>
+                        <a href="FirstPage.html">
+                            <img src="image/001.png" width="120px">
+                        </a>
+                    </ul>
+                </li>
+
+            </div>
+            <div class="navv">
+                    <a href="FirstPage.html"><button type="button" class="btn btn-dark btnchoose">
+                            <img src="image/shopping-bag.png" width="20px">
+                            <br>線上購物</button></a>
+                    <a href="CustomizedPage.html"><button type="button" class="btn btn-dark btnchoose">
+                        <img src="image/note.png" width="20px">
+                        <br>自組電腦</button></a>
+                        <a href="Pk.html"><button type="button" class="btn btn-dark btnchoose">
+                                <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png" width="20px">
+                                <br>商品比較</button></a>
+            </div>
+            <div class="navv">
+                <li>
+                    <ul>
+                    
+                            <img src="image/shopping-cart_g.png" width="30px">
+                      
+                    </ul>
+                    <ul>
+                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
+                            <img src="image/avatar.png" width="30px"> </a>
+
+                    </ul>
+                </li>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">密碼</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+
+                            <span>
+                                <a href="Register.html"> 尚未註冊?</a>
+                            </span>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">記住密碼</label>
+                            </div>
+                            <button type="submit" class="btn btn-dark">送出</button>
+                            <button type="reset" class="btn btn-secondary">重設</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <nav>
+        <div class="search">
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary btnwidth">分類</button>
+                <button id="catebtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
+                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
+                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
+                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
+                </div>
+            </div>
+
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+                <button name="becheckbtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="modal" data-target="#mustchoose">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+
+                </div>
+
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary btnwidth">價格</button>
+                <button name="becheckbtn" type="button" data-toggle="modal" data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+
+                </div>
+            </div>
+            <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="image/exclamation-mark.png" width="80px">
+                            <h5 style="color:red">請選擇分類</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <input type="text" style="line-height:45px;" size="30px">
+            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+                搜尋
+                <span>
+                    <img src="image/loupe.png" width="20px;">
+                </span>
+            </button>
+        </div>
+
+
+
+    </nav>
+    <div style="overflow: auto;background-color:whitesmoke;">
+        <article style="height:1000px;border-radius:15px;border:1px solid grey;margin:40px auto;width:50%;background-color:white;">
+                <div class="accordion" id="accordionExample">
+                        <div class="card">
+                          <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                              <button class="btn btn-mystylelink" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                確認購物車
+                              </button>
+                            </h5>
+                          </div>
+                      
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    <div style="text-align: center">
+                                            <table class="table table-striped table-mycolor ">
+                                                <thead class="thead-mycolor">
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">商品圖片</th>
+                                                        <th scope="col">商品型號</th>
+                                                        <th scope="col">商品名稱</th>
+                                                        <th scope="col">價格</th>
+                                                        <th scope="col">數量</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                    
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                        
+                                                </tbody>
+                                            </table>
+                                            </div>
+                            </div>
+<<<<<<< HEAD
+                          </div>
+                        </div>
+                        <!-- 付款block -->
+                        <div class="card">
+                          <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                              <button class="btn btn-mystylelink collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                               付款方式
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><img src="image/credit-card.png" width="30px">    刷卡</label>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2"><img src="image/icon.png" width="30px">    付現</label>
+                                        </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                              <button class="btn btn-mystylelink collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                               運送方式
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1" checked>
+                                            <label class="form-check-label" for="inlineRadio3"><img src="image/credit-card.png" width="30px">    宅配</label>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
+                                            <label class="form-check-label" for="inlineRadio4"><img src="image/icon.png" width="30px">    門市取貨</label>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+=======
+                            <div style="padding:30px"><button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseThree">下一步</button></div>
+                          </div>
+                        </div>
+                        <!-- 付款block -->
+                        <div class="card">
+                          <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                              <button class="btn btn-mystylelink collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                               付款方式
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><img src="image/credit-card.png" width="45px">     刷卡</label>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2"><img src="image/icon.png" width="45px">     付現</label>
+                                        </div>
+                                        
+                            </div>
+                            <div style="padding:30px"><button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">下一步</button></div>
+                            
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                              <button class="btn btn-mystylelink collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                               運送方式
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                    <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1" checked>
+                                            <label class="form-check-label" for="inlineRadio3"><img src="image/truck.png" width="45px">    宅配</label>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
+                                            <label class="form-check-label" for="inlineRadio4"><img src="image/shop.png" width="45px">    門市取貨</label>
+                                        </div>
+                                        
+>>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
+                                        <form>
+                                                <div class="dropdown-divider"></div>
+                                                <br>
+                                                <select class="form-control form-control-sm">
+                                                        <option>請選擇分店</option>
+                                                </select>
+                                                
+                                                <div class="form-group">
+                                                        <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                        <label class="form-check-label" for="gridCheck">
+                                                          同會員資料
+                                                        </label>
+                                                      </div> 
+                                                    </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputEmail4">姓名</label>
+                                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputCity">手機</label>
+                                                    <input type="text" class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputAddress2">地址</label>
+                                                    <input type="text" class="form-control" id="inputAddress2">
+                                                </div>
+                                                <div class="form-row">
+                                
+                                                </div>
+                                               
+                                                <button type="submit" class="btn btn-secondary">送出</button>
+                                            </form>            
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        </article>
+    </div>
+    <footer>
+        <div style="background-color:#dad7cc;">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link active" href="#">隱私權政策</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link" href="#">購物流程</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link" href="#">付款方式</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link" href="#">會員權益</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link" href="#">售後服務</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:#6c757d" class="nav-link" href="#">網路客服</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div style="background-color:#dad7cc;color:#6c757d;font-size: 10px;padding:10px 60px ">
+            <a href="">
+                <img src="image/001.png" width="80px">
+            </a>
+            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
+            </p>
+            <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
+        </div>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

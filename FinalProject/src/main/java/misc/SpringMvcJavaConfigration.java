@@ -22,32 +22,35 @@ import org.springframework.web.servlet.view.XmlViewResolver;
 @ComponentScan(basePackages= {"controller"})
 @EnableWebMvc
 public class SpringMvcJavaConfigration implements WebMvcConfigurer {
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource RBMS =new ResourceBundleMessageSource();
-		RBMS.setBasename("error.message");
-		return RBMS;
-	}
-	@Autowired
-	private ServletContext servletContext;
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		
-		XmlViewResolver XVR = new XmlViewResolver();
-		XVR.setLocation(new ServletContextResource(servletContext, "/WEB-INF/Spring-views.xml"));
-		registry.viewResolver(XVR);
-		
-		InternalResourceViewResolver internalResourceViewResolver =new InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF");
-		internalResourceViewResolver.setSuffix(".jsp");
-		registry.viewResolver(internalResourceViewResolver);
-	}
-	@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-		localeResolver.setDefaultLocale(Locale.FRANCE);
-		return localeResolver;
-	}
+
+//	@Bean
+//	public ResourceBundleMessageSource messageSource() {
+//		ResourceBundleMessageSource RBMS =new ResourceBundleMessageSource();
+//		RBMS.setBasename("error.message");
+//		//多國語系錯誤訊息
+//		return RBMS;
+//	}
+//	@Autowired
+//	private ServletContext servletContext;
+//	@Override
+//	public void configureViewResolvers(ViewResolverRegistry registry) {
+//		
+//		XmlViewResolver XVR = new XmlViewResolver();
+//		XVR.setLocation(new ServletContextResource(servletContext, "/WEB-INF/Spring-views.xml"));
+//		registry.viewResolver(XVR);
+//		
+//		InternalResourceViewResolver internalResourceViewResolver =new InternalResourceViewResolver();
+//		internalResourceViewResolver.setPrefix("/WEB-INF");
+//		internalResourceViewResolver.setSuffix(".jsp");
+//		registry.viewResolver(internalResourceViewResolver);
+//	}
+//	@Bean
+//	public LocaleResolver localeResolver() {
+//		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+//		localeResolver.setDefaultLocale(Locale.FRANCE);
+//		return localeResolver;
+//	}
+
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
