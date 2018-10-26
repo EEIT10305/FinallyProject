@@ -17,11 +17,11 @@ import javax.persistence.Table;
 public class MemberBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer memberid;
+	private Integer memberid;//流水號
 	@Column(nullable=false)
-	private String name;
+	private String name;//真實姓名
 	@Column(nullable=false)
-	private String email;
+	private String email;//email
 	@Column(nullable=false)
 	private String password;
 	@Column(nullable=false)
