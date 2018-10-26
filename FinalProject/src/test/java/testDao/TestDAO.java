@@ -1,6 +1,7 @@
 package testDao;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class TestDAO {
 
 		dao.insert(bean);
 //		System.out.println(dao.selectAll());
-//		System.out.println(dao.selectById(1));
+//123	System.out.println(dao.selectById(1));
      //	System.out.println(dao.update(bean));
 
 	}

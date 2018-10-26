@@ -20,6 +20,7 @@ aside {
 	width: 20%;
 	margin: 10px;
 }
+<<<<<<< HEAD
 article {
 	width: 75%;
 	margin: 10px;
@@ -50,6 +51,43 @@ article {
 			$('button[name="becheckbtn"]').next().show();
 			// 這裡可以加動態產生的品牌或價格選項
 		})
+=======
+
+article {
+	width: 75%;
+	margin: 10px;
+	padding: 100px;
+}
+
+.btn-mystylelink {
+	font-weight: 400;
+	color: grey;
+	background-color: transparent;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		$.post("TestController")
+
+		$("form > select").hide();
+
+		$("#inlineRadio4").click(function() {
+			$("form > select").show();
+		})
+		$("#inlineRadio3").click(function() {
+			$("form > select").hide();
+		})
+		$('button[name="becheckbtn"]').next().hide();
+		$('button.menuitemstyle').click(function() {
+			$(this).parent().siblings(".btnwidth").text($(this).text());
+		})
+		$('button[name="category"]').click(function() {
+			$('button[name="becheckbtn"]').hide();
+			$('button[name="becheckbtn"]').next().show();
+			// 這裡可以加動態產生的品牌或價格選項
+		})
+
+>>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
 		$('#test').mouseover(function() {
 			$("fieldset").show();
 		});
