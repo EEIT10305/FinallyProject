@@ -29,7 +29,7 @@ public class CpuBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 	private String feet;
 	@Column(nullable=false)
@@ -46,7 +46,7 @@ public class CpuBean {
 	}
 	
 	public CpuBean(Integer cpu_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+			String statu, String feet, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
 		this.cpu_id = cpu_id;
 		this.proid = proid;
@@ -54,7 +54,7 @@ public class CpuBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.feet = feet;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
@@ -62,7 +62,7 @@ public class CpuBean {
 	}
 	
 	public CpuBean(Integer cpu_id,String brand, Integer categoryid,String feet,String model, Integer price,Integer proid,
-			Integer psu,String status ) {
+			Integer psu,String statu ) {
 		super();
 		this.cpu_id = cpu_id;
 		this.proid = proid;
@@ -70,7 +70,7 @@ public class CpuBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.feet = feet;
 		this.psu = psu;
 	}
@@ -110,11 +110,11 @@ public class CpuBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public String getFeet() {
 		return feet;

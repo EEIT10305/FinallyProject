@@ -50,7 +50,7 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 					temp.setBranchid(bean.getBranchid());
 					temp.setProid(bean.getProid());
 					temp.setAmount(bean.getAmount());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					this.getSession().flush();
 					return true;
 				} catch (Exception e) {

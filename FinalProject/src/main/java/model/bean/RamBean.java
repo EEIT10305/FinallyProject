@@ -29,7 +29,7 @@ public class RamBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 	private String ddr;
 	@Column(nullable=false)
@@ -44,7 +44,7 @@ public class RamBean {
 		super();
 	}
 	public RamBean(Integer ram_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String ddr, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+			String statu, String ddr, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
 		this.ram_id = ram_id;
 		this.proid = proid;
@@ -52,14 +52,14 @@ public class RamBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.ddr = ddr;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
 	public RamBean(Integer ram_id, String brand, Integer categoryid, String ddr,String model, Integer price, Integer proid,
-			Integer psu, String status ) {
+			Integer psu, String statu ) {
 		super();
 		this.ram_id = ram_id;
 		this.proid = proid;
@@ -67,7 +67,7 @@ public class RamBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.ddr = ddr;
 		this.psu = psu;
 	}
@@ -107,11 +107,11 @@ public class RamBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public String getDdr() {
 		return ddr;
