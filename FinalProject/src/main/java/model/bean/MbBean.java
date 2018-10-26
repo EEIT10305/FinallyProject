@@ -29,7 +29,7 @@ public class MbBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 	private String feet;
 	@Column(nullable=false)
@@ -48,7 +48,7 @@ public class MbBean {
 		super();
 	}
 	public MbBean(Integer mb_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, String feet, String ddr, Integer psu, String size, CategoryBean categoryBean,
+			String statu, String feet, String ddr, Integer psu, String size, CategoryBean categoryBean,
 			ProductBean productBean) {
 		super();
 		this.mb_id = mb_id;
@@ -57,7 +57,7 @@ public class MbBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.feet = feet;
 		this.ddr = ddr;
 		this.psu = psu;
@@ -66,7 +66,7 @@ public class MbBean {
 		this.productBean = productBean;
 	}
 	public MbBean(Integer mb_id,  String brand, Integer categoryid, String ddr,String feet,String model, Integer price,Integer proid,
-			Integer psu, String size,String status) {
+			Integer psu, String size,String statu) {
 		super();
 		this.mb_id = mb_id;
 		this.proid = proid;
@@ -74,7 +74,7 @@ public class MbBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.feet = feet;
 		this.ddr = ddr;
 		this.psu = psu;
@@ -116,11 +116,11 @@ public class MbBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public String getFeet() {
 		return feet;

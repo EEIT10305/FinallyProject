@@ -48,7 +48,7 @@ public class CpuDAOImpl implements CpuDAO {
 					temp.setCategoryid(bean.getCategoryid());
 					temp.setModel(bean.getModel());
 					temp.setPrice(bean.getPrice());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					temp.setFeet(bean.getFeet());
 					temp.setPsu(bean.getPsu());
 					this.getSession().flush();

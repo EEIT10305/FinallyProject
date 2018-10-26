@@ -28,37 +28,33 @@ public class PinginBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	
 	private Blob picture;
-	
-	@OneToMany(cascade=CascadeType.MERGE,mappedBy="pinginBean")
-	private Set<PinginDetailBean> pinginDetail ;
 	@OneToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
 	public PinginBean() {
 		super();
 	}
-	public PinginBean(Integer pinginid, Integer proid, String name, Integer price, String status, Blob picture,
-			Set<PinginDetailBean> pinginDetail, ProductBean productBean) {
+	public PinginBean(Integer pinginid, Integer proid, String name, Integer price, String statu, Blob picture,
+			 ProductBean productBean) {
 		super();
 		this.pinginid = pinginid;
 		this.proid = proid;
 		this.name = name;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.picture = picture;
-		this.pinginDetail = pinginDetail;
 		this.productBean = productBean;
 	}
-	public PinginBean(Integer pinginid,  String name, Blob picture, Integer price,Integer proid, String status) {
+	public PinginBean(Integer pinginid,  String name, Blob picture, Integer price,Integer proid, String statu) {
 		super();
 		this.pinginid = pinginid;
 		this.proid = proid;
 		this.name = name;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.picture = picture;
 	}
 	public Integer getPinginid() {
@@ -85,11 +81,11 @@ public class PinginBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public Blob getPicture() {
 		return picture;
@@ -97,12 +93,7 @@ public class PinginBean {
 	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
-	public Set<PinginDetailBean> getPinginDetail() {
-		return pinginDetail;
-	}
-	public void setPinginDetail(Set<PinginDetailBean> pinginDetail) {
-		this.pinginDetail = pinginDetail;
-	}
+
 	public ProductBean getProductBean() {
 		return productBean;
 	}

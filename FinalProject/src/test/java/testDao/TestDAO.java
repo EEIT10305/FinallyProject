@@ -2,6 +2,7 @@ package testDao;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -94,7 +95,7 @@ public class TestDAO {
 	
 	@Test
 	public void testCategoryDao() {
-		CategoryBean bean = new CategoryBean(null, "CPU", "cpu");
+		CategoryBean bean = new CategoryBean(null, "Ram", "Ram");
 		CategoryDAO dao = context.getBean(CategoryDAO.class);
 
 		dao.insert(bean);
@@ -119,12 +120,19 @@ public class TestDAO {
 	public void testProductDao() {
 		try {
 			ProductBean bean = 
-					new ProductBean(null, 1, 1, "hello3", 200, SystemUtils2018.fileToBlob("C:\\temp\\normal.png"), "ok");
+					new ProductBean(null, 1, 1,0, "hello3", 200, SystemUtils2018.fileToBlob("C:\\temp\\normal.png"), "ok");
 			ProductDAO dao = context.getBean(ProductDAO.class);
-			dao.insert(bean);
+//			dao.insert(bean);
 //			System.out.println(dao.selectAll());
 //			System.out.println(dao.selectById(1).getCategoryBean().getCategory());
 //			System.out.println(dao.update(bean));
+			List<ProductBean> list =dao.selectByCategory(1);
+			System.out.println(list.get(1).getProid());
+			System.out.println(list.get(1).getBrandid());
+			System.out.println(list.get(1).getCategoryid());
+			System.out.println(list.get(1).getModel());
+			System.out.println(list.get(1).getPrice());
+			System.out.println(list.get(1).getStatu());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -144,7 +152,7 @@ public class TestDAO {
 
 	@Test
 	public void testOrderListDao() {
-		OrderListBean bean = new OrderListBean(null, "1990-05-04", 2 ,600,"shipping");
+		OrderListBean bean = new OrderListBean(null,"Taipei","已到達","1990-05-04", 2 ,"shipping",600,"未付款");
 		OrderListDAO dao = context.getBean(OrderListDAO.class);
 		dao.insert(bean);
 		System.out.println(dao.selectAll());
@@ -325,7 +333,7 @@ public class TestDAO {
 	}
 	@Test
 	public void testTransferDao() {
-		TransferBean bean = new TransferBean(null,5,2,1,"10-19",2);
+		TransferBean bean = new TransferBean(null,5,2,1,"10-19",2,1);
 		TransferDAO dao = context.getBean(TransferDAO.class);
 		dao.insert(bean);
 //		System.out.println(dao.selectAll());

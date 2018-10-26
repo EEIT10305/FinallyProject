@@ -48,7 +48,7 @@ public class RamDAOImpl implements RamDAO {
 					temp.setCategoryid(bean.getCategoryid());
 					temp.setModel(bean.getModel());
 					temp.setPrice(bean.getPrice());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					temp.setDdr(bean.getDdr());
 					temp.setPsu(bean.getPsu());
 					this.getSession().flush();
