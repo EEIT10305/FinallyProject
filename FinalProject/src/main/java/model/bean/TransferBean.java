@@ -24,6 +24,8 @@ public class TransferBean {
 	@Column(nullable = false)
 	private Integer amount;
 	@Column(nullable = false)
+	private Integer staff_id;
+	@Column(nullable = false)
 	private Integer branchidin;
 	@Column(nullable = false)
 	private Integer branchidout;
@@ -36,27 +38,34 @@ public class TransferBean {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "proid", insertable = false, updatable = false)
 	private ProductBean productBean;
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="staff_id",insertable=false,updatable=false)
+	private StaffBean staffBean ;
 
 	public TransferBean() {
 		super();
 	}
 
-	public TransferBean(Integer transferid, String date, Integer proid, Integer amount, Integer branchidin,
-			Integer branchidout, BranchBean branchBeanin, BranchBean branchBeanout, ProductBean productBean) {
+	public TransferBean(Integer transferid, String date, Integer proid, Integer amount, Integer staff_id,Integer branchidin,
+			Integer branchidout, BranchBean branchBeanin, BranchBean branchBeanout, ProductBean productBean,StaffBean staffBean) {
 		super();
 		this.transferid = transferid;
 		this.date = date;
 		this.proid = proid;
 		this.amount = amount;
+		this.staff_id = staff_id;
 		this.branchidin = branchidin;
 		this.branchidout = branchidout;
 		this.branchBeanin = branchBeanin;
 		this.branchBeanout = branchBeanout;
 		this.productBean = productBean;
+		this.staffBean = staffBean;
 	}
 
+	
+
 	public TransferBean(Integer transferid, Integer amount, Integer branchidin, Integer branchidout, String date,
-			Integer proid) {
+			Integer proid,Integer staff_id) {
 		super();
 		this.transferid = transferid;
 		this.date = date;
@@ -64,6 +73,7 @@ public class TransferBean {
 		this.amount = amount;
 		this.branchidin = branchidin;
 		this.branchidout = branchidout;
+		this.staff_id = staff_id;
 	}
 
 	public Integer getTransferid() {
@@ -96,6 +106,13 @@ public class TransferBean {
 
 	public void setAmount(Integer amount) {
 		this.amount = amount;
+	}
+	public Integer getStaff_id() {
+		return staff_id;
+	}
+
+	public void setStaff_id(Integer staff_id) {
+		this.staff_id = staff_id;
 	}
 
 	public Integer getBranchidin() {
@@ -136,6 +153,13 @@ public class TransferBean {
 
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
+	}
+	public StaffBean getStaffBean() {
+		return staffBean;
+	}
+
+	public void setStaffBean(StaffBean staffBean) {
+		this.staffBean = staffBean;
 	}
 
 }

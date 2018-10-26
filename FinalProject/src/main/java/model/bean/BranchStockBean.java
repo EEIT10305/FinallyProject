@@ -25,7 +25,7 @@ public class BranchStockBean {
 	@Column(nullable=false)
 	private Integer amount;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="branchid",insertable=false,updatable=false)
 	private BranchBean branchBean ;
@@ -56,11 +56,11 @@ public class BranchStockBean {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public BranchBean getBranchBean() {
 		return branchBean;
@@ -74,25 +74,25 @@ public class BranchStockBean {
 	public void setProductBean(ProductBean productBean) {
 		this.productBean = productBean;
 	}
-	public BranchStockBean(Integer branch_stock_id, Integer branchid, Integer proid, Integer amount, String status,
+	public BranchStockBean(Integer branch_stock_id, Integer branchid, Integer proid, Integer amount, String statu,
 			BranchBean branchBean, ProductBean productBean) {
 		super();
 		this.branch_stock_id = branch_stock_id;
 		this.branchid = branchid;
 		this.proid = proid;
 		this.amount = amount;
-		this.status = status;
+		this.statu = statu;
 		this.branchBean = branchBean;
 		this.productBean = productBean;
 	}
 	
-	public BranchStockBean(Integer branch_stock_id, Integer amount, Integer branchid, Integer proid, String status) {
+	public BranchStockBean(Integer branch_stock_id, Integer amount, Integer branchid, Integer proid, String statu) {
 		super();
 		this.branch_stock_id = branch_stock_id;
 		this.branchid = branchid;
 		this.proid = proid;
 		this.amount = amount;
-		this.status = status;
+		this.statu = statu;
 	}
 	public BranchStockBean() {
 		super();

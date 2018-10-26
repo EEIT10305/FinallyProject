@@ -24,31 +24,27 @@ public class CartBean {
 	@Column(nullable=false)
 	private String date;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@ManyToOne
 	@JoinColumn(name="memberid",insertable=false,updatable=false)
 	private MemberBean memberBean;
-	@OneToMany(cascade=CascadeType.MERGE,mappedBy="cartBean")
-	private Set<CartDetailBean> cartDetailBean ;
 	public CartBean() {
 		super();
 	}
-	public CartBean(Integer cartid,String date , Integer memberid, String status, MemberBean memberBean,
-			Set<CartDetailBean> cartDetailBean) {
+	public CartBean(Integer cartid,String date , Integer memberid, String statu, MemberBean memberBean) {
 		super();
 		this.cartid = cartid;
 		this.memberid = memberid;
 		this.date = date;
-		this.status = status;
+		this.statu = statu;
 		this.memberBean = memberBean;
-		this.cartDetailBean = cartDetailBean;
 	}
-	public CartBean(Integer cartid, String date, Integer memberid, String status) {
+	public CartBean(Integer cartid, String date, Integer memberid, String statu) {
 		super();
 		this.cartid = cartid;
 		this.memberid = memberid;
 		this.date = date;
-		this.status = status;
+		this.statu = statu;
 	}
 	public Integer getCartid() {
 		return cartid;
@@ -69,10 +65,10 @@ public class CartBean {
 		this.date = date;
 	}
 	public String getStatus() {
-		return status;
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(String statu) {
+		this.statu = statu;
 	}
 	public MemberBean getMemberBean() {
 		return memberBean;
@@ -80,13 +76,5 @@ public class CartBean {
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
-	public Set<CartDetailBean> getCartDetailBean() {
-		return cartDetailBean;
-	}
-	public void setCartDetailBean(Set<CartDetailBean> cartDetailBean) {
-		this.cartDetailBean = cartDetailBean;
-	}
-	
-	
-	
+
 }

@@ -29,7 +29,7 @@ public class VgaBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 	private Integer psu;
 	@ManyToOne
@@ -42,7 +42,7 @@ public class VgaBean {
 		super();
 	}
 	public VgaBean(Integer vga_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+			String statu, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
 		this.vga_id = vga_id;
 		this.proid = proid;
@@ -50,13 +50,13 @@ public class VgaBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
 	public VgaBean(Integer vga_id,  String brand, Integer categoryid, String model, Integer price,Integer proid,
-			Integer psu,String status ) {
+			Integer psu,String statu ) {
 		super();
 		this.vga_id = vga_id;
 		this.proid = proid;
@@ -64,7 +64,7 @@ public class VgaBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 	}
 	public Integer getVga_id() {
@@ -103,11 +103,11 @@ public class VgaBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public Integer getPsu() {
 		return psu;

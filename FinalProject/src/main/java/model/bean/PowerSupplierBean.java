@@ -29,7 +29,7 @@ public class PowerSupplierBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 
 	private Integer psu;
@@ -43,7 +43,7 @@ public class PowerSupplierBean {
 		super();
 	}
 	public PowerSupplierBean(Integer powersupplier_id, Integer proid, String brand, Integer categoryid, String model,
-			Integer price, String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+			Integer price, String statu, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
 		this.powersupplier_id = powersupplier_id;
 		this.proid = proid;
@@ -51,13 +51,13 @@ public class PowerSupplierBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
 	}
 	public PowerSupplierBean(Integer powersupplier_id,  String brand, Integer categoryid, String model,
-			Integer price,Integer proid,Integer psu,String status) {
+			Integer price,Integer proid,Integer psu,String statu) {
 		super();
 		this.powersupplier_id = powersupplier_id;
 		this.proid = proid;
@@ -65,7 +65,7 @@ public class PowerSupplierBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 	}
 	public Integer getPowersupplier_id() {
@@ -104,11 +104,11 @@ public class PowerSupplierBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public Integer getPsu() {
 		return psu;
