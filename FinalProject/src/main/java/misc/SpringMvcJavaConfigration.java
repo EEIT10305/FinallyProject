@@ -22,6 +22,8 @@ import org.springframework.web.servlet.view.XmlViewResolver;
 @ComponentScan(basePackages= {"controller"})
 @EnableWebMvc
 public class SpringMvcJavaConfigration implements WebMvcConfigurer {
+
+
 //	@Bean
 //	public ResourceBundleMessageSource messageSource() {
 //		ResourceBundleMessageSource RBMS =new ResourceBundleMessageSource();
@@ -49,6 +51,8 @@ public class SpringMvcJavaConfigration implements WebMvcConfigurer {
 //		localeResolver.setDefaultLocale(Locale.FRANCE);
 //		return localeResolver;
 //	}
+
+
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();

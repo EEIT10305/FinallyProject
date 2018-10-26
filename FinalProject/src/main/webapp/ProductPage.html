@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
     <link rel="stylesheet" href="css/fp.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
     <title>商品頁</title>
     <style>
         aside{
             float:left;
-            width:20%;
-            margin:10px;
+            width:19%;
+            margin:20px;
         }
         article{
            float:left;
-           width:75%;
-           margin:10px;
+           width:74%;
+           margin:20px;
         }
         .mypage-link {
     position: relative;
@@ -40,42 +40,27 @@
         }
     </style>
     <script>
-        var flag1 = false;
-        $(document).ready(function(){
-            $('button[name="becheckbtn"]').next().hide();
-            $('button.menuitemstyle').click(function(){
-                $(this).parent().siblings(".btnwidth").text($(this).text());
-            })
-            $('button[name="category"]').click(function(){
-                flag1 = true;
-                
-                $('button[name="becheckbtn"]').hide();
-                $('button[name="becheckbtn"]').next().show();
-                    // 這裡可以加動態產生的品牌或價格選項
-            })
-            
-        }
-        )
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                container: 'body',
-                html: true,
-                content: "<a href='ShowCart.html'><button class='btn btn-dark'>查看購物車</button></a>",
-                trigger: "manual",
-                template: '<div class="popover popoverwide" role="tooltip"><div class="arrow"></div><div class="dropdown-divider"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
-            }).on("mouseover", function () {
-                var _this = this;
-                $(this).popover("show");
-            }).on("mouseout", function () {
-          var _this = this;
-        //   setTimeout(function () {
-            if (!$(".popover:hover").length) {
-              $(_this).popover("hide")
-            }
-        //   }, 100);
+    $(document).ready(function(){
+        $.post("TestController")
+        $('button[name="becheckbtn"]').next().hide();
+        $('button.menuitemstyle').click(function(){
+            $(this).parent().siblings(".btnwidth").text($(this).text());
+        })
+        $('button[name="category"]').click(function(){
+            $('button[name="becheckbtn"]').hide();
+            $('button[name="becheckbtn"]').next().show();
+                // 這裡可以加動態產生的品牌或價格選項
+        })
+        
+        $('#test').mouseover(function(){
+        	$("fieldset").show();
         });
-
-            })
+        $('#test').mouseout(function () {
+            if (!$(".mymodal:hover").length) {
+            	$("fieldset").hide();
+                  }
+        })
+    })
 
     </script>
 </head>
@@ -107,7 +92,7 @@
             <div class="navv">
                 <li>
                     <ul>
-                        <a href="" data-container="body" data-toggle="popover" data-placement="bottom">
+                        <a id="test" href="">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
                     </ul>
@@ -117,6 +102,9 @@
 
                     </ul>
                 </li>
+                  <fieldset id="myModal" class="mymodal" >
+                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a></div>
+                        </fieldset>
             </div>
         </div>
         <!-- Modal -->
@@ -458,8 +446,7 @@
         </div>
 
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"

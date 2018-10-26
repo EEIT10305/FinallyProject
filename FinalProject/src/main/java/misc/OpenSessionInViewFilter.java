@@ -27,8 +27,10 @@ public class OpenSessionInViewFilter implements Filter {
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 
 
+
 		sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 	}
+
 
 
 	@Override
