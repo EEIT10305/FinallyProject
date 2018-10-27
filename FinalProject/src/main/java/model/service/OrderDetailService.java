@@ -9,4 +9,6 @@ public interface OrderDetailService {
 	    OrderDetailBean selectById(int id);
 	    OrderDetailBean insert(OrderDetailBean bean);
 	    boolean update(OrderDetailBean bean);	
+	    Integer getMemberId();
+	    void setMemberId(Integer memberid);
 }

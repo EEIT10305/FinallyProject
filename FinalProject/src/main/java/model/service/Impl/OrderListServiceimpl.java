@@ -15,6 +15,8 @@ public class OrderListServiceimpl implements OrderListService {
 
 	@Autowired
 	OrderListDAO  dao;
+	
+	private Integer memberid = null;
 
 	public OrderListServiceimpl() {
 		
@@ -38,6 +40,17 @@ public class OrderListServiceimpl implements OrderListService {
 	@Override
 	public boolean update(OrderListBean bean) {
 		return dao.update(bean);
+	}
+
+	@Override
+	public Integer getMemberId() {
+		return memberid;
+	}
+
+	@Override
+	public void setMemberId(Integer memberid) {
+		this.memberid  = memberid;
+		
 	}
 
 }

@@ -10,4 +10,5 @@ public interface CartDetailService {
     CartDetailBean insert(CartDetailBean bean);
     boolean update(CartDetailBean bean);
     boolean delete(CartDetailBean bean);
+    
 }

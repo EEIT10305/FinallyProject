@@ -9,4 +9,6 @@ public interface OrderListDAO {
 	    OrderListBean selectById(int id);
 	    OrderListBean insert(OrderListBean bean);
 	    boolean update(OrderListBean bean);
+	    Integer getMemberId();
+	    void setMemberId(Integer memberid);
 }
