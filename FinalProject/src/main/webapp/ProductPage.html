@@ -61,11 +61,7 @@
                   }
         })
     })
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
-    </script>
+</script>
 </head>
 
 <body>
@@ -447,13 +443,31 @@
             </p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
-
+<div id="show"></div>
     </footer>
   <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+        
+      <script type="text/javascript">
+		$(document).ready(function() {
+				$.get("AddtToCartController",
+							function(data, status) {		
+								if (status == "success") {		
+									var querydata = $.parseJSON(data);
+									$.each(querydata, function(index, json) {
+										$("#show").append(
+												"<tr><td>" + json.proid +
+														"</td></tr>");
+									})
+
+								}
+							})
+				})
+	</script>  
+        
 </body>
 
 </html>
