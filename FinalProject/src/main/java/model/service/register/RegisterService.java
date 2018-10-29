@@ -2,7 +2,7 @@ package model.service.register;
 
 import model.bean.MemberBean;
 
-public interface RegisterIService {
+public interface RegisterService {
 
 	MemberBean idExists(int id);
 	

@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 
 import model.bean.MemberBean;
 import model.dao.MemberDAO;
-import model.service.register.RegisterIService;
+import model.service.register.RegisterService;
 
 @Service
-public class RegisterServiceImpl implements RegisterIService {
+public class RegisterServiceImpl implements RegisterService {
 	
 	@Autowired
 	private MemberDAO mbDao; 

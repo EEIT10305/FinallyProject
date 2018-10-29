@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/fp.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>註冊頁</title>
     <style>
         aside {
@@ -191,11 +191,10 @@
                 <h3>註冊</h3>
             </div>
             <div class="dropdown-divider"></div>
-            <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">姓名</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <input type="email" class="form-control" id="inputUserName">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">性別</label>
@@ -214,21 +213,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                        <input type="email" class="form-control" id="userInputEmail" placeholder="Email">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">密碼</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                        <input type="password" class="form-control" id="userInputPassword" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputCity">手機</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+                    <input type="text" class="form-control" id="userInputPhone" placeholder="09xxxxxxxx">
                 </div>
 
                 <div class="form-group">
                     <label for="inputAddress2">地址</label>
-                    <input type="text" class="form-control" id="inputAddress2">
+                    <input type="text" class="form-control" id="userInputAddress">
                 </div>
                 <div class="form-row">
 
@@ -241,8 +240,7 @@
                     </label>
                   </div> -->
                 </div>
-                <button type="submit" class="btn btn-secondary">送出</button>
-            </form>
+                <button id="userSend" type="submit" class="btn btn-secondary">送出</button>
         </article>
     </div>
     <footer>
@@ -281,12 +279,47 @@
         </div>
 
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
+        <script>
+            document.getElementById("userSend").addEventListener("click",registerInput);
+            function registerInput(){
+            	alert(1)
+        $.post("processregister",
+            {"name":$("#inputUserName").html()},function(){
+            	alert(22222)
+            })
+            }
+            // var jData = {};
+            // jData.name = $("#inputUserName").val();
+            // jData.name = "aaaaaa";
+            // jData.email =$("#userInputEmail").val();
+            // jData.password =$("#userInputPassword").val();
+            // jData.permission ="normal";
+            // jData.address =$("#userInputAddress").val();
+            // jData.phone =$("#userInputPhone").val();
+            // jData.gender =$("input[name='inlineRadioOptions']").val();
+            // $("#userSend").click(
+            //     alert(jData)
+            //     function(){
+            //     $.ajax({
+            //              type: "POST",
+            //              url: "test/processregister",
+            //              data:jData,
+            //              dataType: "json",
+            //              success: function (response) {
+            //                  console.log(jData)
+            //         alert(response)
+            // //         window.location.href="http://localhost:8080/FinalProject/FirstPage.html";
+            //     }
+            // });
+            //     }
+            //     );
+        </script>
 </body>
 
 </html>

@@ -21,14 +21,14 @@ import model.bean.MemberBean;
 //		可以使用該資源
 // 所有需要登入才能使用的資源都以『前置路徑的對應關係』定義在本過濾器的起始參數。經由過濾器的init()
 // 方法讀入，放入List型別的實例變數 url 內。
-@WebFilter(
-		urlPatterns = { "/*" }, 
-		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "購物車controller"), 
-				@WebInitParam(name = "mustLogin2", value = "查詢訂單"), 
-				@WebInitParam(name = "mustLogin3", value = "登入"),
-//				@WebInitParam(name = "mustLogin4", value = "")					
-		})
+//@WebFilter(
+//		urlPatterns = { "/*" }, 
+//		initParams = { 
+//				@WebInitParam(name = "mustLogin1", value = "購物車controller"), 
+//				@WebInitParam(name = "mustLogin2", value = "查詢訂單"), 
+//				@WebInitParam(name = "mustLogin3", value = "登入"),
+////				@WebInitParam(name = "mustLogin4", value = "")					
+//		})
 public class LoginCheckingFilter implements Filter {
 	List<String> url = new ArrayList<String>();
 	String servletPath;

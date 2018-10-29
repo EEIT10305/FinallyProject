@@ -5,14 +5,14 @@ import org.springframework.stereotype.Service;
 
 import model.bean.MemberBean;
 import model.dao.MemberDAO;
-import model.service.login.LoginIService;
+import model.service.login.LoginService;
 
 @Service
-public class LoginService implements LoginIService {
+public class LoginServiceImpl implements LoginService {
     @Autowired  
 	MemberDAO memberDao;
     
-	public LoginService() {}
+	public LoginServiceImpl() {}
 
 	@Override
 	public MemberBean checkEmailPwd(String email, String password) {
