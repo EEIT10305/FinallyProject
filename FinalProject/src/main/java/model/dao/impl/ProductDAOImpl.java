@@ -28,6 +28,12 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductBean selectById(int id) {
 		return this.getSession().get(ProductBean.class, id);
 	}
+	@Override
+	public List<ProductBean> selectByCategory(int Categoryid) {
+		String hql ="From ProductBean where Categoryid= :Categoryid";
+		
+		return this.getSession().createQuery(hql,ProductBean.class).setParameter("Categoryid", Categoryid).getResultList();	
+	}
 
 	@Override
 	public ProductBean insert(ProductBean bean) {
@@ -49,7 +55,7 @@ public class ProductDAOImpl implements ProductDAO {
 					temp.setModel(bean.getModel());
 					temp.setPrice(bean.getPrice());
 					temp.setPicture(bean.getPicture());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					this.getSession().flush();
 					return true;
 				} catch (Exception e) {

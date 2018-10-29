@@ -48,7 +48,7 @@ public class VgaDAOImpl implements VgaDAO {
 					temp.setCategoryid(bean.getCategoryid());
 					temp.setModel(bean.getModel());
 					temp.setPrice(bean.getPrice());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					temp.setPsu(bean.getPsu());
 					this.getSession().flush();
 					return true;

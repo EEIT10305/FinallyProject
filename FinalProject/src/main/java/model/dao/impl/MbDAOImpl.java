@@ -48,7 +48,7 @@ public class MbDAOImpl implements MbDAO {
 					temp.setCategoryid(bean.getCategoryid());
 					temp.setModel(bean.getModel());
 					temp.setPrice(bean.getPrice());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					temp.setFeet(bean.getFeet());
 					temp.setDdr(bean.getDdr());
 					temp.setPsu(bean.getPsu());

@@ -29,7 +29,7 @@ public class CabinetBean {
 	@Column(nullable=false)
 	private Integer price;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	@Column(nullable=false)
 	private Integer psu;
 	@ManyToOne
@@ -74,11 +74,11 @@ public class CabinetBean {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	public Integer getPsu() {
 		return psu;
@@ -99,7 +99,7 @@ public class CabinetBean {
 		this.productBean = productBean;
 	}
 	public CabinetBean(Integer cabinet_id, Integer proid, String brand, Integer categoryid, String model, Integer price,
-			String status, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
+			String statu, Integer psu, CategoryBean categoryBean, ProductBean productBean) {
 		super();
 		this.cabinet_id = cabinet_id;
 		this.proid = proid;
@@ -107,7 +107,7 @@ public class CabinetBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 		this.categoryBean = categoryBean;
 		this.productBean = productBean;
@@ -117,7 +117,7 @@ public class CabinetBean {
 	}
 	
 	public CabinetBean(Integer cabinet_id, String brand, Integer categoryid, String model, Integer price, Integer proid,
-			 Integer psu,String status) {
+			 Integer psu,String statu) {
 		super();
 		this.cabinet_id = cabinet_id;
 		this.proid = proid;
@@ -125,7 +125,7 @@ public class CabinetBean {
 		this.categoryid = categoryid;
 		this.model = model;
 		this.price = price;
-		this.status = status;
+		this.statu = statu;
 		this.psu = psu;
 	}
 	
