@@ -10,4 +10,6 @@ public interface CartDetailDAO {
 	    CartDetailBean insert(CartDetailBean bean);
 	    boolean update(CartDetailBean bean);
 	    boolean delete(CartDetailBean bean);
+	    Integer getMemberId();
+	    void setMemberId(Integer memberid);
 }

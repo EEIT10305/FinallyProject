@@ -1,10 +1,11 @@
-package model.dao;
+package model.service;
 
 import java.util.List;
 
 import model.bean.CartBean;
 
-public interface CartDAO {
+public interface CartService {
+
 	 List<CartBean> selectAll();
 	    CartBean selectById(int id);
 	    CartBean insert(CartBean bean);
@@ -12,4 +13,5 @@ public interface CartDAO {
 	    boolean delete(CartBean bean);
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
+	    
 }
