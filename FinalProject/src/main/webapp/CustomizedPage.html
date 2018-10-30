@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/fp.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>客製化頁</title>
     <style>
         aside {
@@ -18,74 +18,70 @@
             margin: 10px;
             padding: 50px 10px;
         }
+
         article {
             float: left;
             width: 55%;
             margin: 10px;
         }
+
         .page-item.active .mypagestyle {
             z-index: 1;
             color: #fff;
             background-color: grey;
             border-color: grey;
         }
-         .mypage-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: grey;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-}
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
+        .mypage-link {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: grey;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
         .table .thead-mycolor th {
             color: #fff;
             background-color: grey;
             border-color: grey;
         }
+
         .table-mycolor {
             color: rgb(78, 72, 72);
             background-color: #dad7cc;
         }
     </style>
     <script>
-    $(document).ready(function(){
-        $.post("TestController")
-        $('button[name="becheckbtn"]').next().hide();
-        $('button.menuitemstyle').click(function(){
-            $(this).parent().siblings(".btnwidth").text($(this).text());
-        })
-        $('button[name="category"]').click(function(){
-            $('button[name="becheckbtn"]').hide();
-            $('button[name="becheckbtn"]').next().show();
+        $(document).ready(function () {
+            $.post("TestController")
+            $('button[name="becheckbtn"]').next().hide();
+            $('button.menuitemstyle').click(function () {
+                $(this).parent().siblings(".btnwidth").text($(this).text());
+            })
+            $('button[name="category"]').click(function () {
+                $('button[name="becheckbtn"]').hide();
+                $('button[name="becheckbtn"]').next().show();
                 // 這裡可以加動態產生的品牌或價格選項
-        })
-       
-        $('#test').mouseover(function(){
-        	$("fieldset").show();
-        });
-        $('#test').mouseout(function () {
-            if (!$(".mymodal:hover").length) {
-            	$("fieldset").hide();
-                  }
-        })
-    })
-<<<<<<< HEAD
-=======
+            })
 
-
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
+            $('#test').mouseover(function () {
+                $("fieldset").show();
+            });
+            $('#test').mouseout(function () {
+                if (!$(".mymodal:hover").length) {
+                    $("fieldset").hide();
+                }
+            })
+        })
     </script>
 </head>
 
 <body>
     <header>
-        <div style="align-items:baseline;" class="d-flex justify-content-between">
+        <div style="align-items: baseline;" class="d-flex justify-content-between">
             <div class="navv">
                 <li>
                     <ul>
@@ -97,15 +93,22 @@
 
             </div>
             <div class="navv">
-                    <a href="FirstPage.html"><button type="button" class="btn btn-dark btnchoose">
-                            <img src="image/shopping-bag.png" width="20px">
-                            <br>線上購物</button></a>
-                   <button type="button" class="btn btn-dark btnchoose">
-                        <img src="image/note.png" width="20px">
-                        <br>自組電腦</button>
-                        <a href="Pk.html"><button type="button" class="btn btn-dark btnchoose">
-                                <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png" width="20px">
-                                <br>商品比較</button></a>
+                <a href="FirstPage.html">
+                    <button type="button" class="btn btn-dark btnchoose">
+                        <img src="image/shopping-bag.png" width="20px">
+                        <br>線上購物
+                    </button>
+                </a>
+                <button type="button" class="btn btn-dark btnchoose">
+                    <img src="image/note.png" width="20px">
+                    <br>自組電腦
+                </button>
+                <a href="Pk.html">
+                    <button type="button" class="btn btn-dark btnchoose">
+                        <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png" width="20px">
+                        <br>商品比較
+                    </button>
+                </a>
             </div>
             <div class="navv">
                 <li>
@@ -116,14 +119,19 @@
                     </ul>
                     <ul>
                         <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
+                            <img src="image/avatar.png" width="30px">
+                        </a>
 
                     </ul>
                 </li>
-                  <fieldset id="myModal" class="mymodal" >
-                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a></div>
-                        </fieldset>
+                <fieldset id="myModal" class="mymodal">
+                    <div class="dropdown-divider"></div>
+                    <a href='ShowCart.html'>
+                        <button style="width: 300px" class='btn btn-dark'>查看購物車</button>
+                    </a>
             </div>
+            </fieldset>
+        </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -195,7 +203,7 @@
         </div>
 
     </nav>
-    <div style="overflow: auto;background-color:whitesmoke">
+    <div style="overflow: auto; background-color: whitesmoke">
         <aside>
 
             <div style="text-align: center">
@@ -211,72 +219,67 @@
                         <tr>
                             <th scope="row">主機板</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showMB">
                                 </select>
                             </td>
-                            <td>Otto</td>
+                            <td id="MBPrice">Otto</td>
                         </tr>
                         <tr>
                             <th scope="row">CPU</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showCPU">
                                 </select>
                             </td>
-                            <td>Thornton</td>
+                            <td id="CPUPrice">Thornton</td>
                         </tr>
                         <tr>
                             <th scope="row">記憶體</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showRAM">
                                 </select>
                             </td>
-                            <td>the Bird</td>
+                            <td id="RAMPrice">the Bird</td>
                         </tr>
                         <tr>
                             <th scope="row">電源供應器</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showPOWERSUPPLIER">
                                 </select>
                             </td>
-                            <td>Otto</td>
+                            <td id="POWERSUPPLIERPrice">Otto</td>
                         </tr>
                         <tr>
                             <th scope="row">機殼</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showCABINET">
                                 </select>
                             </td>
-                            <td>Otto</td>
+                            <td id="CABINETPrice">Otto</td>
                         </tr>
                         <tr>
                             <th scope="row">顯示卡</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showVGA">
                                 </select>
                             </td>
-                            <td>Otto</td>
+                            <td id="VGAPrice">Otto</td>
                         </tr>
                         <tr>
                             <th scope="row">硬碟</th>
                             <td>
-                                <select>
-                                    <option>Mark</option>
+                                <select id="showSTORAGE">
                                 </select>
                             </td>
-                            <td>Otto</td>
+                            <td id="STORAGEPrice">Otto</td>
                         </tr>
                     </tbody>
                 </table>
-                <div style="background-color: #dad7cc;border-radius:10px">
-                    <h4 style="line-height:80px;">電供
-                        <span style="color:red">5</span>瓦 總價
-                        <span style="color:red">20000</span>元</h4>
+                <div style="background-color: #dad7cc; border-radius: 10px">
+                    <h4 style="line-height: 80px;">
+                        電供
+                        <span style="color: red">5</span>瓦 總價
+                        <span style="color: red">20000</span>元
+                    </h4>
                 </div>
 
 
@@ -286,27 +289,25 @@
             <div>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a style="color:grey" class="nav-link active" href="#">商品</a>
+                        <a style="color: grey" class="nav-link active" href="#">商品</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="color:grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a id="Category" style="color: grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                             aria-expanded="false">分類</a>
-                        <div class="dropdown-menu">
 
-
-                        </div>
+                        <div id="selectCategory" class="dropdown-menu"></div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="color:grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a id="Brand" style="color: grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                             aria-expanded="false">廠牌</a>
-                        <div class="dropdown-menu">
+                        <div id="selectBrand" class="dropdown-menu">
                             <!-- 新增的選項 -->
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="color:grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a id="Price" style="color: grey" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                             aria-expanded="false">價格</a>
-                        <div class="dropdown-menu">
+                        <div id="selectPrice" class="dropdown-menu">
                             <!-- 新增的選項 -->
                         </div>
                     </li>
@@ -314,8 +315,8 @@
                 </ul>
             </div>
 
-            <div class="forcard">
-                <div class="card" style="width: 18rem;padding:10px;margin:20px">
+            <div id="selectPingin" class="forcard">
+                <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
 
                     <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                     <div class="card-body">
@@ -328,7 +329,7 @@
                             </a>
                         </span>
                         <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color:red">$20000</h5>
+                        <h5 class="card-title" style="color: red">$20000</h5>
                         <a href="#" class="btn btn-danger">加入購物車
                             <img src="image/shopping-cart (1).png" width="20px">
                         </a>
@@ -339,7 +340,7 @@
 
             </div>
             <!-- 頁面跳轉按鈕 -->
-            <div style="margin:50px;" aria-label="Page navigation example">
+            <div style="margin: 50px;" aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1">&laquo;</a>
@@ -363,72 +364,213 @@
         </article>
     </div>
     <footer>
-        <div style="background-color:#dad7cc;">
+        <div style="background-color: #dad7cc;">
             <ul class="nav">
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link active" href="#">隱私權政策</a>
+                    <a style="color: #6c757d" class="nav-link active" href="#">隱私權政策</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">購物流程</a>
+                    <a style="color: #6c757d" class="nav-link" href="#">購物流程</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">付款方式</a>
+                    <a style="color: #6c757d" class="nav-link" href="#">付款方式</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">會員權益</a>
+                    <a style="color: #6c757d" class="nav-link" href="#">會員權益</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">售後服務</a>
+                    <a style="color: #6c757d" class="nav-link" href="#">售後服務</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">網路客服</a>
+                    <a style="color: #6c757d" class="nav-link" href="#">網路客服</a>
                 </li>
 
             </ul>
 
         </div>
-        <div style="background-color:#dad7cc;color:#6c757d;font-size: 10px;padding:10px 60px ">
+        <div style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
-            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
+            <p>欣亞數位股份有限公司 版權所有© Sinya Digital Corporation. All rights reserved.
+            </p>
+            <p>臺灣 807 高雄市三民區建國二路121號 網購客服專線(市話撥打)：0800-380-380 網購客服專線(手機撥打)：02-23512801
             </p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
-        <div id="show"></div>
 
     </footer>
-   <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-        
-<script type="text/javascript">
-		$(document).ready(function() {
-				$.get("SelectProductForCustomized",
-							function(data, status) {		
-								if (status == "success") {		
-									var querydata = $.parseJSON(data);
-									$.each(querydata, function(index, json) {
-										$("#show").append(
-												"<tr><td>" + json.proid
-														+ "</td><td>"
-														+ json.brandid
-														+ "</td><td>"
-														+ json.categoryid
-														+ "</td><td>"
-														+ json.model
-														+ "</td><td>"
-														+ json.price
-														+ "</td></tr>");
-									})
 
-								}
-							})
-				})
-	</script>
+    <script type="text/javascript">
+        $(document)
+            .ready(
+                function () {
+                    $.get("SelectMbForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showMB").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("SelectCpuForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showCPU").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectRamForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showRAM").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectVgaForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showVGA").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectStorageForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showSTORAGE").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectCabinetForCustomized", function (data,
+                        status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showCABINET").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectPowerSupplierForCustomized", function (
+                        data, status) {
+                        if (status == "success") {
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#showPOWERSUPPLIER").append(
+                                    "<option>" + json.model
+                                    + "</option>");
+                            })
+
+                        }
+                    })
+                    $.get("selectCategoryForCustomized",
+                            function (data, status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata,function (index,json) {
+                                                $("#selectCategory")
+                                                    .append("<a class='dropdown-item'  value='" + json.category + "'>"+ json.category+ "</a>");
+                                            })
+
+                                    $("#selectCategory a").click(checkCategory)
+
+                                    document.getElementById("showMB").addEventListener("change",checkMb)
+
+                                    function checkCategory() {
+                                    	if($("#Category").html()!=$(this).html()){
+                                        $("#Category").html($(this).html());
+                                        $("#Brand").html("廠牌");
+                                        $("#Price").html("價格");
+                                    	}
+                                        $.post("selectBrandForCustomized",{"Brandmodel": $("#Category").html()},function (data,status) {
+                                                    
+                                            if (status == "success") {
+                                                    $("#selectBrand").html("");
+                                                        var querydata = $.parseJSON(data);
+                                                        $.each(querydata,function (index,json) {
+                                                                $("#selectBrand").append("<a class='dropdown-item' value='" + json.brand + "'>"+ json.brand+ "</a>");
+                                                                })
+                                                        $("#selectBrand a").click(checkBrand)
+                                                    }
+                                                });
+                                    }
+                                    function checkBrand() {
+                                    	if($("#Brand").html()!=$(this).html()){
+                                    		$("#selectPrice").html("");
+                                        	$("#Brand").html($(this).html());
+                                        	$("#selectPrice").append(
+                                                "<a class='dropdown-item'  value='0'>2500以下</a>"
+                                                + "<a class='dropdown-item'  value='2500'>2500至5000</a>"
+                                                + "<a class='dropdown-item' value='5000'>5000至7500</a>"
+                                                + "<a class='dropdown-item'  value='7500'>7500至10000</a>"
+                                                + "<a class='dropdown-item'  value='10000'>10000以上</a>");
+                                    	}
+                                        $("#selectPrice a").click(checkPrice)
+                                    }
+                                    function checkPrice(){
+                                    	$("#Price").html($(this).html());
+                                    	alert("明天繼續")
+                                    }
+                                }
+                            })
+                    function checkMb() {
+                        $.post("checkRamForCustomized",{"Mbmodel": event.target.value},function (data, status) {
+                                if (status == "success") {
+                                    $("#showRAM").html("");
+                                        var querydata = $.parseJSON(data);
+                                        $.each(querydata,function (index,json) {
+                                                $("#showRAM").append("<option>"+ json.model+ "</option>");
+                                                })
+
+                                    }
+                                });
+                        $.post("checkCpuForCustomized",{"Mbmodel": event.target.value},
+                                function (data, status) {
+                                    if (status == "success") {
+                                        $("#showCPU").html("");
+                                        var querydata = $.parseJSON(data);
+                                        $.each(querydata,function (index,json) {
+                                                $("#showCPU").append("<option>"+ json.model+ "</option>");
+                                            })
+
+                                    }
+                                });
+
+                    }
+
+                })
+    </script>
 
 
 </body>
