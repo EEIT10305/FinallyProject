@@ -1,0 +1,314 @@
+ var removesrc="";
+        
+        $(function () {//iframe接受資訊並傳回對應訊息
+            window.addEventListener('message', (event) => {//--------------------熱門商品
+                if (event.data == "card") {
+                    window.frames[0].postMessage("cardback", '*');
+                    
+                    $("#area1").text("首頁推薦商品");
+                    $("#area2").text("上架商品");
+                    
+                    var amount = 0;//得到一開始的上架圖片數用
+                    $.post("HotController2",function(data, status) {//-----------------------輪播牆不要的
+            			if (status == "success") {
+            				var querydata = $.parseJSON(data);
+                            var text = '';
+            				$.each(querydata, function(index, json) {
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><table id = "'+json.proid+'"><tr><td>'+json.picture+'</td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+            				})
+            				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
+            			    }
+            			})
+                    $.post("HotController",function(data, status) {//-----------------------輪播牆要的
+            			if (status == "success") {
+            				var querydata = $.parseJSON(data);
+                            var text = '';
+            				$.each(querydata, function(index, json) {
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><tr><td>'+json.model+'</td><td>'+json.price+'</td></tr></li>';							
+            					amount++;//得到一開始的上架商品數
+            				})  
+            				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
+            				
+            				var flag2 = true;
+            				$("#fordatainput li").dblclick(function (){//雙擊變色
+            					flag1=false;//防止觸發mouseleave事件
+            					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+            					if(flag2){
+                					$(this).css("background","grey")  
+                					flag2 = false;
+            					}else{
+                					$(this).css("background","whitesmoke")
+                					flag1 = true;
+            					}
+            				})
+            				
+            				var flag3 = true;
+            				$("#fordatainput2 li").dblclick(function (){//雙擊變色
+            					flag1=false;//防止觸發mouseleave事件
+            					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+            					if(flag3){
+                					$(this).css("background","grey")  
+                					flag3 = false;
+            					}else{
+                					$(this).css("background","whitesmoke")
+                					flag3 = true;
+            					}
+            				})
+
+                             $("#fordatainput").sortable({//排序功能 
+                            	 cursor: "move"//游標便十字
+                             });
+            				 $("#fordatainput2").sortable({//排序功能 
+            					 connectWith: "#fordatainput"//游標便十字
+                             });
+                             $("#fordatainput2").sortable({//排序功能 
+                            	 cursor: "move"//游標便十字
+                             });
+            				 $("#fordatainput").sortable({//排序功能 
+            					 connectWith: "#fordatainput2"//游標便十字
+                             });
+            				 
+            				 var flag1 = false;
+            				 var change = "";
+            				 $(".forinput li").mouseup(function(){
+            					 flag1 = true;
+            					 change = $(this).children().attr("src");
+            				 }).mouseleave(function(){//滑鼠離開觸發進資料庫更換商品順序
+            					 if(flag1){
+            						 var str = $("#fordatainput li").eq(0).children().attr("src");
+            						 for(var i = 1 ; i < $('#fordatainput').children().length ; i ++){
+            					        str += "," + $("#fordatainput li").eq(i).children().attr("src");
+            						 }
+            						 
+            						 $.post("ChangePicController",{
+            							 "str":str,
+            							 "change":change,
+            							 "amount": amount
+            						 },function(){
+            							 if (status == "success") {
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            						     }
+            						 })
+            					     flag1 = false;	 
+            					 }
+            				 });
+            				
+            			}})
+                    
+                }else if(event.data == "wall"){
+                    window.frames[0].postMessage("wallback", '*');
+                    
+                    $("#area1").text("首頁輪播牆");
+                    $("#area2").text("暫存區");
+                    
+                    var amount = 0;//得到一開始的上架圖片數用
+                    $.post("WallController2",function(data, status) {//-----------------------輪播牆不要的
+            			if (status == "success") {
+            				var querydata = $.parseJSON(data);
+                            var text = '';
+            				$.each(querydata, function(index, json) {
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+            					
+            				
+            				})
+            				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
+            			    }
+            			})
+                    $.post("WallController",function(data, status) {//-----------------------輪播牆要的
+            			if (status == "success") {
+            				var querydata = $.parseJSON(data);
+                            var text = '';
+            				$.each(querydata, function(index, json) {
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+            					amount++;//得到一開始的上架圖片數
+            				})  
+            				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
+            				
+            				var flag2 = true;
+            				$("#fordatainput li").dblclick(function (){//雙擊變色
+            					flag1=false;//防止觸發mouseleave事件
+            					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+            					if(flag2){
+                					$(this).css("background","grey")  
+                					flag2 = false;
+            					}else{
+                					$(this).css("background","whitesmoke")
+                					flag1 = true;
+            					}
+            				})
+            				
+            				var flag3 = true;
+            				$("#fordatainput2 li").dblclick(function (){//雙擊變色
+            					flag1=false;//防止觸發mouseleave事件
+            					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+            					if(flag3){
+                					$(this).css("background","grey")  
+                					flag3 = false;
+            					}else{
+                					$(this).css("background","whitesmoke")
+                					flag3 = true;
+            					}
+            				})
+
+                             $("#fordatainput").sortable({//排序功能 
+                            	 cursor: "move"//游標便十字
+                             });
+            				 $("#fordatainput2").sortable({//排序功能 
+            					 connectWith: "#fordatainput"//游標便十字
+                             });
+                             $("#fordatainput2").sortable({//排序功能 
+                            	 cursor: "move"//游標便十字
+                             });
+            				 $("#fordatainput").sortable({//排序功能 
+            					 connectWith: "#fordatainput2"//游標便十字
+                             });
+            				 
+            				 var flag1 = false;
+            				 var change = "";
+            				 $(".forinput li").mouseup(function(){
+            					 flag1 = true;
+            					 change = $(this).children().attr("src");
+            				 }).mouseleave(function(){//滑鼠離開觸發進資料庫更換圖片順序
+            					 if(flag1){
+            						 var str = $("#fordatainput li").eq(0).children().attr("src");
+            						 for(var i = 1 ; i < $('#fordatainput').children().length ; i ++){
+            					        str += "," + $("#fordatainput li").eq(i).children().attr("src");
+            						 }
+            						 
+            						 $.post("ChangePicController",{
+            							 "str":str,
+            							 "change":change,
+            							 "amount": amount
+            						 },function(){
+            							 if (status == "success") {
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            						     }
+            						 })
+            					     flag1 = false;	 
+            					 }
+            				 });
+            				
+            			}})
+			
+                }
+            });
+        });
+        
+        
+        
+        
+        function click1(id){
+            $(id).show();
+        }
+        
+
+        $(document).ready(function () {
+        	//一開始畫面先藏起來後面有按上面的項目再顯示
+            $("#pagestyle").hide();
+    
+            var data=""
+        	    $("#uploadfile").change(function (e) {
+        	         var theFiles = document.getElementById("uploadfile").files;
+        	         var theFilesLen = theFiles.length;
+
+        	         for (var i = 0; i < theFilesLen; i++) {
+        	             var theFile = theFiles[i];
+        	             var reader = new FileReader();
+        	             reader.addEventListener("load", function (e) {
+        	             fileContent = e.target.result;
+        	             var ingObj = document.createElement("img");
+        	             ingObj.setAttribute("src",fileContent);
+        	             ingObj.setAttribute("width","100px");
+        	             document.getElementById("showphoto").appendChild(ingObj);
+        	             });
+        	         }
+        	             reader.readAsDataURL(theFile);
+        	         })
+        	         
+        	    $("#forremove").click(function(){
+        	    	$.post("RemovePhoto",{
+        	    		"removesrc":removesrc
+        	    	},function(){
+        				$.post("WallController2",function(data, status) {//-----------------------輪播牆不要的
+                			if (status == "success") {
+                				var querydata = $.parseJSON(data);
+                                var text = '';
+                				$.each(querydata, function(index, json) {
+                					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+                				})
+                				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
+                				flag3=true;
+                				$("#fordatainput2 li").dblclick(function (){//雙擊變色
+                					flag1=false;//防止觸發mouseleave事件
+                					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+                					if(flag3){
+                    					$(this).css("background","grey")  
+                    					flag3 = false;
+                					}else{
+                    					$(this).css("background","whitesmoke")
+                    					flag3 = true;
+                					}
+                				})
+                			    }
+        				
+                			})
+                			
+        				})
+        	    	})
+        	    
+        	    
+        	    $("#foraddbtn").click(function(){
+        	    	$.post("AddPhoto",{
+        	    		"upload_file":$("#uploadfile").val()
+        	    	},function(){
+        	    		$.post("WallController2",function(data, status) {//-----------------------輪播牆不要的
+                			if (status == "success") {
+                				var querydata = $.parseJSON(data);
+                                var text = '';
+                				$.each(querydata, function(index, json) {
+                					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+                				})
+                				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
+                				flag3=true;
+                				$("#fordatainput2 li").dblclick(function (){//雙擊變色
+                					flag1=false;//防止觸發mouseleave事件
+                					removesrc= $(this).children().attr("src");//給remove按鈕抓值用
+                					if(flag3){
+                    					$(this).css("background","grey")  
+                    					flag3 = false;
+                					}else{
+                    					$(this).css("background","whitesmoke")
+                    					flag3 = true;
+                					}
+                				})
+                				
+                				flag1=false;
+               				 $(".forinput li").mouseup(function(){
+            					 flag1 = true;
+            					 change = $(this).children().attr("src");
+            				 }).mouseleave(function(){//滑鼠離開觸發進資料庫更換圖片順序
+            					 if(flag1){
+            						 var str = $("#fordatainput li").eq(0).children().attr("src");
+            						 for(var i = 1 ; i < $('#fordatainput').children().length ; i ++){
+            					        str += "," + $("#fordatainput li").eq(i).children().attr("src");
+            						 }
+            						 
+            						 $.post("ChangePicController",{
+            							 "str":str,
+            							 "change":change,
+            							 "amount": amount
+            						 },function(){
+            							 if (status == "success") {
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            						     }
+            						 })
+            					     flag1 = false;	 
+            					 }
+            				 });
+                			    }
+                			})
+        	    		
+        	    	})
+        	    })
+
+        })

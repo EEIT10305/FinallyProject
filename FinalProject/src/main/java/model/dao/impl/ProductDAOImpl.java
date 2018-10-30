@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.ProductBean;
+import model.bean.WallBean;
 import model.dao.ProductDAO;
 
 @Repository
@@ -33,6 +34,18 @@ public class ProductDAOImpl implements ProductDAO {
 		String hql ="From ProductBean where Categoryid= :Categoryid";
 		
 		return this.getSession().createQuery(hql,ProductBean.class).setParameter("Categoryid", Categoryid).getResultList();	
+	}
+	@Override
+	public List<ProductBean> selectNeedProduct() {
+		return this.getSession().createQuery("FROM ProductBean Where hot >=: hot and statu = 'on' Order By hot", ProductBean.class)
+				.setParameter("hot", 0).list();
+	}
+	
+	
+	@Override
+	public List<ProductBean> selectNeedProduct2() {
+		return this.getSession().createQuery("FROM ProductBean Where hot < : hot and statu = 'on' ", ProductBean.class)
+				.setParameter("hot", 0).list();
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package testDao;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,6 +38,7 @@ import model.bean.StaffBean;
 import model.bean.StorageBean;
 import model.bean.TransferBean;
 import model.bean.VgaBean;
+import model.bean.WallBean;
 import model.bean.WishBean;
 import model.dao.AllStockDAO;
 import model.dao.BranchDAO;
@@ -65,6 +65,7 @@ import model.dao.StaffDAO;
 import model.dao.StorageDAO;
 import model.dao.TransferDAO;
 import model.dao.VgaDAO;
+import model.dao.WallDAO;
 import model.dao.WishDAO;
 
 public class TestDAO {
@@ -106,6 +107,26 @@ public class TestDAO {
 
 	}
 	
+	@Test
+	public void testWallDao() {
+		WallBean bean1 = new WallBean(null,"image/banner_15397442985bc6a22a049f5.jpg",0 ,"on");
+		WallBean bean2 = new WallBean(null,"image/banner_15374341845ba36248a005d.jpg",1 ,"on");
+		WallBean bean3 = new WallBean(null,"image/banner_15390539295bbc196934c2b.jpg",2 ,"on");
+		WallBean bean6 = new WallBean(null,"image/banner_15390539295bbc196934c2b.jpg",-1 ,"off");
+		WallDAO dao = context.getBean(WallDAO.class);
+		dao.insert(bean1);
+		dao.insert(bean2);
+		dao.insert(bean3);
+		dao.insert(bean6);
+		System.out.println(dao.selectNeedPhoto());
+//		WallBean bean4 = new WallBean(2,"banner_15374341845ba36248a005d.jpg",2 ,"on");
+//		WallBean bean5 = new WallBean(3,"banner_15390539295bbc196934c2b.jpg",1 ,"on");
+//		dao.update(bean4);
+//		dao.update(bean5);
+//		System.out.println(dao.selectAll());
+//		System.out.println(dao.selectById(1));
+//		System.out.println(dao.update(bean));
+	}
 	
 	@Test
 	public void testBrandDao() {

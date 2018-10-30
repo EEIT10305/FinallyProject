@@ -10,4 +10,6 @@ public interface ProductDAO {
     public List<ProductBean> selectByCategory(int Categoryid);
     ProductBean insert(ProductBean bean);
     boolean update(ProductBean bean);
+	List<ProductBean> selectNeedProduct();
+	List<ProductBean> selectNeedProduct2();
 }
