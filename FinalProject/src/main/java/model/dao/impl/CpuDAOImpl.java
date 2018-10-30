@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.CpuBean;
+import model.bean.ProductBean;
 import model.dao.CpuDAO;
 @Repository
 public class CpuDAOImpl implements CpuDAO {
@@ -26,6 +27,12 @@ public class CpuDAOImpl implements CpuDAO {
 	@Override
 	public CpuBean selectById(int id) {
 		return this.getSession().get(CpuBean.class, id);
+	}
+	@Override
+	public List<CpuBean> selectByCategory(int Categoryid) {
+		String hql ="From CpuBean where Categoryid= :Categoryid";
+		
+		return this.getSession().createQuery(hql,CpuBean.class).setParameter("Categoryid", Categoryid).getResultList();	
 	}
 
 	@Override

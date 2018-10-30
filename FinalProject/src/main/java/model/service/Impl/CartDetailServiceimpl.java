@@ -20,6 +20,8 @@ public class CartDetailServiceimpl implements CartDetailService {
 	@Autowired
 	CartDetailDAO Dao;
 	
+	private Integer memberid = null;
+	
 	public CartDetailServiceimpl() {
 		
 	}
@@ -47,6 +49,17 @@ public class CartDetailServiceimpl implements CartDetailService {
 	@Override
 	public boolean delete(CartDetailBean bean) {
 		return Dao.delete(bean);
+	}
+
+	@Override
+	public Integer getMemberId() {
+		return memberid;
+	}
+
+	@Override
+	public void setMemberId(Integer memberid) {
+		this.memberid = memberid;
+		
 	}
 
 }

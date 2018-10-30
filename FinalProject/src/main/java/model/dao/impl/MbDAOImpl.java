@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MbBean;
+import model.bean.ProductBean;
 import model.dao.MbDAO;
 @Repository
 public class MbDAOImpl implements MbDAO {
@@ -26,6 +27,12 @@ public class MbDAOImpl implements MbDAO {
 	@Override
 	public MbBean selectById(int id) {
 		return this.getSession().get(MbBean.class, id);
+	}
+	@Override
+	public List<MbBean> selectByCategory(int Categoryid) {
+		String hql ="From MbBean where Categoryid= :Categoryid";
+		
+		return this.getSession().createQuery(hql,MbBean.class).setParameter("Categoryid", Categoryid).getResultList();	
 	}
 
 	@Override

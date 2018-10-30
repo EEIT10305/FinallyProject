@@ -45,4 +45,15 @@ public class CartServiceimpl implements CartService {
 		return Dao.delete(bean);
 	}
 
+	@Override
+	public Integer getMemberId() {
+		return Dao.getMemberId();
+	}
+
+	@Override
+	public void setMemberId(Integer memberid) {
+		Dao.setMemberId(memberid);
+		
+	}
+
 }
