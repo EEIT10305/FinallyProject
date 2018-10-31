@@ -83,3 +83,17 @@ p {
     border-color: threedface;
     border-image: initial;
 }
+/*-------------------------秉毅用--------------------------------------------------------*/
+.errorMsg{
+    float: right;
+    font-size: 15px;
+    color: red;
+}
+.pwdInfo{
+    float: left;
+    font-size: 5px;
+    color: #6c757d;
+}
+.loginByFacebook{
+    float: right;
+}

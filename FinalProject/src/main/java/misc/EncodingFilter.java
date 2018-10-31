@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +26,16 @@ public class EncodingFilter implements Filter {
 
 		System.out.println("Servlet執行之前的前置作業");
 		request.setCharacterEncoding("UTF-8");
+//		Cookie[] browerCookie = request.getCookies();
+//		System.out.println("======下面要跑cookie囉======");
+//		
+//		for(int i = 0 ; i< browerCookie.length ; i++) {
+//			if(browerCookie[i].getName().equals("email")) {
+//			String	email=browerCookie[i].getValue();
+//			System.out.println(email);
+//			}
+//		}
+		
 //		if(前置作業：我不滿意) {
 //			request.getRequestDispatcher("").forward(request, response);
 //			return;

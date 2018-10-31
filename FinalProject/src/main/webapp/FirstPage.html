@@ -8,10 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
+    <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'>
     <link rel="stylesheet" href="css/fp.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
     <title>首頁</title>
     <script>
+        //測試抓cookie
+        // var cookies = document.cookie;
+        // alert(cookies);
+        // alert(cookies.split("@")[0]);
+
+
+
         $(document).ready(function(){
             $.post("TestController")
             $('button[name="becheckbtn"]').next().hide();
@@ -87,33 +95,41 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
+<!--facebook按钮--> <fb:login-button scope="public_profile,email"
+                        onlogin="checkLoginState();"
+                        auto_logout_link="true"
+                        size="large"
+                        ><!--show_faces="true"-->
+                    </fb:login-button><!-- facebook 按钮 -->
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div><!-- google 登入按钮 -->
+                    <a href="#" onclick="signOut();">Sign out</a><!-- google 登出按钮 -->
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form>
+                   
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
+                                <label for="exampleInputEmail1">Email</label> <span class="errorMsg" id="errorEmail" style="color: red"></span>
                                 <input type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">密碼</label>
+                                <label for="exampleInputPassword1">密碼</label><span class="errorMsg" id="errorPassword" style="color: red"></span>
                                 <input type="password" class="form-control" id="userInputPassword" placeholder="Password">
                             </div>
                             <span>
-                                <a href="Register.html"> 尚未註冊?</a>
+                                <a href="Register.html"> 我要註冊 </a><span class="errorMsg" id="errorBoth" style="color: red"></span>
                             </span>
                         </div>
                         <div class="modal-footer">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">記住密碼</label>
+                                <label class="form-check-label" for="exampleCheck1">記住我</label>
                             </div>
                             <button id="testuserlogin" type="submit" class="btn btn-dark">送出</button>
                             <button type="reset" class="btn btn-secondary">重設</button>
                         </div>
-                    </form>
+                  
                 </div>
             </div>
         </div>
@@ -418,14 +434,160 @@
                 $.ajax({
                          type: "POST",
                          url: "processlogin",
-                         data:{email:$("#userInputEmail").val(),password:$("#userInputPassword").val()},
-                         success: function (response) {
-                    alert(response)
-            //         window.location.href="http://localhost:8080/FinalProject/FirstPage.html";
+                         data:{
+                             email:$("#userInputEmail").val(),
+                             password:$("#userInputPassword").val()
+                             },
+                         success: function (data) {
+                            alert(data)
+
+                            $("#errorEmail").html("");
+                            $("#errorPassword").html("");
+                            $("#errorBoth").html("");
+
+                             if(data=="email"){
+                                 $("#errorEmail").html("請輸入email");
+                             }else if(data=="password"){
+                                 $("#errorPassword").html("請輸入密碼");
+                             }else if(data=="notFoundData"){
+                                $("#errorBoth").html("←您尚未註冊,請按下確定開始註冊");
+                                // alert('←您尚未註冊,請按下確定開始註冊');
+                                 window.location.href = "http://localhost:8080/FinalProject/Register.html";
+                             }
+                             else{
+                                // document.cookie = "email=" + data;
+                                window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                             }
                 }
             });
                 });
+//----------------------------------------------------------------------------------------------fb登入
+// This is called with the results from from FB.getLoginStatus().
+ //引入 facebook SDK
+ (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+            return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2&appId=301951257305688&autoLogAppEvents=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+     
+    	window.fbAsyncInit = function() {
+    		FB.init({
+    			appId : '301951257305688',
+    			cookie : true, 
+    			xfbml : true, 
+    			version : 'v3.2'
+    		});
+    	function statusChangeCallback(response) {
+    		//可用于后台验证，但是前台调用SDK则会自动验证
+    		var accessToken=response.authResponse.accessToken;
+    		console.log(response.authResponse.accessToken);
+    		if (response.status === 'connected') {//sdk会自动保留accessToken，并且验证该请求是否来自我的应用
+    	        FB.api('/me?fields=name,first_name,last_name,email', function(response) { 
+    	        	//将用户信息传回服务端
+//     	        	window.location.href="TestFBLogin.do?userInfo="+JSON.stringify(response);
+
+    	        	 $.ajax({
+                            type:"POST",
+    	                    url:"processFacebookLogin",
+    	                    data:{
+    	                    	userInfo:JSON.stringify(response)
+    	                    },
+    	                    dataType:"json",
+    	                    async:false,
+    	                    success:function(response){
+                                alert('是否有跑入這支方訊')
+                                alert(response)
+                                if(response=="userFBLonin"){
+                                    window.location.href="http://localhost:8090/FinalProject/git/repository/FinalProject/src/main/webapp/FirstPage.html";
+                                }else{
+                                    // window.location.href="https://tw.yahoo.com/?p=us";
+                                }
+    	                    }
+    	                });
+    	        	// document.getElementById('status').innerHTML =
+    			    //     'Thanks for logging in, ' + response.name + '!';
+    	        });
+    	        
+    		} else {
+    			// document.getElementById('status').innerHTML = 'Please log '
+    			// 		+ 'into this app.';
+    		}
+    	}
+     
+    	function checkLoginState() {
+    		FB.getLoginStatus(function(response) {
+    			statusChangeCallback(response);
+    		}); 
+    	}
+    		FB.getLoginStatus(function(response) {
+    			statusChangeCallback(response);
+    		});
+    	};
                     </script>
+<!---google登入-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+        });
+    }
+
+// 		function onSignIn(googleUser) {
+// 			//跳转到http://gntina.iok.la/sendRedirect(获取用户信息)
+// 			alert(profile.getEmail())
+//              location.href = "www.google.com";
+// 			//获取用户基本信息，但是此id不能给后台用，不安全，改用id_token
+// 			/*从这往下的代码都不需要，因为是在后台验证，后台获取用户信息  */
+//             var profile = googleUser.getBasicProfile();
+// 			console.log('google自己封装好的获取用户信息');
+// 			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+// 			console.log('Name: ' + profile.getName());
+// 			console.log('Image URL: ' + profile.getImageUrl());
+// 			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        
+// 			//将id_token发送给后台进行验证
+// 			/*var id_token = googleUser.getAuthResponse().id_token;
+// 			var xhr = new XMLHttpRequest();
+// 			xhr.open('POST', 'http://gntina.iok.la/idToken');
+// 			xhr.setRequestHeader('Content-Type',
+// 					'application/x-www-form-urlencoded');
+// 			xhr.onload = function() {
+// 				console.log('Signed in as: ' + xhr.responseText);
+// 			};
+// 			xhr.send('idtoken=' + id_token);
+//                        */
+//                 }
+function onSignIn(googleUser) {
+
+var profile = googleUser.getBasicProfile();
+console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+console.log('Name: ' + profile.getName());
+console.log('Image URL: ' + profile.getImageUrl());
+console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+alert(profile.getEmail())
+$.ajax({
+    type: "POST",
+    url: "processGoogleLogin",
+    data: {
+        name:profile.getName(),
+        email:profile.getEmail()
+        },
+    success: function (data) {
+        alert('是否有跑入這支方訊')
+        alert(data)
+    }
+});
+
+
+
+}
+</script>
 </body>
 
 </html>

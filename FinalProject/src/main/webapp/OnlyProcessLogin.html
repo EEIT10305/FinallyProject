@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/fp.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <title>註冊頁</title>
+    <title>註冊後登入頁</title>
     <style>
         aside {
             float: left;
@@ -188,49 +188,22 @@
     <div style="overflow: auto;background-color:whitesmoke;">
         <article style="border-radius:15px;border:1px solid grey;margin:40px auto;width:50%;background-color:white;">
             <div>
-                <h3>註冊</h3>
+                <h3>恭喜您註冊成功!請登入您的email</h3>
             </div>
             <div class="dropdown-divider"></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputName">姓名</label><span class="errorMsg" id="errorInputName"></span>
-                    <input type="text" class="form-control" id="inputUserName">
+                    <label for="inputEmail4">Email</label> <span class="errorMsg" id="errorMail"></span>
+                    <input type="email" class="form-control" id="userInputEmail" placeholder="Email">
                 </div>
-                <div class="form-group col-md-6">
-                    <label>性別</label><span class="errorMsg" id="errorInputGender"></span>
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man">
-                        <label class="form-check-label" for="inlineRadio1">男</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman">
-                        <label class="form-check-label" for="inlineRadio2">女</label>
-                    </div>
-                </div>
-
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label><span class="errorMsg" id="errorInputEmail"></span>
-                    <input type="email" class="form-control" id="userInputEmail" required placeholder="請輸入Email">
+                    <label for="inputPassword4">密碼</label> <span class="errorMsg" id="errorPassword"></span> 
+                    <input type="password" class="form-control" id="userInputPassword" placeholder="Password">
                 </div>
-                <br>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">密碼</label><span class="errorMsg" id="errorInputPassword"></span>
-                    <input type="password" class="form-control" id="userInputPassword" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,10}$" placeholder="請輸入Password">
-                    <p class="pwdInfo">須為8-10個字且必須包含大寫字母、小寫字母、數字與特殊字元[!@#$%^&*]</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputCity">手機</label><span class="errorMsg" id="errorInputPhone"></span>
-                <input type="text" class="form-control" id="userInputPhone" placeholder="09xxxxxxxx">
             </div>
 
-            <div class="form-group">
-                <label for="inputAddress2">地址</label><span class="errorMsg" id="errorInputAddress"></span>
-                <input type="text" class="form-control" id="userInputAddress">
-            </div>
             <div class="form-row">
 
             </div>
@@ -242,7 +215,7 @@
                     </label>
                   </div> -->
             </div>
-            <button id="userSend" type="submit" class="btn btn-secondary">送出</button><span class="errorMsg" id="errorInputData"></span>
+            <button id="userSend" type="submit" class="btn btn-secondary">送出</button><span class="errorMsg" id="errorBoth"></span>
         </article>
     </div>
     <footer>
@@ -288,70 +261,27 @@
         crossorigin="anonymous"></script>
 
     <script>
-        //     document.getElementById("userSend").addEventListener("click",registerInput);
-        //     function registerInput(){
-        //     	alert(1)
-        // $.post("processregister",
-        //     {"name":$("#inputUserName").val(),
-        //     "email":
-        //     },function(){
-        //     	alert(22222)
-        //     })
-        //     }
+
         $("#userSend").click(function () {
             $.ajax({
                 type: "POST",
-                url: "processregister",
+                url: "processlogin",
                 data: {
-                    name:$("#inputUserName").val(),
-                    email:$("#userInputEmail").val(),
-                    password:$("#userInputPassword").val(),
-                    permission:"normal",
-                    address:$("#userInputAddress").val(),
-                    phone:$("#userInputPhone").val(),
-                    gender:$("input[name='inlineRadioOptions']:checked").val()
+                    email: $("#userInputEmail").val(),
+                    password: $("#userInputPassword").val()
                 },
                 success: function (data) {
+                    $("#errorMail").html("");
+                    $("#errorPassword").html("");
 
-                    $("#errorInputName").html("");
-                    $("#errorInputGender").html("");
-                    $("#errorInputEmail").html("");
-                    $("#errorInputPassword").html("");
-                    $("#errorInputPhone").html("");
-                    $("#errorInputAddress").html("");
-                    $("#errorInputData").html("");
-                     
-                     if(data=="name"){
-                        $("#errorInputName").html(data+"輸入錯誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if(data=="email"){
-                        $("#errorInputEmail").html(data+"輸入有誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if(data=="password"){
-                        $("#errorInputPassword").html(data+"輸入有誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if(data=="address"){
-                        $("#errorInputAddress").html(data+"輸入有誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if(data=="phone"){
-                        $("#errorInputPhone").html(data+"輸入有誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if(data=="gender"){
-                        $("#errorInputGender").html(data+"選擇有誤");
-                        $("#errorInputData").html("您輸入的"+data+"有誤!請檢查");
-                     }
-                     else if (data=="emailused"){
-                        $("#errorInputEmail").html("此email已註冊!");
-                        $("#errorInputData").html("您輸入的email已註冊!請重新輸入");
-                     }
-                    if(data==$("#userInputEmail").val()){
-                       window.location.href="http://localhost:8080/FinalProject/OnlyProcessLogin.html";
-                        }
+                    if(data=="email"){
+                        $("#errorMail").html(data+"輸入有誤");
+                    } else if (data=="password"){
+                        $("#errorPassword").html(data+"輸入有誤");
+                    }
+                    if (data=="notFoundData"){
+                        $("#errorBoth").html("你輸入的帳號或是密碼有錯啦!還是你他媽的沒註冊?");
+                    }
                 }
             });
 
