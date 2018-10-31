@@ -15,7 +15,6 @@
     </style>
     <script>
     $(document).ready(function(){
-        $.post("TestController")
         $('button[name="becheckbtn"]').next().hide();
         $('button.menuitemstyle').click(function(){
             $(this).parent().siblings(".btnwidth").text($(this).text());
@@ -25,8 +24,7 @@
             $('button[name="becheckbtn"]').next().show();
                 // 這裡可以加動態產生的品牌或價格選項
         })
-        
-        $('#test').webuiPopover();
+
         $('#test').mouseover(function(){
         	$("fieldset").show();
         });

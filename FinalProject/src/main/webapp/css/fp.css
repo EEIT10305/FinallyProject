@@ -50,6 +50,8 @@ ul {
 .forcard {
     display: flex;
     flex-wrap: wrap;
+    border:1px solid #dad7cc;
+    margin:30px
 
 }
 .card{
@@ -95,5 +97,8 @@ p {
     color: #6c757d;
 }
 .loginByFacebook{
-    float: right;
+    float: left;
+}
+.loginByGoogle{
+    float: left;
 }
