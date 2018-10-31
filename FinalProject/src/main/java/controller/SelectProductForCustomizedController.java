@@ -79,5 +79,23 @@ public class SelectProductForCustomizedController {
 		
 		return new Gson().toJson(SPFCS.selectBrandInService(Brandmodel));
 	}
+	@RequestMapping(path="showProductByCategoryForCustomized",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showProductByCategoryInController(String Categorymodel,String Brandmodel) {
+		
+		return new Gson().toJson(SPFCS.showProductByCategoryInService(Categorymodel,Brandmodel));
+	}
+	@RequestMapping(path="showProductByPrice",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showProductByPriceInController(String Categorymodel,String Brandmodel,Integer Pricemodel) {
+		
+		return new Gson().toJson(SPFCS.showProductByPriceInService(Categorymodel,Brandmodel,Pricemodel));
+	}
+	@RequestMapping(path="showPinginDetailByImage",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showPinginDetailInController(String Pinginmodel) {
+		
+		return new Gson().toJson(SPFCS.showPinginDetailInService(Pinginmodel));
+	}
 	
 }

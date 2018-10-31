@@ -316,25 +316,14 @@
 
                 </ul>
             </div>
-
+			
             <div id="selectPingin" class="forcard">
-                <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
-
+		<!--           塞入套裝電腦 -->
+                <div class="card" style="width: 18rem; padding: 10px; margin: 20px">
                     <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#">
-                            <img src="image/heart.png" width="20px">
-                        </a>
-                        <span>
-                            <a href="#">
-                                <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                            </a>
-                        </span>
-                        <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color: red">$20000</h5>
-                        <a href="#" class="btn btn-danger">加入購物車
-                            <img src="image/shopping-cart (1).png" width="20px">
-                        </a>
+                    <div class="card-body">               
+                        <h5 class="card-title">David 一號</h5><!--model -->
+                        <h5 class="card-title" style="color: red">$20000</h5><!--price -->
                     </div>
                 </div>
 
@@ -409,107 +398,112 @@
         crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $(document)
-            .ready(
-                function () {
-                    $.get("SelectMbForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showMB").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("SelectCpuForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showCPU").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("selectRamForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showRAM").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("selectVgaForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showVGA").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("selectStorageForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showSTORAGE").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("selectCabinetForCustomized", function (data,
-                        status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showCABINET").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
-                    $.get("selectPowerSupplierForCustomized", function (
-                        data, status) {
-                        if (status == "success") {
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#showPOWERSUPPLIER").append(
-                                    "<option>" + json.model
-                                    + "</option>");
-                            })
-
-                        }
-                    })
+        $(document).ready(
+                function(){
+                	selectAllProduct()
                     $.get("selectCategoryForCustomized",
                             function (data, status) {
                                 if (status == "success") {
                                     var querydata = $.parseJSON(data);
                                     $.each(querydata,function (index,json) {
-                                                $("#selectCategory")
-                                                    .append("<a class='dropdown-item'  value='" + json.category + "'>"+ json.category+ "</a>");
+                                                $("#selectCategory").append("<a class='dropdown-item'  value='" + json.category + "'>"+ json.category+ "</a>");
                                             })
 
                                     $("#selectCategory a").click(checkCategory)
 
                                     document.getElementById("showMB").addEventListener("change",checkMb)
+ 
+                                }
+                            })
+                 })
+                 function selectAllProduct(){
+        	$.get("SelectMbForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showMB").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
 
-                                    function checkCategory() {
+                    }
+                })
+                $.get("SelectCpuForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showCPU").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+                $.get("selectRamForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showRAM").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+                $.get("selectVgaForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showVGA").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+                $.get("selectStorageForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showSTORAGE").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+                $.get("selectCabinetForCustomized", function (data,
+                    status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showCABINET").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+                $.get("selectPowerSupplierForCustomized", function (
+                    data, status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#showPOWERSUPPLIER").append(
+                                "<option>" + json.model
+                                + "</option>");
+                        })
+
+                    }
+                })
+        			}
+                 
+                 function checkCategory() {
                                     	if($("#Category").html()!=$(this).html()){
                                         $("#Category").html($(this).html());
                                         $("#Brand").html("廠牌");
@@ -527,25 +521,99 @@
                                                     }
                                                 });
                                     }
-                                    function checkBrand() {
+                 
+                 function checkBrand() {
                                     	if($("#Brand").html()!=$(this).html()){
                                     		$("#selectPrice").html("");
                                         	$("#Brand").html($(this).html());
                                         	$("#selectPrice").append(
-                                                "<a class='dropdown-item'  value='0'>2500以下</a>"
-                                                + "<a class='dropdown-item'  value='2500'>2500至5000</a>"
-                                                + "<a class='dropdown-item' value='5000'>5000至7500</a>"
-                                                + "<a class='dropdown-item'  value='7500'>7500至10000</a>"
-                                                + "<a class='dropdown-item'  value='10000'>10000以上</a>");
+                                                  "<a class='dropdown-item'  value='25000'>25000至30000</a>"
+                                                + "<a class='dropdown-item'  value='30000'>30000至35000</a>"
+                                                + "<a class='dropdown-item'  value='35000'>35000至40000</a>"
+                                                );
                                     	}
+                                    	 $.post("showProductByCategoryForCustomized",{"Categorymodel": $("#Category").html(),"Brandmodel": $("#Brand").html()},function (data,status) {
+                                             
+                                             if (status == "success") {
+                                                         var querydata = $.parseJSON(data);
+                                                        		 $("#selectPingin").html("");
+                                                         	 $.each(querydata,function (index,json) {
+                                                                	 $("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
+                                                                 							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
+                                                                 							"<div class='card-body'>"+
+                                                                 							"<h5 class='card-title'>"+json.name+"</h5>"+
+                                                                 							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div></div>");
+
+                                                                		 })
+                                                                		 $("div.card").click(showPingin)
+                                                    			 }
+                                                 });
                                         $("#selectPrice a").click(checkPrice)
                                     }
-                                    function checkPrice(){
-                                    	$("#Price").html($(this).html());
-                                    	alert("明天繼續")
-                                    }
+			        function checkPrice(){
+			        	$("#Price").html($(this).html());
+			        	$("#Price").attr("value",$(this).attr("value"));
+			                
+			        	$.post("showProductByPrice",{"Categorymodel": $("#Category").html(),"Brandmodel": $("#Brand").html(),"Pricemodel":$("#Price").attr("value")},function (data,status) {
+			                if (status == "success") {
+			                            var querydata = $.parseJSON(data);
+			                           		 $("#selectPingin").html("");
+			                            	 $.each(querydata,function (index,json) {
+			                                   	 $("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
+			                                    							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
+			                                    							"<div class='card-body'>"+
+			                                    							"<h5 class='card-title'>"+json.name+"</h5>"+
+			                                    							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div></div>");
+			                                   		 })
+			                                   		 $("div.card").click(showPingin)
+			                       			 }
+			                    });
+			        }
+        
+                 function showPingin(){
+                    	$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function (data, status) {
+                            if (status == "success") {
+                            	alert("AA")
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata,function (index,json) {
+                                            if(json.category=="mb"){
+                                            	$("#showMB").html("")
+                                            	sessionStorage.mbmodel=json.model
+                                            	$("#showMB").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="cpu"){
+                                            	$("#showCPU").html("")
+                                            	$("#showCPU").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="ram"){
+                                            	$("#showRAM").html("")
+                                            	$("#showRAM").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="powersupplier"){
+                                            	$("#showPOWERSUPPLIER").html("")
+                                            	$("#showPOWERSUPPLIER").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="cabinet"){
+                                            	$("#showCABINET").html("")
+                                            	$("#showCABINET").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="vga"){
+                                            	$("#showVGA").html("")
+                                            	$("#showVGA").append("<option>"+ json.model+"</option>");
+                                            }
+                                            if(json.category=="storage"){
+                                            	$("#showSTORAGE").html("")
+                                            	$("#showSTORAGE").append("<option>"+ json.model+"</option>");
+                                            }
+                                            })
+                                            selectAllProduct();
+								alert("GG")
                                 }
-                            })
+                            });
+                    	
+                    }
+                    
+                    
                     function checkMb() {
                         $.post("checkRamForCustomized",{"Mbmodel": event.target.value},function (data, status) {
                                 if (status == "success") {
@@ -570,8 +638,29 @@
                                 });
 
                     }
+                    function checkMbByImg() {
+                        $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.mbmodel},function (data, status) {
+                                if (status == "success") {
+                                    $("#showRAM").html("");
+                                        var querydata = $.parseJSON(data);
+                                        $.each(querydata,function (index,json) {
+                                                $("#showRAM").append("<option>"+ json.model+ "</option>");
+                                                })
+                                    }
+                                });
+                        $.post("checkCpuForCustomized",{"Mbmodel":sessionStorage.mbmodel},
+                                function (data, status) {
+                                    if (status == "success") {
+                                        $("#showCPU").html("");
+                                        var querydata = $.parseJSON(data);
+                                        $.each(querydata,function (index,json) {
+                                                $("#showCPU").append("<option>"+ json.model+ "</option>");
+                                            })
 
-                })
+                                    }
+                                });
+
+                    }
     </script>
 
 

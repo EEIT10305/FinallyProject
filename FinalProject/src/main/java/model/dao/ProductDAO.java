@@ -6,6 +6,8 @@ import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
 import model.bean.MbBean;
+import model.bean.PinginBean;
+import model.bean.PinginDetailBean;
 import model.bean.ProductBean;
 import model.bean.RamBean;
 
@@ -21,4 +23,8 @@ public interface ProductDAO {
 	List<CategoryBean> selectAllCategory();
 	CategoryBean CategoryTurnCategoryid(String Category);
 	BrandBean BrandidTurnBrand(int Brandid);
+	List<PinginDetailBean> showPinginByCategoryAndBrand(String Category, String Brand);
+	PinginBean showPingin(String name);
+	PinginBean showPinginByPrice(String name, Integer Price);
+	List<PinginDetailBean> showPinginByImg(String Pinginname);
 }
