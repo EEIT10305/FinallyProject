@@ -87,6 +87,26 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<ProductBean> selectNeedProduct() {
+		return this.getSession().createQuery("FROM ProductBean Where hot >=: hot and statu = 'on' Order By hot", ProductBean.class)
+				.setParameter("hot", 0).list();
+	}
+	
+	
+	@Override
+	public List<ProductBean> selectNeedProduct2() {
+		return this.getSession().createQuery("FROM ProductBean Where hot < : hot and statu = 'on' ", ProductBean.class)
+				.setParameter("hot", 0).list();
+	}
+	
+	
+
+	@Override
+	public List<ProductBean> selectUpProduct() {
+		String hql ="From ProductBean where statu='off' and hot=-1";
+		return this.getSession().createQuery(hql,ProductBean.class).list();
+	}
+
 	public BrandBean BrandidTurnBrand(int Brandid) {
 		String hql = "From BrandBean where Brandid= :Brandid";
 
@@ -140,6 +160,24 @@ public class ProductDAOImpl implements ProductDAO {
 				}
 			}
 		}
+		return false;
+	}
+	@Override
+	public boolean updateHotSeq(Integer count,Integer id) {
+		ProductBean temp = this.getSession().get(ProductBean.class, id);
+		if(temp!=null) {
+			temp.setHot(count);
+		}
+		
+		return false;
+	}
+	@Override
+	public boolean updateNoHot(Integer id) {
+		ProductBean temp = this.getSession().get(ProductBean.class, id);
+		if(temp!=null) {
+			temp.setHot(-1);
+		}
+		
 		return false;
 	}
 

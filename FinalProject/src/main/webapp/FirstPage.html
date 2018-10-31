@@ -2,418 +2,301 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="css/fp.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-    <title>首頁</title>
-    <script>
-        $(document).ready(function(){
-            $.post("TestController")
-            $('button[name="becheckbtn"]').next().hide();
-            $('button.menuitemstyle').click(function(){
-                $(this).parent().siblings(".btnwidth").text($(this).text());
-            })
-            $('button[name="category"]').click(function(){
-                $('button[name="becheckbtn"]').hide();
-                $('button[name="becheckbtn"]').next().show();
-                    // 這裡可以加動態產生的品牌或價格選項
-            })
-            
-            $('#test').webuiPopover();
-            $('#test').mouseover(function(){
-            	$("fieldset").show();
-            });
-            $('#test').mouseout(function () {
-                if (!$(".mymodal:hover").length) {
-                	$("fieldset").hide();
-                      }
-            })
-        })
-<<<<<<< HEAD
-=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/fp.css">
+<style>
+    .forcard {
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid #dad7cc;
+    border-radius:30px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:50px;
+    background:whitesmoke;
+    padding:30px 50px;
+    justify-content:space-around;
 
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
-    </script>
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/firstpage.js"></script>
+<script src="js/wall.js"></script>
+<script src="js/basic.js"></script>
+<title>首頁</title>
+<script>
+    $(document).ready(function(){
+    	$.post("HotController",function(data, status) {
+			if (status == "success") {
+				var querydata = $.parseJSON(data);	
+				var text=""
+				$.each(querydata, function(index, json) {
+				text +='<div class="card" style="width: 18rem; padding: 10px;">'+
+				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" alt="Card image cap">'+
+				'<div class="card-body">'+
+				'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
+				'<h5 class="card-title">'+json.model+'</h5>'+
+				'<h5 class="card-title" style="color: red">$'+json.price+'</h5>'+
+				'<a href="#" class="btn btn-danger">加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>'+
+                '</div></div>'
+					
+				})
+
+				$(".forcard").html(text);
+			}})
+    })
+</script>
 </head>
 
 <body>
-    <header>
-        <div style="align-items:baseline;" class="d-flex justify-content-between">
-            <div class="navv">
-                <li>
-                    <ul>
-                        <a href="FirstPage.html">
-                            <img src="image/001.png" width="120px">
-                        </a>
-                    </ul>
-                </li>
+<div id="show"></div>
+	<header>
+		<div style="align-items: baseline;"
+			class="d-flex justify-content-between">
+			<div class="navv">
+				<li>
+					<ul>
+						<a href="FirstPage.html"> <img src="image/001.png"
+							width="120px">
+						</a>
+					</ul>
+				</li>
 
-            </div>
-            <div class="navv">
-                    <a href="FirstPage.html"><button type="button" class="btn btn-dark btnchoose">
-                            <img src="image/shopping-bag.png" width="20px">
-                            <br>線上購物</button></a>
-                 <a href="CustomizedPage.html"><button type="button" class="btn btn-dark btnchoose">
-                    <img src="image/note.png" width="20px">
-                    <br>自組電腦</button></a>
-                    <a href="Pk.html"><button type="button" class="btn btn-dark btnchoose">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png" width="20px">
-                            <br>商品比較</button></a>
-                   
-            </div>
-            <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="">
-                            <img src="image/shopping-cart.png" width="30px">
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
+			</div>
+			<div class="navv">
+				<a href="FirstPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/shopping-bag.png" width="20px"> <br>線上購物
+					</button></a> <a href="CustomizedPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/note.png" width="20px"> <br>自組電腦
+					</button></a> <a href="Pk.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img
+							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
+							width="20px"> <br>商品比較
+					</button></a>
 
-                    </ul>
-                </li>
-                  <fieldset id="myModal" class="mymodal" >
-                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a></div>
-                        </fieldset>
-            </div>
+			</div>
+			<div class="navv">
+				<li>
+					<ul>
+						<a id="test" href=""> <img src="image/shopping-cart.png"
+							width="30px">
+						</a>
+					</ul>
+					<ul>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+
+					</ul>
+				</li>
+				<fieldset id="myModal" class="mymodal">
+					<div class="dropdown-divider"></div>
+					<a href='ShowCart.html'><button style="width: 300px"
+							class='btn btn-dark'>查看購物車</button></a>
+			</div>
+			</fieldset>
+		</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									type="email" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" placeholder="Enter email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">密碼</label> <input
+									type="password" class="form-control" id="exampleInputPassword1"
+									placeholder="Password">
+							</div>
+							<span> <a href="Register.html"> 尚未註冊?</a>
+							</span>
+						</div>
+						<div class="modal-footer">
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input"
+									id="exampleCheck1"> <label class="form-check-label"
+									for="exampleCheck1">記住密碼</label>
+							</div>
+							<button id="gogogsubmit"  class="btn btn-dark">送出</button>
+							<button type="reset" class="btn btn-secondary">重設</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<nav>
+		<!--搜尋器和輪播牆-->
+		<div class="search">
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">分類</button>
+				<button id="catebtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2">
+					<button name="category" class="dropdown-item menuitemstyle"
+						type="button">桌上型電腦</button>
+					<button name="category" class="dropdown-item menuitemstyle"
+						type="button">主機板</button>
+					<button name="category" class="dropdown-item menuitemstyle"
+						type="button">CPU</button>
+					<button name="category" class="dropdown-item menuitemstyle"
+						type="button">記憶體</button>
+				</div>
+			</div>
+
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+				<button name="becheckbtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="modal"
+					data-target="#mustchoose">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2"></div>
+
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">價格</button>
+				<button name="becheckbtn" type="button" data-toggle="modal"
+					data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2"></div>
+			</div>
+			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇分類</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<input type="text" style="line-height: 45px;" size="30px">
+			<button style="padding: 0px 50px" type="button"
+				class="btn btn-secondary btnwidth">
+				搜尋 <span> <img src="image/loupe.png" width="20px;">
+				</span>
+			</button>
+		</div>
+		<!-- 以下是輪播牆 -->
+        <div id="carouselExampleIndicatorsup" >
+		
+        
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">密碼</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <span>
-                                <a href="Register.html"> 尚未註冊?</a>
-                            </span>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">記住密碼</label>
-                            </div>
-                            <button type="submit" class="btn btn-dark">送出</button>
-                            <button type="reset" class="btn btn-secondary">重設</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </header>
-
-    <nav><!--搜尋器和輪播牆-->
-        <div class="search">
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">分類</button>
-                <button id="catebtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
-                </div>
-                </div>
-
-            
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">廠牌</button>
-                <button name="becheckbtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="modal" data-target="#mustchoose">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    
-                </div>
-
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">價格</button>
-                <button name="becheckbtn" type="button" data-toggle="modal" data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                   
-                </div>
-            </div>
-            <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="image/exclamation-mark.png" width="80px">
-                            <h5 style="color:red">請選擇分類</h5>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
-                搜尋
-                <span>
-                    <img src="image/loupe.png" width="20px;">
-                </span>
-            </button>
-        </div>
-        <!-- 以下是輪播牆 -->
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                        <img class="d-block w-100" src="image/banner_15397442985bc6a22a049f5.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/banner_15374341845ba36248a005d.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/banner_15390539295bbc196934c2b.jpg" alt="Third slide">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        </nav>
-        <article>
-        <div class="forcard">
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-
-
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-        </div>
+	</nav>
+	<article>
+			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
+		<div class="forcard">
+		</div>
 
 
 
 
-    </article>
-    <footer>
-        <div style="background-color:#dad7cc;">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link active" href="#">隱私權政策</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">購物流程</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">付款方式</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">會員權益</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">售後服務</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:#6c757d" class="nav-link" href="#">網路客服</a>
-                </li>
+	</article>
+	<footer>
+		<div style="background-color: #dad7cc;">
+			<ul class="nav">
+				<li class="nav-item"><a style="color: #6c757d"
+					class="nav-link active" href="#">隱私權政策</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">購物流程</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">付款方式</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">會員權益</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">售後服務</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">網路客服</a></li>
 
-            </ul>
+			</ul>
 
-        </div>
-        <div style="background-color:#dad7cc;color:#6c757d;font-size: 10px;padding:10px 60px ">
-            <a href="">
-                <img src="image/001.png" width="80px">
-            </a>
-            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
-            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
-            </p>
-            <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
-        </div>
+		</div>
+		<div
+			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
+			<a href=""> <img src="image/001.png" width="80px">
+			</a>
+			<p>欣亞數位股份有限公司 版權所有© Sinya Digital Corporation. All rights
+				reserved.</p>
+			<p>臺灣 807 高雄市三民區建國二路121號 網購客服專線(市話撥打)：0800-380-380
+				網購客服專線(手機撥打)：02-23512801</p>
+			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
+		</div>
 
-    </footer>
+	</footer>
     
 
-<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
