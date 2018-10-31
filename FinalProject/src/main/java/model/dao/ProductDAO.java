@@ -2,6 +2,8 @@ package model.dao;
 
 import java.util.List;
 
+import com.google.gson.JsonElement;
+
 import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
@@ -23,4 +25,7 @@ public interface ProductDAO {
 	List<CategoryBean> selectAllCategory();
 	CategoryBean CategoryTurnCategoryid(String Category);
 	BrandBean BrandidTurnBrand(int Brandid);
+	boolean updateHotSeq(Integer count, Integer id);
+	boolean updateNoHot(Integer id);
+	List<ProductBean> selectUpProduct();
 }

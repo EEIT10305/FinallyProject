@@ -16,33 +16,33 @@ public class WallController {
 	@Autowired
 	private WallService wallService;
 	
-	@RequestMapping("WallController")
+	@RequestMapping(path="WallController",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String method() {
 		return new Gson().toJson(wallService.getNeedPhoto());	
 	}
 	
-	@RequestMapping("WallController2")
+	@RequestMapping(path="WallController2",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String method2() {
 		return new Gson().toJson(wallService.getNeedPhoto2());	
 	}
 	
 	
-	@RequestMapping("ChangePicController")
+	@RequestMapping(path="ChangePicController",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public void method3(String str,String change,String amount) {
 		System.out.println("wallService.changePhotoSeq(str):" + wallService.changePhotoSeq(str,change,amount));
 	}
 	
-	@RequestMapping("AddPhoto")
+	@RequestMapping(path="AddPhoto",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public void method4(String upload_file) {
 		wallService.writeFileToProj(upload_file);
 		wallService.insertPhotoSeq(upload_file);
 	}
 	
-	@RequestMapping("RemovePhoto")
+	@RequestMapping(path="RemovePhoto",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public void method5(String removesrc) {
 		wallService.changePhotoSeq(removesrc);

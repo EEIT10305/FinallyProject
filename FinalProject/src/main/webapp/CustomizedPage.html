@@ -44,6 +44,7 @@
         }
 
 
+
         .table .thead-mycolor th {
             color: #fff;
             background-color: grey;
@@ -54,10 +55,28 @@
             color: rgb(78, 72, 72);
             background-color: #dad7cc;
         }
+        
+        .infor {
+            width: 18rem;
+            padding: 20px;
+            margin: 20px;
+            z-index: 1;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: #fff;
+            opacity: 0.9;
+        }
     </style>
     <script>
         $(document).ready(function () {
-            $.post("TestController")
+        	 $(".card").children(":last-child").hide();
+             $(".card").mouseenter(function () {
+                 $(this).children(":last-child").show();
+             }).mouseleave(function () {
+                 $(this).children(":last-child").hide();
+             })
+        	
             $('button[name="becheckbtn"]').next().hide();
             $('button.menuitemstyle').click(function () {
                 $(this).parent().siblings(".btnwidth").text($(this).text());
@@ -277,11 +296,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <div style="background-color: #dad7cc; border-radius: 10px">
-                    <h4 style="line-height: 80px;">
-                        電供
-                        <span style="color: red">5</span>瓦 總價
-                        <span style="color: red">20000</span>元
+                <div style="height:120px;background-color: #dad7cc; border-radius: 10px">
+                    <h4 style="line-height: 50px;">
+                                                        電供
+                        <span style="color: red">  5  </span>瓦 總價
+                        <span style="color: red">  20000  </span>元     
+                        <br>
+                       <a href="#" class="btn btn-danger">全部加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>
+                         
                     </h4>
                 </div>
 
@@ -319,28 +341,24 @@
             </div>
 
             <div id="selectPingin" class="forcard">
+            
                 <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
-
                     <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                     <div class="card-body">
-                        <a href="#">
-                            <img src="image/heart.png" width="20px">
-                        </a>
-                        <span>
-                            <a href="#">
-                                <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                            </a>
-                        </span>
+                        <a href="#"><img src="image/heart.png" width="20px"></a>   
                         <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color: red">$20000</h5>
-                        <a href="#" class="btn btn-danger">加入購物車
-                            <img src="image/shopping-cart (1).png" width="20px">
-                        </a>
+                        <h5 class="card-title" style="color: red">$20000</h5>        
+                    </div>
+                     <div class="infor">
+                        CPU:
+                        <br> 主機板:
+                        <br> 硬碟:
+                        <br> 記憶體:
+                        <br> 顯示卡:
+                        <br>
                     </div>
                 </div>
-
-
-
+ 
             </div>
             <!-- 頁面跳轉按鈕 -->
             <div style="margin: 50px;" aria-label="Page navigation example">
@@ -360,7 +378,7 @@
                         <a class="mypage-link" href="#">3</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">&raquo;</a>
+                        <a class="mypage-link " href="#">&raquo;</a>
                     </li>
                 </ul>
             </div>

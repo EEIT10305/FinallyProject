@@ -2,6 +2,8 @@ package model.service;
 
 import java.util.List;
 
+import com.google.gson.JsonElement;
+
 import model.bean.ProductBean;
 import model.bean.WallBean;
 
@@ -16,5 +18,8 @@ public interface HotService {
 	boolean insertPhotoSeq(String productid);
 	//商品下架
 	boolean changePhotoSeq(String productid);
+	public List<ProductBean> getUpProduct();
+	boolean  addUpProductOne(String addid);
+	public boolean removeProductOne(String removepro);
 
 }

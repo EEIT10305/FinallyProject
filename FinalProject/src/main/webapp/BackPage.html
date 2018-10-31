@@ -28,7 +28,8 @@ a {
 	font-family: "微軟正黑體"
 }
 tr td{
-border:1px solid black
+border:1px solid black;
+width:70px;
 }
 </style>
 <script>
@@ -107,16 +108,17 @@ border:1px solid black
 					</div>
 					<div
 						style="background: aliceblue; text-align: center; padding: 10px">
-						<button data-toggle="modal" data-target="#foradd"
+						<button id="changemodel" data-toggle="modal" data-target="#foradd"
 							class="btn btn-secondary">Add</button>
-						<button id="forremove" class="btn btn-secondary">Remove</button>
+						<button style="display:none" id="forremove" class="btn btn-secondary">Remove</button>
+						<button style="display:none" id="forremove2" class="btn btn-secondary">Remove</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- 		-----modal----------------------------------------------- -->
-		<div class="modal fade" id="foradd" tabindex="-1" role="dialog"
+		<div class="modal fade" id="foradd2" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -133,6 +135,29 @@ border:1px solid black
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal" id="foraddbtn">上傳</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+        <div class="modal fade" id="foradd" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">選擇欲上架商品</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<select id="select1" >
+						</select>
+						<div id="showphoto"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="foraddbtn2">上架</button>
 					</div>
 				</div>
 			</div>

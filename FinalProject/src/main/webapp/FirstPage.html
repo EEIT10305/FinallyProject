@@ -12,11 +12,48 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
+<style>
+    .forcard {
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid #dad7cc;
+    border-radius:30px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:50px;
+    background:whitesmoke;
+    padding:30px 50px;
+    justify-content:space-around;
+
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/firstpage.js"></script>
 <script src="js/wall.js"></script>
 <script src="js/basic.js"></script>
 <title>首頁</title>
+<script>
+    $(document).ready(function(){
+    	$.post("HotController",function(data, status) {
+			if (status == "success") {
+				var querydata = $.parseJSON(data);	
+				var text=""
+				$.each(querydata, function(index, json) {
+				text +='<div class="card" style="width: 18rem; padding: 10px;">'+
+				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" alt="Card image cap">'+
+				'<div class="card-body">'+
+				'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
+				'<h5 class="card-title">'+json.model+'</h5>'+
+				'<h5 class="card-title" style="color: red">$'+json.price+'</h5>'+
+				'<a href="#" class="btn btn-danger">加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>'+
+                '</div></div>'
+					
+				})
+
+				$(".forcard").html(text);
+			}})
+    })
+</script>
 </head>
 
 <body>
@@ -209,125 +246,8 @@
         </div>
 	</nav>
 	<article>
+			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
 		<div class="forcard">
-			<fieldset style="border:1px solid gold;width:100%;height:50px">
-			
-			<legend>推薦商品</legend>
-			
-			
-			
-			
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-			</div>
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-			</div>
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-
-
-			</div>
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-			</div>
-
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-			</div>
-			<div class="card" style="width: 18rem; padding: 10px;">
-
-				<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg"
-					width="100px" alt="Card image cap">
-				<div class="card-body">
-					<a href="#"> <img src="image/heart.png" width="20px">
-					</a> <span> <a href="#"> <img
-							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png"
-							width="20px">
-					</a>
-					</span>
-					<h5 class="card-title">David 一號</h5>
-					<h5 class="card-title" style="color: red">$20000</h5>
-					<a href="#" class="btn btn-danger">加入購物車 <img
-						src="image/shopping-cart (1).png" width="20px">
-					</a>
-				</div>
-			</div>
 		</div>
 
 
