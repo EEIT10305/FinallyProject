@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.ImportDetailBean;
+import model.bean.ProductBean;
 import model.dao.ImportDetailDAO;
 
 @Repository
@@ -27,6 +28,12 @@ public class ImportDetailDAOImpl implements ImportDetailDAO {
 	@Override
 	public ImportDetailBean selectById(int id) {
 		return this.getSession().get(ImportDetailBean.class, id);
+	}
+
+	@Override
+	public List<ImportDetailBean> selectAllByID(Integer improtid) {
+		
+		return this.getSession().createQuery("FROM ImportDetailBean where improtid=:improtid", ImportDetailBean.class).setParameter("improtid", improtid).list();
 	}
 
 	@Override

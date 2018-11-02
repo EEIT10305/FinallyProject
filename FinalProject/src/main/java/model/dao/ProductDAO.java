@@ -20,8 +20,19 @@ import model.bean.VgaBean;
 public interface ProductDAO {
     List<ProductBean> selectAll();
     ProductBean selectById(int id);
-    List<ProductBean> selectByCategory(int Categoryid);
+
+    public List<ProductBean> selectByCategory(int Categoryid);
+    public List<ProductBean> selectByinput(String input);
+
     ProductBean insert(ProductBean bean);
+
+	List<ProductBean> selectByCatBraPri(Integer categoryid, Integer brandid, Integer price);
+	List<ProductBean> selectByCatBraPriBigger(Integer categoryid, Integer brandid, Integer price);
+	List<ProductBean> selectByCatBra(Integer categoryid, Integer brandid);
+	List<ProductBean> selectByCatPri(Integer categoryid, Integer price);
+	List<ProductBean> selectByCatPriBigger(Integer categoryid, Integer price);
+	List<ProductBean> selectByCat(Integer categoryid);
+
     boolean update(ProductBean bean);
 	List<ProductBean> selectNeedProduct();
 	List<ProductBean> selectNeedProduct2();
@@ -40,6 +51,7 @@ public interface ProductDAO {
 	boolean updateHotSeq(Integer count, Integer id);
 	boolean updateNoHot(Integer id);
 	List<ProductBean> selectUpProduct();
+	List<ProductBean> selectProductExcludeDown();
 	ProductBean selectProductPrice(String model);
 	List<PinginBean> showAllProductImg();
 	CpuBean showCpuPower(String Cpumodel);
@@ -55,5 +67,6 @@ public interface ProductDAO {
 	List<RamBean> selectRam();
 	List<CpuBean> selectCpu();
 	List<MbBean> selectMb();
+
 
 }

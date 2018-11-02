@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import model.bean.BrandBean;
 import model.bean.CabinetBean;
 import model.bean.CategoryBean;
@@ -194,6 +195,13 @@ public class ProductDAOImpl implements ProductDAO {
 		String hql ="From ProductBean where statu='off' and hot=-1";
 		return this.getSession().createQuery(hql,ProductBean.class).list();
 	}
+
+	@Override
+	public List<ProductBean> selectProductExcludeDown() {
+		String hql ="From ProductBean where hot >= -1";
+		return this.getSession().createQuery(hql,ProductBean.class).list();
+	}
+
 	@Override
 	public ProductBean selectProductPrice(String model) {
 		String hql ="From ProductBean where model=:Mbmodel";
@@ -274,4 +282,55 @@ public class ProductDAOImpl implements ProductDAO {
 		return false;
 	}
 
+	
+	
+	
+	
+	@Override
+	public List<ProductBean> selectByCatBraPri(Integer categoryid, Integer brandid, Integer price){
+		String hql = "from ProductBean where categoryid= : categoryid and brandid = :brandid and price between :price and :price+5000";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).setParameter("brandid", brandid).setParameter("price",price).getResultList();		
+	}
+    
+	@Override
+	public List<ProductBean> selectByCatBraPriBigger(Integer categoryid, Integer brandid, Integer price){
+		String hql = "from ProductBean where categoryid= : categoryid and brandid = :brandid and price > :price";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).setParameter("brandid", brandid).setParameter("price",price).getResultList();		
+	}
+	
+	@Override
+	public List<ProductBean> selectByCatBra(Integer categoryid, Integer brandid){
+		String hql = "from ProductBean where categoryid= : categoryid and brandid = :brandid";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).setParameter("brandid", brandid).getResultList();		
+	}
+	
+	@Override
+	public List<ProductBean> selectByCatPri(Integer categoryid, Integer price){
+		String hql = "from ProductBean where categoryid= : categoryid and price between :price and :price+5000";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).setParameter("price",price).getResultList();		
+	}
+    
+	@Override
+	public List<ProductBean> selectByCatPriBigger(Integer categoryid, Integer price){
+		String hql = "from ProductBean where categoryid= : categoryid and price > :price";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).setParameter("price",price).getResultList();		
+	}
+	
+	@Override
+	public List<ProductBean> selectByCat(Integer categoryid){
+		String hql = "from ProductBean where categoryid= : categoryid ";
+		return this.getSession().createQuery(hql,ProductBean.class)
+				.setParameter("categoryid", categoryid).getResultList();		
+	}
+	
+	@Override
+	public List<ProductBean> selectByinput(String searchspace) {
+		String hql ="From ProductBean where model like :input";
+		return this.getSession().createQuery(hql,ProductBean.class).setParameter("input", "%" + searchspace + "%").getResultList();
+	}
 }
