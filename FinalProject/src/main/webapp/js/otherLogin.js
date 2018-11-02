@@ -1,6 +1,8 @@
 //----------------------------------------------------------------------------------------------fb登入
 // This is called with the results from from FB.getLoginStatus().
- //引入 facebook SDK
+
+
+//引入 facebook SDK
  (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id))
@@ -11,7 +13,7 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
  
-    window.fbAsyncInit = function() {
+ window.fbAsyncInit = function() {
         FB.init({
             appId : '301951257305688',
             cookie : true, 
@@ -60,12 +62,14 @@
             // 		+ 'into this app.';
         }
     }
- 
+//  $('#loginByFacebook').click(function(){
+// alert('有沒有進入facebook登入的方訊')// });
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         }); 
-    }
+}
+
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });

@@ -20,7 +20,8 @@ $(document).ready(function(){
                success: function (data) {
                    alert(data);
                    if(data=="userIsOurMember"){
-                    alert('此使用者的cookie內的mail資訊室我們家的會員')
+                    alert('此使用者的cookie內的mail資料是我們家的會員');
+                    alert('隱藏登入按鈕!秀出會員按鈕');
                     //$('#已登入的圖示').hide();
                    }else if(data=="facebook"){
                         alert("已判斷使用者是facebook登入")
@@ -42,7 +43,7 @@ $(document).ready(function(){
     }
 })
 
-$("#userlogin").click(function () {
+$("#gogogsubmit").click(function () {
     $.ajax({
         type: "POST",
         url: "processlogin",
@@ -62,7 +63,7 @@ $("#userlogin").click(function () {
             } else if (data=="password"){
                 $("#memberLoginErrorPassword").html(data+"不能為空");
             }else if (data=="notFoundData"){
-                $("#memberBothErrorMsg").html("←您尚未註冊,請按下確定開始註冊");
+                $("#memberBothErrorMsg").html("←找不到您的資料!如未註冊請點選左邊加入我們!");
             }else{
                  var Days = 30;//cookie設定30天
                  var exp = new Date();
