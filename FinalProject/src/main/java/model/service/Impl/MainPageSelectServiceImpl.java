@@ -2,6 +2,8 @@ package model.service.Impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,7 @@ import model.bean.ProductBean;
 import model.dao.ProductDAO;
 import model.service.MainPageSelectService;
 @Repository
+@Transactional
 public class MainPageSelectServiceImpl implements MainPageSelectService {
     @Autowired
 	private ProductDAO productDAO;

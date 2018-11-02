@@ -3,6 +3,8 @@ package model.dao.impl;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

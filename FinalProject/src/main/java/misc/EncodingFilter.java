@@ -13,9 +13,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(
-		urlPatterns={"/*"}
-)
+//@WebFilter(
+//		urlPatterns={"/*"}
+//)
 public class EncodingFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,

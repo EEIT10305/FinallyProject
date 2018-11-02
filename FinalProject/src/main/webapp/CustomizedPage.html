@@ -896,12 +896,14 @@
                                             if(json.category=="cpu"){
                                             	$("#showCPU").html("")
                                             	sessionStorage.cpumodel=json.model
+                                            	sessionStorage.cpupsu=json.psu
                                             	$("#CPUPrice").html(json.price)
                                             	$("#showCPU").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="ram"){
                                             	$("#showRAM").html("")
                                             	sessionStorage.rammodel=json.model
+                                            	sessionStorage.rampsu=json.psu
                                             	$("#RAMPrice").html(json.price)
                                             	$("#showRAM").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
@@ -1013,27 +1015,25 @@
                     function checkMbByImg() {
                         $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.mbmodel},function (data, status) {
                                 if (status == "success") {
-                                    $("#showRAM").html("");
+                                    $("#showRAM").html("<option value='"+sessionStorage.rampsu+"' name='"+sessionStorage.rammodel+"'>"+ sessionStorage.rammodel+ "</option>");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-		                                        	if(index==0){
-		                                        		$("#RAMPrice").html(json.price)
-		                                    		}
+		                                        if(sessionStorage.rammodel!=json.model){		                                        	
                                                 $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
+		                                        }
                                                 })
                                     }
                                 });
                         $.post("checkCpuForCustomized",{"Mbmodel":sessionStorage.mbmodel},
                                 function (data, status) {
                                     if (status == "success") {
-                                        $("#showCPU").html("");
+                                        $("#showCPU").html("<option value='"+sessionStorage.cpupsu+"' name='"+sessionStorage.cpumodel+"'>"+ sessionStorage.cpumodel+ "</option>");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-	                                        	if(index==0){
-	                                        		$("#CPUPrice").html(json.price)
-	                                    		}
+                                        	if(sessionStorage.cpumodel!=json.model){
                                                 $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
-                                            })
+                                        	}
+                                        	})
 
                                     }
                                 });
@@ -1166,7 +1166,6 @@
 			                			     parseInt($("#POWERSUPPLIERPrice").html()))
                    }
                    function PowerSupplierByTotalPower(){
-                	   alert((parseInt($("#totalPower").html())+300))
                 	   $.post("showPowerSupplierByTotalPower",{"PowerModel":(parseInt($("#totalPower").html())+300)},function(data,status){
                 		   if (status == "success") {
                                var querydata = $.parseJSON(data);

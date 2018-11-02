@@ -2,6 +2,8 @@ package model.service.Impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import model.bean.ImportBean;
 import model.dao.ImportDAO;
 import model.service.ImportService;
 @Service
+@Transactional
 public class ImportServiceImpl implements ImportService {
 	@Autowired
 	ImportDAO importDAO;
