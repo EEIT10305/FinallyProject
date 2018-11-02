@@ -12,14 +12,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 @Configuration
+@EnableTransactionManagement
 @ComponentScan(basePackages={"model"})
 public class SpringJavaConfiguration {
 //	@Bean//WEB應用程式連資料庫
@@ -72,6 +73,15 @@ public class SpringJavaConfiguration {
 //		builder.addAnnotatedClasses(StorageBean.class,TransferBean.class,VgaBean.class,WishBean.class);
 		return builder.buildSessionFactory();
 	}
+	@Bean
+	public HibernateTransactionManager transactionManager(
+	        SessionFactory sessionFactory) {
+	    HibernateTransactionManager tm = new HibernateTransactionManager(
+	            sessionFactory);
+	    return tm;
+	}
+
+	
 	
 	@TransactionalEventListener
 
