@@ -28,17 +28,17 @@ public class TestImport {
 		System.out.println("交易開始");
 	}
 
-	@After
-	public void destroy() {
-		try {
-			factory.getCurrentSession().getTransaction().commit();
-			System.out.println("交易結束");
-			factory.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@After
+//	public void destroy() {
+//		try {
+//			factory.getCurrentSession().getTransaction().commit();
+//			System.out.println("交易結束");
+//			factory.close();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	@Test
@@ -63,8 +63,8 @@ public class TestImport {
 //		System.out.println(dao.selectAll());		
 //		System.out.println(dao.selectByArrivedate("2018/06/21") + "arrivedate=======");
 //		System.out.println(dao.selectByStatus("on"));
-//		System.out.println(dao.selectByOrderdate("2018/01/20"));
-		System.out.println(dao.updateStatus("on", 1));;
+		System.out.println(dao.selectByOrderdate("2018/01/20"));
+//		System.out.println(dao.updateStatus("on", 1));;
 	
 //	    System.out.println(dao.updateStatus("on"));
 		

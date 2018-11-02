@@ -72,7 +72,7 @@ public class ImportServiceImpl implements ImportService {
 
 
 	@Override
-	public ImportBean updateStatus(String statu, Integer improtid) {
+	public List<ImportBean> updateStatus(String statu, Integer improtid) {
 			return importDAO.updateStatus(statu, improtid);
 			
 		}

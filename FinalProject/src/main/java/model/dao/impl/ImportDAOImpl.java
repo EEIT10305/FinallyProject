@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.ImportBean;
 import model.dao.ImportDAO;
@@ -139,25 +140,21 @@ public class ImportDAOImpl implements ImportDAO {
 		return false;
 	}
 
+	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public ImportBean updateStatus(String statu, Integer improtid) {
+	public List <ImportBean> updateStatus(String statu, Integer improtid) {
 		this.getSession();
-		String hql = "Update ImportBean set statu =: statu where improtid =: improtid";
-		Query query = this.getSession().createQuery(hql);
-		query.setParameter("statu", statu);
-		query.setParameter("improtid", improtid);
+		String hql = "Update ImportBean set statu =: statu where improtid =: improtid";		
+		Query query = this.getSession().createQuery(hql).setParameter("statu", statu).setParameter("improtid", improtid);
 		query.executeUpdate();
-		return this.getSession().get(ImportBean.class, statu);
+//		return this.getSession().createQuery(hql).setParameter("statu", statu).setParameter("improtid", improtid).list();
+		return null;
+		
 
 	}
 
-//	@Override
-//	public ImportBean insertImport() {
-//		this.getSession();
-//		String hql = "Insert into branck_stock(null, amount, branchid, proid, statu) from import";
-//	}
-//	
-
+	
+	
 
 }

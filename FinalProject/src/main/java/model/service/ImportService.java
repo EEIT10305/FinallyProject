@@ -22,6 +22,6 @@ public interface ImportService {
 	List<ImportBean> selectByADODS(String arrivedate, String orderdate, String statu);
 	
 
-	ImportBean updateStatus(String statu, Integer improtid);
+	List<ImportBean> updateStatus(String statu, Integer improtid);
 
 }

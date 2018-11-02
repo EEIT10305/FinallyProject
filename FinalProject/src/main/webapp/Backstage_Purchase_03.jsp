@@ -270,11 +270,11 @@
 	<c:forEach var="row" items="${user}">
 
 		<tr>
-			<td>${row.improtid}</td>
+			<td><input type = "hidden" name = "improtid" value = "${row.improtid}">${row.improtid}</td>						
 			<td>${row.arrivedate}</td>
 			<td>${row.orderdate}</td>
 			<td>${row.statu}</td>
-			<td><input type="checkbox" name="statu" value="${row.improtid}"></td>
+			<td><input type="radio" name="statu" value="${row.statu}"></td>
 			<td><a href="/FinalProject/pages/detail.controller?improtid=${row.improtid}">Detail</a></td>
 
 		</tr>
@@ -284,7 +284,7 @@
 </tbody>
 </table>
 
-<input type = "submit" name = "${row.statu}" value = "Submit">
+<input type = "submit"  value = "Submit">
 
 </form>
 
