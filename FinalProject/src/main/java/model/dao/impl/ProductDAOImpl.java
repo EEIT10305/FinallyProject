@@ -71,6 +71,14 @@ public class ProductDAOImpl implements ProductDAO {
 		String hql ="From ProductBean where statu='off' and hot=-1";
 		return this.getSession().createQuery(hql,ProductBean.class).list();
 	}
+	
+	
+
+	@Override
+	public List<ProductBean> selectProductExcludeDown() {
+		String hql ="From ProductBean where hot >= -1";
+		return this.getSession().createQuery(hql,ProductBean.class).list();
+	}
 
 	public BrandBean BrandidTurnBrand(int Brandid) {
 		String hql ="From BrandBean where Brandid= :Brandid";

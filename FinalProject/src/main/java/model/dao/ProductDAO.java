@@ -28,4 +28,5 @@ public interface ProductDAO {
 	boolean updateHotSeq(Integer count, Integer id);
 	boolean updateNoHot(Integer id);
 	List<ProductBean> selectUpProduct();
+	List<ProductBean> selectProductExcludeDown();
 }

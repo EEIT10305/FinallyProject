@@ -73,6 +73,7 @@
         	 $(".card").children(":last-child").hide();
              $(".card").mouseenter(function () {
                  $(this).children(":last-child").show();
+                 $(this).children(":last-child").append("111");
              }).mouseleave(function () {
                  $(this).children(":last-child").hide();
              })
@@ -175,18 +176,21 @@
                                 <label for="exampleInputPassword1">密碼</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                             </div>
-                            <span>
-                                <a href="Register.html"> 尚未註冊?</a>
-                            </span>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">記住密碼</label>
-                            </div>
-                            <button type="submit" class="btn btn-dark">送出</button>
-                            <button type="reset" class="btn btn-secondary">重設</button>
-                        </div>
+                            <span> <a href="Register.html"> 尚未註冊?</a>
+							</span>
+							
+						    <br>
+							<button id="gogogsubmit"  class="mymodelbtn btn-dark">送出</button>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input"
+									id="exampleCheck1"> <label class="form-check-label"
+									for="exampleCheck1">記住密碼</label>
+							</div>
+							
+							<div class="dropdown-divider"></div>
+							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
+							
+						</div>
                     </form>
                 </div>
             </div>
@@ -350,12 +354,7 @@
                         <h5 class="card-title" style="color: red">$20000</h5>        
                     </div>
                      <div class="infor">
-                        CPU:
-                        <br> 主機板:
-                        <br> 硬碟:
-                        <br> 記憶體:
-                        <br> 顯示卡:
-                        <br>
+                        
                     </div>
                 </div>
  
