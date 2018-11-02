@@ -5,6 +5,7 @@ import java.util.List;
 import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
+import model.bean.ImportDetailBean;
 import model.bean.MbBean;
 import model.bean.ProductBean;
 import model.bean.RamBean;
@@ -21,4 +22,8 @@ public interface ProductDAO {
 	List<CategoryBean> selectAllCategory();
 	CategoryBean CategoryTurnCategoryid(String Category);
 	BrandBean BrandidTurnBrand(int Brandid);
+	
+	
+	List<ProductBean> selectAllByID(String improtid);
+
 }
