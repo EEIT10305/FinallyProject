@@ -879,7 +879,6 @@
                  function showPingin(){
                     	$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function (data, status) {
                             if (status == "success") {
-                            	alert("AA")
                                     var querydata = $.parseJSON(data);
                                     $.each(querydata,function (index,json) {
                                             if(json.category=="mb"){
@@ -929,7 +928,6 @@
                                             })
                                             selectAllProductByImg();
                                     		checkMbByImg();
-								alert("GG")
                                 }
                             });
                     	
@@ -1003,7 +1001,6 @@
         					});
 			              }
                     function checkMbByImg() {
-                    	alert(sessionStorage.mbmodel)
                         $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.mbmodel},function (data, status) {
                                 if (status == "success") {
                                     $("#showRAM").html("");
