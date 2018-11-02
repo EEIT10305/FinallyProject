@@ -2,6 +2,8 @@ package model.service.Impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import model.bean.OrderDetailBean;
 import model.dao.OrderDetailDAO;
 import model.service.OrderDetailService;
 @Service
+@Transactional
 public class OrderDetailServiceimpl implements OrderDetailService {
 	@Autowired
 	OrderDetailDAO Dao;

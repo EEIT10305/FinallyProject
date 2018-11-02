@@ -1,38 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/firstpage.js"></script>
 <script src="js/wall.js"></script>
 <script src="js/basic.js"></script>
 <title>首頁</title>
-<style>
-.forcard {
-    display: flex;
-    flex-wrap: wrap;
-    border:1px solid #dad7cc;
-    border-radius:30px;
-    margin-left:50px;
-    margin-right:50px;
-    margin-bottom:50px;
-    background:whitesmoke;
-    padding:30px 50px;
-    justify-content:space-around;
-
-}
-</style>
 <script>
     $(document).ready(function(){
     	$.post("HotController",function(data, status) {
@@ -85,7 +68,6 @@
 							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
 							width="20px"> <br>商品比較
 					</button></a>
-
 			</div>
 			<div class="navv">
 				<ul>
@@ -122,19 +104,21 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form>
+					
 						<div class="modal-body">
 							<div class="form-group">
-								<label for="exampleInputEmail1">Email</label> <input
-									type="email" class="form-control" id="exampleInputEmail1"
+								<label for="exampleInputEmail1">Email</label><span class="errorMsg" id="memberLoginErrorEmail"></span> 
+								<input
+									type="email" class="form-control" id="memberInputEmail"
 									aria-describedby="emailHelp" placeholder="Enter email">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">密碼</label> <input
-									type="password" class="form-control" id="exampleInputPassword1"
+								<label for="exampleInputPassword1">密碼</label><span class="errorMsg" id="memberLoginErrorPassword"></span> 
+								<input
+									type="password" class="form-control" id="memberInputPassword"
 									placeholder="Password">
 							</div>
-							<span> <a href="Register.html"> 尚未註冊?</a>
+							<span> <a href="Register.html"> 尚未註冊?</a><span id="memberBothErrorMsg" style="color: red"></span> 
 							</span>
 							
 						    <br>
@@ -146,16 +130,24 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
+							<button class="mymodelbtn btn-primary" onclick="checkLoginState()">使用facebook登入</button>
 							
+							<!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>-->
+							<div class="fb-login-button" data-width="1000" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+							<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" auto_logout_link="true" size="large"	show_faces="true"></fb:login-button> -->
+							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<!-- <div class="dropdown-divider"></div> -->
+							<!-- <button class="mymodelbtn btn-primary">使用google登入</button> -->
 						</div>
 						
-					</form>
+					
 				</div>
 			</div>
 		</div>
 
 	</header>
+
+
 
 	<nav>
 		<!--搜尋器和輪播牆-->
@@ -167,18 +159,14 @@
 					<span class="caret"></span> <span class="sr-only">Toggle
 						Dropdown</span>
 				</button>
-				<div class="dropdown-menu dropdown-menu-right menustyle"
-					aria-labelledby="dropdownMenu2">
-					<button name="category" class="dropdown-item menuitemstyle"
-						type="button">桌上型電腦</button>
-					<button name="category" class="dropdown-item menuitemstyle"
-						type="button">主機板</button>
-					<button name="category" class="dropdown-item menuitemstyle"
-						type="button">CPU</button>
-					<button name="category" class="dropdown-item menuitemstyle"
-						type="button">記憶體</button>
-				</div>
+				<div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
+                  
+                </div>
 			</div>
+
+            
+
 
 
 			<div class="btn-group">
@@ -194,8 +182,9 @@
 					<span class="caret"></span> <span class="sr-only">Toggle
 						Dropdown</span>
 				</button>
-				<div class="dropdown-menu dropdown-menu-right menustyle"
-					aria-labelledby="dropdownMenu2"></div>
+				<div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+
+                </div>
 
 			</div>
 			<div class="btn-group">
@@ -210,8 +199,13 @@
 					<span class="caret"></span> <span class="sr-only">Toggle
 						Dropdown</span>
 				</button>
-				<div class="dropdown-menu dropdown-menu-right menustyle"
-					aria-labelledby="dropdownMenu2"></div>
+				 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
+                </div>
 			</div>
 			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -237,22 +231,23 @@
 
 
 
-			<input type="text" style="line-height: 45px;" size="30px">
-			<button style="padding: 0px 50px" type="button"
-				class="btn btn-secondary btnwidth">
-				搜尋 <span> <img src="image/loupe.png" width="20px;">
-				</span>
-			</button>
-		</div>
-		<!-- 以下是輪播牆 -->
-        <div id="carouselExampleIndicatorsup" ></div>
+
+
+		  <input id="searchspace" type="text" name="searchspace" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+                搜尋
+                <span>
+                    <img src="image/loupe.png" width="20px;">
+                </span>
+            </button>
+        </div>
+        <!-- 以下是輪播牆 -->
+        <div id="carouselExampleIndicatorsup"></div>
+
 	</nav>
 	<article>
 			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
 		<div class="forcard"></div>
-
-
-
 
 	</article>
 	<footer>
@@ -271,6 +266,7 @@
 				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
 					href="#">網路客服</a></li>
 
+
 			</ul>
 
 		</div>
@@ -287,8 +283,16 @@
 
 	</footer>
     
-
-	<script
+		<!--處理登入-->
+		<script src="js/login.js"></script>
+		<!--第三方登入javascript-->
+		<script src="js/otherLogin.js"></script>
+		<!--google登入用-->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!--google登入用-->
+        <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'>
+		
+		<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -298,6 +302,119 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	
+<script type="text/javascript">
+        $(document).ready(function () {
+        	sessionStorage.category = "ini";
+            sessionStorage.brand = "ini";
+            sessionStorage.price = 0;
+            sessionStorage.searchspace = "ini";
+        	
+        	
+            $.get("SelectByCategory", function (data, status) {
+                if (status == "success") {
+                    var querydata = $.parseJSON(data);
+                    $.each(querydata, function (index, json) {
+                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
+                            + json.category + "'>" + json.category + "</button>");
+
+                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
+
+                    })
+
+                    $('button.menuitemstyle').click(function () {
+                        $(this).parent().siblings(".btnwidth").text($(this).text());
+                    })
+                    $('button[name="becheckbtn"]').next().hide();
+                    $('button[name="category"]').click(function () {
+                        $('button[name="becheckbtn"]').hide();
+                        $('button[name="becheckbtn"]').next().show();
+                    })
+                    
+                    
+                    
+                }
+            })
+            
+           
+            
+            
+            
+            function clickcategory() {
+                $('#brandtitle').text("廠牌");
+                $('#pricetitle').text("價格");
+                $('#brandbtn').empty();
+                document.getElementById("pricebtn1").addEventListener("click",clickprice);
+                document.getElementById("pricebtn2").addEventListener("click",clickprice);
+                document.getElementById("pricebtn3").addEventListener("click",clickprice);
+                document.getElementById("pricebtn4").addEventListener("click",clickprice);
+                document.getElementById("pricebtn5").addEventListener("click",clickprice);
+                
+                sessionStorage.category = event.target.value;
+             
+                //      傳category給brand標籤去搜尋producttable
+                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
+                                + json.brand + "'>" + json.brand + "</button>");
+                            document.getElementById(""+json.brand).addEventListener("click",clickbrand);
+                            
+           
+                        })
+                        $('button.menuitemstyle').click(function () {
+                            $(this).parent().siblings(".btnwidth").text($(this).text());
+                        })
+
+                       
+                    }
+                })
+                
+                function clickbrand(){
+                	sessionStorage.brand = event.target.value;
+                }
+                function clickprice(){
+             	    sessionStorage.price = event.target.value;
+                }
+
+
+            }
+        })
+    </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
+	document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
+
+     function storesearchspace(){
+         sessionStorage.searchspace = event.target.value;
+//          alert(sessionStorage.searchspace);
+     }	
+     function removesearchspace(){
+        sessionStorage.searchspace = "ini";
+       //  alert(sessionStorage.searchspace);
+     }
+	
+	
+$("#searchbtn").click(function(){
+	$.post("userInput",{"category":sessionStorage.category,
+		                     "brand":sessionStorage.brand,
+		                     "price":sessionStorage.price,
+		                     "searchspace":sessionStorage.searchspace},  
+		                     function(data,status){
+		                    	 sessionStorage.data = data
+// 		                    	 alert("要跳了 " + sessionStorage.data);
+ 		                    	 window.location.href="http://localhost:8080/FinalProject/ProductPage.html";
+		                     }
+			)
+})
+	
+	
+})
+
+</script>	
+		
 </body>
 
 </html>

@@ -1,12 +1,16 @@
 package model.dao.impl;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.dao.CategoryDAO;
 
@@ -52,5 +56,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 		return false;
 	}
-
+	@Override
+	public CategoryBean getCategoryBeanBycategorycode(String category) {
+		//得到CategoryBean是為了知道categoryid
+		String hql ="From CategoryBean where category=:category";
+		return this.getSession().createQuery(hql,CategoryBean.class).setParameter("category", category).getSingleResult();
+	}
 }

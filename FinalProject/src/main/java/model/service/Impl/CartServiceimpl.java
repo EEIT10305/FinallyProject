@@ -2,6 +2,8 @@ package model.service.Impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import model.bean.CartBean;
 import model.dao.CartDAO;
 import model.service.CartService;
 @Service
+@Transactional
 public class CartServiceimpl implements CartService {
 	@Autowired 
 	CartDAO Dao;
