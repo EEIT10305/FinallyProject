@@ -11,9 +11,6 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
-
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/firstpage.js"></script>
 <script src="js/wall.js"></script>
@@ -24,7 +21,6 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
 <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'><!--google登入用-->
 <title>首頁</title>
-
 <script>
     $(document).ready(function(){
     	$.post("HotController",function(data, status) {
@@ -79,27 +75,27 @@
 					</button></a>
 			</div>
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a id="test" href=""> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
-					</ul>
-					<ul>
+					</li>
+					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
 						</a>
 
-					</ul>
-				</li>
+					</li>
+				</ul>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
-			</div>
 			</fieldset>
+			</div>
 		</div>
-		</div>
+		
 		<!-- Modal -->
 		<div style="margin:0px auto" class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -154,21 +150,22 @@
 	</header>
     </header>
 
-    <nav><!--搜尋器和輪播牆-->
-        <div class="search">
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">分類</button>
-                <button id="catebtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
+
+	<nav>
+		<!--搜尋器和輪播牆-->
+		<div class="search">
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">分類</button>
+				<button id="catebtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
+                  
                 </div>
-                </div>
+			</div>
 
             
             <div class="btn-group">
@@ -185,49 +182,82 @@
                     
                 </div>
 
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">價格</button>
-                <button name="becheckbtn" type="button" data-toggle="modal" data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                   
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+				<button name="becheckbtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="modal"
+					data-target="#mustchoose">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+
                 </div>
-            </div>
-            <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="image/exclamation-mark.png" width="80px">
-                            <h5 style="color:red">請選擇分類</h5>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">價格</button>
+				<button name="becheckbtn" type="button" data-toggle="modal"
+					data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
+                </div>
+			</div>
+			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇分類</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+
+		  <input id="searchspace" type="text" name="searchspace" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
                 </span>
             </button>
+        </div>
+		<!-- 以下是輪播牆 -->
+        <div id="carouselExampleIndicatorsup" >
+		
+        
         </div>
         <!-- 以下是輪播牆 -->
         <div id="carouselExampleIndicatorsup"></div>
@@ -237,6 +267,7 @@
 			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
 		<div class="forcard">
 		</div>
+
 	</article>
 	<footer>
 		<div style="background-color: #dad7cc;">
@@ -254,6 +285,7 @@
 				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
 					href="#">網路客服</a></li>
 
+
 			</ul>
 
 		</div>
@@ -268,9 +300,8 @@
 			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
 		</div>
 
-
 	</footer>
-
+    
 
         <script src="js/login.js"></script><!--處理登入-->
 		<script
@@ -283,81 +314,119 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	
+<script type="text/javascript">
+        $(document).ready(function () {
+        	sessionStorage.category = "ini";
+            sessionStorage.brand = "ini";
+            sessionStorage.price = 0;
+            sessionStorage.searchspace = "ini";
+        	
+        	
+            $.get("SelectByCategory", function (data, status) {
+                if (status == "success") {
+                    var querydata = $.parseJSON(data);
+                    $.each(querydata, function (index, json) {
+                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
+                            + json.category + "'>" + json.category + "</button>");
 
-	<!-- 類別標籤的內容        -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$.get("SelectByCategory",function(data, status) {
-				if (status == "success") {
-					var querydata = $.parseJSON(data);
-						$.each(querydata,function(index,json) {
-							$("#categorybtn").append("<button id='category"+ json.code +"' name='category' class='dropdown-item menuitemstyle' type='button' value='"
-												+ json.category + "'>"+ json.category+ "</button>");
-				
-	    										document.getElementById("category"+json.code).addEventListener("click",click);
-				
-																	})
-																	
-													$('button.menuitemstyle').click(function() {
-																		$(this).parent().siblings(".btnwidth").text($(this).text());	
-																		})
-													$('button[name="becheckbtn"]').next().hide();
-													$('button[name="category"]').click(function() {
-																		$('button[name="becheckbtn"]').hide();
-																		$('button[name="becheckbtn"]').next().show();
-																		// 這裡可以加動態產生的品牌或價格選項
-																	})
-												}
-											})
-											
-					function click(){
-												sessionStorage.category=event.target.value
-// 										$.post("priceok",{"category":event.target.value},function(data, status) {
- 												alert(window.sessionStorage.category)
-// 										})
-										$.post("SelectByBrand",{"category":event.target.value},function(data, status) {
-												if (status == "success") {
-													var querydata = $.parseJSON(data);
-													$.each(querydata,function(index,json) {
-																		$("#brand").append("<button id='"+ json.brand +"'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
-												+ json.brand + "'>"+ json.brand+ "</button>");
-// 												document.getElementById(""+json.brand).addEventListener("click",click1);
-																	})
-													$('button.menuitemstyle').click(function() {
-																		$(this).parent().siblings(".btnwidth").text($(this).text());
-																	})
-													$('button[name="becheckbtn"]').next().hide();
-													$('button[name="category"]').click(
-																	function() {$('button[name="becheckbtn"]').hide();
-																		$('button[name="becheckbtn"]').next().show();
-																		// 這裡可以加動態產生的品牌或價格選項
-																	})
-												}
-											})
-									}
-						})
-	</script>
+                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
 
-	<!-- 品牌標籤的內容        -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-							
-						function click1(){
-									sessionStorage.brand=event.target.value
-								$.post("priceok",{"category":window.sessionStorage.category,"brand":event.target.value},function(data, status) {
-									alert(window.sessionStorage.category);
-									alert(window.sessionStorage.brand);
-								})
-							}
+                    })
 
-						})
-	</script>
+                    $('button.menuitemstyle').click(function () {
+                        $(this).parent().siblings(".btnwidth").text($(this).text());
+                    })
+                    $('button[name="becheckbtn"]').next().hide();
+                    $('button[name="category"]').click(function () {
+                        $('button[name="becheckbtn"]').hide();
+                        $('button[name="becheckbtn"]').next().show();
+                    })
+                    
+                    
+                    
+                }
+            })
+            
+           
+            
+            
+            
+            function clickcategory() {
+                $('#brandtitle').text("廠牌");
+                $('#pricetitle').text("價格");
+                $('#brandbtn').empty();
+                document.getElementById("pricebtn1").addEventListener("click",clickprice);
+                document.getElementById("pricebtn2").addEventListener("click",clickprice);
+                document.getElementById("pricebtn3").addEventListener("click",clickprice);
+                document.getElementById("pricebtn4").addEventListener("click",clickprice);
+                document.getElementById("pricebtn5").addEventListener("click",clickprice);
+                
+                sessionStorage.category = event.target.value;
+             
+                //      傳category給brand標籤去搜尋producttable
+                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
+                                + json.brand + "'>" + json.brand + "</button>");
+                            document.getElementById(""+json.brand).addEventListener("click",clickbrand);
+                            
+           
+                        })
+                        $('button.menuitemstyle').click(function () {
+                            $(this).parent().siblings(".btnwidth").text($(this).text());
+                        })
+
+                       
+                    }
+                })
+                
+                function clickbrand(){
+                	sessionStorage.brand = event.target.value;
+                }
+                function clickprice(){
+             	    sessionStorage.price = event.target.value;
+                }
 
 
+            }
+        })
+    </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
+	document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
 
+     function storesearchspace(){
+         sessionStorage.searchspace = event.target.value;
+//          alert(sessionStorage.searchspace);
+     }	
+     function removesearchspace(){
+        sessionStorage.searchspace = "ini";
+       //  alert(sessionStorage.searchspace);
+     }
+	
+	
+$("#searchbtn").click(function(){
+	$.post("userInput",{"category":sessionStorage.category,
+		                     "brand":sessionStorage.brand,
+		                     "price":sessionStorage.price,
+		                     "searchspace":sessionStorage.searchspace},  
+		                     function(data,status){
+		                    	 sessionStorage.data = data
+// 		                    	 alert("要跳了 " + sessionStorage.data);
+ 		                    	 window.location.href="http://localhost:8081/FinalProject/ProductPage.html";
+		                     }
+			)
+})
+	
+	
+})
 
-
-
+</script>	
+		
 </body>
 
 </html>
