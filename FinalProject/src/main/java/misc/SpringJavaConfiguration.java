@@ -53,9 +53,8 @@ public class SpringJavaConfiguration {
 				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
 
 		Properties props = new Properties();
+
 		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
-
-
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.put("hibernate.current_session_context_class", "thread");
 		props.put("hibernate.show_sql", "true");
