@@ -104,16 +104,16 @@
 </head>
 
 <body>
-    <header>
+    <header style="width:100%">
         <div style="align-items: baseline;" class="d-flex justify-content-between">
             <div class="navv">
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <a href="FirstPage.html">
                             <img src="image/001.png" width="120px">
                         </a>
-                    </ul>
-                </li>
+                    </li>
+                </ul>
 
             </div>
             <div class="navv">
@@ -135,28 +135,27 @@
                 </a>
             </div>
             <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="">
-                            <img src="image/shopping-cart.png" width="30px">
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px">
-                        </a>
+               <ul>
+					<li>
+						<a id="test" href=""> <img src="image/shopping-cart.png"
+							width="30px">
+						</a>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
 
-                    </ul>
-                </li>
-                <fieldset id="myModal" class="mymodal">
-                    <div class="dropdown-divider"></div>
-                    <a href='ShowCart.html'>
-                        <button style="width: 300px" class='btn btn-dark'>查看購物車</button>
-                    </a>
-            </div>
-            </fieldset>
+					</li>
+				</ul>
+				<fieldset id="myModal" class="mymodal">
+					<div class="dropdown-divider"></div>
+					<a href='ShowCart.html'><button style="width: 300px"
+							class='btn btn-dark'>查看購物車</button></a>
+			</fieldset>
+			</div>
         </div>
-        </div>
+       
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -346,20 +345,7 @@
             </div>
 			
             <div id="selectPingin" class="forcard">
-<<<<<<< HEAD
-            
-                <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
-                    <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#"><img src="image/heart.png" width="20px"></a>   
-                        <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color: red">$20000</h5>        
-                    </div>
-                     <div class="infor">
-                        
-                    </div>
-                </div>
-=======
+
 
 		<!--           塞入套裝電腦 -->
 <!--                 <div class="card" style="width: 18rem; padding: 10px; margin: 20px"> -->
@@ -379,7 +365,6 @@
 <!--                         <br> -->
 <!--                      </div> -->
 <!--                 </div> -->
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
  
             </div>
             <!-- 頁面跳轉按鈕 -->
@@ -474,8 +459,8 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                        	$("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
-         							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
+                        	$("#selectPingin").append('<div class="card" style="width: 15rem; padding: 10px;">'+
+         							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
          							"<div class='card-body'>"+
          							"<h5 class='card-title'>"+json.name+"</h5>"+
          							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
@@ -845,8 +830,8 @@
 			                            var querydata = $.parseJSON(data);
 			                           		 $("#selectPingin").html("");
 			                            	 $.each(querydata,function (index,json) {
-			                                   	 $("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
-			                                    							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
+			                                   	 $("#selectPingin").append('<div class="card" style="width: 15rem; padding: 10px;">'+
+			                                    							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
 			                                    							"<div class='card-body'>"+
 			                                    							"<h5 class='card-title'>"+json.name+"</h5>"+
 			                                    							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+

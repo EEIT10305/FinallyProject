@@ -18,7 +18,21 @@
 <script src="js/wall.js"></script>
 <script src="js/basic.js"></script>
 <title>首頁</title>
+<style>
+.forcard {
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid #dad7cc;
+    border-radius:30px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:50px;
+    background:whitesmoke;
+    padding:30px 50px;
+    justify-content:space-around;
 
+}
+</style>
 <script>
     $(document).ready(function(){
     	$.post("HotController",function(data, status) {
@@ -26,8 +40,8 @@
 				var querydata = $.parseJSON(data);	
 				var text=""
 				$.each(querydata, function(index, json) {
-				text +='<div class="card" style="width: 18rem; padding: 10px;">'+
-				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" alt="Card image cap">'+
+				text +='<div class="card" style="width: 15rem; padding: 10px;">'+
+				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="220px" alt="Card image cap">'+
 				'<div class="card-body">'+
 				'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
 				'<h5 class="card-title">'+json.model+'</h5>'+
@@ -45,17 +59,17 @@
 
 <body>
 <div id="show"></div>
-	<header>
+	<header style="width:100%">
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a href="FirstPage.html"> <img src="image/001.png"
 							width="120px">
 						</a>
-					</ul>
-				</li>
+					</li>
+				</ul>
 
 			</div>
 			<div class="navv">
@@ -74,27 +88,27 @@
 
 			</div>
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a id="test" href=""> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
-					</ul>
-					<ul>
+					</li>
+					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
 						</a>
 
-					</ul>
-				</li>
+					</li>
+				</ul>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
-			</div>
 			</fieldset>
+			</div>
 		</div>
-		</div>
+		
 		<!-- Modal -->
 		<div style="margin:0px auto" class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -231,15 +245,11 @@
 			</button>
 		</div>
 		<!-- 以下是輪播牆 -->
-        <div id="carouselExampleIndicatorsup" >
-		
-        
-        </div>
+        <div id="carouselExampleIndicatorsup" ></div>
 	</nav>
 	<article>
 			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
-		<div class="forcard">
-		</div>
+		<div class="forcard"></div>
 
 
 

@@ -23,7 +23,8 @@ public class TestBugMyWebCrawler extends WebCrawler {
 private final static Pattern FILTERS = Pattern.compile("-\\d+");
 private static ArrayList array = new ArrayList<>();;
 private static ArrayList array2 = new ArrayList<>();;
-private static ArrayList array3 = new ArrayList<>();;
+private static ArrayList array3 = new ArrayList<>();
+private static String varWebsite;;
 
     
     @Override
@@ -44,23 +45,25 @@ private static ArrayList array3 = new ArrayList<>();;
 //            <span class="fontColor3" ectype="goods_price">$6,790</span>
 //            <h2 class="ware_title">INTEL Core i3-8100(代理盒裝3年保固)</h2>
 //            <a href="index.php?app=goods&amp;id=23429" target="_blank">INTEL Core i9-9900K (代理盒裝3年保固)</a>
-//            Elements bodyEles = doc.select("span.fontColor3");
-//            Elements bodyEles2 = doc.select("h2.ware_title");
+            Elements bodyEles = doc.select("span.fontColor3");
+            Elements bodyEles2 = doc.select("h2.ware_title");
             Elements bodyEles3 = doc.select("a[target$=_blank]");
-//            for(Element item : bodyEles){
-//            	array.add(item.text());
-//            	System.out.println(array.toString());
+            for(Element item : bodyEles){
+            	array.add(item.text());
+            	System.out.println(array.toString());
 //          	 System.out.println("span#PriceTotal:" + item.text());
-//            	 
-//            }
-//            for(Element item : bodyEles2){
-//            	array2.add(item.text());
-//            	System.out.println(array2.toString());
+            	 
+            }
+            for(Element item : bodyEles2){
+            	array2.add(item.text());
+            	System.out.println(array2.toString());
 //           	System.out.println("span#PriceTotal:" + item.text());
-//            	
-//            }
+            	
+            }
             for(Element item : bodyEles3){
             	array3.add(item.attr("href"));
+            	varWebsite = item.attr("href");
+            	System.out.println("varWebsite:" + varWebsite);
             	System.out.println(array3.toString());
             	
             }
@@ -88,7 +91,8 @@ private static ArrayList array3 = new ArrayList<>();;
 //        	controller.addSeed("http://www.gh3c.com.tw/index.php?app=goods&id="+x);
 //        }
 //
-        controller.addSeed("http://www.gh3c.com.tw/index.php?app=store&id=29&act=search&cate_id=408");
+        controller.addSeed("http://www.gh3c.com.tw/index.php?app=store&id=29&act=search&cate_id=408"); 
+        
 //        controller.addSeed("http://www.gh3c.com.tw/index.php?app=goods&id=21029");
 //        controller.addSeed("http://www.gh3c.com.tw/index.php?app=goods&id=21027");
 //        controller.addSeed("http://www.gh3c.com.tw/index.php?app=goods&id=19950");
@@ -98,6 +102,20 @@ private static ArrayList array3 = new ArrayList<>();;
 //
 
         controller.start(TestBugMyWebCrawler.class, numberOfCrawlers);
+        
+        PageFetcher pageFetcher2 = new PageFetcher(config);
+        RobotstxtConfig robotstxtConfig2 = new RobotstxtConfig();
+        RobotstxtServer robotstxtServer22 = new RobotstxtServer(robotstxtConfig, pageFetcher);
+        CrawlController controller2 = new CrawlController(config, pageFetcher, robotstxtServer);
+        System.out.println(array3.size());
+        for(int i = 0 ; i < array3.size() ; i++) {
+        	controller2.addSeed("http://www.gh3c.com.tw/" + array3.get(i)); 
+        	
+        }
+        
+        controller2.start(TestBugMyWebCrawler.class, numberOfCrawlers);
+        
+        
     }
 
 
