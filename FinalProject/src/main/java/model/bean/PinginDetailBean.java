@@ -28,6 +28,8 @@ public class PinginDetailBean {
 	private String model;
 	@Column(nullable=false)
 	private Integer price;
+	@Column(nullable=false)
+	private Integer psu;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="pinginid",insertable=false,updatable=false)
 	private PinginBean pinginBean ;
@@ -35,7 +37,7 @@ public class PinginDetailBean {
 		super();
 	}
 	public PinginDetailBean(Integer pingin_detail_id, Integer pinginid, String name, String brand, String category,
-			String model, Integer price, PinginBean pinginBean) {
+			String model, Integer price, Integer psu,PinginBean pinginBean) {
 		super();
 		this.pingin_detail_id = pingin_detail_id;
 		this.pinginid = pinginid;
@@ -44,10 +46,11 @@ public class PinginDetailBean {
 		this.category = category;
 		this.model = model;
 		this.price = price;
+		this.psu = psu;
 		this.pinginBean = pinginBean;
 	}
 	public PinginDetailBean(Integer pingin_detail_id, String brand, String category,String model, String name,Integer pinginid, 
-			 Integer price) {
+			 Integer price,Integer psu) {
 		super();
 		this.pingin_detail_id = pingin_detail_id;
 		this.pinginid = pinginid;
@@ -55,6 +58,7 @@ public class PinginDetailBean {
 		this.brand = brand;
 		this.category = category;
 		this.model = model;
+		this.psu = psu;
 		this.price = price;
 	}
 	public Integer getPingin_detail_id() {
@@ -98,6 +102,14 @@ public class PinginDetailBean {
 	}
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+	
+	
+	public Integer getPsu() {
+		return psu;
+	}
+	public void setPsu(Integer psu) {
+		this.psu = psu;
 	}
 	public PinginBean getPinginBean() {
 		return pinginBean;

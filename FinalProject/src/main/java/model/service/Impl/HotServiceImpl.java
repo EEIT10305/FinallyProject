@@ -29,14 +29,16 @@ public class HotServiceImpl implements HotService {
 
 	@Override
 	public boolean changeProductSeq(String str, String change, String amount) {
-		if(str != null && str.length() > 0 && change != null &&  change.length() > 0 && amount != null && amount.length() > 0) {
+		if(str != null && str.length() > 0  && amount != null && amount.length() > 0) {
 			String getStr [] = str.split(",");
 			int count = 0;
 			for(String get : getStr) {
 				productDao.updateHotSeq(count++, Integer.parseInt(get));
 			}
-			if(getStr.length < Integer.parseInt(amount)) {
-				productDao.updateNoHot(Integer.parseInt(change)); 	
+			if( change != null &&  change.length() > 0) {
+				if(getStr.length < Integer.parseInt(amount)) {
+					productDao.updateNoHot(Integer.parseInt(change)); 	
+				}			
 			}
 
 			return true;
@@ -57,10 +59,13 @@ public class HotServiceImpl implements HotService {
 
 	@Override
 	public boolean removeProductOne(String removepro) {
-		ProductBean temp = productDao.selectById(Integer.parseInt(removepro));
-		if(temp != null) {
-			temp.setStatu("off");
-			return true;
+		if(removepro.length() >0) {
+			ProductBean temp = productDao.selectById(Integer.parseInt(removepro));
+			if(temp != null) {
+				temp.setStatu("off");
+				return true;
+			}
+			
 		}
 		return false;
 	}

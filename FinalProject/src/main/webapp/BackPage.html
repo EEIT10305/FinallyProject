@@ -32,9 +32,7 @@ border:1px solid black;
 width:70px;
 }
 </style>
-<script>
-       
-    </script>
+
 </head>
 
 <body>
@@ -46,12 +44,11 @@ width:70px;
 					<!-- <li class="nav-item">
                               <a class="nav-link" href="#"><img src="image/001.png" width="50px"></a>
                             </li> -->
-					<li class="nav-item"><a class="nav-link" href="#"
-						onclick='click1("#pagestyle")'>畫面管理</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">會員管理</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" onclick='click1("#pagestyle")'>畫面管理</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">商品上架</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">會員管理</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">訂單管理</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">爬蟲分析</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" onclick='click1("#bugpage")'>爬蟲分析</a></li>
 				</ul>
 			</div>
 			<div class="navv">
@@ -62,7 +59,7 @@ width:70px;
 						</a>
 					</ul>
 					<ul>
-						<a id="test" href=""> <img src="image/avatar_y.png"
+						<a id="test" href=""> <img src="image/cat.png"
 							width="30px">
 						</a>
 					</ul>
@@ -78,6 +75,7 @@ width:70px;
 		</div>
 	</header>
 	<article>
+<!-----------------------------------------------畫面調整畫面----------------------------------------------- -->
 		<div id="pagestyle"
 			style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
 			<div style="width: 80%; align-items: flex-start;">
@@ -108,7 +106,9 @@ width:70px;
 					</div>
 					<div
 						style="background: aliceblue; text-align: center; padding: 10px">
-						<button id="changemodel" data-toggle="modal" data-target="#foradd"
+						<button style="display:none" id="changemodel" data-toggle="modal" data-target="#foradd"
+							class="btn btn-secondary">Add</button>
+						<button style="display:none" id="changemodel2" data-toggle="modal" data-target="#foradd2"
 							class="btn btn-secondary">Add</button>
 						<button style="display:none" id="forremove" class="btn btn-secondary">Remove</button>
 						<button style="display:none" id="forremove2" class="btn btn-secondary">Remove</button>
@@ -118,7 +118,7 @@ width:70px;
 		</div>
 
 		<!-- 		-----modal----------------------------------------------- -->
-		<div class="modal fade" id="foradd2" tabindex="-1" role="dialog"
+		<div class="modal fade" id="foradd" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -129,18 +129,20 @@ width:70px;
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<form>
 					<div class="modal-body">
 						<input type="file" id="uploadfile">
 						<div id="showphoto"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" id="foraddbtn">上傳</button>
+						<button type="reset" class="btn btn-primary"  id="foraddbtn">上傳</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 		
-        <div class="modal fade" id="foradd" tabindex="-1" role="dialog"
+        <div class="modal fade" id="foradd2" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -151,19 +153,75 @@ width:70px;
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<form>
 					<div class="modal-body">
 						<select id="select1" >
 						</select>
-						<div id="showphoto"></div>
+						<div id="showphoto2"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" id="foraddbtn2">上架</button>
+						<button type="reset" class="btn btn-primary"  id="foraddbtn2">上架</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
+<!-- 	---------------爬蟲分析畫面---------------------------------------------------------------------->
+	<div id="bugpage"style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
+			<div style="width: 80%; align-items: flex-start;">
+			</div>
+			<div style="width: 20%; align-items: flex-start;">
+				<div style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
+					<div style="background: aliceblue; text-align: center; padding: 10px">
+						<h6 id="area1">選擇型號</h6>
+						<select id="selectbug1">
+						</select>
+						
+					</div>
+
+					<div
+						style="background: aliceblue; text-align: center; padding: 10px">
+						<h6 id="area2">選擇網站</h6>
+						<select id="selectbug2">
+						    <option>PChome</option>
+						</select>
+					</div>
+					
+
+				</div>
+			</div>
+		</div>
+
+	
+	
 	</article>
+	
+	
+	
 	<script>
+	$(document).ready(function(){
+		$.post("BugWebsite",function(data, status){
+			if(status == "success"){
+				$("#bugpage").children(":first-child").html(data);
+			}
+		})
+	})
+	var bugflag1 = true;
+	$("#selectbug1").click(function(){
+		if(bugflag1){
+		$.post("ShowAllProduct",function(data, status){
+			if(status == "success"){
+				var quertData = $.parseJSON(data)
+				var bugselect = "";
+				$.each(quertData, function(index,json){
+					bugselect += '<option value="'+json.model+','+json.price+'">' + json.model + '</option>' 
+				})
+				$("#selectbug1").html(bugselect)
+			}
+		})
+			bugflag1 = false
+		}
+	})
 	
 	</script>
 
