@@ -96,6 +96,7 @@
                 }
             })
         })
+    })
 
     </script>
 </head>
@@ -343,19 +344,6 @@
             </div>
 			
             <div id="selectPingin" class="forcard">
-            
-                <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
-                    <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#"><img src="image/heart.png" width="20px"></a>   
-                        <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color: red">$20000</h5>        
-                    </div>
-                     <div class="infor">
-                        
-                    </div>
-                </div>
-
 
 		<!--           塞入套裝電腦 -->
 <!--                 <div class="card" style="width: 18rem; padding: 10px; margin: 20px"> -->
@@ -518,13 +506,6 @@
                         $("div.card").click(showPingin)
                     }
                 })
-                $("#totalPower").html(parseInt($("#showMB").val())+
-				   			   		  parseInt($("#showCPU").val())+
-				   			   		  parseInt($("#showRAM").val())+
-				   			   		  parseInt($("#showVGA").val())+
-				   			   		  parseInt($("#showCABINET").val())+
-				   			   		  parseInt($("#showSTORAGE").val()))
-               			
                 		$("#showCPU").change(showCpuPrice)
                 		$("#showRAM").change(showRamPrice)
                 		$("#showVGA").change(showVgaPrice)
@@ -542,6 +523,7 @@
         	CalculateTotalPrice();
 				});
         	CalculateTotalPower();
+        	PowerSupplierByTotalPower();
         }
       function showRamPrice(){
     	  $.post("showRamPower",{"Rammodel":$(this).find("option:selected").text()},function (data, status) {
@@ -552,6 +534,7 @@
     	  CalculateTotalPrice();
 				});
     	  CalculateTotalPower();
+    	  PowerSupplierByTotalPower();
         }
 	  function showVgaPrice(){
 		  $.post("showVgaPower",{"Vgamodel":$(this).find("option:selected").text()},function (data, status) {
@@ -562,6 +545,7 @@
 		  CalculateTotalPrice();
 				});
 		  CalculateTotalPower();
+		  PowerSupplierByTotalPower();
         }
 	  function showCabinetPrice(){
 			$.post("showCabinetPower",{"Cabinetmodel":$(this).find("option:selected").text()},function (data, status) {
@@ -572,6 +556,7 @@
 			CalculateTotalPrice();
 				});
 			CalculateTotalPower();
+			PowerSupplierByTotalPower();
     	}
 	  function showPowerSupplierPrice(){
 	   		$.post("showInitPrice",{"model":$(this).find("option:selected").text()},function (data, status) {
@@ -582,6 +567,7 @@
 			CalculateTotalPrice();
 				});
 	   		CalculateTotalPower();
+	   		PowerSupplierByTotalPower();
 		}
 	  function showStoragePrice(){
 			$.post("showStoragePower",{"Storagemodel":$(this).find("option:selected").text()},function (data, status) {
@@ -592,6 +578,7 @@
 			CalculateTotalPrice();
 				});
 			CalculateTotalPower();
+			PowerSupplierByTotalPower();
 		}
       
       function initmb(){
@@ -609,6 +596,7 @@
             	 CalculateTotalPrice();
                      }
                  CalculateTotalPower();
+                 PowerSupplierByTotalPower();
                  });
          $.post("checkCpuForCustomized",{"Mbmodel": sessionStorage.initmbmodel},
                  function (data, status) {
@@ -625,7 +613,8 @@
 
         	 CalculateTotalPrice();
                      }
-        	 CalculateTotalPower();
+        	 CalculateTotalPower();	
+        	 PowerSupplierByTotalPower();
                  });
          
         }
@@ -939,15 +928,17 @@
                                             	$("#STORAGEPrice").html(json.price)
                                             	$("#showSTORAGE").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
+                                            })
                                             CalculateTotalPrice();
                                             CalculateTotalPower();
-                                            })
                                             selectAllProductByImg();
                                     		checkMbByImg();
+                                    		PowerSupplierByTotalPower();
                                 }
                             });
                     	
                     }
+                 
                     
                     
                     function checkMb() {
@@ -974,6 +965,7 @@
                                                 })
                                     }
                                 CalculateTotalPower();
+                                PowerSupplierByTotalPower();
                                 });
                         $.post("checkCpuForCustomized",{"Mbmodel":sessionStorage.Mb},
                                 function (data, status) {
@@ -998,6 +990,7 @@
 	
                                     }
                                 CalculateTotalPower();
+                                PowerSupplierByTotalPower();
                                     
                                 });
                         $.post("showInitPrice",{"model":sessionStorage.Mb},function (data, status) {
@@ -1171,8 +1164,19 @@
 			                			     parseInt($("#CABINETPrice").html())+
 			                			     parseInt($("#POWERSUPPLIERPrice").html()))
                    }
+                   function PowerSupplierByTotalPower(){
+                	   alert((parseInt($("#totalPower").html())+300))
+                	   $.post("showPowerSupplierByTotalPower",{"PowerModel":(parseInt($("#totalPower").html())+300)},function(data,status){
+                		   if (status == "success") {
+                               var querydata = $.parseJSON(data);
+                               $("#showPOWERSUPPLIER").html("")
+                               $.each(querydata, function (index, json) {
+                            	  $("#showPOWERSUPPLIER").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>")
+                               })
+                           }
+                		   })
+                   }
     </script>
-
 
 </body>
 

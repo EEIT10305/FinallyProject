@@ -145,6 +145,12 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return this.getSession().createQuery(hql, CabinetBean.class).setParameter("Cabinetmodel", Cabinetmodel).getSingleResult();
 	}
+	@Override
+	public List<PowerSupplierBean> showPowerSupplier(Integer PowerModel) {
+		String hql = "From PowerSupplierBean where psu>=:PowerModel";
+
+		return this.getSession().createQuery(hql, PowerSupplierBean.class).setParameter("PowerModel", PowerModel).getResultList();
+	}
 
 	@Override
 	public List<PinginDetailBean> showPinginByCategoryAndBrand(String Category, String Brand) {
