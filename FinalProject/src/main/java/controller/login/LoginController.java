@@ -1,9 +1,12 @@
 package controller.login;
 
+import javax.servlet.http.Cookie;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -18,7 +21,9 @@ public class LoginController {
 	private LoginService loginService;
 	@Autowired
 	private RegisterServiceImpl registerService;
-@RequestMapping(path="processlogin",produces="text/html;charset=utf-8")
+	
+	
+@RequestMapping(path="processlogin",produces="text/html;charset=utf-8", method=RequestMethod.POST)
 @ResponseBody
 public String processLogin(String email, String password) {
 	// 接收資料
@@ -42,17 +47,42 @@ public String processLogin(String email, String password) {
 	// 根據model執行結果，導向view
 		if (bean == null) {//找不到會員資料~請註冊
 			return "notFoundData";
-			//return "login.errors";//forward 用InternalResourceView
-		} else {//找到會員資料 將會員email傳回前端
-//			Cookie cookieToBrower = new Cookie("email",bean.getEmail());
-//			cookieToBrower.setMaxAge(30*24*60*60);
-//			return bean.getEmail().split("@")[0];
+		}else if (bean.getPermission()=="gm"&&bean.getPermission().equals("gm")) {
+			System.out.println("是否能抓到權限是gm呢?? : "+bean.getPermission());
+			return bean.getPermission();
+		}
+		else {//找到會員資料 將會員email傳回前端
+			//將會員email存入cookie
+			System.out.println("網站會員正常登入");
+
 			return bean.getEmail();
-			//return "login.success"; //sendRedirect 用 RedirectView
 		}
 }
+
+
+@RequestMapping(path="processFirstUser",produces="text/html;charset=utf-8", method=RequestMethod.POST)
+@ResponseBody
+public String isUserOurs(String email) {
+	System.out.println("網頁一進入的時候有沒有跑到這隻servlet");
+	System.out.println(email);
+	
+	MemberBean bean = loginService.checkEmail(email);
+	if(bean==null) {
+		return "notFoundMemberInfo";
+	}else if (bean.getPermission()=="facebook"||"facebook".equals(bean.getPermission())) {
+		return "facebook";
+	}else if (bean.getPermission()=="google"||"google".equals(bean.getPermission())) {
+		return "google";
+	}else {
+	return "userIsOurMember";
+	}
+}
+
+//------------判斷是否是管理員登入----------------------
+ 
 //------------facebook----------------------------
-@RequestMapping(value = "/processFacebookLogin")
+
+@RequestMapping(value = "/processFacebookLogin", method=RequestMethod.POST)
 @ResponseBody
 public String getUserInfo(String userInfo) {
 //接收資料
@@ -64,8 +94,8 @@ public String getUserInfo(String userInfo) {
 //驗證資料
 	String userFBLonin = (String) j.get("email");
 	System.out.println("臉書的email轉成stringQQ : " +userFBLonin);
-	if(loginService.checkEmailPwd(userFBLonin, "guestLoginByFacebook")!=null) {
-		System.out.println("有沒有近來判斷這個fb已經註冊了");
+	if(loginService.checkEmailPwd(userFBLonin, "facebook")!=null) {
+		System.out.println("有沒有近來判斷這個facebook已經註冊了");
 		return new Gson().toJson(userFBLonin);
 		
 	}else {
@@ -73,35 +103,43 @@ public String getUserInfo(String userInfo) {
 	bean.setEmail(j.get("email").toString());
 	bean.setName(j.get("name").toString());
 	bean.setPassword("facebook");
-	bean.setPermission("normal");
+	bean.setPermission("facebook");
 	bean.setAddress("facebook");
 	bean.setPhone("facebook");
 	bean.setGender("facebook");
-	
 	registerService.saveMember(bean);	
 	System.out.println("有沒有新增一個fb的bean_" + bean);
 	return userFBLonin;
 }
 }
 //-----------------google----------------------
-@RequestMapping(path="processGoogleLogin",produces="text/html;charset=utf-8")
+
+@RequestMapping(path="processGoogleLogin",produces="text/html;charset=utf-8", method=RequestMethod.POST)
 @ResponseBody
 public String getGoogleInfo(String email, String name) {
 	System.out.println(email);
 	System.out.println(name);
+	if(loginService.checkEmailPwd(email, "google")!=null) {
+		System.out.println("有沒有近來判斷這個google已經註冊了");
+		return email;
+		
+	}else {
+	
 	MemberBean bean = new MemberBean();
 	bean.setEmail(email);
 	bean.setName(name);
 	bean.setPassword("google");
-	bean.setPermission("normal");
+	bean.setPermission("google");
 	bean.setAddress("google");
 	bean.setPhone("google");
 	bean.setGender("google");
 	
 	System.out.println(bean);
 	registerService.saveMember(bean);
+
 	return email;
-}
+	}
+	}
 
 
 

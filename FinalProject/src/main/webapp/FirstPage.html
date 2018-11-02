@@ -5,8 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -30,8 +29,11 @@
 <script src="js/firstpage.js"></script>
 <script src="js/wall.js"></script>
 <script src="js/basic.js"></script>
-<script src="js/otherLogin.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script src="js/otherLogin.js"></script><!--第三方登入javascript-->
+
+<script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
+<meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'><!--google登入用-->
 <title>首頁</title>
 <script>
     $(document).ready(function(){
@@ -85,7 +87,6 @@
 							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
 							width="20px"> <br>商品比較
 					</button></a>
-
 			</div>
 			<div class="navv">
 				<li>
@@ -115,7 +116,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
-
                     
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -124,15 +124,15 @@
                    
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label> <span class="errorMsg" id="errorEmail" style="color: red"></span>
-                                <input type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                <label for="exampleInputEmail1">Email</label> <span class="errorMsg" id="memberLoginErrorEmail"></span>
+                                <input type="email" class="form-control" id="memberInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">密碼</label><span class="errorMsg" id="errorPassword" style="color: red"></span>
-                                <input type="password" class="form-control" id="userInputPassword" placeholder="Password">
+                                <label for="exampleInputPassword1">密碼</label><span class="errorMsg" id="memberLoginErrorPassword"></span>
+                                <input type="password" class="form-control" id="memberInputPassword" placeholder="Password">
                             </div>
                             <span>
-                                <a href="Register.html"> 我要註冊 </a><span class="errorMsg" id="errorBoth" style="color: red"></span>
+                                <a href="Register.html"> 我要註冊 </a><span id="memberBothErrorMsg" style="color:red;"></span>
                             </span>
                         </div>
                         <div class="modal-footer">
@@ -146,10 +146,9 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">記住我</label>
                             </div>
-                            <button id="testuserlogin" type="submit" class="btn btn-dark">送出</button>
+                            <button id="userlogin" type="submit" class="btn btn-dark">送出</button>
                             <button type="reset" class="btn btn-secondary">重設</button>
                         </div>
-                  
                 </div>
             </div>
         </div>
@@ -279,17 +278,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
-
+        <script src="js/login.js"></script><!--處理登入-->
 </body>
 
 </html>

@@ -6,6 +6,6 @@ public interface LoginService {
 
 	public MemberBean checkEmailPwd(String email, String password); 
 	
-	
+	public MemberBean checkEmail(String email);
 	
 }

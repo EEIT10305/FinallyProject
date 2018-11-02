@@ -38,8 +38,15 @@
                         success:function(response){
                             alert("這裡是facebook的登入:"+response)
                             if(response=="userFBLonin"){
+                                var Days = 30;//cookie設定30天
+                                var exp = new Date();
+                                exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                                document.cookie = "email=" + response+";expires=" + exp.toGMTString();
+                                alert('facebook登入+把email塞到cookie裡面');
+                                window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
                                 window.location.href="http://localhost:8090/FinalProject/git/repository/FinalProject/src/main/webapp/FirstPage.html";
                             }else{
+                                alert("facebook登入失敗")
                                 // window.location.href="https://tw.yahoo.com/?p=us";
                             }
                         }
@@ -64,13 +71,14 @@
         });
     };
 
-// google登入
+// google登入=============================================================================================
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
         console.log('User signed out.');
     });
+    alert("google登出")
 }
 
 // 		function onSignIn(googleUser) {
@@ -105,7 +113,9 @@ console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID
 console.log('Name: ' + profile.getName());
 console.log('Image URL: ' + profile.getImageUrl());
 console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+//測試有無進入google登入的方訊
 alert("這裡是google的登入:"+profile.getEmail())
+
 $.ajax({
 type: "POST",
 url: "processGoogleLogin",
@@ -114,11 +124,13 @@ data: {
     email:profile.getEmail()
     },
 success: function (data) {
-    alert('是否有跑入這支方訊')
-    alert(data)
+    alert('這裡是google的登入成功後的方訊 :'+data);
+    var Days = 30;//cookie設定30天
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = "email=" + data+";expires=" + exp.toGMTString();
+    alert('google登入+把email塞到cookie裡面');
+    window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
 }
 });
-
-
-
 }

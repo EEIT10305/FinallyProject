@@ -1,4 +1,4 @@
-package controller;
+package misc;
 
 import java.util.Properties;
 
@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class TestAutoEmailP2 {
+public class AutoSendEmailByJava {
 	/*maven專案 下載這個jar 檔
 	 使用gmail來測試"發信"
 	 要先更改設定

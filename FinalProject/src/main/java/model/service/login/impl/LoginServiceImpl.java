@@ -9,7 +9,8 @@ import model.service.login.LoginService;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-    @Autowired  
+    
+	@Autowired  
 	MemberDAO memberDao;
     
 	public LoginServiceImpl() {}
@@ -23,11 +24,20 @@ public class LoginServiceImpl implements LoginService {
 				String memeberPwd = mb.getPassword();
 				if(memeberPwd.equals(inputPwd)) {
 					return mb;
+				}else {
+					return null;
 				}
 			}
 		}
 		return null;
 	}
+
+	@Override
+	public MemberBean checkEmail(String email) {
+		MemberBean mb = memberDao.selectByEmail(email);
+		return memberDao.selectByEmail(email);
+	}
+
 		
 	
 	
