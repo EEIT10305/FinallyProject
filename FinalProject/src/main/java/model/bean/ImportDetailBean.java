@@ -24,17 +24,21 @@ public class ImportDetailBean {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="proid",insertable=false,updatable=false)
 	private ProductBean productBean ;
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="improtid",insertable=false,updatable=false)
+	private ImportBean importBean ;
 	public ImportDetailBean() {
 		super();
 	}
 	public ImportDetailBean(Integer improt_detailid, Integer improtid, Integer proid, Integer amount,
-			ProductBean productBean) {
+			ProductBean productBean,ImportBean importBean) {
 		super();
 		this.improt_detailid = improt_detailid;
 		this.improtid = improtid;
 		this.proid = proid;
 		this.amount = amount;
 		this.productBean = productBean;
+		this.importBean = importBean;
 	}
 	public ImportDetailBean(Integer improt_detailid, Integer amount, Integer improtid, Integer proid) {
 		super();

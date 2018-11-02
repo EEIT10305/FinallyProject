@@ -23,27 +23,16 @@ public class ImportBean {
 	@Column(nullable=false)
 	private String arrivedate;
 	@Column(nullable=false)
-	private String status;
-	@OneToMany(cascade=CascadeType.MERGE,mappedBy="improtid")
-	private Set<ImportDetailBean> importDetailBean ;
+	private String statu;
 	public ImportBean() {
 		super();
 	}
-	public ImportBean(Integer improtid, String orderdate, String arrivedate, String status,
-			Set<ImportDetailBean> importDetailBean) {
+	public ImportBean(Integer improtid,String arrivedate, String orderdate, String statu) {
 		super();
 		this.improtid = improtid;
 		this.orderdate = orderdate;
 		this.arrivedate = arrivedate;
-		this.status = status;
-		this.importDetailBean = importDetailBean;
-	}
-	public ImportBean(Integer improtid,String arrivedate, String orderdate, String status) {
-		super();
-		this.improtid = improtid;
-		this.orderdate = orderdate;
-		this.arrivedate = arrivedate;
-		this.status = status;
+		this.statu = statu;
 	}
 	public Integer getImprotid() {
 		return improtid;
@@ -64,17 +53,12 @@ public class ImportBean {
 
 		this.arrivedate = arrivedate;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
-	public Set<ImportDetailBean> getImportDetailBean() {
-		return importDetailBean;
-	}
-	public void setImportDetailBean(Set<ImportDetailBean> importDetailBean) {
-		this.importDetailBean = importDetailBean;
-	}
+
 
 }

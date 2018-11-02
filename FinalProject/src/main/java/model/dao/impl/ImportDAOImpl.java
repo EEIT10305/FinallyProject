@@ -45,7 +45,7 @@ public class ImportDAOImpl implements ImportDAO {
 				try {
 					temp.setOrderdate(bean.getOrderdate());
 					temp.setArrivedate(bean.getArrivedate());
-					temp.setStatus(bean.getStatus());
+					temp.setStatu(bean.getStatu());
 					this.getSession().flush();
 					return true;
 				} catch (Exception e) {

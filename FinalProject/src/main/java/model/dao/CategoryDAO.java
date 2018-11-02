@@ -9,5 +9,6 @@ public interface CategoryDAO {
     CategoryBean selectById(int id);
     CategoryBean insert(CategoryBean bean);
     boolean update(CategoryBean bean);
+	CategoryBean getCategoryBeanBycategorycode(String category);
    
 }

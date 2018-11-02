@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.BrandBean;
+import model.bean.CategoryBean;
 import model.dao.BrandDAO;
 @Repository
 public class BrandDAOImpl implements BrandDAO {
@@ -48,5 +49,11 @@ public class BrandDAOImpl implements BrandDAO {
 			}			
 		}
 		return false;
+	}
+
+	@Override
+	public BrandBean getBrandBeanBybrand(String brand) {		
+		String hql ="From BrandBean where brand=:brand";
+		return this.getSession().createQuery(hql,BrandBean.class).setParameter("brand", brand).getSingleResult();
 	}
 }

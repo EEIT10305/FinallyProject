@@ -23,6 +23,7 @@ public class PinginDAOImpl implements PinginDAO {
 	}
 	
 
+
 	@Override
 	public PinginBean selectById(int pinginid) {
 		return this.getSession().get(PinginBean.class, pinginid);
@@ -40,7 +41,7 @@ public class PinginDAOImpl implements PinginDAO {
 		if(temp!=null) {
 			temp.setName(bean.getName());
 			temp.setPrice(bean.getPrice());
-			temp.setStatus(bean.getStatus());
+			temp.setStatu(bean.getStatu());
 			temp.setPicture(bean.getPicture());
 			return true;
 		}

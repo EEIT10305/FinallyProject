@@ -7,31 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/fp.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>商品頁</title>
     <style>
-        aside{
-            float:left;
-            width:20%;
-            margin:10px;
+        aside {
+            float: left;
+            width: 19%;
+            margin: 20px;
         }
-        article{
-           float:left;
-           width:75%;
-           margin:10px;
+
+        article {
+            float: left;
+            width: 74%;
+            margin: 20px;
         }
+
         .mypage-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: grey;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-}
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: grey;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
         .page-item.active .mypagestyle {
             z-index: 1;
             color: #fff;
@@ -40,42 +43,27 @@
         }
     </style>
     <script>
-        var flag1 = false;
-        $(document).ready(function(){
+        $(document).ready(function () {
+            $.post("TestController")
             $('button[name="becheckbtn"]').next().hide();
-            $('button.menuitemstyle').click(function(){
+            $('button.menuitemstyle').click(function () {
                 $(this).parent().siblings(".btnwidth").text($(this).text());
             })
-            $('button[name="category"]').click(function(){
-                flag1 = true;
-                
+            $('button[name="category"]').click(function () {
                 $('button[name="becheckbtn"]').hide();
                 $('button[name="becheckbtn"]').next().show();
-                    // 這裡可以加動態產生的品牌或價格選項
+                // 這裡可以加動態產生的品牌或價格選項
             })
-            
-        }
-        )
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                container: 'body',
-                html: true,
-                content: "<a href='ShowCart.html'><button class='btn btn-dark'>查看購物車</button></a>",
-                trigger: "manual",
-                template: '<div class="popover popoverwide" role="tooltip"><div class="arrow"></div><div class="dropdown-divider"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
-            }).on("mouseover", function () {
-                var _this = this;
-                $(this).popover("show");
-            }).on("mouseout", function () {
-          var _this = this;
-        //   setTimeout(function () {
-            if (!$(".popover:hover").length) {
-              $(_this).popover("hide")
-            }
-        //   }, 100);
-        });
 
+            $('#test').mouseover(function () {
+                $("fieldset").show();
+            });
+            $('#test').mouseout(function () {
+                if (!$(".mymodal:hover").length) {
+                    $("fieldset").hide();
+                }
             })
+        })
 
     </script>
 </head>
@@ -94,17 +82,26 @@
 
             </div>
             <div class="navv">
-                    <a href="FirstPage.html"><button type="button" class="btn btn-dark btnchoose">
-                    <img src="image/shopping-bag.png" width="20px">
-                    <br>線上購物</button></a>
-                    <a href="CustomizedPage.html"><button type="button" class="btn btn-dark btnchoose">
+                <a href="FirstPage.html">
+                    <button type="button" class="btn btn-dark btnchoose">
+                        <img src="image/shopping-bag.png" width="20px">
+                        <br>線上購物</button>
+                </a>
+                <a href="CustomizedPage.html">
+                    <button type="button" class="btn btn-dark btnchoose">
                         <img src="image/note.png" width="20px">
-                        <br>自組電腦</button></a>
+                        <br>自組電腦</button>
+                </a>
+                <a href="Pk.html">
+                    <button type="button" class="btn btn-dark btnchoose">
+                        <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png" width="20px">
+                        <br>商品比較</button>
+                </a>
             </div>
             <div class="navv">
                 <li>
                     <ul>
-                        <a href="" data-container="body" data-toggle="popover" data-placement="bottom">
+                        <a id="test" href="">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
                     </ul>
@@ -114,7 +111,14 @@
 
                     </ul>
                 </li>
+                <fieldset id="myModal" class="mymodal">
+                    <div class="dropdown-divider"></div>
+                    <a href='ShowCart.html'>
+                        <button style="width:300px" class='btn btn-dark'>查看購物車</button>
+                    </a>
             </div>
+            </fieldset>
+        </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -155,75 +159,79 @@
 
     </header>
 
-    <nav><!--搜尋器和輪播牆-->
+    <nav>
+        <!--搜尋器和輪播牆-->
+        <!--搜尋器和輪播牆-->
         <div class="search">
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">分類</button>
+                <button id="categorytitle" type="button" class="btn btn-secondary btnwidth">分類</button>
                 <button id="catebtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
-                </div>
-                </div>
+                <div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                    <!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
 
-            
+                </div>
+            </div>
+
+
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+                <button id="brandtitle" type="button" class="btn btn-secondary btnwidth">廠牌</button>
                 <button name="becheckbtn" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="modal" data-target="#mustchoose">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+
                 </div>
 
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary btnwidth">價格</button>
+                <button id="pricetitle" type="button" class="btn btn-secondary btnwidth">價格</button>
                 <button name="becheckbtn" type="button" data-toggle="modal" data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                   
+                    <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5001-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
             </div>
             <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <img src="image/exclamation-mark.png" width="80px">
                             <h5 style="color:red">請選擇分類</h5>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
                         </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
+            </div>
 
 
 
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+            <input id="searchspace" type="text" name="searchspace" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
@@ -240,13 +248,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                        <img class="d-block w-100" src="image/banner_15390539295bbc196934c2b.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/banner_15374341845ba36248a005d.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/banner_15390539295bbc196934c2b.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="image/banner_15390539295bbc196934c2b.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/banner_15374341845ba36248a005d.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/banner_15390539295bbc196934c2b.jpg" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -258,50 +266,66 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        </nav>
-        <div style="overflow: auto">
+    </nav>
+
+
+    <!-- 左邊按鈕   -->
+    <div style="overflow: auto">
         <aside>
             <div style="background-color:gainsboro;height:45px"></div>
             <div style="border:1px solid gainsboro;padding:10px;">
                 <h5>分類</h5>
-                <select name="usercategory">
-                    <option>桌上型電腦</option>
-                    <option>主機板</option>
-                    <option>CPU</option>
-                    <option>記憶體</option>
+                <select id="leftcategorybtn" name="leftcategory">
+                    <!--                     <option>請選擇分類</option> -->
                 </select>
-                <br><br>
-                <h5>廠牌</h5>
-                <a href="#" class="badge badge-secondary">Secondary</a>
-                <a href="#" class="badge badge-secondary">Secondary</a>
                 <br>
-                <h5>價格</h5>
-                <a href="#" class="badge badge-secondary">Secondary</a>
-                <a href="#" class="badge badge-secondary">Secondary</a>
+                <br>
+                <div id="leftbrandbtn">
+                    <!--                     <h5>廠牌</h5> -->
+                    <!--                     <a href="#" class="badge badge-secondary">Secondary</a> -->
+                    <!--                     <a href="#" class="badge badge-secondary">Secondary</a> -->
+                    <br>
+                </div>
+                <div id="leftpricebtn" style="display:none">
+                    <h5>價格</h5>
+                    <button id='leftpricebtn1' name='leftprice' class="badge badge-secondary" value='1'>$5000↓</button>
+                    <button id='leftpricebtn2' name='leftprice' class="badge badge-secondary" value='5000'>$5000-$10000</button>
+                    <button id='leftpricebtn3' name='leftprice' class="badge badge-secondary" value='10000'>$10000-$15000</button>
+                    <button id='leftpricebtn4' name='leftprice' class="badge badge-secondary" value='15000'>$15000-$20000</button>
+                    <button id='leftpricebtn5' name='leftprice' class="badge badge-secondary" value='20000'>$20000↑</button>
+                    <!-- <a href="#" class="badge badge-secondary">Secondary</a> -->
+
+                </div>
             </div>
         </aside>
         <article>
             <div>
-                <h3>相關商品共有 項</h3>
-                <div class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="#">商品排序</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav mr-auto">
+                <!-- 共有幾項商品 -->
+                <h2 id="wearehere"></h2>
+                <h3 id="proamount">抱歉！搜尋不到相關商品</h3>
+
+
+                <div id="orderbywhat" class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">商品排序</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                              <a class="nav-link" href="#">依價格</a>
+                                <a class="nav-link" href="#">依價格</a>
+                                <button class="nav-link">hhhh</button>
                             </li>
-                           
+
                         </ul>
-                        </div>
                     </div>
+                </div>
             </div>
 
-        <div class="forcard">
-            <div class="card" style="width: 18rem;padding:10px;">
+            <div id="proall" class="forcard">
+                <!-- <div class="card" style="width: 18rem;padding:10px;">
 
                 <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                 <div class="card-body">
@@ -318,107 +342,37 @@
                     <a href="#" class="btn btn-danger">加入購物車
                         <img src="image/shopping-cart (1).png" width="20px">
                     </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
-
-
-            </div>
-            <div class="card" style="width: 18rem;padding:10px;">
-
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#">
-                        <img src="image/heart.png" width="20px">
-                    </a>
-                    <span>
-                        <a href="#">
-                            <img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">
-                        </a>
-                    </span>
-                    <h5 class="card-title">David 一號</h5>
-                    <h5 class="card-title" style="color:red">$20000</h5>
-                    <a href="#" class="btn btn-danger">加入購物車
-                        <img src="image/shopping-cart (1).png" width="20px">
-                    </a>
-                </div>
+                </div> -->
             </div>
 
-            
-        </div>
-        <!-- 頁面跳轉按鈕 -->
-        <div style="margin:50px;" aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                    <a class="mypage-link" href="#" tabindex="-1">&laquo;</a>
-                  </li>
-                  <li class="page-item active">
-                        <a class="mypage-link mypagestyle" href="#">1 <span class="sr-only">(current)</span></a>
-                      </li>
-                  <li class="page-item"><a class="mypage-link" href="#">2</a></li>
-                  <li class="page-item"><a class="mypage-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="mypage-link" href="#">&raquo;</a>
-                  </li>
-                </ul>
-            </div>
-    </article>
-</div>
+        </article>
+
+
+    </div>
+    <!-- 頁面跳轉按鈕 -->
+    <div style="margin:50px;" aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="mypage-link" href="#" tabindex="-1">&laquo;</a>
+            </li>
+            <li class="page-item active">
+                <a class="mypage-link mypagestyle" href="#">1
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="mypage-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="mypage-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="mypage-link" href="#">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+
+
     <footer>
         <div style="background-color:#dad7cc;">
             <ul class="nav">
@@ -455,12 +409,485 @@
         </div>
 
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+
+            var querydata = $.parseJSON(sessionStorage.data);
+
+            //   alert(sessionStorage.data)
+            if (sessionStorage.data != "[]") {
+                var products = sessionStorage.data.split("\"}},");  //把物件開算數量
+                var amount = products.length;
+                $("#proamount").html("相關商品共有 " + amount + " 項")
+
+            } else if (sessionStorage.data == "[]") {
+                $("#orderbywhat").hide();
+            }
+            //顯示現在位置
+            if (sessionStorage.searchspace == "ini") {
+                if (sessionStorage.brand == "ini" && sessionStorage.price == 0) {      //只搜類別      	
+                    $("#wearehere").html("> " + sessionStorage.category)
+                } else if (sessionStorage.brand != "ini" && sessionStorage.price == 0) {   //搜類別 品牌
+                    $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand)
+                } else if (sessionStorage.brand != "ini" && sessionStorage.price != 0) {  //搜類別 品牌 價格
+                    if (sessionStorage.price == 1) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $5000↓")
+                    } else if (sessionStorage.price == 5000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $5000-$10000")
+                    } else if (sessionStorage.price == 10000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $10000-$15000")
+                    } else if (sessionStorage.price == 15000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $15000-$20000")
+                    } else if (sessionStorage.price == 20000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $20000↑")
+                    }
+                } else if (sessionStorage.brand == "ini" && sessionStorage.price != 0) {  //搜類別  價格
+                    if (sessionStorage.price == 1) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > $5000↓")
+                    } else if (sessionStorage.price == 5000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > $5000-$10000")
+                    } else if (sessionStorage.price == 10000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > $10000-$15000")
+                    } else if (sessionStorage.price == 15000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > $15000-$20000")
+                    } else if (sessionStorage.price == 20000) {
+                        $("#wearehere").html("> " + sessionStorage.category + " > $20000↑")
+                    }
+                }
+
+            }
+
+                 model = "";
+                 price = "";
+
+            $.each(querydata, function (index, json) {
+            	
+            	
+            	model += json.model + ",";
+                price += json.price + ",";
+//                 $("#proall").append(
+//                     '<div class="card" style="width: 18rem;padding:10px;">' +
+
+//                     '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
+//                     '<div class="card-body">' +
+//                     '<a href="#">' +
+//                     '<img src="image/heart.png" width="20px">' +
+//                     '</a>' +
+//                     '<span>' +
+//                     '<a href="#">' +
+//                     '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
+//                     '</a>' +
+//                     '</span>' +
+//                     "<h5 class='card-title'>" + json.model + "</h5>" +
+//                     "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
+//                     '<a href="#" class="btn btn-danger">加入購物車' +
+//                     '<img src="image/shopping-cart (1).png" width="20px">' +
+//                     '</a>' +
+//                     '</div>' +
+//                     '</div>'
+
+//                 );
+            })
+            modelNoEnd = model.substring(0, model.lastIndexOf(","))
+            priceNoEnd = price.substring(0, price.lastIndexOf(","))
+            
+            modelArray = model.substring(0, model.lastIndexOf(",")).split(",")
+            priceArray = price.substring(0, price.lastIndexOf(",")).split(",")
+            
+           total = modelArray.length;   //商品總筆數  
+           showamount = 4;              //一頁顯示幾筆
+           page = Math.ceil(total/showamount);  //共幾頁
+           
+           for(;;){
+        	   for(;;){
+        		   
+        	   }
+           }
+           
+            alert(modelArray.length)
+            
+            alert(model);
+            alert(price);
+            
+            
+            
+            
+            sessionStorage.category = "ini";
+            sessionStorage.brand = "ini";
+            sessionStorage.price = 0;
+            sessionStorage.searchspace = "ini";
+        }
+        )
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            sessionStorage.category = "ini";
+            sessionStorage.brand = "ini";
+            sessionStorage.price = 0;
+            sessionStorage.searchspace = "ini";
+
+
+            $.get("SelectByCategory", function (data, status) {
+                if (status == "success") {
+                    var querydata = $.parseJSON(data);
+                    $.each(querydata, function (index, json) {
+                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
+                            + json.category + "'>" + json.category + "</button>");
+
+                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
+
+                    })
+
+                    $('button.menuitemstyle').click(function () {
+                        $(this).parent().siblings(".btnwidth").text($(this).text());
+                    })
+                    $('button[name="becheckbtn"]').next().hide();
+                    $('button[name="category"]').click(function () {
+                        $('button[name="becheckbtn"]').hide();
+                        $('button[name="becheckbtn"]').next().show();
+                    })
+
+
+
+                }
+            })
+
+
+
+
+
+            function clickcategory() {
+                $('#brandtitle').text("廠牌");
+                $('#pricetitle').text("價格");
+                $('#brandbtn').empty();
+                document.getElementById("pricebtn1").addEventListener("click", clickprice);
+                document.getElementById("pricebtn2").addEventListener("click", clickprice);
+                document.getElementById("pricebtn3").addEventListener("click", clickprice);
+                document.getElementById("pricebtn4").addEventListener("click", clickprice);
+                document.getElementById("pricebtn5").addEventListener("click", clickprice);
+
+                sessionStorage.category = event.target.value;
+
+                //      傳category給brand標籤去搜尋producttable
+                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
+                                + json.brand + "'>" + json.brand + "</button>");
+                            document.getElementById("" + json.brand).addEventListener("click", clickbrand);
+
+
+                        })
+                        $('button.menuitemstyle').click(function () {
+                            $(this).parent().siblings(".btnwidth").text($(this).text());
+                        })
+
+
+                    }
+                })
+
+                function clickbrand() {
+                    sessionStorage.brand = event.target.value;
+                }
+                function clickprice() {
+                    sessionStorage.price = event.target.value;
+                }
+
+
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
+            document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
+
+            function storesearchspace() {
+                sessionStorage.searchspace = event.target.value;
+                //          alert(sessionStorage.searchspace);
+            }
+            function removesearchspace() {
+                sessionStorage.searchspace = "ini";
+                //  alert(sessionStorage.searchspace);
+            }
+
+
+            $("#searchbtn").click(function () {
+                $.post("userInput", {
+                    "category": sessionStorage.category,
+                    "brand": sessionStorage.brand,
+                    "price": sessionStorage.price,
+                    "searchspace": sessionStorage.searchspace
+                },
+                    function (data, status) {
+                        sessionStorage.data = data
+                        // 		                    	 alert("要跳了 " + sessionStorage.data);
+                        window.location.href = "http://localhost:8081/FinalProject/ProductPage.html";
+                    }
+                )
+            })
+
+
+        })
+
+    </script>
+    <script type="text/javascript">
+        //左邊按鈕即時顯示商品
+        $(document).ready(function () {
+
+            sessionStorage.leftcategory = "ini";
+            sessionStorage.leftbrand = "ini";
+            sessionStorage.leftprice = 0;
+
+
+
+            //取得分類的選項
+            $.ajax({
+                url: "SelectByCategory",
+                type: "get",
+                success: function (data) {
+                    var querydata = $.parseJSON(data);
+                    $.each(querydata, function (index, json) {
+                        $("#leftcategorybtn").append("<option  value='" + json.category + "'>" + json.category + "</option>")
+                    })
+                }
+            })
+            //左邊 分類有改變時               
+            $("#leftcategorybtn").change(function () {
+                sessionStorage.leftbrand = "ini";
+                sessionStorage.leftprice = 0;
+                sessionStorage.leftcategory = event.target.value;
+                sessionStorage.data = "ini";
+                //      	alert("sessiion " + sessionStorage.leftcategory);
+                $("#leftpricebtn").show();
+                $("#wearehere").html("> " + sessionStorage.leftcategory)
+
+                $.ajax({
+                    url: "showProductByCategory",
+                    type: "post",
+                    data: { "leftcategory": event.target.value },
+                    success: function (data) {
+
+                        if (data != "[]") {
+                            var products = data.split("\"}},");  //把物件開算數量
+                            var amount = products.length;
+                            $("#proamount").html("相關商品共有 " + amount + " 項")
+                            $("#orderbywhat").show();
+                        } else if (data == "[]") {
+                            $("#proamount").html("抱歉！搜尋不到相關商品")
+                            $("#orderbywhat").hide();
+                        }
+
+
+
+
+
+                        $("#proall").empty();
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                            $("#proall").append(
+                                '<div class="card" style="width: 18rem;padding:10px;">' +
+                                '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
+                                '<div class="card-body">' +
+                                '<a href="#">' +
+                                '<img src="image/heart.png" width="20px">' +
+                                '</a>' +
+                                '<span>' +
+                                '<a href="#">' +
+                                '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
+                                '</a>' +
+                                '</span>' +
+                                "<h5 class='card-title'>" + json.model + "</h5>" +
+                                "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
+                                '<a href="#" class="btn btn-danger">加入購物車' +
+                                '<img src="image/shopping-cart (1).png" width="20px">' +
+                                '</a>' +
+                                '</div>' +
+                                '</div>'
+
+                            );
+                        })
+                    }
+                })
+                //左邊分類改變時 顯示對應品牌按鈕
+                $.ajax({
+                    type: "post",
+                    url: "SelectByBrand",
+                    data: { "category": sessionStorage.leftcategory },
+                    success: function (data) {
+                        $("#leftbrandbtn").empty();
+                        var querydata = $.parseJSON(data);
+                        $("#leftbrandbtn").append("<h5>廠牌</h5>");
+                        $.each(querydata, function (index, json) {
+                            $("#leftbrandbtn").append(
+                                "<button id='left" + json.brand + "' name='leftbrand' + value='" + json.brand + "' class='badge badge-secondary'>" + json.brand + "</button>"
+                            )
+                            document.getElementById("left" + json.brand).addEventListener("click", clickleftbrand);
+                        })
+
+
+
+
+                    }
+                });
+                //按下左邊品牌按鈕時 顯示對應商品
+                function clickleftbrand() {
+                    sessionStorage.leftprice = 0;
+                    sessionStorage.leftbrand = event.target.value;
+                    //           alert("leftbrand= " + sessionStorage.leftbrand)
+                    $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand)
+
+                    $.ajax({
+                        type: "post",
+                        url: "leftTag",
+                        data: {
+                            "leftcategory": sessionStorage.leftcategory,
+                            "leftbrand": sessionStorage.leftbrand,
+                            "leftprice": sessionStorage.leftprice
+                        },
+                        success: function (data) {
+                            if (data != "[]") {
+                                var products = data.split("\"}},");  //把物件開算數量
+                                var amount = products.length;
+                                $("#proamount").html("相關商品共有 " + amount + " 項")
+                                $("#orderbywhat").show();
+                            } else if (data == "[]") {
+                                $("#proamount").html("抱歉！搜尋不到相關商品")
+                                $("#orderbywhat").hide();
+                            }
+
+                            $("#proall").empty();
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#proall").append(
+                                    '<div class="card" style="width: 18rem;padding:10px;">' +
+                                    '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
+                                    '<div class="card-body">' +
+                                    '<a href="#">' +
+                                    '<img src="image/heart.png" width="20px">' +
+                                    '</a>' +
+                                    '<span>' +
+                                    '<a href="#">' +
+                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
+                                    '</a>' +
+                                    '</span>' +
+                                    "<h5 class='card-title'>" + json.model + "</h5>" +
+                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
+                                    '<a href="#" class="btn btn-danger">加入購物車' +
+                                    '<img src="image/shopping-cart (1).png" width="20px">' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '</div>'
+
+                                );
+                            })
+                        }
+                    });
+                } //  end of clickleftbrand() 
+                $("#leftpricebtn1").click(clickleftprice)
+                $("#leftpricebtn2").click(clickleftprice)
+                $("#leftpricebtn3").click(clickleftprice)
+                $("#leftpricebtn4").click(clickleftprice)
+                $("#leftpricebtn5").click(clickleftprice)
+
+                function clickleftprice() {
+                    //     	  alert("win !")
+                    sessionStorage.leftprice = event.target.value;
+                    //           alert("leftprice= " + sessionStorage.leftprice)
+                    if (sessionStorage.leftbrand != "ini") {   //有按品牌
+                        if (sessionStorage.leftprice == 1) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $5000↓")
+                        } else if (sessionStorage.leftprice == 5000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $5000-$10000")
+                        } else if (sessionStorage.leftprice == 10000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $10000-$15000")
+                        } else if (sessionStorage.leftprice == 15000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $15000-$20000")
+                        } else if (sessionStorage.leftprice == 20000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $20000↑")
+                        }
+                    } else if (sessionStorage.leftbrand == "ini") {   //沒按品牌
+                        if (sessionStorage.leftprice == 1) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $5000↓")
+                        } else if (sessionStorage.leftprice == 5000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $5000-$10000")
+                        } else if (sessionStorage.leftprice == 10000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $10000-$15000")
+                        } else if (sessionStorage.leftprice == 15000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $15000-$20000")
+                        } else if (sessionStorage.leftprice == 20000) {
+                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $20000↑")
+                        }
+                    }
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "leftTag",
+                        data: {
+                            "leftcategory": sessionStorage.leftcategory,
+                            "leftbrand": sessionStorage.leftbrand,
+                            "leftprice": sessionStorage.leftprice
+                        },
+                        success: function (data) {
+
+                            if (data != "[]") {
+                                var products = data.split("\"}},");  //把物件分開算數量
+                                var amount = products.length;
+                                $("#proamount").html("相關商品共有 " + amount + " 項")
+                                $("#orderbywhat").show();
+                            } else if (data == "[]") {
+                                $("#proamount").html("抱歉！搜尋不到相關商品")
+                                $("#orderbywhat").hide();
+                            }
+
+                            $("#proall").empty();
+                            var querydata = $.parseJSON(data);
+                            $.each(querydata, function (index, json) {
+                                $("#proall").append(
+                                    '<div class="card" style="width: 18rem;padding:10px;">' +
+                                    '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
+                                    '<div class="card-body">' +
+                                    '<a href="#">' +
+                                    '<img src="image/heart.png" width="20px">' +
+                                    '</a>' +
+                                    '<span>' +
+                                    '<a href="#">' +
+                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
+                                    '</a>' +
+                                    '</span>' +
+                                    "<h5 class='card-title'>" + json.model + "</h5>" +
+                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
+                                    '<a href="#" class="btn btn-danger">加入購物車' +
+                                    '<img src="image/shopping-cart (1).png" width="20px">' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '</div>'
+
+                                );
+                            })
+
+                        }
+                    });
+                } // end of clickleftprice() 
+
+
+
+            })
+
+        })
+
+    </script>
+
 </body>
 
 </html>
