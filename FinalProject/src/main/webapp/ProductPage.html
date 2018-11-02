@@ -53,7 +53,7 @@
                 $('button[name="becheckbtn"]').hide();
                 $('button[name="becheckbtn"]').next().show();
                 // 這裡可以加動態產生的品牌或價格選項
-<<<<<<< HEAD
+
             })
 
             $('#test').mouseover(function () {
@@ -66,20 +66,7 @@
             })
         })
 
-=======
-        })
-        
-        $('#test').mouseover(function(){
-        	$("fieldset").show();
-        });
-        $('#test').mouseout(function () {
-            if (!$(".mymodal:hover").length) {
-            	$("fieldset").hide();
-                  }
-        })
-    })
 
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
     </script>
 </head>
 
@@ -514,23 +501,52 @@
 
 //                 );
             })
+            model = "zero," + model;
+            price = "zero," + price;
+            alert(model)
             modelNoEnd = model.substring(0, model.lastIndexOf(","))
             priceNoEnd = price.substring(0, price.lastIndexOf(","))
             
             modelArray = model.substring(0, model.lastIndexOf(",")).split(",")
             priceArray = price.substring(0, price.lastIndexOf(",")).split(",")
             
-           total = modelArray.length;   //商品總筆數  
+           total = modelArray.length - 1;   //商品總筆數   - "zero" 那筆
            showamount = 4;              //一頁顯示幾筆
            page = Math.ceil(total/showamount);  //共幾頁
+           a = 0;
+           b = 0;
+           c = 0;
            
-           for(;;){
-        	   for(;;){
-        		   
+           for(a=1; a<=page; a++){
+        	   $("#proll").append("<div id='page'" + a + "></div>")
+        	   for(b=c; b<=c+3; b++){
+        		   $("#page" + a).append(
+        				   '<div class="card" style="width: 18rem;padding:10px;">' +
+
+                           '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
+                           '<div class="card-body">' +
+                           '<a href="#">' +
+                           '<img src="image/heart.png" width="20px">' +
+                           '</a>' +
+                           '<span>' +
+                           '<a href="#">' +
+                           '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
+                           '</a>' +
+                           '</span>' +
+                           "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
+                           "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
+                           '<a href="#" class="btn btn-danger">加入購物車' +
+                           '<img src="image/shopping-cart (1).png" width="20px">' +
+                           '</a>' +
+                           '</div>' +
+                           '</div>'	   
+        		   )
         	   }
+        	   c=b;
            }
            
             alert(modelArray.length)
+            alert("page= " +page)
             
             alert(model);
             alert(price);
