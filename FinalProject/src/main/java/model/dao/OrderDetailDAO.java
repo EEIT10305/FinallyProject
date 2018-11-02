@@ -8,5 +8,7 @@ public interface OrderDetailDAO {
 	 List<OrderDetailBean> selectAll();
 	    OrderDetailBean selectById(int id);
 	    OrderDetailBean insert(OrderDetailBean bean);
-	    boolean update(OrderDetailBean bean);	   
+	    boolean update(OrderDetailBean bean);	 
+	    Integer getMemberId();
+	    void setMemberId(Integer memberid);
 }

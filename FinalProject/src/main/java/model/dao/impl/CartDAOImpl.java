@@ -13,6 +13,8 @@ import model.dao.CartDAO;
 public class CartDAOImpl implements CartDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private Integer memberid = null;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
@@ -63,5 +65,16 @@ public class CartDAOImpl implements CartDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Integer getMemberId() {
+		return memberid;
+	}
+
+	@Override
+	public void setMemberId(Integer memberid) {
+		this.memberid = memberid;
+		
 	}
 }

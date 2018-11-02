@@ -10,21 +10,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name="wall")
 public class WallBean {
+	@Override
+	public String toString() {
+		return "wallid:" + wallid;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer wallid;
 	@Column(nullable=false)
-	private String photoname;
+	private String photosrc;
 	private Integer seq;
 	@Column(nullable=false)
-	private String status;
+	private String statu;
 	
-	public WallBean(Integer wallid, String photoname, Integer seq, String status) {
+	public WallBean() {}
+	public WallBean(Integer wallid, String photosrc, Integer seq, String statu) {
 		super();
 		this.wallid = wallid;
-		this.photoname = photoname;
+		this.photosrc = photosrc;
 		this.seq = seq;
-		this.status = status;
+		this.statu = statu;
 	}
 	public Integer getWallid() {
 		return wallid;
@@ -32,11 +37,11 @@ public class WallBean {
 	public void setWallid(Integer wallid) {
 		this.wallid = wallid;
 	}
-	public String getPhotoname() {
-		return photoname;
+	public String getPhotosrc() {
+		return photosrc;
 	}
-	public void setPhotoname(String photoname) {
-		this.photoname = photoname;
+	public void setPhotosrc(String photoname) {
+		this.photosrc = photoname;
 	}
 	public Integer getSeq() {
 		return seq;
@@ -44,11 +49,11 @@ public class WallBean {
 	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
-	public String getStatus() {
-		return status;
+	public String getStatu() {
+		return statu;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	
 	
