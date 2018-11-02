@@ -28,7 +28,7 @@ public interface ImportDAO {
 	List<ImportBean> selectByADODS(String arrivedate, String orderdate, String status);
 
 	
-	ImportBean updateStatus(String statu, Integer improtid);
+	List<ImportBean> updateStatus(String statu, Integer improtid);
 
 	
 

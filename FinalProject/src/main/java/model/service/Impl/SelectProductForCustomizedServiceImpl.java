@@ -174,4 +174,9 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 		
 		return productDAO.showCabinetPower(Cabinetmodel);
 	}
+	@Override
+	public List<PowerSupplierBean> showPowerSupplierByTotalPowerInService(Integer PowerModel) {
+		
+		return productDAO.showPowerSupplier(PowerModel);
+	}
 }

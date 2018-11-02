@@ -67,6 +67,7 @@ public interface ProductDAO {
 	List<RamBean> selectRam();
 	List<CpuBean> selectCpu();
 	List<MbBean> selectMb();
+	List<PowerSupplierBean> showPowerSupplier(Integer PowerModel);
 
 
 }

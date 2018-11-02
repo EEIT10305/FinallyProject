@@ -146,4 +146,10 @@ public class SelectProductForCustomizedController {
 		
 		return new Gson().toJson(SPFCS.showCabinetPowerInService(Cabinetmodel));
 	}
+	@RequestMapping(path="showPowerSupplierByTotalPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showPowerSupplierByTotalPowerInController(Integer PowerModel) {
+		
+		return new Gson().toJson(SPFCS.showPowerSupplierByTotalPowerInService(PowerModel));
+	}
 }
