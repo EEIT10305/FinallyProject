@@ -95,10 +95,11 @@ public String getUserInfo(String userInfo) {
 	String userFBLonin = (String) j.get("email");
 	System.out.println("臉書的email轉成stringQQ : " +userFBLonin);
 	if(loginService.checkEmailPwd(userFBLonin, "facebook")!=null) {
-		System.out.println("有沒有近來判斷這個facebook已經註冊了");
-		return new Gson().toJson(userFBLonin);
-		
+		System.out.println("判斷此facebook已經註冊過");
+//		return new Gson().toJson(userFBLonin);
+		return "userFBLonin"; 
 	}else {
+		System.out.println("此facebook尚未!!!還沒!!!註冊過");
 	MemberBean bean = new MemberBean();
 	bean.setEmail(j.get("email").toString());
 	bean.setName(j.get("name").toString());

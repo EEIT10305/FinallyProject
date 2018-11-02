@@ -16,10 +16,7 @@
 <script src="js/wall.js"></script>
 <script src="js/basic.js"></script>
 
-<script src="js/otherLogin.js"></script><!--第三方登入javascript-->
 
-<script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
-<meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'><!--google登入用-->
 <title>首頁</title>
 <script>
     $(document).ready(function(){
@@ -135,11 +132,14 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button class="mymodelbtn btn-primary" id="loginByFacebook">使用facebook登入</button>
-							<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" auto_logout_link="true" size="large"	show_faces="true"></fb:login-button>
-							<div class="dropdown-divider"></div>
-							<button class="mymodelbtn btn-primary">使用google登入</button>
+							<button class="mymodelbtn btn-primary" onclick="checkLoginState()">使用facebook登入</button>
+							
+							<!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>-->
+							<div class="fb-login-button" data-width="1000" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+							<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" auto_logout_link="true" size="large"	show_faces="true"></fb:login-button> -->
+							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<!-- <div class="dropdown-divider"></div> -->
+							<!-- <button class="mymodelbtn btn-primary">使用google登入</button> -->
 						</div>
 						
 					
@@ -254,11 +254,6 @@
                 </span>
             </button>
         </div>
-		<!-- 以下是輪播牆 -->
-        <div id="carouselExampleIndicatorsup" >
-		
-        
-        </div>
         <!-- 以下是輪播牆 -->
         <div id="carouselExampleIndicatorsup"></div>
 
@@ -302,8 +297,15 @@
 
 	</footer>
     
-
-        <script src="js/login.js"></script><!--處理登入-->
+		<!--處理登入-->
+		<script src="js/login.js"></script>
+		<!--第三方登入javascript-->
+		<script src="js/otherLogin.js"></script>
+		<!--google登入用-->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!--google登入用-->
+        <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'>
+		
 		<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script

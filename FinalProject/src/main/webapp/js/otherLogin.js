@@ -1,6 +1,7 @@
 //----------------------------------------------------------------------------------------------fb登入
 // This is called with the results from from FB.getLoginStatus().
-
+//  $('#loginByFacebook').click(function(){
+// alert('有沒有進入facebook登入的方訊')// });
 
 //引入 facebook SDK
  (function(d, s, id) {
@@ -36,7 +37,7 @@
                             userInfo:JSON.stringify(response)
                         },
                         dataType:"json",
-                        async:false,
+                        // async:false,
                         success:function(response){
                             alert("這裡是facebook的登入:"+response)
                             if(response=="userFBLonin"){
@@ -62,8 +63,7 @@
             // 		+ 'into this app.';
         }
     }
-//  $('#loginByFacebook').click(function(){
-// alert('有沒有進入facebook登入的方訊')// });
+
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
