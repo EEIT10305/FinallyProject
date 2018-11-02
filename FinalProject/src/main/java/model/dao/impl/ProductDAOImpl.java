@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.BrandBean;
+import model.bean.CabinetBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
 import model.bean.MbBean;
 import model.bean.PinginBean;
 import model.bean.PinginDetailBean;
+import model.bean.PowerSupplierBean;
 import model.bean.ProductBean;
 import model.bean.RamBean;
+import model.bean.StorageBean;
+import model.bean.VgaBean;
 import model.dao.ProductDAO;
 
 @Repository
@@ -55,6 +59,90 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return this.getSession().createQuery(hql, ProductBean.class).setParameter("Categoryid", Categoryid)
 				.getResultList();
+	}
+	@Override
+	public List<MbBean> selectMb() {
+		String hql = "From MbBean";
+
+		return this.getSession().createQuery(hql, MbBean.class).getResultList();
+	}
+	@Override
+	public List<CpuBean> selectCpu() {
+		String hql = "From CpuBean";
+
+		return this.getSession().createQuery(hql, CpuBean.class).getResultList();
+	}
+	@Override
+	public List<RamBean> selectRam() {
+		String hql = "From RamBean";
+
+		return this.getSession().createQuery(hql, RamBean.class).getResultList();
+	}
+	@Override
+	public List<VgaBean> selectVga() {
+		String hql = "From VgaBean";
+
+		return this.getSession().createQuery(hql, VgaBean.class).getResultList();
+	}
+	@Override
+	public List<StorageBean> selectStorage() {
+		String hql = "From StorageBean";
+
+		return this.getSession().createQuery(hql, StorageBean.class).getResultList();
+	}
+	@Override
+	public List<CabinetBean> selectCabinet() {
+		String hql = "From CabinetBean";
+
+		return this.getSession().createQuery(hql, CabinetBean.class).getResultList();
+	}
+	@Override
+	public List<PowerSupplierBean> selectPowerSupplier() {
+		String hql = "From PowerSupplierBean";
+
+		return this.getSession().createQuery(hql, PowerSupplierBean.class).getResultList();
+	}
+	@Override
+	public List<PinginBean> showAllProductImg() {
+		String hql = "From PinginBean";
+
+		return this.getSession().createQuery(hql, PinginBean.class).getResultList();
+	}
+	@Override
+	public CpuBean showCpuPower(String Cpumodel) {
+		String hql = "From CpuBean where model=:Cpumodel";
+
+		return this.getSession().createQuery(hql, CpuBean.class).setParameter("Cpumodel", Cpumodel).getSingleResult();
+	}
+	@Override
+	public RamBean showRamPower(String Rammodel) {
+		String hql = "From RamBean where model=:Rammodel";
+
+		return this.getSession().createQuery(hql, RamBean.class).setParameter("Rammodel", Rammodel).getSingleResult();
+	}
+	@Override
+	public MbBean showMbPower(String Mbmodel) {
+		String hql = "From MbBean where model=:Mbmodel";
+
+		return this.getSession().createQuery(hql, MbBean.class).setParameter("Mbmodel", Mbmodel).getSingleResult();
+	}
+	@Override
+	public VgaBean showVgaPower(String Vgamodel) {
+		String hql = "From VgaBean where model=:Vgamodel";
+
+		return this.getSession().createQuery(hql, VgaBean.class).setParameter("Vgamodel", Vgamodel).getSingleResult();
+	}
+	@Override
+	public StorageBean showStoragePower(String Storagemodel) {
+		String hql = "From StorageBean where model=:Storagemodel";
+
+		return this.getSession().createQuery(hql, StorageBean.class).setParameter("Storagemodel", Storagemodel).getSingleResult();
+	}
+	@Override
+	public CabinetBean showCabinetPower(String Cabinetmodel) {
+		String hql = "From CabinetBean where model=:Cabinetmodel";
+
+		return this.getSession().createQuery(hql, CabinetBean.class).setParameter("Cabinetmodel", Cabinetmodel).getSingleResult();
 	}
 
 	@Override
@@ -106,7 +194,12 @@ public class ProductDAOImpl implements ProductDAO {
 		String hql ="From ProductBean where statu='off' and hot=-1";
 		return this.getSession().createQuery(hql,ProductBean.class).list();
 	}
-
+	@Override
+	public ProductBean selectProductPrice(String model) {
+		String hql ="From ProductBean where model=:Mbmodel";
+		return this.getSession().createQuery(hql,ProductBean.class).setParameter("Mbmodel", model).getSingleResult();
+	}
+	@Override
 	public BrandBean BrandidTurnBrand(int Brandid) {
 		String hql = "From BrandBean where Brandid= :Brandid";
 
@@ -122,13 +215,13 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<RamBean> checkRamByDDR(String DDR) {
-		String hql = "From RamBean where ddr= :DDR";
+		String hql = "From RamBean where ddr= :DDR order by proid";
 		return this.getSession().createQuery(hql, RamBean.class).setParameter("DDR", DDR).getResultList();
 	}
 
 	@Override
 	public List<CpuBean> checkCpuByFeet(String Feet) {
-		String hql = "From CpuBean where feet= :Feet";
+		String hql = "From CpuBean where feet= :Feet order by proid";
 		return this.getSession().createQuery(hql, CpuBean.class).setParameter("Feet", Feet).getResultList();
 	}
 

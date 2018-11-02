@@ -84,13 +84,9 @@
             $('button[name="category"]').click(function () {
                 $('button[name="becheckbtn"]').hide();
                 $('button[name="becheckbtn"]').next().show();
-<<<<<<< HEAD
+
                 // 這裡可以加動態產生的品牌或價格選項
 
-=======
-                // 這裡可以加動態產生的品牌或價格選項
-
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
             })
 
             $('#test').mouseover(function () {
@@ -249,7 +245,7 @@
                                 <select id="showMB">
                                 </select>
                             </td>
-                            <td id="MBPrice">Otto</td>
+                            <td id="MBPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">CPU</th>
@@ -257,7 +253,7 @@
                                 <select id="showCPU">
                                 </select>
                             </td>
-                            <td id="CPUPrice">Thornton</td>
+                            <td id="CPUPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">記憶體</th>
@@ -265,7 +261,7 @@
                                 <select id="showRAM">
                                 </select>
                             </td>
-                            <td id="RAMPrice">the Bird</td>
+                            <td id="RAMPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">電源供應器</th>
@@ -273,7 +269,7 @@
                                 <select id="showPOWERSUPPLIER">
                                 </select>
                             </td>
-                            <td id="POWERSUPPLIERPrice">Otto</td>
+                            <td id="POWERSUPPLIERPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">機殼</th>
@@ -281,7 +277,7 @@
                                 <select id="showCABINET">
                                 </select>
                             </td>
-                            <td id="CABINETPrice">Otto</td>
+                            <td id="CABINETPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">顯示卡</th>
@@ -289,7 +285,7 @@
                                 <select id="showVGA">
                                 </select>
                             </td>
-                            <td id="VGAPrice">Otto</td>
+                            <td id="VGAPrice"></td>
                         </tr>
                         <tr>
                             <th scope="row">硬碟</th>
@@ -297,15 +293,15 @@
                                 <select id="showSTORAGE">
                                 </select>
                             </td>
-                            <td id="STORAGEPrice">Otto</td>
+                            <td id="STORAGEPrice"></td>
                         </tr>
                     </tbody>
                 </table>
                 <div style="height:120px;background-color: #dad7cc; border-radius: 10px">
                     <h4 style="line-height: 50px;">
                                                         電供
-                        <span style="color: red">  5  </span>瓦 總價
-                        <span style="color: red">  20000  </span>元     
+                        <span id="totalPower" style="color: red">  5  </span>瓦 總價
+                        <span id="totalPrice" style="color: red">  20000  </span>元     
                         <br>
                        <a href="#" class="btn btn-danger">全部加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>
                          
@@ -346,34 +342,25 @@
             </div>
 			
             <div id="selectPingin" class="forcard">
-<<<<<<< HEAD
+
 		<!--           塞入套裝電腦 -->
-                <div class="card" style="width: 18rem; padding: 10px; margin: 20px">
-=======
-            
-                <div id="choicePingin" class="card" style="width: 18rem; padding: 10px; margin: 20px">
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
-                    <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
-<<<<<<< HEAD
-                    <div class="card-body">               
-                        <h5 class="card-title">David 一號</h5><!--model -->
-                        <h5 class="card-title" style="color: red">$20000</h5><!--price -->
-=======
-                    <div class="card-body">
-                        <a href="#"><img src="image/heart.png" width="20px"></a>   
-                        <h5 class="card-title">David 一號</h5>
-                        <h5 class="card-title" style="color: red">$20000</h5>        
-                    </div>
-                     <div class="infor">
-                        CPU:
-                        <br> 主機板:
-                        <br> 硬碟:
-                        <br> 記憶體:
-                        <br> 顯示卡:
-                        <br>
->>>>>>> branch 'master' of https://github.com/EEIT10305/FinallyProject.git
-                    </div>
-                </div>
+<!--                 <div class="card" style="width: 18rem; padding: 10px; margin: 20px"> -->
+<!--                     <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap"> -->
+
+<!--                     <div class="card-body"> -->
+<!--                         <a href="#"><img src="image/heart.png" width="20px"></a>    -->
+<!--                         <h5 class="card-title">David 一號</h5> -->
+<!--                         <h5 class="card-title" style="color: red">$20000</h5>         -->
+<!--                     </div> -->
+<!--                      <div class="infor"> -->
+<!--                         CPU: -->
+<!--                         <br> 主機板: -->
+<!--                         <br> 硬碟: -->
+<!--                         <br> 記憶體: -->
+<!--                         <br> 顯示卡: -->
+<!--                         <br> -->
+<!--                      </div> -->
+<!--                 </div> -->
  
             </div>
             <!-- 頁面跳轉按鈕 -->
@@ -449,6 +436,7 @@
                 	selectAllProduct()
                     $.get("selectCategoryForCustomized",
                             function (data, status) {
+                    						initmb()
                                 if (status == "success") {
                                     var querydata = $.parseJSON(data);
                                     $.each(querydata,function (index,json) {
@@ -461,18 +449,189 @@
  
                                 }
                             })
-                 })
-                 function selectAllProduct(){
+                            
+                    $.get("showAllProductImg", function (
+                    data, status) {
+                    if (status == "success") {
+                        var querydata = $.parseJSON(data);
+                        $.each(querydata, function (index, json) {
+                        	$("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
+         							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
+         							"<div class='card-body'>"+
+         							"<h5 class='card-title'>"+json.name+"</h5>"+
+         							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
+        							"<div  class='infor'></div></div>"
+         							);
+                        })
+                        $(".card").children(":last-child").hide();
+                        $(".card").mouseenter(function () {
+						$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
+		                 		if (status == "success") {
+		                        var querydata = $.parseJSON(data);
+		                        $.each(querydata,function (index,json) {
+		                        	if(json.category=="mb"){
+		                            	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
+		                               }
+		                            if(json.category=="cpu"){
+		                            	$(".card").children(":last-child").append("CPU:"+json.model+"<br>");
+		                               }
+		                            if(json.category=="ram"){
+		                                $(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+		                               }
+		                             if(json.category=="powersupplier"){
+		                                $(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
+		                               }
+		                             if(json.category=="cabinet"){
+		                                $(".card").children(":last-child").append("機殼:"+json.model+"<br>");
+		                               }
+		                             if(json.category=="vga"){
+		                                $(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
+		                               }
+		                             if(json.category=="storage"){
+		                                $(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
+		                               }
+		                            })
+		                           }
+		                                                                		 
+		                          })
+		                            
+									$(this).children(":last-child").show();
+									}).mouseleave(function () {
+									$(".card").children(":last-child").html("");
+									$(this).children(":last-child").hide();
+								})
+                        $("div.card").click(showPingin)
+                    }
+                })
+                $("#totalPower").html(parseInt($("#showMB").val())+
+				   			   		  parseInt($("#showCPU").val())+
+				   			   		  parseInt($("#showRAM").val())+
+				   			   		  parseInt($("#showVGA").val())+
+				   			   		  parseInt($("#showCABINET").val())+
+				   			   		  parseInt($("#showSTORAGE").val()))
+               			
+                		$("#showCPU").change(showCpuPrice)
+                		$("#showRAM").change(showRamPrice)
+                		$("#showVGA").change(showVgaPrice)
+                		$("#showCABINET").change(showCabinetPrice)
+                		$("#showPOWERSUPPLIER").change(showPowerSupplierPrice)
+                		$("#showSTORAGE").change(showStoragePrice)
+           })
+           
+      function showCpuPrice(){
+        	$.post("showCpuPower",{"Cpumodel":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#CPUPrice").html(querydata.price)
+				    }
+        	CalculateTotalPrice();
+				});
+        	CalculateTotalPower();
+        }
+      function showRamPrice(){
+    	  $.post("showRamPower",{"Rammodel":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#RAMPrice").html(querydata.price)
+				    }
+    	  CalculateTotalPrice();
+				});
+    	  CalculateTotalPower();
+        }
+	  function showVgaPrice(){
+		  $.post("showVgaPower",{"Vgamodel":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#VGAPrice").html(querydata.price)
+				    }
+		  CalculateTotalPrice();
+				});
+		  CalculateTotalPower();
+        }
+	  function showCabinetPrice(){
+			$.post("showCabinetPower",{"Cabinetmodel":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#CABINETPrice").html(querydata.price)
+				    }
+			CalculateTotalPrice();
+				});
+			CalculateTotalPower();
+    	}
+	  function showPowerSupplierPrice(){
+	   		$.post("showInitPrice",{"model":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#POWERSUPPLIERPrice").html(querydata.price)
+				    }
+			CalculateTotalPrice();
+				});
+	   		CalculateTotalPower();
+		}
+	  function showStoragePrice(){
+			$.post("showStoragePower",{"Storagemodel":$(this).find("option:selected").text()},function (data, status) {
+				if (status == "success") {
+						var querydata = $.parseJSON(data);
+				                $("#STORAGEPrice").html(querydata.price)
+				    }
+			CalculateTotalPrice();
+				});
+			CalculateTotalPower();
+		}
+      
+      function initmb(){
+        	 $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.initmbmodel},function (data, status) {
+                 if (status == "success") {
+                     $("#showRAM").html("");
+                         var querydata = $.parseJSON(data);
+                         $.each(querydata,function (index,json) {
+	                        	 if(index==0){
+	                         		sessionStorage.rammodel=json.model
+	                         		$("#RAMPrice").html(json.price)
+	                     		}
+                                 $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
+                                 })
+            	 CalculateTotalPrice();
+                     }
+                 CalculateTotalPower();
+                 });
+         $.post("checkCpuForCustomized",{"Mbmodel": sessionStorage.initmbmodel},
+                 function (data, status) {
+                     if (status == "success") {
+                         $("#showCPU").html("");
+                         var querydata = $.parseJSON(data);
+                         $.each(querydata,function (index,json) {
+                        	 if(index==0){
+	                         		sessionStorage.cpumodel=json.model
+	                         		$("#CPUPrice").html(json.price)
+	                     		}
+                                 $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
+                             })
+
+        	 CalculateTotalPrice();
+                     }
+        	 CalculateTotalPower();
+                 });
+         
+        }
+       
+                 
+      function selectAllProduct(){
+    	  
         	$.get("SelectMbForCustomized", function (data,
                     status) {
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showMB").append(
-                                "<option>" + json.model
-                                + "</option>");
+                            if(json.model!=sessionStorage.mbmodel){
+                            	if(index==0){
+                            		sessionStorage.initmbmodel=json.model
+                            		$("#MBPrice").html(json.price)
+                            	}
+                        	$("#showMB").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	
+                        	}
                         })
-
                     }
                 })
                 $.get("SelectCpuForCustomized", function (data,
@@ -480,9 +639,12 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showCPU").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.cpumodel){
+                        		if(index==0){
+                            		sessionStorage.initcpumodel=json.model
+                            	}
+                            $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
@@ -492,9 +654,12 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showRAM").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.rammodel){
+                        		if(index==0){
+                            		sessionStorage.initrammodel=json.model
+                            	}
+                            $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
@@ -504,9 +669,13 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showVGA").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.vgamodel){
+                        		if(index==0){
+                            		sessionStorage.initvgamodel=json.model
+                            		$("#VGAPrice").html(json.price)
+                            	}
+                            $("#showVGA").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
@@ -516,9 +685,13 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showSTORAGE").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.storagemodel){
+                        		if(index==0){
+                            		sessionStorage.initstoragemodel=json.model
+                            		$("#STORAGEPrice").html(json.price)
+                            	}
+                            $("#showSTORAGE").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
@@ -528,9 +701,13 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showCABINET").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.cabinetmodel){
+                        		if(index==0){
+                            		sessionStorage.initcabinetmodel=json.model
+                            		$("#CABINETPrice").html(json.price)
+                            	}
+                            $("#showCABINET").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
@@ -540,14 +717,19 @@
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
                         $.each(querydata, function (index, json) {
-                            $("#showPOWERSUPPLIER").append(
-                                "<option>" + json.model
-                                + "</option>");
+                        	if(json.model!=sessionStorage.powersuppliermodel){
+                        		if(index==0){
+                            		sessionStorage.initpowersuppliermodel=json.model
+                            		$("#POWERSUPPLIERPrice").html(json.price)
+                            	}
+                            $("#showPOWERSUPPLIER").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                        	}
                         })
 
                     }
                 })
-        			}
+                CalculateTotalPower();
+        	}
                  
                  function checkCategory() {
                                     	if($("#Category").html()!=$(this).html()){
@@ -588,9 +770,48 @@
                                                                  							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
                                                                  							"<div class='card-body'>"+
                                                                  							"<h5 class='card-title'>"+json.name+"</h5>"+
-                                                                 							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div></div>");
-
-                                                                		 })
+                                                                 							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
+                			                                    							"<div class='infor'></div></div>"
+                                                                 							);
+                                                                	 
+                                                                	 })
+                                                                	 	$(".card").children(":last-child").hide();
+															             $(".card").mouseenter(function () {
+															            	 $.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
+		                                                                		 if (status == "success") {
+		                                                                                 var querydata = $.parseJSON(data);
+		                                                                                 $.each(querydata,function (index,json) {
+		                                                                                         if(json.category=="mb"){
+		                                                                                        	 $(".card").children(":last-child").append("主機板:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="cpu"){
+		                                                                                        	 $(".card").children(":last-child").append("CPU:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="ram"){
+		                                                                                        	 $(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="powersupplier"){
+		                                                                                        	 $(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="cabinet"){
+		                                                                                        	 $(".card").children(":last-child").append("機殼:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="vga"){
+		                                                                                        	 $(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
+		                                                                                         }
+		                                                                                         if(json.category=="storage"){
+		                                                                                        	 $(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
+		                                                                                        	
+		                                                                                         }
+		                                                                                         })
+		                                                                             }
+		                                                                		 
+		                                                                	 })
+															                 $(this).children(":last-child").show();
+															             }).mouseleave(function () {
+															            	 $(".card").children(":last-child").html("");
+															                 $(this).children(":last-child").hide();
+															             })
                                                                 		 $("div.card").click(showPingin)
                                                     			 }
                                                  });
@@ -609,8 +830,47 @@
 			                                    							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
 			                                    							"<div class='card-body'>"+
 			                                    							"<h5 class='card-title'>"+json.name+"</h5>"+
-			                                    							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div></div>");
+			                                    							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
+			                                    							"<div id='showPinginDetail' class='infor'></div></div>"
+			                                    							);
+			                                   
 			                                   		 })
+			                                   		 $(".card").children(":last-child").hide();
+													 $(".card").mouseenter(function () {
+															$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
+				                                           		 if (status == "success") {
+				                                                            var querydata = $.parseJSON(data);
+				                                                            $.each(querydata,function (index,json) {
+				                                                                    if(json.category=="mb"){
+				                                                                    	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="cpu"){
+				                                                                    	$(".card").children(":last-child").append("CPU:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="ram"){
+				                                                                    	$(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="powersupplier"){
+				                                                                    	$(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="cabinet"){
+				                                                                    	$(".card").children(":last-child").append("機殼:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="vga"){
+				                                                                    	$(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
+				                                                                    }
+				                                                                    if(json.category=="storage"){
+				                                                                    	$(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
+				                                                                    }
+				                                                                    })
+				                                                        }
+				                                           		 
+				                                           	 })
+													 $(this).children(":last-child").show();
+													 }).mouseleave(function () {
+														 $(".card").children(":last-child").html("");
+													 $(this).children(":last-child").hide();
+													 })
 			                                   		 $("div.card").click(showPingin)
 			                       			 }
 			                    });
@@ -625,34 +885,50 @@
                                             if(json.category=="mb"){
                                             	$("#showMB").html("")
                                             	sessionStorage.mbmodel=json.model
-                                            	$("#showMB").append("<option>"+ json.model+"</option>");
+                                            	$("#MBPrice").html(json.price)
+                                            	$("#showMB").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="cpu"){
                                             	$("#showCPU").html("")
-                                            	$("#showCPU").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.cpumodel=json.model
+                                            	$("#CPUPrice").html(json.price)
+                                            	$("#showCPU").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="ram"){
                                             	$("#showRAM").html("")
-                                            	$("#showRAM").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.rammodel=json.model
+                                            	$("#RAMPrice").html(json.price)
+                                            	$("#showRAM").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="powersupplier"){
                                             	$("#showPOWERSUPPLIER").html("")
-                                            	$("#showPOWERSUPPLIER").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.powersuppliermodel=json.model
+                                            	$("#POWERSUPPLIERPrice").html(json.price)
+                                            	$("#showPOWERSUPPLIER").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="cabinet"){
                                             	$("#showCABINET").html("")
-                                            	$("#showCABINET").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.cabinetmodel=json.model
+                                            	$("#CABINETPrice").html(json.price)
+                                            	$("#showCABINET").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="vga"){
                                             	$("#showVGA").html("")
-                                            	$("#showVGA").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.vgamodel=json.model
+                                            	$("#VGAPrice").html(json.price)
+                                            	$("#showVGA").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
                                             if(json.category=="storage"){
                                             	$("#showSTORAGE").html("")
-                                            	$("#showSTORAGE").append("<option>"+ json.model+"</option>");
+                                            	sessionStorage.storagemodel=json.model
+                                            	$("#STORAGEPrice").html(json.price)
+                                            	$("#showSTORAGE").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
+                                            CalculateTotalPrice();
+                                            CalculateTotalPower();
                                             })
-                                            selectAllProduct();
+                                            selectAllProductByImg();
+                                    		checkMbByImg();
 								alert("GG")
                                 }
                             });
@@ -661,36 +937,82 @@
                     
                     
                     function checkMb() {
-                        $.post("checkRamForCustomized",{"Mbmodel": event.target.value},function (data, status) {
+
+						sessionStorage.Mb = $(this).find("option:selected").text();
+                        $.post("checkRamForCustomized",{"Mbmodel":sessionStorage.Mb},function (data, status) {
                                 if (status == "success") {
                                     $("#showRAM").html("");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-                                                $("#showRAM").append("<option>"+ json.model+ "</option>");
+                                        		if(index==0){
+                                        			sessionStorage.RamPrice=json.price
+                                        			$("#RAMPrice").html(json.price)
+                                        			$("#totalPrice").html("")
+							                	    $("#totalPrice").html(parseInt(sessionStorage.CpuPrice)+
+										                	 		      parseInt(sessionStorage.RamPrice)+
+										                			      parseInt(sessionStorage.MbPrice)+
+										                			      parseInt($("#VGAPrice").html())+
+										                			      parseInt($("#STORAGEPrice").html())+
+										                			      parseInt($("#CABINETPrice").html())+
+										                			      parseInt($("#POWERSUPPLIERPrice").html()))
+                                        		}
+                                                $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
                                                 })
-
                                     }
+                                CalculateTotalPower();
                                 });
-                        $.post("checkCpuForCustomized",{"Mbmodel": event.target.value},
+                        $.post("checkCpuForCustomized",{"Mbmodel":sessionStorage.Mb},
                                 function (data, status) {
                                     if (status == "success") {
                                         $("#showCPU").html("");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-                                                $("#showCPU").append("<option>"+ json.model+ "</option>");
+                                        	if(index==0){
+                                        		sessionStorage.CpuPrice=json.price
+                                        		$("#CPUPrice").html(json.price)
+                                        		$("#totalPrice").html("")
+						                	    $("#totalPrice").html(parseInt(sessionStorage.CpuPrice)+
+									                	 		      parseInt(sessionStorage.RamPrice)+
+									                			      parseInt(sessionStorage.MbPrice)+
+									                			      parseInt($("#VGAPrice").html())+
+									                			      parseInt($("#STORAGEPrice").html())+
+									                			      parseInt($("#CABINETPrice").html())+
+									                			      parseInt($("#POWERSUPPLIERPrice").html()))
+                                    		}
+                                                $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
                                             })
-
+	
                                     }
+                                CalculateTotalPower();
+                                    
                                 });
-
-                    }
+                        $.post("showInitPrice",{"model":sessionStorage.Mb},function (data, status) {
+        					if (status == "success") {
+        							var querydata = $.parseJSON(data);
+        							sessionStorage.MbPrice=querydata.price
+        					                $("#MBPrice").html(querydata.price)
+        					                $("#totalPrice").html("")
+							                $("#totalPrice").html(parseInt(sessionStorage.CpuPrice)+
+										                	 	  parseInt(sessionStorage.RamPrice)+
+										                	      parseInt(sessionStorage.MbPrice)+
+										               		      parseInt($("#VGAPrice").html())+
+										            		      parseInt($("#STORAGEPrice").html())+
+										               		      parseInt($("#CABINETPrice").html())+
+										               		      parseInt($("#POWERSUPPLIERPrice").html()))
+        					    }       
+        					});
+			              }
                     function checkMbByImg() {
+                    	alert(sessionStorage.mbmodel)
                         $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.mbmodel},function (data, status) {
                                 if (status == "success") {
                                     $("#showRAM").html("");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-                                                $("#showRAM").append("<option>"+ json.model+ "</option>");
+		                                        	if(index==0){
+		                                        		$("#RAMPrice").html(json.price)
+		                                    		}
+                                                $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
                                                 })
                                     }
                                 });
@@ -700,13 +1022,142 @@
                                         $("#showCPU").html("");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
-                                                $("#showCPU").append("<option>"+ json.model+ "</option>");
+	                                        	if(index==0){
+	                                        		$("#CPUPrice").html(json.price)
+	                                    		}
+                                                $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>"+ json.model+ "</option>");
                                             })
 
                                     }
                                 });
-
                     }
+                    function selectAllProductByImg(){
+                    	$.get("SelectMbForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                        if(json.model!=sessionStorage.mbmodel){
+                                        	if(index==0){
+                                        		sessionStorage.initmbmodel=json.model
+                                        	}
+                                    	$("#showMB").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	
+                                    	}
+                                    })
+                                }
+                            })
+                            $.get("SelectCpuForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.cpumodel){
+                                    		if(index==0){
+                                        		sessionStorage.initcpumodel=json.model
+                                        	}
+                                        $("#showCPU").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            $.get("selectRamForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.rammodel){
+                                    		if(index==0){
+                                        		sessionStorage.initrammodel=json.model
+                                        	}
+                                        $("#showRAM").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            $.get("selectVgaForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.vgamodel){
+                                    		if(index==0){
+                                        		sessionStorage.initvgamodel=json.model
+                                        	}
+                                        $("#showVGA").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            $.get("selectStorageForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.storagemodel){
+                                    		if(index==0){
+                                        		sessionStorage.initstoragemodel=json.model
+                                        	}
+                                        $("#showSTORAGE").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            $.get("selectCabinetForCustomized", function (data,
+                                status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.cabinetmodel){
+                                    		if(index==0){
+                                        		sessionStorage.initcabinetmodel=json.model
+                                        	}
+                                        $("#showCABINET").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model + "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            $.get("selectPowerSupplierForCustomized", function (
+                                data, status) {
+                                if (status == "success") {
+                                    var querydata = $.parseJSON(data);
+                                    $.each(querydata, function (index, json) {
+                                    	if(json.model!=sessionStorage.powersuppliermodel){
+                                    		if(index==0){
+                                        		sessionStorage.initpowersuppliermodel=json.model
+                                        	}
+                                        $("#showPOWERSUPPLIER").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
+                                    	}
+                                    })
+
+                                }
+                            })
+                            CalculateTotalPower();
+                    	}
+                   function CalculateTotalPower(){
+                	    $("#totalPower").html("")
+						$("#totalPower").html(parseInt($("#showMB").val())+
+				   			   				  parseInt($("#showCPU").val())+
+				   			   				  parseInt($("#showRAM").val())+
+				   			   				  parseInt($("#showVGA").val())+
+				   			   				  parseInt($("#showCABINET").val())+
+				   			   				  parseInt($("#showSTORAGE").val()))
+                   }
+                   function  CalculateTotalPrice(){
+                	   $("#totalPrice").html("")
+                	   $("#totalPrice").html(parseInt($("#CPUPrice").html())+
+			                			     parseInt($("#RAMPrice").html())+
+			                			     parseInt($("#MBPrice").html())+
+			                			     parseInt($("#VGAPrice").html())+
+			                			     parseInt($("#STORAGEPrice").html())+
+			                			     parseInt($("#CABINETPrice").html())+
+			                			     parseInt($("#POWERSUPPLIERPrice").html()))
+                   }
     </script>
 
 

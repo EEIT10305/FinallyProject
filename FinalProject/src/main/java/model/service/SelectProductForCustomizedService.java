@@ -6,28 +6,33 @@ import java.util.Set;
 import com.google.gson.JsonElement;
 
 import model.bean.BrandBean;
+import model.bean.CabinetBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
+import model.bean.MbBean;
 import model.bean.PinginBean;
 import model.bean.PinginDetailBean;
+import model.bean.PowerSupplierBean;
 import model.bean.ProductBean;
 import model.bean.RamBean;
+import model.bean.StorageBean;
+import model.bean.VgaBean;
 
 public interface SelectProductForCustomizedService {
 
-	List<ProductBean> selectCpu();
+	List<CpuBean> selectCpu();
 
-	List<ProductBean> selectMb();
+	List<MbBean> selectMb();
 
-	List<ProductBean> selectRam();
+	List<RamBean> selectRam();
 
-	List<ProductBean> selectVga();
+	List<VgaBean> selectVga();
 
-	List<ProductBean> selectStorage();
+	List<StorageBean> selectStorage();
 
-	List<ProductBean> selectCabinet();
+	List<CabinetBean> selectCabinet();
 
-	List<ProductBean> selectPowerSupplier();
+	List<PowerSupplierBean> selectPowerSupplier();
 
 	List<ProductBean> selectPingin();
 
@@ -44,5 +49,22 @@ public interface SelectProductForCustomizedService {
 	List<PinginBean> showProductByPriceInService(String categorymodel, String brandmodel, Integer pricemodel);
 
 	List<PinginDetailBean> showPinginDetailInService(String Pinginmodel);
+
+	ProductBean showInitPriceInService(String model);
+
+	List<PinginBean> showAllProductImgInService();
+
+	CpuBean showCpuPowerInService(String Cpumodel);
+
+	RamBean showRamPowerInService(String Rammodel);
+
+	MbBean showMbPowerInService(String Mbmodel);
+
+	VgaBean showVgaPowerInService(String Vgamodel);
+
+	StorageBean showStoragePowerInService(String Storagemodel);
+
+	CabinetBean showCabinetPowerInService(String Cabinetmodel);
+
 
 }
