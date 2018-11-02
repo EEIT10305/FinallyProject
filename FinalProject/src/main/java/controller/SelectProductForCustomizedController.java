@@ -79,5 +79,71 @@ public class SelectProductForCustomizedController {
 		
 		return new Gson().toJson(SPFCS.selectBrandInService(Brandmodel));
 	}
+	@RequestMapping(path="showProductByCategoryForCustomized",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showProductByCategoryInController(String Categorymodel,String Brandmodel) {
+		
+		return new Gson().toJson(SPFCS.showProductByCategoryInService(Categorymodel,Brandmodel));
+	}
+	@RequestMapping(path="showProductByPrice",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showProductByPriceInController(String Categorymodel,String Brandmodel,Integer Pricemodel) {
+		
+		return new Gson().toJson(SPFCS.showProductByPriceInService(Categorymodel,Brandmodel,Pricemodel));
+	}
+	@RequestMapping(path="showPinginDetailByImage",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showPinginDetailInController(String Pinginmodel) {
+		
+		return new Gson().toJson(SPFCS.showPinginDetailInService(Pinginmodel));
+	}
+	@RequestMapping(path="showInitPrice",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showInitPriceInController(String model) {
+		
+		return new Gson().toJson(SPFCS.showInitPriceInService(model));
+	}
 	
+	@RequestMapping(path="showAllProductImg",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showAllProductImgInController() {
+		
+		return new Gson().toJson(SPFCS.showAllProductImgInService());
+	}
+	@RequestMapping(path="showCpuPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showCpuPowerInController(String Cpumodel) {
+		
+		return new Gson().toJson(SPFCS.showCpuPowerInService(Cpumodel));
+	}
+	@RequestMapping(path="showRamPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showRamPowerInController(String Rammodel) {
+		
+		return new Gson().toJson(SPFCS.showRamPowerInService(Rammodel));
+	}
+	@RequestMapping(path="showMbPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showMbPowerInController(String Mbmodel) {
+		
+		return new Gson().toJson(SPFCS.showMbPowerInService(Mbmodel));
+	}
+	@RequestMapping(path="showVgaPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showVgaPowerInController(String Vgamodel) {
+		
+		return new Gson().toJson(SPFCS.showVgaPowerInService(Vgamodel));
+	}
+	@RequestMapping(path="showStoragePower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showStoragePowerInController(String Storagemodel) {
+		
+		return new Gson().toJson(SPFCS.showStoragePowerInService(Storagemodel));
+	}
+	@RequestMapping(path="showCabinetPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showCabinetPowerInController(String Cabinetmodel) {
+		
+		return new Gson().toJson(SPFCS.showCabinetPowerInService(Cabinetmodel));
+	}
 }

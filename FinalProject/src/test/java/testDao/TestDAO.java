@@ -309,7 +309,7 @@ public class TestDAO {
 	
 	@Test
 	public void testPinginDetailDao() {
-		PinginDetailBean bean = new PinginDetailBean(1, "brand2","cpu2" ,"model2","game2" ,1,10);
+		PinginDetailBean bean = new PinginDetailBean(1, "brand2","cpu2" ,"model2","game2" ,1,10,50);
 		PinginDetailDAO dao = context.getBean(PinginDetailDAO.class);
 //		dao.insert(bean);
 //		System.out.println(dao.selectAll());

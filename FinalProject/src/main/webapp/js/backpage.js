@@ -41,7 +41,7 @@
            				 var flag1 = false;
         				 var change = "";
         				 amount = $('#fordatainput').children().length;
-        				 alert("111: "+amount);
+//        				 alert("111: "+amount);
         				 $("#fordatainput2 li").mouseup(function(){
         					 flag1 = true;
         				 }).mouseleave(function(){//滑鼠離開觸發進資料庫更換商品順序
@@ -59,7 +59,7 @@
         							 if (status == "success") {
         		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
         		            				amount = $('#fordatainput').children().length;
-        		            				alert("222:"+amount);
+//        		            				alert("222:"+amount);
         						     }
         						 })
         					     	 
@@ -127,7 +127,7 @@
             							 if (status == "success") {
             		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
-            		            				alert("333:"+amount);
+//            		            				alert("333:"+amount);
             						     }
             						 })
             					     	 
