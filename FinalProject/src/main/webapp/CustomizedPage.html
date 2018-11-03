@@ -238,6 +238,7 @@
                             <th scope="col"></th>
                             <th scope="col">型號</th>
                             <th scope="col">價格</th>
+                            <th scope="col">剩餘數量</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -248,6 +249,7 @@
                                 </select>
                             </td>
                             <td id="MBPrice"></td>
+                            <td id="MBAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">CPU</th>
@@ -256,6 +258,7 @@
                                 </select>
                             </td>
                             <td id="CPUPrice"></td>
+                            <td id="CPUAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">記憶體</th>
@@ -264,6 +267,7 @@
                                 </select>
                             </td>
                             <td id="RAMPrice"></td>
+                            <td id="RAMAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">電源供應器</th>
@@ -272,6 +276,7 @@
                                 </select>
                             </td>
                             <td id="POWERSUPPLIERPrice"></td>
+                            <td id="POWERSUPPLIERAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">機殼</th>
@@ -280,6 +285,7 @@
                                 </select>
                             </td>
                             <td id="CABINETPrice"></td>
+                            <td id="CABINETAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">顯示卡</th>
@@ -288,6 +294,7 @@
                                 </select>
                             </td>
                             <td id="VGAPrice"></td>
+                            <td id="VGAAmount"></td>
                         </tr>
                         <tr>
                             <th scope="row">硬碟</th>
@@ -296,6 +303,7 @@
                                 </select>
                             </td>
                             <td id="STORAGEPrice"></td>
+                            <td id="STORAGEAmount"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -305,7 +313,7 @@
                         <span id="totalPower" style="color: red">  5  </span>瓦 總價
                         <span id="totalPrice" style="color: red">  20000  </span>元     
                         <br>
-                       <a href="#" class="btn btn-danger">全部加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>
+                       <a id="checkProductByCart" href="#" class="btn btn-danger">全部加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>
                          
                     </h4>
                 </div>
@@ -345,7 +353,6 @@
 			
             <div id="selectPingin" class="forcard">
 
-
 		<!--           塞入套裝電腦 -->
 <!--                 <div class="card" style="width: 18rem; padding: 10px; margin: 20px"> -->
 <!--                     <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap"> -->
@@ -370,24 +377,20 @@
             </div>
             <!-- 頁面跳轉按鈕 -->
             <div style="margin: 50px;" aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="mypage-link mypagestyle" href="#">1
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="mypage-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="mypage-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="mypage-link " href="#">&raquo;</a>
-                    </li>
+                <ul id="pagebtn" class="pagination justify-content-center">
+                    
+<!--                     <li class="page-item active"> -->
+<!--                         <a class="mypage-link mypagestyle" href="#">1 -->
+<!--                             <span class="sr-only">(current)</span> -->
+<!--                         </a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item"> -->
+<!--                         <a class="mypage-link" href="#">2</a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item"> -->
+<!--                         <a class="mypage-link" href="#">3</a> -->
+<!--                     </li> -->
+                    
                 </ul>
             </div>
         </article>
@@ -439,6 +442,7 @@
         $(document).ready(
                 function(){
                 	selectAllProduct()
+                	$("#checkProductByCart").click(returnPageToCart)
                     $.get("selectCategoryForCustomized",
                             function (data, status) {
                     						initmb()
@@ -459,15 +463,40 @@
                     data, status) {
                     if (status == "success") {
                         var querydata = $.parseJSON(data);
+                        var total=0;
+                        var count=0;
+                        var showamount=4;
+                        $("#pagebtn").html("")
                         $.each(querydata, function (index, json) {
-                        	$("#selectPingin").append('<div class="card" style="width: 15rem; padding: 10px;">'+
+                        	if(index%4==0){
+								count++
+                        		$("#selectPingin").append("<div id='pg"+count+"' class='forcard1'></div>")
+                        	}
+                        		$("#pg"+count).append('<div class="card" style="width: 15rem; padding: 10px;">'+
          							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
          							"<div class='card-body'>"+
          							"<h5 class='card-title'>"+json.name+"</h5>"+
          							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
         							"<div  class='infor'></div></div>"
          							);
+                        	total++
                         })
+                       	page = Math.ceil(total/showamount);
+                        
+                        for(var a=1; a<=page; a++){
+                        $("#pagebtn").append(
+                    			   '<li class="page-item"><a  id="changepagebtn'+ a +'" class="mypage-link" >'+ a +'</a></li>'	   
+                    	   )        	   
+                    	   $("#pg"+a).hide();
+                        }
+                        $("#pg1").show();
+                        $("#changepagebtn1").parent().attr("class", "page-item active");
+                        $("#changepagebtn1").attr("class", "mypage-link mypagestyle"); 
+                        for(var x=1;x<=page;x++){
+                        	document.getElementById("changepagebtn"+x).addEventListener("click",turnpage) 
+                        }
+                        
+                        
                         $(".card").children(":last-child").hide();
                         $(".card").mouseenter(function () {
 						$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
@@ -508,7 +537,16 @@
                         $("div.card").click(showPingin)
                     }
                 })
-                		$("#showCPU").change(showCpuPrice)
+                	   $("#totalPrice").html("")
+                	   $("#totalPrice").html(parseInt($("#CPUPrice").html())+
+			                			     parseInt($("#RAMPrice").html())+
+			                			     parseInt($("#MBPrice").html())+
+			                			     parseInt($("#VGAPrice").html())+
+			                			     parseInt($("#STORAGEPrice").html())+
+			                			     parseInt($("#CABINETPrice").html())+
+			                			     parseInt($("#POWERSUPPLIERPrice").html()))
+                		
+			            $("#showCPU").change(showCpuPrice)
                 		$("#showRAM").change(showRamPrice)
                 		$("#showVGA").change(showVgaPrice)
                 		$("#showCABINET").change(showCabinetPrice)
@@ -770,17 +808,40 @@
                                              
                                              if (status == "success") {
                                                          var querydata = $.parseJSON(data);
+                                                         var total=0;
+                                                         var count=0;
+                                                         var showamount=4;
+                                                         $("#pagebtn").html("")
                                                         		 $("#selectPingin").html("");
-                                                         	 $.each(querydata,function (index,json) {
-                                                                	 $("#selectPingin").append("<div class='card' style='width: 18rem; padding: 10px; margin: 20px'>"+
-                                                                 							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' alt='Card image cap'>"+
-                                                                 							"<div class='card-body'>"+
-                                                                 							"<h5 class='card-title'>"+json.name+"</h5>"+
-                                                                 							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
-                			                                    							"<div class='infor'></div></div>"
-                                                                 							);
-                                                                	 
-                                                                	 })
+                                                        		 $.each(querydata, function (index, json) {
+                                                                 	if(index%4==0){
+                                         								count++
+                                                                 		$("#selectPingin").append("<div id='pg"+count+"' class='forcard1'></div>")
+                                                                 		
+                                                                 	}
+                                                                 		$("#pg"+count).append('<div class="card" style="width: 15rem; padding: 10px;">'+
+                                                  							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
+                                                  							"<div class='card-body'>"+
+                                                  							"<h5 class='card-title'>"+json.name+"</h5>"+
+                                                  							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
+                                                 							"<div  class='infor'></div></div>"
+                                                  							);
+                                                                 		total++
+                                                                 })
+                                                                 page = Math.ceil(total/showamount);
+                                                                 
+                                                                 for(var a=1; a<=page; a++){
+                                                                 $("#pagebtn").append(
+                                                             			   '<li class="page-item"><a  id="changepagebtn'+ a +'" class="mypage-link" >'+ a +'</a></li>'	   
+                                                             	   )        	   
+                                                             	   $("#pg"+a).hide();
+                                                                 }
+                                                                 $("#pg1").show();
+                                                                 $("#changepagebtn1").parent().attr("class", "page-item active");
+                                                                 $("#changepagebtn1").attr("class", "mypage-link mypagestyle"); 
+                                                                 for(var x=1;x<=page;x++){
+                                                                 	document.getElementById("changepagebtn"+x).addEventListener("click",turnpage) 
+                                                                 }
                                                                 	 	$(".card").children(":last-child").hide();
 															             $(".card").mouseenter(function () {
 															            	 $.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
@@ -830,17 +891,40 @@
 			        	$.post("showProductByPrice",{"Categorymodel": $("#Category").html(),"Brandmodel": $("#Brand").html(),"Pricemodel":$("#Price").attr("value")},function (data,status) {
 			                if (status == "success") {
 			                            var querydata = $.parseJSON(data);
-			                           		 $("#selectPingin").html("");
-			                            	 $.each(querydata,function (index,json) {
-			                                   	 $("#selectPingin").append('<div class="card" style="width: 15rem; padding: 10px;">'+
-			                                    							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
-			                                    							"<div class='card-body'>"+
-			                                    							"<h5 class='card-title'>"+json.name+"</h5>"+
-			                                    							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
-			                                    							"<div id='showPinginDetail' class='infor'></div></div>"
-			                                    							);
-			                                   
-			                                   		 })
+			                            var total=0;
+                                        var count=0;
+                                        var showamount=4;
+                                        $("#pagebtn").html("")
+                                       		 $("#selectPingin").html("");
+                                       		 $.each(querydata, function (index, json) {
+                                                	if(index%4==0){
+                        								count++
+                                                		$("#selectPingin").append("<div id='pg"+count+"' class='forcard1'></div>")
+                                                		
+                                                	}
+                                                		$("#pg"+count).append('<div class="card" style="width: 15rem; padding: 10px;">'+
+                                 							"<img value='"+json.name+"' class='card-img-top' src='image/"+json.name+".png' width='100px' height='220px' alt='Card image cap'>"+
+                                 							"<div class='card-body'>"+
+                                 							"<h5 class='card-title'>"+json.name+"</h5>"+
+                                 							"<h5 class='card-title' style='color: red'>$"+json.price+"</h5></div>"+
+                                							"<div  class='infor'></div></div>"
+                                 							);
+                                                		total++
+                                                })
+                                                page = Math.ceil(total/showamount);
+                                                a = 0;
+                                                for(var a=1; a<=page; a++){
+                                                $("#pagebtn").append(
+                                            			   '<li class="page-item"><a  id="changepagebtn'+ a +'" class="mypage-link" >'+ a +'</a></li>'	   
+                                            	   )        	   
+                                            	   $("#pg"+a).hide();
+                                                }
+                                                $("#pg1").show();
+                                                $("#changepagebtn1").parent().attr("class", "page-item active");
+                                                $("#changepagebtn1").attr("class", "mypage-link mypagestyle"); 
+                                                for(var x=1;x<=page;x++){
+                                                	document.getElementById("changepagebtn"+x).addEventListener("click",turnpage) 
+                                                }
 			                                   		 $(".card").children(":last-child").hide();
 													 $(".card").mouseenter(function () {
 															$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
@@ -1176,6 +1260,32 @@
                                })
                            }
                 		   })
+                   }
+                   function returnPageToCart(){
+                	   sessionStorage.TotalPrice= $("#totalPrice").html()
+                	   sessionStorage.MBname= $("#showMB").find("option:selected").text()
+                	   sessionStorage.CPUname= $("#showCPU").find("option:selected").text()
+                	   sessionStorage.RAMname= $("#showRAM").find("option:selected").text()
+                	   sessionStorage.POWERSUPPLIERname= $("#showPOWERSUPPLIER").find("option:selected").text()
+                	   sessionStorage.CABINETname= $("#showCABINET").find("option:selected").text()
+                	   sessionStorage.VGAname= $("#showVGA").find("option:selected").text()
+                	   sessionStorage.STORAGEname= $("#showSTORAGE").find("option:selected").text()
+                	   window.location.href="http://localhost:8081/FinalProject/ShowCart.html";
+                	  
+                   }
+                   
+                   function turnpage(){
+                	   
+                	    $(".forcard1").hide();
+                     	$("#pg"+$(this).html()).show();
+                     	
+//                        $("#changepagebtn"+x).parent().attr("class", "page-item");
+//                        $("#changepagebtn"+x).attr("class", "mypage-link");
+					$("#pagebtn li").attr("class","page-item")
+                    $("#pagebtn li a").attr("class","mypage-link")
+                       
+                   	$(this).parent().attr("class", "page-item active");
+                    $(this).attr("class", "mypage-link mypagestyle");
                    }
     </script>
 

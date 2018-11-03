@@ -34,6 +34,14 @@ article {
 </style>
 <script>
 	$(document).ready(function() {
+// 		alert(sessionStorage.TotalPrice)
+// 		alert(sessionStorage.MBname)
+// 		alert(sessionStorage.CPUname)
+// 		alert(sessionStorage.RAMname)
+// 		alert(sessionStorage.POWERSUPPLIERname)
+// 		alert(sessionStorage.CABINETname)
+// 		alert(sessionStorage.VGAname)
+// 		alert(sessionStorage.STORAGEname)
 		$.post("TestController")
 		$("form > select").hide();
 		$("#inlineRadio4").click(function() {
@@ -61,7 +69,62 @@ article {
 				$("fieldset").hide();
 			}
 		})
+		ShowCartItems()
 	})
+	function ShowCartItems(){
+		var count=1;
+		alert("AA")
+		$.post("showCartDetail",{"model":sessionStorage.MBname},function(data,status){
+			if (status == "success") {
+                var querydata = $.parseJSON(data);
+                    $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                    count++
+               }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.CPUname},function(data,status){
+			if (status == "success") {
+				var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.RAMname},function(data,status){
+			if (status == "success") {
+				var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.POWERSUPPLIERname},function(data,status){
+			if (status == "success") {
+				var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.CABINETname},function(data,status){
+			if (status == "success") {
+                var querydata = $.parseJSON(data);
+                var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.VGAname},function(data,status){
+			if (status == "success") {
+				var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+		$.post("showCartDetail",{"model":sessionStorage.STORAGEname},function(data,status){
+			if (status == "success") {
+				var querydata = $.parseJSON(data);
+                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+                count++
+            }
+		})
+	}
 </script>
 </head>
 
@@ -277,30 +340,29 @@ article {
 											<th scope="col"></th>
 											<th scope="col">商品圖片</th>
 											<th scope="col">商品型號</th>
-											<th scope="col">商品名稱</th>
 											<th scope="col">價格</th>
 											<th scope="col">數量</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
+									<tbody id="itembody">
+<!-- 										<tr> -->
+<!-- 											<th scope="row">1</th> -->
 
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 										</tr> -->
+<!-- 										<tr> -->
+<!-- 											<th scope="row">2</th> -->
 
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 										</tr> -->
 
 									</tbody>
 								</table>
