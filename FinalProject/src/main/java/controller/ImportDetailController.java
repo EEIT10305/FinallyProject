@@ -3,6 +3,8 @@ package controller;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,10 +45,10 @@ public class ImportDetailController {
 
 	@RequestMapping("/pages/import.updateController")
 	public String update(ImportBean bean, String statu, Integer improtid, Model model) {
-		
+		System.out.println("importid++++++++++++++++++++" + improtid + improtid.getClass());
 		System.out.println("update controller==========================" + statu);
 		System.out.println(statu.getClass() + "---------------------------------");
-		if("on".equals(statu)) {			
+		if(statu.contains("on")) {			
 			String off = "off";
 			statu = off;
 			System.out.println("on================================" + statu);			
@@ -58,10 +60,14 @@ public class ImportDetailController {
 			System.out.println("off===============================" + statu);
 		}
 		
-		System.out.println("update++++++++++++++++++++++++++++++++++++++" + statu);
-		ImportBean result = importService.updateStatus(statu, improtid);
-		model.addAttribute("user", result);
-		System.out.println("Update controller");
+		System.out.println("updating++++++++++++++++++++++++++++++++++++++" + statu);
+//		List<ImportBean> result = 
+				importService.updateStatus(statu, improtid);
+//		model.addAttribute("success", result);
+		System.out.println("Update controller============================ update success");
+		
+		
+		
 		return "/Backstage_Success.jsp";
 
 	}

@@ -1,8 +1,6 @@
 package model.dao;
 
-import java.sql.Blob;
 import java.util.List;
-
 
 import model.bean.PinginBean;
 
@@ -13,7 +11,6 @@ public interface PinginDAO {
 	boolean update(PinginBean bean);
 	PinginBean insert(PinginBean bean);
 	boolean delete(Integer pingin_id);
-
 }
 
 

@@ -1,5 +1,7 @@
 package controller;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -145,5 +147,11 @@ public class SelectProductForCustomizedController {
 	public String showCabinetPowerInController(String Cabinetmodel) {
 		
 		return new Gson().toJson(SPFCS.showCabinetPowerInService(Cabinetmodel));
+	}
+	@RequestMapping(path="showPowerSupplierByTotalPower",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showPowerSupplierByTotalPowerInController(Integer PowerModel) {
+		
+		return new Gson().toJson(SPFCS.showPowerSupplierByTotalPowerInService(PowerModel));
 	}
 }

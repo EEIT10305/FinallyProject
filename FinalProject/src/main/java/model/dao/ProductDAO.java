@@ -67,6 +67,14 @@ public interface ProductDAO {
 	List<RamBean> selectRam();
 	List<CpuBean> selectCpu();
 	List<MbBean> selectMb();
+	List<PowerSupplierBean> showPowerSupplier(Integer PowerModel);
+	List<ProductBean> selectByCatorderbyprice(Integer categoryid);
+	List<ProductBean> selectByCatPriBiggerorderbyprice(Integer categoryid, Integer price);
+	List<ProductBean> selectByinputorderbyprice(String searchspace);
+	List<ProductBean> selectByCatPriorderbyprice(Integer categoryid, Integer price);
+	List<ProductBean> selectByCatBraPriorderbyprice(Integer categoryid, Integer brandid, Integer price);
+	List<ProductBean> selectByCatBraPriBiggerorderbyprice(Integer categoryid, Integer brandid, Integer price);
+	List<ProductBean> selectByCatBraorderbyprice(Integer categoryid, Integer brandid);
 
 
 }

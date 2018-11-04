@@ -1,8 +1,10 @@
 package model.service.Impl;
-
+ 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import model.dao.ProductDAO;
 import model.service.NavigateService;
 
 @Service
+@Transactional
 public class NavigateServiceImpl implements NavigateService {
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -99,4 +102,60 @@ public class NavigateServiceImpl implements NavigateService {
 //		System.out.println("=======================================");
 		return productDAO.selectByinput(searchspace);
 	}
+	
+	
+	//--------------------------------按價格排列-------------------------------------------------
+	
+	// 分類 品牌 價格 都有選
+	@Override
+	public List<ProductBean> selectByCatBraPriorderbyprice(String category, String brand, Integer price){
+		CategoryBean categoryBean = categoryDAO.getCategoryBeanBycategorycode(category);
+		BrandBean brandBean = brandDAO.getBrandBeanBybrand(brand);
+		if (price == 20000) {// 20000↑
+			return productDAO.selectByCatBraPriBiggerorderbyprice(categoryBean.getCategoryid(), brandBean.getBrandid(), price);
+		}
+//		System.out.println("==========================================================================");
+//        System.out.println("service ok");
+//		System.out.println("==========================================================================");
+		return productDAO.selectByCatBraPriorderbyprice(categoryBean.getCategoryid(), brandBean.getBrandid(), price);
+	}
+	  
+	// 分類 品牌 有選
+		@Override
+		public List<ProductBean> selectByCatBraorderbyprice(String category, String brand) {
+			CategoryBean categoryBean = categoryDAO.getCategoryBeanBycategorycode(category);
+			BrandBean brandBean = brandDAO.getBrandBeanBybrand(brand);
+			return productDAO.selectByCatBraorderbyprice(categoryBean.getCategoryid(), brandBean.getBrandid());
+		}
+	
+	
+	// 分類 價格 有選
+		@Override
+		public List<ProductBean> selectByCatPriorderbyprice(String category, Integer price) {
+			CategoryBean categoryBean = categoryDAO.getCategoryBeanBycategorycode(category);
+			if (price == 20000) {
+				return productDAO.selectByCatPriBiggerorderbyprice(categoryBean.getCategoryid(), price);
+			}
+			return productDAO.selectByCatPriorderbyprice(categoryBean.getCategoryid(), price);
+		}
+	
+
+	// 只選分類
+		@Override
+		public List<ProductBean> selectByCatorderbyprice(String category) {
+			CategoryBean categoryBean = categoryDAO.getCategoryBeanBycategorycode(category);
+			return productDAO.selectByCatorderbyprice(categoryBean.getCategoryid());
+		}
+	
+		@Override
+		public List<ProductBean> selectByinputorderbyprice(String searchspace) {
+//			System.out.println("=======================================");
+//			System.out.println("到service了");
+//			System.out.println(searchspace);
+//			System.out.println("=======================================");
+			return productDAO.selectByinputorderbyprice(searchspace);
+		}
+	
+	
+	
 }
