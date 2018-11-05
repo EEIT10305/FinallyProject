@@ -20,7 +20,7 @@ aside {
 	width: 20%;
 	margin: 10px;
 }
-<<<<<<< HEAD
+
 article {
 	width: 75%;
 	margin: 10px;
@@ -36,41 +36,6 @@ article {
 	$(document).ready(function() {
 		$.post("TestController")
 		$("form > select").hide();
-		$("#inlineRadio4").click(function() {
-			$("form > select").show();
-		})
-		$("#inlineRadio3").click(function() {
-			$("form > select").hide();
-		})
-		$('button[name="becheckbtn"]').next().hide();
-		$('button.menuitemstyle').click(function() {
-			$(this).parent().siblings(".btnwidth").text($(this).text());
-		})
-		$('button[name="category"]').click(function() {
-			$('button[name="becheckbtn"]').hide();
-			$('button[name="becheckbtn"]').next().show();
-			// 這裡可以加動態產生的品牌或價格選項
-		})
-
-
-article {
-	width: 75%;
-	margin: 10px;
-	padding: 100px;
-}
-
-.btn-mystylelink {
-	font-weight: 400;
-	color: grey;
-	background-color: transparent;
-}
-</style>
-<script>
-	$(document).ready(function() {
-		$.post("TestController")
-
-		$("form > select").hide();
-
 		$("#inlineRadio4").click(function() {
 			$("form > select").show();
 		})
@@ -97,6 +62,8 @@ article {
 		})
 	})
 </script>
+
+
 </head>
 
 <body>
@@ -308,30 +275,12 @@ article {
 											<th scope="col"></th>
 											<th scope="col">商品圖片</th>
 											<th scope="col">商品型號</th>
-											<th scope="col">商品名稱</th>
 											<th scope="col">價格</th>
 											<th scope="col">數量</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
-
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
+									<tbody id="show" name="show1">
+										
 
 									</tbody>
 								</table>
@@ -474,7 +423,8 @@ article {
 				網購客服專線(手機撥打)：02-23512801</p>
 			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
 		</div>
-
+		
+		<button id="david">iiiiiii</button>
 	</footer>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
@@ -486,6 +436,122 @@ article {
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+		
+		
+		
+ 		<script type="text/javascript">
+		$(document).ready(function() {
+				$.post("ShowToCart",
+							function(data, status) {		
+							if (status == "success") {
+									 temp = 0;
+									var sum = 0;
+									var esum = 0 ;
+									exchange = 0 ; 
+									var querydata = $.parseJSON(data);
+ 								$.each(querydata, function(index, json) {
+ 														//var x =  json.productBean.price *  index+1
+ 														//alert(x)
+ 														//alert(json.productBean.price)
+ 												var uuu = "select"+(index+1)
+ 										$("#show").append(
+												"<tr><th>"+(index+1)+"</th><td>" + json.productBean.picture
+ 														+ "</td><td>"
+ 														+ json.productBean.model
+														+ "</td><td>"
+														+ json.productBean.price
+ 														+ "</td>"  
+//  														+"<td><select id='select1'>"+
+ 														//+"<td><select id='select"+(index+1)+"'>"
+ 														+"<td><select id='"+uuu +"' name='"+uuu+"' onchange='chg()'>"
+ 														
+ 														+"</select></td></tr>"
+										                );
+ 														
+										
+ 												//sessionStorage.sel+(index+1) = $("#select2").val();
+												//alert(sessionStorage.sel+(index+1))		
+ 										
+											
+ 														
+ 										for(var i=1;i<=10 ;i++){
+//  	 										var opt = $("<option>").val(i).text(i);
+                                                 var opt = "<option value='" + i + "'>" + i + "</option>";
+// 										  		$("#select"+(index+1)).append(opt);
+                                                $("#"+uuu).append(opt);
+ 										  	
+ 										  	}
+												
+ 												 esum = esum + json.productBean.price  * $("#"+uuu).val()
+												alert(esum)
+ 								
+												
+												
+												$("#"+uuu).change(function(){
+												    temp = $("#"+uuu).val();
+												    
+												    sum = esum ;
+												    sum = sum + json.productBean.price  * temp
+												   
+												    alert(sum)
+													
+												})
+												
+ 													
+												//	sum = sum + json.productBean.price  * $("#"+uuu).val()
+												//	sessionStorage.sum = sum;
+//  														alert("index" + index)
+// 													alert("select" + uuu)
+                                                    //    alert("$('#uuu'.val()) " +$("#"+uuu).val()) //nooooo
+ 												//	alert("sum" + sum)	
+ 										
+									}
+ 								)
+ 								
+ 									
+							
+ 									//alert(data)
+ //									alert(json.parse(json.productBean.price))
+//  									for(var i=1;i<=10 ;i++){
+//  										var opt = $("<option>").val(i).text(i);
+// 									  		$("#select1").append(opt);
+// 									  	}
+									
+ 								}
+							else
+								alert("你沒抓到")
+							})
+							
+						$("#david").click(function(){
+							alert(sessionStorage.sum);
+						})	
+ 				})
+  </script> 
+  <script type="text/javascript">
+  
+  
+//   $(document).on("#show",function(){
+// 	  for(var i=1;i<=10 ;i++){
+// 	  		var opt = $("<option>").val(i).text(i);
+// 	  		$("#select1").append(opt);
+// 	  	}
+//   })
+  	
+
+  </script>
+  
+  <script >
+// function chg(){
+// 	if(document.form1.select1.value != -1 && document.form1.select.value != -1){
+// 		a1 = eval(document.form1.select1.value+"+"+document.form1.select.value);//選擇的值放入a
+// 		alert(a1);
+// 	}
+// }
+
+	
+
+
+</script>
 </body>
 
 </html>

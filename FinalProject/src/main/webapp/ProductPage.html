@@ -293,7 +293,7 @@
         <div class="forcard">
             <div class="card" style="width: 18rem;padding:10px;">
 
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
+                <img id="abcdefg"class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                 <div class="card-body">
                     <a href="#">
                         <img src="image/heart.png" width="20px">
@@ -453,18 +453,49 @@
         
       <script type="text/javascript">
 		$(document).ready(function() {
-				$.get("AddtToCartController",
+				$.get("ShowAllProduct",
 							function(data, status) {		
 								if (status == "success") {		
 									var querydata = $.parseJSON(data);
 									$.each(querydata, function(index, json) {
 										$("#show").append(
-												"<tr><td>" + json.proid +
-														"</td></tr>");
-									})
+												"<tr><td>" + json.picture
+												+ "</td><td>" 
+												+ json.model
+												+ "</td><td>"
+												+ json.price
+												+"</td><td>"
+												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
+												+ "</td></tr>");
+										
+										document.getElementById(""+json.model).addEventListener("click",click);
+										
+									}) 
+									
 
 								}
 							})
+								
+				function click(){
+					sessionStorage.c1 = event.target.value
+					alert(window.sessionStorage.c1)
+					if(sessionStorage.CartId != null)
+ 					sessionStorage.CartId=27
+					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// 						if(data=="null"){
+// 							alert("請重新登入")
+// 						}
+						alert(sessionStorage.CartId);
+						alert(111);
+						alert(data);
+						
+						
+					})
+					
+					
+				}
+					
+					
 				})
 	</script>  
         

@@ -22,7 +22,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Configuration
 @ComponentScan(basePackages={"model"})
 public class SpringJavaConfiguration {
-//	@Bean//WEB應用程式連資料庫
+	//@Bean//WEB應用程式連資料庫
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
 		factory.setJndiName("java:comp/env/jdbc/xxx");
@@ -49,11 +49,10 @@ public class SpringJavaConfiguration {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder =
-				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
+				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
 
 		Properties props = new Properties();
 		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
-
 
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.put("hibernate.current_session_context_class", "thread");
