@@ -12,17 +12,19 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 @Configuration
 @ComponentScan(basePackages={"model"})
+@EnableTransactionManagement
 public class SpringJavaConfiguration {
-	//@Bean//WEB應用程式連資料庫
+	@Bean//WEB應用程式連資料庫
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
 		factory.setJndiName("java:comp/env/jdbc/xxx");
@@ -36,7 +38,7 @@ public class SpringJavaConfiguration {
 		}
 		return (DataSource) factory.getObject();
 	}
-	@Bean//一般JAVA應用程式連資料庫
+//	@Bean//一般JAVA應用程式連資料庫
 	public DataSource dataSourcemanager() {
 		DriverManagerDataSource DMDS = new DriverManagerDataSource();
 		DMDS.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -52,12 +54,13 @@ public class SpringJavaConfiguration {
 				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
 
 		Properties props = new Properties();
-		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
 
+		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-		props.put("hibernate.current_session_context_class", "thread");
-		props.put("hibernate.show_sql", "true");
+//		props.put("hibernate.current_session_context_class", "thread");
+		props.put("hibernate.show_sql", "false");
 		props.put("hibernate.format_sql", "true");
+//		props.put("transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		builder.addProperties(props);
 		
 		builder.scanPackages("model");
@@ -71,6 +74,28 @@ public class SpringJavaConfiguration {
 //		builder.addAnnotatedClasses(StorageBean.class,TransferBean.class,VgaBean.class,WishBean.class);
 		return builder.buildSessionFactory();
 	}
+
+	@Bean
+	public PlatformTransactionManager transactionManager() throws Exception{
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setDataSource(dataSource());
+		return transactionManager;
+	}
+    
+//	  @Bean
+//	    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) throws Exception{
+//	        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+//	        transactionManager.setSessionFactory(sessionFactory());
+//	        return transactionManager;
+//	    }
+
+//	  @Bean
+//	    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+//	        return new PersistenceExceptionTranslationPostProcessor();
+//	    }
+
+
+	
 	
 	@TransactionalEventListener
 

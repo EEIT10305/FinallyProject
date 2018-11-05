@@ -9,4 +9,5 @@ public interface MbDAO {
 	    MbBean selectById(int id);
 	    MbBean insert(MbBean bean);
 	    boolean update(MbBean bean);
+		List<MbBean> selectByCategory(int Categoryid);
 }

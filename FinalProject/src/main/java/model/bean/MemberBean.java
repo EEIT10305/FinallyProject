@@ -1,15 +1,10 @@
 package model.bean;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,27 +12,33 @@ import javax.persistence.Table;
 public class MemberBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer memberid;
+	private Integer memberid;//流水號
+	
 	@Column(nullable=false)
-	private String name;
+	private String name;//真實姓名
+	
 	@Column(nullable=false)
-	private String email;
+	private String email;//email
+	
 	@Column(nullable=false)
 	private String password;
+	
 	@Column(nullable=false)
 	private String permission;
+	
 	@Column(nullable=false)
 	private String address;
+	
 	@Column(nullable=false)
 	private String phone;
+	
 	@Column(nullable=false)
 	private String gender;
-	public MemberBean() {
-		super();
-	}
+	
+	public MemberBean() {}
+	
 	public MemberBean(Integer memberid, String name, String email, String password, String permission, String address,
 			String phone, String gender) {
-		super();
 		this.memberid = memberid;
 		this.name = name;
 		this.email = email;
@@ -94,6 +95,13 @@ public class MemberBean {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberBean [memberid=" + memberid + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", permission=" + permission + ", address=" + address + ", phone=" + phone + ", gender=" + gender
+				+ "]";
 	}
 		
 }
