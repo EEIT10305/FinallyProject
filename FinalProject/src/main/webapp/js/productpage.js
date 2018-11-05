@@ -109,129 +109,25 @@ $(document).ready(function () {
         c = b;
 
         $("#pagebtn").append(
-            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
         )
         $("#page" + a).hide();
+        document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
     }
 
     $("#page1").show();
     $("#changepagebtn1").parent().attr("class", "page-item active");
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
-
-
-
-
-
-    $("#changepagebtn1").click(function () {
-        $(".forcard").hide();
-        $("#page1").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
+    function turnpage(){
+    	$("#pagebtn li").attr("class","page-item");
+    	$("#pagebtn li a").attr("class","mypage-link");
+    	$(this).parent().attr("class", "page-item active");
         $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn2").click(function () {
-        $(".forcard").hide();
-        $("#page2").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn3").click(function () {
-        $(".forcard").hide();
-        $("#page3").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn4").click(function () {
-        $(".forcard").hide();
-        $("#page4").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn5").click(function () {
-        $(".forcard").hide();
-        $("#page5").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn6").click(function () {
-        $(".forcard").hide();
-        $("#page6").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn7").click(function () {
-        $(".forcard").hide();
-        $("#page7").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn8").click(function () {
-        $(".forcard").hide();
-        $("#page8").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn9").click(function () {
-        $(".forcard").hide();
-        $("#page9").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
-    $("#changepagebtn10").click(function () {
-        $(".forcard").hide();
-        $("#page10").show();
-        for (d = 1; d <= 10; d++) {
-            $("#changepagebtn" + d).parent().attr("class", "page-item");
-            $("#changepagebtn" + d).attr("class", "mypage-link");
-        }
-        $(this).parent().attr("class", "page-item active");
-        $(this).attr("class", "mypage-link mypagestyle");
-    })
+        $(".forcard").hide();      
+        $("#page" + $(this).html()).show();
+    }
 
-
-
-
-
-    //            sessionStorage.category = "ini";
-    //            sessionStorage.brand = "ini";
-    //            sessionStorage.price = 0;
-    //            sessionStorage.searchspace = "ini";
 }
 )
 
@@ -367,6 +263,7 @@ $(document).ready(function () {
         type: "get",
         success: function (data) {
             var querydata = $.parseJSON(data);
+            $("#leftcategorybtn").append("<option  value='leftcategorynochoose'>請選擇分類</option>");
             $.each(querydata, function (index, json) {
                 $("#leftcategorybtn").append("<option  value='" + json.category + "'>" + json.category + "</option>")
             })
@@ -374,6 +271,7 @@ $(document).ready(function () {
     })
     //左邊 分類有改變時               
     $("#leftcategorybtn").change(function () {
+    	if($("#leftcategorybtn").val()!="leftcategorynochoose"){
         sessionStorage.category = "ini";
         sessionStorage.brand = "ini";
         sessionStorage.price = 0;
@@ -403,10 +301,6 @@ $(document).ready(function () {
                     $("#proamount").html("抱歉！搜尋不到相關商品")
                     $("#orderbywhat").hide();
                 }
-
-
-
-
 
                 //   換頁
                 var querydata = $.parseJSON(data);
@@ -479,148 +373,25 @@ $(document).ready(function () {
                     c = b;
 
                     $("#pagebtn").append(
-                        '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+                        '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
                     )
                     $("#page" + a).hide();
+                    document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
                 }
 
                 $("#page1").show();
                 $("#changepagebtn1").parent().attr("class", "page-item active");
                 $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                function turnpage(){
+                	$("#pagebtn li").attr("class","page-item");
+                	$("#pagebtn li a").attr("class","mypage-link");
+                	$(this).parent().attr("class", "page-item active");
+                    $(this).attr("class", "mypage-link mypagestyle");
+                    $(".forcard").hide();      
+                    $("#page" + $(this).html()).show();
+                }
 
-
-
-
-
-                $("#changepagebtn1").click(function () {
-                    $(".forcard").hide();
-                    $("#page1").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn2").click(function () {
-                    $(".forcard").hide();
-                    $("#page2").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn3").click(function () {
-                    $(".forcard").hide();
-                    $("#page3").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn4").click(function () {
-                    $(".forcard").hide();
-                    $("#page4").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn5").click(function () {
-                    $(".forcard").hide();
-                    $("#page5").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn6").click(function () {
-                    $(".forcard").hide();
-                    $("#page6").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn7").click(function () {
-                    $(".forcard").hide();
-                    $("#page7").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn8").click(function () {
-                    $(".forcard").hide();
-                    $("#page8").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn9").click(function () {
-                    $(".forcard").hide();
-                    $("#page9").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                $("#changepagebtn10").click(function () {
-                    $(".forcard").hide();
-                    $("#page10").show();
-                    for (d = 1; d <= 10; d++) {
-                        $("#changepagebtn" + d).parent().attr("class", "page-item");
-                        $("#changepagebtn" + d).attr("class", "mypage-link");
-                    }
-                    $(this).parent().attr("class", "page-item active");
-                    $(this).attr("class", "mypage-link mypagestyle");
-                })
-                //-------------------------------------------------------------------------------------------
-
-                //              下面是舊的                  
-                //                        $("#proall").empty();
-                //                        var querydata = $.parseJSON(data);
-                //                        $.each(querydata, function (index, json) {
-                //                            $("#proall").append(
-                //                            		'<div class="card" style="width: 15rem; padding: 10px;">' +
-                //                                '<img class="card-img-top" src="image/'+ modelArray[b] +'.jpg" width="100px" height="220px" alt="Card image cap">' +
-                //                                '<div class="card-body">' +
-                //                                '<a href="#">' +
-                //                                '<img src="image/heart.png" width="20px">' +
-                //                                '</a>' +
-                //                                '<span>' +
-                //                                '<a href="#">' +
-                //                                '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                //                                '</a>' +
-                //                                '</span>' +
-                //                                "<h5 class='card-title'>" + json.model + "</h5>" +
-                //                                "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                //                                '<a href="#" class="btn btn-danger">加入購物車' +
-                //                                '<img src="image/shopping-cart (1).png" width="20px">' +
-                //                                '</a>' +
-                //                                '</div>' +
-                //                                '</div>'
-                //
-                //                            );
-                //                        })
             }
         })
         //左邊分類改變時 顯示對應品牌按鈕
@@ -749,168 +520,25 @@ $(document).ready(function () {
                         c = b;
 
                         $("#pagebtn").append(
-                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
                         )
                         $("#page" + a).hide();
-
-
+                        document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
                     }
 
                     $("#page1").show();
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
-
-
-
-                    //                          for(var x=1;x<page;x++){
-                    //                        	  $(("#changepagebtn"+x)).click(function(){
-                    //                        		  alert("555555555555555555555555555")
-                    //                                	$(".forcard").hide();
-                    //                                	$("#page"+x).show();
-                    //                                	
-                    //                              	  $("#changepagebtn"+x).parent().attr("class", "page-item");
-                    //                                   $("#changepagebtn"+x).attr("class", "mypage-link");               		
-                    //                                	
-                    //                              	$(this).parent().attr("class", "page-item active");
-                    //                                	$(this).attr("class", "mypage-link mypagestyle");
-                    //                                })
-                    //                          }
-
-                    $("#changepagebtn1").click(function () {
-                        $(".forcard").hide();
-                        $("#page1").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
+                    function turnpage(){
+                    	$("#pagebtn li").attr("class","page-item");
+                    	$("#pagebtn li a").attr("class","mypage-link");
+                    	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
-                    })
+                        $(".forcard").hide();      
+                        $("#page" + $(this).html()).show();
+                    }
 
-
-                    $("#changepagebtn2").click(function () {
-                        $(".forcard").hide();
-                        $("#page2").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn3").click(function () {
-                        $(".forcard").hide();
-                        $("#page3").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn4").click(function () {
-                        $(".forcard").hide();
-                        $("#page4").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn5").click(function () {
-                        $(".forcard").hide();
-                        $("#page5").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn6").click(function () {
-                        $(".forcard").hide();
-                        $("#page6").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn7").click(function () {
-                        $(".forcard").hide();
-                        $("#page7").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn8").click(function () {
-                        $(".forcard").hide();
-                        $("#page8").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn9").click(function () {
-                        $(".forcard").hide();
-                        $("#page9").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn10").click(function () {
-                        $(".forcard").hide();
-                        $("#page10").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-
-
-
-
-
-
-                    //                  下面是舊的          
-                    //                            $("#proall").empty();
-                    //                            var querydata = $.parseJSON(data);
-                    //                            $.each(querydata, function (index, json) {
-                    //                                $("#proall").append(
-                    //                                		'<div class="card" style="width: 15rem; padding: 10px;">' +
-                    //                                    '<img class="card-img-top" src="image/'+ modelArray[b] +'.jpg" width="100px" height="220px" alt="Card image cap">' +
-                    //                                    '<div class="card-body">' +
-                    //                                    '<a href="#">' +
-                    //                                    '<img src="image/heart.png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '<span>' +
-                    //                                    '<a href="#">' +
-                    //                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '</span>' +
-                    //                                    "<h5 class='card-title'>" + json.model + "</h5>" +
-                    //                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                    //                                    '<a href="#" class="btn btn-danger">加入購物車' +
-                    //                                    '<img src="image/shopping-cart (1).png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '</div>' +
-                    //                                    '</div>'
-                    //
-                    //                                );
-                    //                            })
                 }
             });
         } //  end of clickleftbrand() 
@@ -1042,172 +670,30 @@ $(document).ready(function () {
                         c = b;
 
                         $("#pagebtn").append(
-                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
                         )
                         $("#page" + a).hide();
+                        document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
                     }
 
                     $("#page1").show();
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
-
-
-                    $("#changepagebtn1").click(function () {
-                        $(".forcard").hide();
-                        $("#page1").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
+                    function turnpage(){
+                    	$("#pagebtn li").attr("class","page-item");
+                    	$("#pagebtn li a").attr("class","mypage-link");
+                    	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn2").click(function () {
-                        $(".forcard").hide();
-                        $("#page2").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn3").click(function () {
-                        $(".forcard").hide();
-                        $("#page3").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn4").click(function () {
-                        $(".forcard").hide();
-                        $("#page4").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn5").click(function () {
-                        $(".forcard").hide();
-                        $("#page5").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn6").click(function () {
-                        $(".forcard").hide();
-                        $("#page6").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn7").click(function () {
-                        $(".forcard").hide();
-                        $("#page7").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn8").click(function () {
-                        $(".forcard").hide();
-                        $("#page8").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn9").click(function () {
-                        $(".forcard").hide();
-                        $("#page9").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn10").click(function () {
-                        $(".forcard").hide();
-                        $("#page10").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-
-                    //                          for(var x=1;x<page;x++){
-                    //                        	  $(("#changepagebtn"+x)).click(function(){
-                    //                        		  alert("555555555555555555555555555")
-                    //                                	$(".forcard").hide();
-                    //                                	$("#page"+x).show();
-                    //                                	
-                    //                              	  $("#changepagebtn"+x).parent().attr("class", "page-item");
-                    //                                   $("#changepagebtn"+x).attr("class", "mypage-link");               		
-                    //                                	
-                    //                              	$(this).parent().attr("class", "page-item active");
-                    //                                	$(this).attr("class", "mypage-link mypagestyle");
-                    //                                })
-                    //                          }
-
-
-
-
-
-
-                    //下面是舊的
-                    //                            $("#proall").empty();
-                    //                            var querydata = $.parseJSON(data);
-                    //                            $.each(querydata, function (index, json) {
-                    //                                $("#proall").append(
-                    //                                	'<div class="card" style="width: 15rem; padding: 10px;">' +
-                    //                                    '<img class="card-img-top" src="image/'+ modelArray[b] +'.jpg" width="100px" height="220px" alt="Card image cap">' +
-                    //                                    '<div class="card-body">' +
-                    //                                    '<a href="#">' +
-                    //                                    '<img src="image/heart.png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '<span>' +
-                    //                                    '<a href="#">' +
-                    //                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '</span>' +
-                    //                                    "<h5 class='card-title'>" + json.model + "</h5>" +
-                    //                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                    //                                    '<a href="#" class="btn btn-danger">加入購物車' +
-                    //                                    '<img src="image/shopping-cart (1).png" width="20px">' +
-                    //                                    '</a>' +
-                    //                                    '</div>' +
-                    //                                    '</div>'
-                    //
-                    //                                );
-                    //                            })
-
-
-
+                        $(".forcard").hide();      
+                        $("#page" + $(this).html()).show();
+                    }
 
                 }
             });
         } // end of clickleftprice() 
 
-
+    }
 
     })
 
@@ -1310,119 +796,26 @@ $(document).ready(function(){
                         c = b;
 
                         $("#pagebtn").append(
-                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
                         )
                         $("#page" + a).hide();
+                        document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
                     }
 
                     $("#page1").show();
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function turnpage(){
+                    	$("#pagebtn li").attr("class","page-item");
+                    	$("#pagebtn li a").attr("class","mypage-link");
+                    	$(this).parent().attr("class", "page-item active");
+                        $(this).attr("class", "mypage-link mypagestyle");
+                        $(".forcard").hide();      
+                        $("#page" + $(this).html()).show();
+                    }
 
 
-                    $("#changepagebtn1").click(function () {
-                        $(".forcard").hide();
-                        $("#page1").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn2").click(function () {
-                        $(".forcard").hide();
-                        $("#page2").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn3").click(function () {
-                        $(".forcard").hide();
-                        $("#page3").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn4").click(function () {
-                        $(".forcard").hide();
-                        $("#page4").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn5").click(function () {
-                        $(".forcard").hide();
-                        $("#page5").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn6").click(function () {
-                        $(".forcard").hide();
-                        $("#page6").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn7").click(function () {
-                        $(".forcard").hide();
-                        $("#page7").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn8").click(function () {
-                        $(".forcard").hide();
-                        $("#page8").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn9").click(function () {
-                        $(".forcard").hide();
-                        $("#page9").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn10").click(function () {
-                        $(".forcard").hide();
-                        $("#page10").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                 
-                 
                  
              }
          });
@@ -1533,119 +926,30 @@ $(document).ready(function(){
                         }
 
                         c = b;
-                       
+
                         $("#pagebtn").append(
-                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" >' + a + '</a></li>'
+                            '<li class="page-item"><a  id="changepagebtn' + a + '" class="mypage-link" value="'+a+'" >' + a + '</a></li>'
                         )
                         $("#page" + a).hide();
+                        document.getElementById("changepagebtn" + a).addEventListener("click",turnpage);
                     }
 
                     $("#page1").show();
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function turnpage(){
+                    	$("#pagebtn li").attr("class","page-item");
+                    	$("#pagebtn li a").attr("class","mypage-link");
+                    	$(this).parent().attr("class", "page-item active");
+                        $(this).attr("class", "mypage-link mypagestyle");
+                        $(".forcard").hide();      
+                        $("#page" + $(this).html()).show();
+                    }
 
 
-                    $("#changepagebtn1").click(function () {
-                        $(".forcard").hide();
-                        $("#page1").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn2").click(function () {
-                        $(".forcard").hide();
-                        $("#page2").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn3").click(function () {
-                        $(".forcard").hide();
-                        $("#page3").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn4").click(function () {
-                        $(".forcard").hide();
-                        $("#page4").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn5").click(function () {
-                        $(".forcard").hide();
-                        $("#page5").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn6").click(function () {
-                        $(".forcard").hide();
-                        $("#page6").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn7").click(function () {
-                        $(".forcard").hide();
-                        $("#page7").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn8").click(function () {
-                        $(".forcard").hide();
-                        $("#page8").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn9").click(function () {
-                        $(".forcard").hide();
-                        $("#page9").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
-                    $("#changepagebtn10").click(function () {
-                        $(".forcard").hide();
-                        $("#page10").show();
-                        for (d = 1; d <= 10; d++) {
-                            $("#changepagebtn" + d).parent().attr("class", "page-item");
-                            $("#changepagebtn" + d).attr("class", "mypage-link");
-                        }
-                        $(this).parent().attr("class", "page-item active");
-                        $(this).attr("class", "mypage-link mypagestyle");
-                    })
+
+             
              }
          });
      })     

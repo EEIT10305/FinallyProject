@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import model.service.MainPageSelectService;
 import model.service.NavigateService;
 
 @Controller
 public class ProductSelectByCategoryController {
 	@Autowired
 	NavigateService nav;
-	@Autowired
-	MainPageSelectService mainpageselect;
+	
 	
 	//類別標籤
 	@RequestMapping(path = "SelectByCategory",produces="text/html;charset=UTF-8")
