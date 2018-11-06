@@ -16,6 +16,11 @@ public interface NavigateService {
 	List<ProductBean> selectByCatPri(String category, Integer price);
 	List<ProductBean> selectByCat(String category);
 	List<ProductBean> selectByinput(String searchspace);
+	List<ProductBean> selectByCatBraPriorderbyprice(String category, String brand, Integer price);
+	List<ProductBean> selectByCatPriorderbyprice(String category, Integer price);
+	List<ProductBean> selectByCatBraorderbyprice(String category, String brand);
+	List<ProductBean> selectByCatorderbyprice(String category);
+	List<ProductBean> selectByinputorderbyprice(String searchspace);
 	
 	
 }

@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 
+import model.bean.MemberBean;
 import model.bean.OrderListBean;
 
 public interface OrderListDAO {
@@ -11,4 +12,5 @@ public interface OrderListDAO {
 	    boolean update(OrderListBean bean);
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
+		MemberBean selectMemberIdByEmail(String email);
 }

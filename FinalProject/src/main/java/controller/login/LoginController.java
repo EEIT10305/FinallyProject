@@ -79,7 +79,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");// 狀態設定為尚未付款
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 				
 			}
 			for(CartBean oneMemberCartRow:cmb) {
@@ -89,7 +89,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}
@@ -136,7 +136,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");// 狀態設定為尚未付款
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			for(CartBean oneMemberCartRow:cmb) {
 				addMemberStatus.add(oneMemberCartRow.getStatus());
@@ -145,7 +145,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}
@@ -170,7 +170,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");// 狀態設定為尚未付款
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			for(CartBean oneMemberCartRow:cmb) {
 				addMemberStatus.add(oneMemberCartRow.getStatus());
@@ -179,7 +179,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}
@@ -224,7 +224,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");// 狀態設定為尚未付款
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			for(CartBean oneMemberCartRow:cmb) {
 				addMemberStatus.add(oneMemberCartRow.getStatus());
@@ -233,7 +233,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}
@@ -281,7 +281,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");// 狀態設定為尚未付款
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			for(CartBean oneMemberCartRow:cmb) {
 				addMemberStatus.add(oneMemberCartRow.getStatus());
@@ -290,7 +290,7 @@ public class LoginController {
 				cartBean.setMemberid(memberid);
 				cartBean.setDate(strDate);
 				cartBean.setStatus("nopay");
-				cartService.insert(cartBean);
+				cartService.saveCartBean(cartBean);
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}

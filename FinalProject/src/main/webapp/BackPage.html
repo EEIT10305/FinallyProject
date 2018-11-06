@@ -31,15 +31,25 @@ tr td{
 border:1px solid black;
 width:70px;
 }
+.mytable{
+    width: 30%;
+    max-width: 100%;
+    margin:1rem auto;
+    background-color: transparent;
+}
+.mytable tbody tr td{
+    width: 500px;
+
+}
 </style>
 
 </head>
 
 <body>
-	<header>
+	<header style="width:100%">
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
-			<div class="navv" style="width: 50%">
+			<div class="navv" style="width: 80%">
 				<ul class="nav nav-pills nav-fill">
 					<!-- <li class="nav-item">
                               <a class="nav-link" href="#"><img src="image/001.png" width="50px"></a>
@@ -52,27 +62,27 @@ width:70px;
 				</ul>
 			</div>
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/envelope.png" width="30px">
 						</a>
-					</ul>
-					<ul>
+					</li>
+					<li>
 						<a id="test" href=""> <img src="image/cat.png"
 							width="30px">
 						</a>
-					</ul>
-				</li>
+					</li>
+				</ul>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='FirstPage.html'>
 						<button style="width: 300px" class='btn btn-dark'>登出</button>
 					</a>
-			</div>
 			</fieldset>
+			</div>
 		</div>
-		</div>
+		
 	</header>
 	<article>
 <!-----------------------------------------------畫面調整畫面----------------------------------------------- -->
@@ -102,6 +112,7 @@ width:70px;
 
 						<ol class="forinput" style="btext-align: center; width: 100%"
 							id="fordatainput2">
+							
 						</ol>
 					</div>
 					<div
@@ -167,24 +178,34 @@ width:70px;
 			</div>
 		</div>
 <!-- 	---------------爬蟲分析畫面---------------------------------------------------------------------->
-	<div id="bugpage"style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
-			<div style="width: 80%; align-items: flex-start;">
+	<div id="bugpage"  style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
+			<div  style="width: 80%;height:800px; align-items: flex-start;overflow:scroll;">
 			</div>
 			<div style="width: 20%; align-items: flex-start;">
 				<div style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
+					<div
+						style="background: aliceblue; text-align: center; padding: 10px">
+						<h6 id="area2">選擇網站</h6>
+						<select id="selectbug2">
+						    <option value="http://www.gh3c.com.tw/">光華商場</option>
+						</select>
+						<select id="selectbug3">
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=61">CPU</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=60">主機板</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=63">記憶體</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=62">顯示卡</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=64">硬碟</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=58">機殼</option>
+						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=59">電源供應器</option>
+						</select>
+						<button class="btn btn-secondary">送出</button>
+					</div>
+					
 					<div style="background: aliceblue; text-align: center; padding: 10px">
 						<h6 id="area1">選擇型號</h6>
 						<select id="selectbug1">
 						</select>
 						
-					</div>
-
-					<div
-						style="background: aliceblue; text-align: center; padding: 10px">
-						<h6 id="area2">選擇網站</h6>
-						<select id="selectbug2">
-						    <option>PChome</option>
-						</select>
 					</div>
 					
 
@@ -200,9 +221,23 @@ width:70px;
 	
 	<script>
 	$(document).ready(function(){
-		$.post("BugWebsite",function(data, status){
+
+	})
+	$("#selectbug3").next().click(function(){
+		$.post("BugWebsite",{
+			"orgin":$("#selectbug2").val(),
+			"page":$("#selectbug3").val()
+		},function(data, status){
 			if(status == "success"){
-				$("#bugpage").children(":first-child").html(data);
+				var query = $.parseJSON(data);
+				var str = '<table class="mytable table-striped">';
+				var count = 1;
+             str += '<thead><tr><th scope="col">#</th><th scope="col">商品圖片</th><th scope="col">商品名稱</th><th scope="col">商品價格</th></tr></thead><tbody>'
+				$.each(query,function(index, json){
+					str += '<tr><th scope="row">' + (count++) + '</th><td><img src="http://www.gh3c.com.tw/' + json.picture +'" width="100px" ></td><td>' +json.proName +'</td><td>' + json.price + '</td></tr>' 
+				})
+				str += '</tbody></table>'
+				$("#bugpage").children(":first-child").html(str);
 			}
 		})
 	})

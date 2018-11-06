@@ -9,4 +9,6 @@ public interface PinginDetailDAO {
 	    PinginDetailBean selectById(int id);
 	    PinginDetailBean insert(PinginDetailBean bean);
 	    boolean update(PinginDetailBean bean);
+		List<PinginDetailBean> selectPinginDetailByName(String name);
+		
 }
