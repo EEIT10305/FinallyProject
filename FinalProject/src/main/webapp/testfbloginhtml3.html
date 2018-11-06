@@ -15,13 +15,20 @@
     
 
 
-        <div>
-                Facebook登入：<input type="button"  value="Facebook登入" onclick="FBLogin();" />
+        <!-- <div>
+                Facebook登入：<input type="button"  value="Facebook登入" onclick="FBLogin()" />
         </div>
+        <div>
+                Facebook登出：<input type="button"  value="Facebook登出" onclick="javascript:FB.logout(function() { window.location.reload() }); return false;"/>
+        </div> -->
+<div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div>
 
-
-
-
+        <!-- <fb:login-button scope="public_profile,email"
+        onlogin="checkLoginState();"
+        auto_logout_link="true"
+        size="large"
+        show_faces="true"> 
+ </fb:login-button> -->
 
             <script type="text/javascript">
                 //應用程式編號，進入 https://developers.facebook.com/apps/ 即可看到
@@ -34,15 +41,14 @@
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
                     js = d.createElement(s); js.id = id;
-                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    js.src = "https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
         
                 window.fbAsyncInit = function () {
                     FB.init({
                         appId: "301951257305688",//FB appID
-                        cookie: true,  // enable cookies to allow the server to access the session
-                        
+                        // cookie: true,  // enable cookies to allow the server to access the session
                         xfbml: true,  // parse social plugins on this page
                         version: 'v3.2' // use graph api version
                     });
@@ -53,7 +59,8 @@
                 function FBLogin() {
                     
                     FB.login(function (response) {
-                        FB.api('/me?fields=name,first_name,last_name,email', function(response) { 
+                        FB.api('/me?fields=name,first_name,last_name,email', function(response) {
+                            // alert('fb登入') 
                 //将用户信息传回服务端
 //     	        	window.location.href="TestFBLogin.do?userInfo="+JSON.stringify(response);
 
@@ -63,8 +70,6 @@
                         data:{
                             userInfo:JSON.stringify(response)
                         },
-                        dataType:"json",
-                        // async:false,
                         success:function(response){
                             alert("這裡是facebook的登入:"+response)
                             if(response=="userFBLonin"){
@@ -73,8 +78,6 @@
                                 exp.setTime(exp.getTime() + Days*24*60*60*1000);
                                 document.cookie = "email=" + response+";expires=" + exp.toGMTString();
                                 alert('facebook登入+把email塞到cookie裡面');
-                                window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
-                                window.location.href="http://localhost:8090/FinalProject/git/repository/FinalProject/src/main/webapp/FirstPage.html";
                             }else{
                                 alert("facebook登入失敗")
                                 // window.location.href="https://tw.yahoo.com/?p=us";
@@ -87,6 +90,33 @@
                     }, { scope: 'public_profile,email' });
         
                 }
+
+
+function fblogout(){     // facebook 登出
+FB.getLoginStatus(
+function (response){
+if(response.status === 'connected'){
+FB.logout(function(response){    //使用者已成功登出
+alert("成功登出。");
+// localStorage.clear();
+// //再 refresh 一次，讓登入登出按鈕能正常顯示
+// location.replace( "放欲導回網站的URL" );
+});
+} 
+});
+}
+
+
+
+
+
+
+
+
+
+
+
+
             </script>
 </body>
 </html>

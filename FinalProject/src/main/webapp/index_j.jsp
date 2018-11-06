@@ -51,7 +51,7 @@
     	        	//将用户信息传回服务端
 //     	        	window.location.href="TestFBLogin.do?userInfo="+JSON.stringify(response);
     	        	 $.ajax({
-    	                    url:"TestFBLogin.do",
+    	                    url:"processFacebookLogin",
     	                    data:{
     	                    	userInfo:JSON.stringify(response)
     	                    },

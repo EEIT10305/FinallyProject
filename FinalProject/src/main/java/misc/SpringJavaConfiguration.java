@@ -58,7 +58,7 @@ public class SpringJavaConfiguration {
 		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 //		props.put("hibernate.current_session_context_class", "thread");
-		props.put("hibernate.show_sql", "true");
+//		props.put("hibernate.show_sql", "true");
 		props.put("hibernate.format_sql", "true");
 //		props.put("transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		builder.addProperties(props);

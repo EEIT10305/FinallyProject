@@ -1,3 +1,6 @@
+
+//===============================首頁一載入時要做的判斷================================================
+
 $(document).ready(function(){
     alert("近來網站之前有沒有先進來判斷cookie的方訊")
    var cookies = document.cookie;//先取cookie
@@ -18,18 +21,63 @@ $(document).ready(function(){
                url: "processFirstUser",
                data: {email:isUserInside},
                success: function (data) {
+                   
                    alert(data);
+                   
+                   var returnData = $.parseJSON(data);
+                   
                    if(data=="userIsOurMember"){
                     alert('此使用者的cookie內的mail資料是我們家的會員');
                     alert('隱藏登入按鈕!秀出會員按鈕');
                     //$('#已登入的圖示').hide();
-                   }else if(data=="facebook"){
+                   }
+                   else if(returnData.permission=="facebook"){
                         alert("已判斷使用者是facebook登入")
+                        $.ajax({
+                            type: "POST",
+                            url: "catchMemberCartId",
+                            data: {
+                                email: returnData.email, 
+                            },
+                            success: function (data) {
+                                // alert('有沒有抓到cartId??');
+                                // alert(data);
+                                sessionStorage.CartId=data;
+                                alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
+        
+                                var Days = 30;//cookie設定30天
+                                var exp = new Date();
+                                exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                                document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                            }
+                        });
                         //$('#未登入的圖示').hide();
-                   }else if(data=="google"){
+                   }
+                   else if(returnData.permission=="google"){
                     alert("已判斷使用者是google登入")
+                    $.ajax({
+                        type: "POST",
+                        url: "catchMemberCartId",
+                        data: {
+                            email: returnData.email, 
+                        },
+                        success: function (data) {
+                            // alert('有沒有抓到cartId??');
+                            // alert(data);
+                            sessionStorage.CartId=data;
+                            alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
+    
+                            var Days = 30;//cookie設定30天
+                            var exp = new Date();
+                            exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                            document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                        }
+                    });
                     //$('#未登入的圖示').hide();
-               }else{
+                   }else if(data=="gmLogin"){
+                    alert("已判斷使用者是GM登入")
+                   }
+                   else{
                        alert('此使用者的cookie內有mail的資訊,但不是我們家的會員')
                     //$('#未登入的圖示').hide();
                    }
@@ -42,7 +90,7 @@ $(document).ready(function(){
         }
     }
 })
-
+//===============================首頁登入================================================
 $("#gogogsubmit").click(function () {
     $.ajax({
         type: "POST",
@@ -53,7 +101,7 @@ $("#gogogsubmit").click(function () {
         },
         success: function (data) {
             alert(data)
-
+            // var cartIdUseInfo= data ; 
             $("#memberLoginErrorEmail").html("");
             $("#memberLoginErrorPassword").html("");
             $("#memberBothErrorMsg").html("");
@@ -64,7 +112,27 @@ $("#gogogsubmit").click(function () {
                 $("#memberLoginErrorPassword").html(data+"不能為空");
             }else if (data=="notFoundData"){
                 $("#memberBothErrorMsg").html("←找不到您的資料!如未註冊請點選左邊加入我們!");
-            }else{
+            }else if(data=="gmLogin"){
+                alert(data+'登入者是GM 請導入GM畫面');
+            }
+            else{
+                $.ajax({
+                    type: "POST",
+                    url: "catchMemberCartId",
+                    data: {email: data },
+                    success: function (data) {
+                        // alert('有沒有抓到cartId??');
+                        // alert(data);
+                        sessionStorage.CartId=data;
+                        alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
+
+                        var Days = 30;//cookie設定30天
+                        var exp = new Date();
+                        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                        document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                    }
+                });
+
                  var Days = 30;//cookie設定30天
                  var exp = new Date();
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);

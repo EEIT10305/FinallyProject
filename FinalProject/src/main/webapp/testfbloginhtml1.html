@@ -36,11 +36,17 @@
           statusChangeCallback(response);
         });
       }
-    
+    function fbLogout(){
+      FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+          FB.logout();
+        });
+        
+    }
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '301951257305688',
-          cookie     : true,  // enable cookies to allow the server to access 
+          // cookie     : true,  // enable cookies to allow the server to access 
                               // the session
           xfbml      : true,  // parse social plugins on this page
           version    : 'v2.8' // use graph api version 2.8
@@ -91,9 +97,13 @@
       the FB.login() function when clicked.
     -->
     
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
+    <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button> -->
     
+    <div>
+        Facebook登出：<input type="button"  value="Facebook登出" onclick="fbLogout()"/>
+</div>
+
     <div id="status"></div>
     <hr>
     <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>

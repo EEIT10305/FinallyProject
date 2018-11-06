@@ -12,4 +12,5 @@ public interface CartDAO {
 	    boolean delete(CartBean bean);
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
+	    List<CartBean> selectMemberId(Integer memberid);
 }

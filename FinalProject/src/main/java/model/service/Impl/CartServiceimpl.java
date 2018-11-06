@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import model.bean.CartBean;
@@ -57,6 +54,12 @@ public class CartServiceimpl implements CartService {
 	public void setMemberId(Integer memberid) {
 		Dao.setMemberId(memberid);
 		
+	}
+
+	@Override
+	public List<CartBean> selectMemberId(Integer memberid) {
+		// TODO Auto-generated method stub
+		return Dao.selectMemberId(memberid);
 	}
 
 }
