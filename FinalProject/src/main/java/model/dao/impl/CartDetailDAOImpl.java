@@ -1,26 +1,42 @@
 package model.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import misc.SpringJavaConfiguration;
 import model.bean.CartDetailBean;
+import model.bean.MemberBean;
 import model.dao.CartDetailDAO;
 
 @Repository
 public class CartDetailDAOImpl implements CartDetailDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	private Integer memberid = null;
-	
-	
 
+	//private Integer memberid = null;
+	
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	public static void main(String[] args) {
+	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
+		SessionFactory sessionfactroy=(SessionFactory) ctx.getBean("sessionFactory");
+		sessionfactroy.getCurrentSession().beginTransaction();
+		CartDetailDAOImpl cartDetailDAOImpl= (CartDetailDAOImpl) ctx.getBean("cartDetailDAOImpl");
+//		List<CartDetailBean> aa = cartDetailDAOImpl.selectbycartId(19);
+//		System.out.println(aa);
+		Boolean selects = cartDetailDAOImpl.deletebycartId(27);
+		System.out.println(selects);
+		sessionfactroy.getCurrentSession().getTransaction().commit();
+		sessionfactroy.close();
 	}
 
 	@Override
@@ -35,6 +51,7 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 
 	@Override
 	public CartDetailBean selectById(int id) {
+		//String hql = "FROM CartDetailBean Where cartid=:cartid";等同下方 get與load方法只有主要鍵才可以使用		
 		return this.getSession().get(CartDetailBean.class, id);
 	}
 
@@ -67,22 +84,33 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 	}
 
 	@Override
-	public boolean delete(CartDetailBean bean) {
-		if(bean!=null) {
-			this.getSession().delete(bean);
-			return true;
+	public boolean deletebycartId(Integer cartid) {
+	
+		String hql = "FROM CartDetailBean where cartid=: cartid";
+//		CartDetailBean cdb = this.getSession().createQuery(hql,CartDetailBean.class).setParameter("cartid", cartid).getSingleResult();
+//		this.getSession().delete(cdb);
+		List<CartDetailBean> cdb = this.getSession()
+				.createQuery(hql,CartDetailBean.class)
+				.setParameter("cartid", cartid).getResultList();
+		for(int x=0;x<cdb.size();x++) {
+			this.getSession().delete(cdb.get(x));			//如果是多項東西的泛型必須用迴圈把每一個bean給分別取出來，程式才知道要刪除的是一個bean物件，而非
 		}
-		return false;
+		return true;
 	}
 
 	@Override
-	public Integer getMemberId() {
-		return memberid;
+	public MemberBean getMemberId(int memberId) {
+	
+	//	MemberBean mb = new MemberBean();
+	//	this.getSession().get(MemberBean.class, memberId);
+		return this.getSession().get(MemberBean.class, memberId);
 	}
 
 	@Override
-	public void setMemberId(Integer memberid) {
-		this.memberid = memberid;
-		
+	public List<CartDetailBean> selectbycartId(int cartid) {
+		String hql = "FROM CartDetailBean Where cartid=:cartid";
+		List<CartDetailBean>list = this.getSession().
+		createQuery(hql).setParameter("cartid", cartid).getResultList();
+		return list ; 
 	}
 }

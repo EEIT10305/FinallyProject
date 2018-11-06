@@ -38,6 +38,8 @@
 			}})
     })
 </script>
+
+<script src="js/firstpageyuan.js"></script>
 </head>
 
 <body>
@@ -274,10 +276,8 @@
 			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
 			<a href=""> <img src="image/001.png" width="80px">
 			</a>
-			<p>欣亞數位股份有限公司 版權所有© Sinya Digital Corporation. All rights
-				reserved.</p>
-			<p>臺灣 807 高雄市三民區建國二路121號 網購客服專線(市話撥打)：0800-380-380
-				網購客服專線(手機撥打)：02-23512801</p>
+			 <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999
 			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
 		</div>
 
@@ -304,115 +304,7 @@
 		crossorigin="anonymous"></script>
 	
 <script type="text/javascript">
-        $(document).ready(function () {
-        	sessionStorage.category = "ini";
-            sessionStorage.brand = "ini";
-            sessionStorage.price = 0;
-            sessionStorage.searchspace = "ini";
-        	
-        	
-            $.get("SelectByCategory", function (data, status) {
-                if (status == "success") {
-                    var querydata = $.parseJSON(data);
-                    $.each(querydata, function (index, json) {
-                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
-                            + json.category + "'>" + json.category + "</button>");
-
-                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
-
-                    })
-
-                    $('button.menuitemstyle').click(function () {
-                        $(this).parent().siblings(".btnwidth").text($(this).text());
-                    })
-                    $('button[name="becheckbtn"]').next().hide();
-                    $('button[name="category"]').click(function () {
-                        $('button[name="becheckbtn"]').hide();
-                        $('button[name="becheckbtn"]').next().show();
-                    })
-                    
-                    
-                    
-                }
-            })
-            
-           
-            
-            
-            
-            function clickcategory() {
-                $('#brandtitle').text("廠牌");
-                $('#pricetitle').text("價格");
-                $('#brandbtn').empty();
-                document.getElementById("pricebtn1").addEventListener("click",clickprice);
-                document.getElementById("pricebtn2").addEventListener("click",clickprice);
-                document.getElementById("pricebtn3").addEventListener("click",clickprice);
-                document.getElementById("pricebtn4").addEventListener("click",clickprice);
-                document.getElementById("pricebtn5").addEventListener("click",clickprice);
-                
-                sessionStorage.category = event.target.value;
-             
-                //      傳category給brand標籤去搜尋producttable
-                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
-                    if (status == "success") {
-                        var querydata = $.parseJSON(data);
-                        $.each(querydata, function (index, json) {
-                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
-                                + json.brand + "'>" + json.brand + "</button>");
-                            document.getElementById(""+json.brand).addEventListener("click",clickbrand);
-                            
-           
-                        })
-                        $('button.menuitemstyle').click(function () {
-                            $(this).parent().siblings(".btnwidth").text($(this).text());
-                        })
-
-                       
-                    }
-                })
-                
-                function clickbrand(){
-                	sessionStorage.brand = event.target.value;
-                }
-                function clickprice(){
-             	    sessionStorage.price = event.target.value;
-                }
-
-
-            }
-        })
-    </script>
-<script type="text/javascript">
-$(document).ready(function(){
-    document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
-	document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
-
-     function storesearchspace(){
-         sessionStorage.searchspace = event.target.value;
-//          alert(sessionStorage.searchspace);
-     }	
-     function removesearchspace(){
-        sessionStorage.searchspace = "ini";
-       //  alert(sessionStorage.searchspace);
-     }
-	
-	
-$("#searchbtn").click(function(){
-	$.post("userInput",{"category":sessionStorage.category,
-		                     "brand":sessionStorage.brand,
-		                     "price":sessionStorage.price,
-		                     "searchspace":sessionStorage.searchspace},  
-		                     function(data,status){
-		                    	 sessionStorage.data = data
-// 		                    	 alert("要跳了 " + sessionStorage.data);
- 		                    	 window.location.href="http://localhost:8080/FinalProject/ProductPage.html";
-		                     }
-			)
-})
-	
-	
-})
-
+      
 </script>	
 		
 </body>

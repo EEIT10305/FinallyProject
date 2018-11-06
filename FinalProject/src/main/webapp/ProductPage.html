@@ -10,6 +10,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/fp.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/productpage.js"></script>
     <title>商品頁</title>
     <style>
         aside {
@@ -42,6 +43,7 @@
             border-color: grey;
         }
     </style>
+    
     <script>
         $(document).ready(function () {
             $.post("TestController")
@@ -53,25 +55,23 @@
                 $('button[name="becheckbtn"]').hide();
                 $('button[name="becheckbtn"]').next().show();
                 // 這裡可以加動態產生的品牌或價格選項
-
-            })
-
-            $('#test').mouseover(function () {
-                $("fieldset").show();
-            });
-            $('#test').mouseout(function () {
-                if (!$(".mymodal:hover").length) {
-                    $("fieldset").hide();
-                }
-            })
         })
+        
+        $('#test').mouseover(function(){
+        	$("fieldset").show();
+        });
+        $('#test').mouseout(function () {
+            if (!$(".mymodal:hover").length) {
+            	$("fieldset").hide();
+                  }
+        })
+    })
+</script>
 
-
-    </script>
 </head>
 
 <body>
-    <header style="width:100%">
+    <header>
         <div style="align-items:baseline;" class="d-flex justify-content-between">
             <div class="navv">
                 <li>
@@ -164,8 +164,7 @@
 
     </header>
 
-    <nav>
-        <!--搜尋器和輪播牆-->
+    <nav>       
         <!--搜尋器和輪播牆-->
         <div class="search">
             <div class="btn-group">
@@ -237,7 +236,7 @@
 
             <input id="searchspace" type="text" name="searchspace" style="line-height:45px;" size="30px">
             <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
-                搜尋
+                                       搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
                 </span>
@@ -307,7 +306,7 @@
             <div>
                 <!-- 共有幾項商品 -->
                 <h2 id="wearehere"></h2>
-                <h3 id="proamount">抱歉！搜尋不到相關商品</h3>
+                <h3 id="proamount">歡迎光臨 大選電腦！</h3>
 
 
                 <div id="orderbywhat" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -319,20 +318,22 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
+                          <li class="nav-item">
+                                <a id="orderByRelation" class="nav-link">依相關性</a>                               
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">依價格</a>
-                                <button class="nav-link">hhhh</button>
+                                <a id="orderbyprice" class="nav-link">依價格</a>                               
                             </li>
 
                         </ul>
                     </div>
                 </div>
             </div>
-
-            <div id="proall" class="forcard">
+                  <div id="proall"></div> 
+<!--             <div id="proall" class="forcard">  -->
                 <!-- <div class="card" style="width: 18rem;padding:10px;">
 
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
+                <img id="abcdefg"class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                 <div class="card-body">
                     <a href="#">
                         <img src="image/heart.png" width="20px">
@@ -348,32 +349,32 @@
                         <img src="image/shopping-cart (1).png" width="20px">
                     </a>
                 </div> -->
-            </div>
+<!--             </div> -->
 
         </article>
-
+         
 
     </div>
     <!-- 頁面跳轉按鈕 -->
     <div style="margin:50px;" aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="mypage-link" href="#" tabindex="-1">&laquo;</a>
-            </li>
-            <li class="page-item active">
-                <a class="mypage-link mypagestyle" href="#">1
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="mypage-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-                <a class="mypage-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-                <a class="mypage-link" href="#">&raquo;</a>
-            </li>
+        <ul id="pagebtn" class="pagination justify-content-center">
+<!--             <li class="page-item disabled"> -->
+<!--                 <a  class="mypage-link" href="#" tabindex="-1">&laquo;</a> -->
+               
+<!--             </li> -->
+<!--             <li class="page-item active"> -->
+<!--                 <a  class="mypage-link mypagestyle" href="#">1</a> -->
+<!--                      <span class="sr-only">(current)</span> -->                 
+<!--             </li> -->
+<!--             <li class="page-item"> -->
+<!--                 <a class="mypage-link" href="#">2</a> -->
+<!--             </li> -->
+<!--             <li class="page-item"> -->
+<!--                 <a class="mypage-link" href="#">3</a> -->
+<!--             </li> -->
+<!--             <li class="page-item"> -->
+<!--                 <a class="mypage-link" href="#">&raquo;</a> -->
+<!--             </li> -->
         </ul>
     </div>
 
@@ -407,521 +408,68 @@
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
-            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
+            <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999
             </p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
-
+<div id="show"></div>
     </footer>
     <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-
-    <script>
-        $(document).ready(function () {
-
-
-
-            var querydata = $.parseJSON(sessionStorage.data);
-
-            //   alert(sessionStorage.data)
-            if (sessionStorage.data != "[]") {
-                var products = sessionStorage.data.split("\"}},");  //把物件開算數量
-                var amount = products.length;
-                $("#proamount").html("相關商品共有 " + amount + " 項")
-
-            } else if (sessionStorage.data == "[]") {
-                $("#orderbywhat").hide();
-            }
-            //顯示現在位置
-            if (sessionStorage.searchspace == "ini") {
-                if (sessionStorage.brand == "ini" && sessionStorage.price == 0) {      //只搜類別      	
-                    $("#wearehere").html("> " + sessionStorage.category)
-                } else if (sessionStorage.brand != "ini" && sessionStorage.price == 0) {   //搜類別 品牌
-                    $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand)
-                } else if (sessionStorage.brand != "ini" && sessionStorage.price != 0) {  //搜類別 品牌 價格
-                    if (sessionStorage.price == 1) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $5000↓")
-                    } else if (sessionStorage.price == 5000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $5000-$10000")
-                    } else if (sessionStorage.price == 10000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $10000-$15000")
-                    } else if (sessionStorage.price == 15000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $15000-$20000")
-                    } else if (sessionStorage.price == 20000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > " + sessionStorage.brand + " > $20000↑")
-                    }
-                } else if (sessionStorage.brand == "ini" && sessionStorage.price != 0) {  //搜類別  價格
-                    if (sessionStorage.price == 1) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > $5000↓")
-                    } else if (sessionStorage.price == 5000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > $5000-$10000")
-                    } else if (sessionStorage.price == 10000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > $10000-$15000")
-                    } else if (sessionStorage.price == 15000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > $15000-$20000")
-                    } else if (sessionStorage.price == 20000) {
-                        $("#wearehere").html("> " + sessionStorage.category + " > $20000↑")
-                    }
-                }
-
-            }
-
-                 model = "";
-                 price = "";
-
-            $.each(querydata, function (index, json) {
-            	
-            	
-            	model += json.model + ",";
-                price += json.price + ",";
-//                 $("#proall").append(
-//                     '<div class="card" style="width: 18rem;padding:10px;">' +
-
-//                     '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
-//                     '<div class="card-body">' +
-//                     '<a href="#">' +
-//                     '<img src="image/heart.png" width="20px">' +
-//                     '</a>' +
-//                     '<span>' +
-//                     '<a href="#">' +
-//                     '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-//                     '</a>' +
-//                     '</span>' +
-//                     "<h5 class='card-title'>" + json.model + "</h5>" +
-//                     "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-//                     '<a href="#" class="btn btn-danger">加入購物車' +
-//                     '<img src="image/shopping-cart (1).png" width="20px">' +
-//                     '</a>' +
-//                     '</div>' +
-//                     '</div>'
-
-//                 );
-            })
-            model = "zero," + model;
-            price = "zero," + price;
-            alert(model)
-            modelNoEnd = model.substring(0, model.lastIndexOf(","))
-            priceNoEnd = price.substring(0, price.lastIndexOf(","))
-            
-            modelArray = model.substring(0, model.lastIndexOf(",")).split(",")
-            priceArray = price.substring(0, price.lastIndexOf(",")).split(",")
-            
-           total = modelArray.length - 1;   //商品總筆數   - "zero" 那筆
-           showamount = 4;              //一頁顯示幾筆
-           page = Math.ceil(total/showamount);  //共幾頁
-           a = 0;
-           b = 0;
-           c = 0;
-           
-           for(a=1; a<=page; a++){
-        	   $("#proll").append("<div id='page'" + a + "></div>")
-        	   for(b=c; b<=c+3; b++){
-        		   $("#page" + a).append(
-        				   '<div class="card" style="width: 18rem;padding:10px;">' +
-
-                           '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
-                           '<div class="card-body">' +
-                           '<a href="#">' +
-                           '<img src="image/heart.png" width="20px">' +
-                           '</a>' +
-                           '<span>' +
-                           '<a href="#">' +
-                           '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                           '</a>' +
-                           '</span>' +
-                           "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
-                           "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                           '<a href="#" class="btn btn-danger">加入購物車' +
-                           '<img src="image/shopping-cart (1).png" width="20px">' +
-                           '</a>' +
-                           '</div>' +
-                           '</div>'	   
-        		   )
-        	   }
-        	   c=b;
-           }
-           
-            alert(modelArray.length)
-            alert("page= " +page)
-            
-            alert(model);
-            alert(price);
-            
-            
-            
-            
-            sessionStorage.category = "ini";
-            sessionStorage.brand = "ini";
-            sessionStorage.price = 0;
-            sessionStorage.searchspace = "ini";
-        }
-        )
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            sessionStorage.category = "ini";
-            sessionStorage.brand = "ini";
-            sessionStorage.price = 0;
-            sessionStorage.searchspace = "ini";
-
-
-            $.get("SelectByCategory", function (data, status) {
-                if (status == "success") {
-                    var querydata = $.parseJSON(data);
-                    $.each(querydata, function (index, json) {
-                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
-                            + json.category + "'>" + json.category + "</button>");
-
-                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
-
-                    })
-
-                    $('button.menuitemstyle').click(function () {
-                        $(this).parent().siblings(".btnwidth").text($(this).text());
-                    })
-                    $('button[name="becheckbtn"]').next().hide();
-                    $('button[name="category"]').click(function () {
-                        $('button[name="becheckbtn"]').hide();
-                        $('button[name="becheckbtn"]').next().show();
-                    })
-
-
-
-                }
-            })
-
-
-
-
-
-            function clickcategory() {
-                $('#brandtitle').text("廠牌");
-                $('#pricetitle').text("價格");
-                $('#brandbtn').empty();
-                document.getElementById("pricebtn1").addEventListener("click", clickprice);
-                document.getElementById("pricebtn2").addEventListener("click", clickprice);
-                document.getElementById("pricebtn3").addEventListener("click", clickprice);
-                document.getElementById("pricebtn4").addEventListener("click", clickprice);
-                document.getElementById("pricebtn5").addEventListener("click", clickprice);
-
-                sessionStorage.category = event.target.value;
-
-                //      傳category給brand標籤去搜尋producttable
-                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
-                    if (status == "success") {
-                        var querydata = $.parseJSON(data);
-                        $.each(querydata, function (index, json) {
-                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
-                                + json.brand + "'>" + json.brand + "</button>");
-                            document.getElementById("" + json.brand).addEventListener("click", clickbrand);
-
-
-                        })
-                        $('button.menuitemstyle').click(function () {
-                            $(this).parent().siblings(".btnwidth").text($(this).text());
-                        })
-
-
-                    }
-                })
-
-                function clickbrand() {
-                    sessionStorage.brand = event.target.value;
-                }
-                function clickprice() {
-                    sessionStorage.price = event.target.value;
-                }
-
-
-            }
-        })
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
-            document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
-
-            function storesearchspace() {
-                sessionStorage.searchspace = event.target.value;
-                //          alert(sessionStorage.searchspace);
-            }
-            function removesearchspace() {
-                sessionStorage.searchspace = "ini";
-                //  alert(sessionStorage.searchspace);
-            }
-
-
-            $("#searchbtn").click(function () {
-                $.post("userInput", {
-                    "category": sessionStorage.category,
-                    "brand": sessionStorage.brand,
-                    "price": sessionStorage.price,
-                    "searchspace": sessionStorage.searchspace
-                },
-                    function (data, status) {
-                        sessionStorage.data = data
-                        // 		                    	 alert("要跳了 " + sessionStorage.data);
-                        window.location.href = "http://localhost:8080/FinalProject/ProductPage.html";
-                    }
-                )
-            })
-
-
-        })
-
-    </script>
-    <script type="text/javascript">
-        //左邊按鈕即時顯示商品
-        $(document).ready(function () {
-
-            sessionStorage.leftcategory = "ini";
-            sessionStorage.leftbrand = "ini";
-            sessionStorage.leftprice = 0;
-
-
-
-            //取得分類的選項
-            $.ajax({
-                url: "SelectByCategory",
-                type: "get",
-                success: function (data) {
-                    var querydata = $.parseJSON(data);
-                    $.each(querydata, function (index, json) {
-                        $("#leftcategorybtn").append("<option  value='" + json.category + "'>" + json.category + "</option>")
-                    })
-                }
-            })
-            //左邊 分類有改變時               
-            $("#leftcategorybtn").change(function () {
-                sessionStorage.leftbrand = "ini";
-                sessionStorage.leftprice = 0;
-                sessionStorage.leftcategory = event.target.value;
-                sessionStorage.data = "ini";
-                //      	alert("sessiion " + sessionStorage.leftcategory);
-                $("#leftpricebtn").show();
-                $("#wearehere").html("> " + sessionStorage.leftcategory)
-
-                $.ajax({
-                    url: "showProductByCategory",
-                    type: "post",
-                    data: { "leftcategory": event.target.value },
-                    success: function (data) {
-
-                        if (data != "[]") {
-                            var products = data.split("\"}},");  //把物件開算數量
-                            var amount = products.length;
-                            $("#proamount").html("相關商品共有 " + amount + " 項")
-                            $("#orderbywhat").show();
-                        } else if (data == "[]") {
-                            $("#proamount").html("抱歉！搜尋不到相關商品")
-                            $("#orderbywhat").hide();
-                        }
-
-
-
-
-
-                        $("#proall").empty();
-                        var querydata = $.parseJSON(data);
-                        $.each(querydata, function (index, json) {
-                            $("#proall").append(
-                                '<div class="card" style="width: 18rem;padding:10px;">' +
-                                '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
-                                '<div class="card-body">' +
-                                '<a href="#">' +
-                                '<img src="image/heart.png" width="20px">' +
-                                '</a>' +
-                                '<span>' +
-                                '<a href="#">' +
-                                '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                                '</a>' +
-                                '</span>' +
-                                "<h5 class='card-title'>" + json.model + "</h5>" +
-                                "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                                '<a href="#" class="btn btn-danger">加入購物車' +
-                                '<img src="image/shopping-cart (1).png" width="20px">' +
-                                '</a>' +
-                                '</div>' +
-                                '</div>'
-
-                            );
-                        })
-                    }
-                })
-                //左邊分類改變時 顯示對應品牌按鈕
-                $.ajax({
-                    type: "post",
-                    url: "SelectByBrand",
-                    data: { "category": sessionStorage.leftcategory },
-                    success: function (data) {
-                        $("#leftbrandbtn").empty();
-                        var querydata = $.parseJSON(data);
-                        $("#leftbrandbtn").append("<h5>廠牌</h5>");
-                        $.each(querydata, function (index, json) {
-                            $("#leftbrandbtn").append(
-                                "<button id='left" + json.brand + "' name='leftbrand' + value='" + json.brand + "' class='badge badge-secondary'>" + json.brand + "</button>"
-                            )
-                            document.getElementById("left" + json.brand).addEventListener("click", clickleftbrand);
-                        })
-
-
-
-
-                    }
-                });
-                //按下左邊品牌按鈕時 顯示對應商品
-                function clickleftbrand() {
-                    sessionStorage.leftprice = 0;
-                    sessionStorage.leftbrand = event.target.value;
-                    //           alert("leftbrand= " + sessionStorage.leftbrand)
-                    $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand)
-
-                    $.ajax({
-                        type: "post",
-                        url: "leftTag",
-                        data: {
-                            "leftcategory": sessionStorage.leftcategory,
-                            "leftbrand": sessionStorage.leftbrand,
-                            "leftprice": sessionStorage.leftprice
-                        },
-                        success: function (data) {
-                            if (data != "[]") {
-                                var products = data.split("\"}},");  //把物件開算數量
-                                var amount = products.length;
-                                $("#proamount").html("相關商品共有 " + amount + " 項")
-                                $("#orderbywhat").show();
-                            } else if (data == "[]") {
-                                $("#proamount").html("抱歉！搜尋不到相關商品")
-                                $("#orderbywhat").hide();
-                            }
-
-                            $("#proall").empty();
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#proall").append(
-                                    '<div class="card" style="width: 18rem;padding:10px;">' +
-                                    '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
-                                    '<div class="card-body">' +
-                                    '<a href="#">' +
-                                    '<img src="image/heart.png" width="20px">' +
-                                    '</a>' +
-                                    '<span>' +
-                                    '<a href="#">' +
-                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                                    '</a>' +
-                                    '</span>' +
-                                    "<h5 class='card-title'>" + json.model + "</h5>" +
-                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                                    '<a href="#" class="btn btn-danger">加入購物車' +
-                                    '<img src="image/shopping-cart (1).png" width="20px">' +
-                                    '</a>' +
-                                    '</div>' +
-                                    '</div>'
-
-                                );
-                            })
-                        }
-                    });
-                } //  end of clickleftbrand() 
-                $("#leftpricebtn1").click(clickleftprice)
-                $("#leftpricebtn2").click(clickleftprice)
-                $("#leftpricebtn3").click(clickleftprice)
-                $("#leftpricebtn4").click(clickleftprice)
-                $("#leftpricebtn5").click(clickleftprice)
-
-                function clickleftprice() {
-                    //     	  alert("win !")
-                    sessionStorage.leftprice = event.target.value;
-                    //           alert("leftprice= " + sessionStorage.leftprice)
-                    if (sessionStorage.leftbrand != "ini") {   //有按品牌
-                        if (sessionStorage.leftprice == 1) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $5000↓")
-                        } else if (sessionStorage.leftprice == 5000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $5000-$10000")
-                        } else if (sessionStorage.leftprice == 10000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $10000-$15000")
-                        } else if (sessionStorage.leftprice == 15000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $15000-$20000")
-                        } else if (sessionStorage.leftprice == 20000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > " + sessionStorage.leftbrand + " > $20000↑")
-                        }
-                    } else if (sessionStorage.leftbrand == "ini") {   //沒按品牌
-                        if (sessionStorage.leftprice == 1) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $5000↓")
-                        } else if (sessionStorage.leftprice == 5000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $5000-$10000")
-                        } else if (sessionStorage.leftprice == 10000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $10000-$15000")
-                        } else if (sessionStorage.leftprice == 15000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $15000-$20000")
-                        } else if (sessionStorage.leftprice == 20000) {
-                            $("#wearehere").html("> " + sessionStorage.leftcategory + " > $20000↑")
-                        }
-                    }
-
-
-                    $.ajax({
-                        type: "post",
-                        url: "leftTag",
-                        data: {
-                            "leftcategory": sessionStorage.leftcategory,
-                            "leftbrand": sessionStorage.leftbrand,
-                            "leftprice": sessionStorage.leftprice
-                        },
-                        success: function (data) {
-
-                            if (data != "[]") {
-                                var products = data.split("\"}},");  //把物件分開算數量
-                                var amount = products.length;
-                                $("#proamount").html("相關商品共有 " + amount + " 項")
-                                $("#orderbywhat").show();
-                            } else if (data == "[]") {
-                                $("#proamount").html("抱歉！搜尋不到相關商品")
-                                $("#orderbywhat").hide();
-                            }
-
-                            $("#proall").empty();
-                            var querydata = $.parseJSON(data);
-                            $.each(querydata, function (index, json) {
-                                $("#proall").append(
-                                    '<div class="card" style="width: 18rem;padding:10px;">' +
-                                    '<img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">' +
-                                    '<div class="card-body">' +
-                                    '<a href="#">' +
-                                    '<img src="image/heart.png" width="20px">' +
-                                    '</a>' +
-                                    '<span>' +
-                                    '<a href="#">' +
-                                    '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                                    '</a>' +
-                                    '</span>' +
-                                    "<h5 class='card-title'>" + json.model + "</h5>" +
-                                    "<h5 class='card-title' style='color:red'>$" + json.price + "</h5>" +
-                                    '<a href="#" class="btn btn-danger">加入購物車' +
-                                    '<img src="image/shopping-cart (1).png" width="20px">' +
-                                    '</a>' +
-                                    '</div>' +
-                                    '</div>'
-
-                                );
-                            })
-
-                        }
-                    });
-                } // end of clickleftprice() 
-
-
-
-            })
-
-        })
-
-    </script>
-
+<<<<<<< HEAD
+        
+      <script type="text/javascript">
+		$(document).ready(function() {
+				$.get("ShowAllProduct",
+							function(data, status) {		
+								if (status == "success") {		
+									var querydata = $.parseJSON(data);
+									$.each(querydata, function(index, json) {
+										$("#show").append(
+												"<tr><td>" + json.picture
+												+ "</td><td>" 
+												+ json.model
+												+ "</td><td>"
+												+ json.price
+												+"</td><td>"
+												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
+												+ "</td></tr>");
+										
+										document.getElementById(""+json.model).addEventListener("click",click);
+										
+									}) 
+									
+
+								}
+							})
+								
+				function click(){
+					sessionStorage.c1 = event.target.value
+					alert(window.sessionStorage.c1)
+					if(sessionStorage.CartId != null)
+ 					sessionStorage.CartId=27
+					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// 						if(data=="null"){
+// 							alert("請重新登入")
+// 						}
+						alert(sessionStorage.CartId);
+						alert(111);
+						alert(data);
+						
+						
+					})
+					
+					
+				}
+					
+					
+				})
+	</script>  
+        
 </body>
 
 </html>

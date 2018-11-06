@@ -58,4 +58,11 @@ public class PinginDetailDAOImpl implements PinginDetailDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<PinginDetailBean> selectPinginDetailByName(String name) {
+		String hql = "from PinginDetailBean where name= :name";
+		return this.getSession().createQuery(hql,PinginDetailBean.class).setParameter("name", name).getResultList();
+	}
+	
 }

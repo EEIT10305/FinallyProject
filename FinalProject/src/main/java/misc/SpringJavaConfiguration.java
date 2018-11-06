@@ -51,7 +51,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder =
-				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
+				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
 
 		Properties props = new Properties();
 
@@ -60,6 +60,7 @@ public class SpringJavaConfiguration {
 //		props.put("hibernate.current_session_context_class", "thread");
 		props.put("hibernate.show_sql", "false");
 		props.put("hibernate.format_sql", "false");
+
 //		props.put("transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		builder.addProperties(props);
 		
