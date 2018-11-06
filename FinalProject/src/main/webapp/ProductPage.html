@@ -103,7 +103,7 @@
             <div class="navv">
                 <li>
                     <ul>
-                        <a id="test" href="">
+                        <a id="test" href="/FinalProject/ShowCart.html">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
                     </ul>
@@ -306,7 +306,7 @@
             <div>
                 <!-- 共有幾項商品 -->
                 <h2 id="wearehere"></h2>
-                <h3 id="proamount">歡迎光臨 大選電腦！</h3>
+                <h3 id="proamount">抱歉！找不到相關商品</h3>
 
 
                 <div id="orderbywhat" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -422,55 +422,55 @@
         crossorigin="anonymous"></script>
 
         
-      <script type="text/javascript">
-		$(document).ready(function() {
-				$.get("ShowtoAllProduct",
-							function(data, status) {		
-								if (status == "success") {		
-									var querydata = $.parseJSON(data);
-									$.each(querydata, function(index, json) {
-										$("#show").append(
-												"<tr><td>" + json.picture
-												+ "</td><td>" 
-												+ json.model
-												+ "</td><td>"
-												+ json.price
-												+"</td><td>"
-												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
-												+ "</td></tr>");
+<!--       <script type="text/javascript"> 
+// 		$(document).ready(function() {
+// 				$.get("ShowtoAllProduct",
+// 							function(data, status) {		
+// 								if (status == "success") {		
+// 									var querydata = $.parseJSON(data);
+// 									$.each(querydata, function(index, json) {
+// 										$("#show").append(
+// 												"<tr><td>" + json.picture
+// 												+ "</td><td>" 
+// 												+ json.model
+// 												+ "</td><td>"
+// 												+ json.price
+// 												+"</td><td>"
+// 												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
+// 												+ "</td></tr>");
 										
-										document.getElementById(""+json.model).addEventListener("click",click);
+// 										document.getElementById(""+json.model).addEventListener("click",click);
 										
-									}) 
+// 									}) 
 									
 
-								}
-							})
+// 								}
+// 							})
 								
-				function click(){
-					sessionStorage.c1 = event.target.value
-					alert(window.sessionStorage.c1)
-// 					if(sessionStorage.CartId != null)
- 					sessionStorage.CartId=1
- 					alert(sessionStorage.CartId)
-					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
-// 						if(data=="null"){
-// 							alert("請重新登入")
-// 						}
+// 				function click(){
+// 					sessionStorage.c1 = event.target.value
+// 					alert(window.sessionStorage.c1)
+// // 					if(sessionStorage.CartId != null)
+//  					sessionStorage.CartId=1
+//  					alert(sessionStorage.CartId)
+// 					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// // 						if(data=="null"){
+// // 							alert("請重新登入")
+// // 						}
 						
-						alert(sessionStorage.CartId);
-						alert(111);
-						alert(data);
+// 						alert(sessionStorage.CartId);
+// 						alert(111);
+// 						alert(data);
 						
 						
-					})
+// 					})
 					
 					
-				}
+// 				}
 					
 					
-				})
-	</script>  
+// 				})
+ 	</script>   -->
         
 </body>
 

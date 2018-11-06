@@ -66,7 +66,7 @@
     })
 
     </script>
-    
+    <script src="js/firstpageyuan.js"></script>
 </head>
 
 <body>
@@ -96,7 +96,7 @@
             <div class="navv">
                <ul>
 					<li>
-						<a id="test" href=""> <img src="image/shopping-cart.png"
+						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
 					</li>
@@ -165,11 +165,11 @@
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
+                <div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button> -->
                 </div>
                 </div>
 
@@ -184,7 +184,7 @@
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                <div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
                     
                 </div>
 
@@ -200,7 +200,11 @@
                         <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                   
+                    <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
             </div>
             <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -224,8 +228,8 @@
 
 
 
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+            <input  id="searchspace" type="text" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
