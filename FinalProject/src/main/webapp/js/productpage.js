@@ -96,14 +96,15 @@ $(document).ready(function () {
                 '</a>' +
                 '</span>' +
                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
-                "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                '<a href="#" class="btn btn-danger">加入購物車' +
+                "<h5  class='card-title' style='color:red' >$" + priceArray[b] + "</h5>" +
+                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                 '<img src="image/shopping-cart (1).png" width="20px">' +
                 '</a>' +
                 '</div>' +
-                '</div>' +
+                '</div>' +                
                 '</div>')
-
+            document.getElementById("add"+b).addEventListener("click",addToCart);       
+                
         }
 
         c = b;
@@ -119,6 +120,21 @@ $(document).ready(function () {
     $("#changepagebtn1").parent().attr("class", "page-item active");
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+
+   
+    
+    function addToCart(){
+         alert($(this).prev().prev().text())
+         $.ajax({
+             type: "post",
+             url: "AddToCartController",
+             data: {"model":$(this).prev().prev().text()},             
+             success: function (data) {
+                 alert("加入購物車成功！")
+             }
+         });
+    }
+
     function turnpage(){
     	$("#pagebtn li").attr("class","page-item");
     	$("#pagebtn li a").attr("class","mypage-link");
@@ -128,6 +144,10 @@ $(document).ready(function () {
         $("#page" + $(this).html()).show();
     }
 
+  
+  
+    
+    
 }
 )
 
