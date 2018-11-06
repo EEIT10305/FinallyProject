@@ -68,5 +68,7 @@ public interface SelectProductForCustomizedService {
 
 	List<PowerSupplierBean> showPowerSupplierByTotalPowerInService(Integer PowerModel);
 
+	ProductBean showCartDetailInService(String model, Integer cartId);
+
 
 }

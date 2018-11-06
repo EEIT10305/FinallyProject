@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.BrandBean;
 import model.bean.CabinetBean;
@@ -24,10 +24,13 @@ import model.dao.ProductDAO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
+
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	public ProductDAOImpl() {}
 
-	private Session getSession() {
+	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
  

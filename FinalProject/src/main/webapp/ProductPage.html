@@ -55,21 +55,19 @@
                 $('button[name="becheckbtn"]').hide();
                 $('button[name="becheckbtn"]').next().show();
                 // 這裡可以加動態產生的品牌或價格選項
-
-            })
-
-            $('#test').mouseover(function () {
-                $("fieldset").show();
-            });
-            $('#test').mouseout(function () {
-                if (!$(".mymodal:hover").length) {
-                    $("fieldset").hide();
-                }
-            })
         })
+        
+        $('#test').mouseover(function(){
+        	$("fieldset").show();
+        });
+        $('#test').mouseout(function () {
+            if (!$(".mymodal:hover").length) {
+            	$("fieldset").hide();
+                  }
+        })
+    })
+</script>
 
-
-    </script>
 </head>
 
 <body>
@@ -335,7 +333,7 @@
 <!--             <div id="proall" class="forcard">  -->
                 <!-- <div class="card" style="width: 18rem;padding:10px;">
 
-                <img class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
+                <img id="abcdefg"class="card-img-top" src="image/298ACE9CE1-Gd-7845503.jpg" width="100px" alt="Card image cap">
                 <div class="card-body">
                     <a href="#">
                         <img src="image/heart.png" width="20px">
@@ -415,7 +413,7 @@
             </p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
-
+<div id="show"></div>
     </footer>
     <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -423,7 +421,57 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
 
+        
+      <script type="text/javascript">
+		$(document).ready(function() {
+				$.get("ShowtoAllProduct",
+							function(data, status) {		
+								if (status == "success") {		
+									var querydata = $.parseJSON(data);
+									$.each(querydata, function(index, json) {
+										$("#show").append(
+												"<tr><td>" + json.picture
+												+ "</td><td>" 
+												+ json.model
+												+ "</td><td>"
+												+ json.price
+												+"</td><td>"
+												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
+												+ "</td></tr>");
+										
+										document.getElementById(""+json.model).addEventListener("click",click);
+										
+									}) 
+									
 
+								}
+							})
+								
+				function click(){
+					sessionStorage.c1 = event.target.value
+					alert(window.sessionStorage.c1)
+// 					if(sessionStorage.CartId != null)
+ 					sessionStorage.CartId=1
+ 					alert(sessionStorage.CartId)
+					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// 						if(data=="null"){
+// 							alert("請重新登入")
+// 						}
+						
+						alert(sessionStorage.CartId);
+						alert(111);
+						alert(data);
+						
+						
+					})
+					
+					
+				}
+					
+					
+				})
+	</script>  
+        
 </body>
 
 </html>

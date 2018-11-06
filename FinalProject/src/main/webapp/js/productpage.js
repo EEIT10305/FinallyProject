@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     //顯示從firstpage搜尋到的產品
     //顯示從上方搜尋到的產品
 
@@ -976,4 +975,3 @@ $(document).ready(function(){
 	
 })
 
-    
