@@ -122,7 +122,7 @@ $(document).ready(function () {
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
 
-   sessionStorage.CartId =1
+ 
     
     function addToCart(){
 //         alert($(this).prev().prev().text())
@@ -147,10 +147,6 @@ $(document).ready(function () {
         $("#page" + $(this).html()).show();
     }
 
-  
-  
-    
-    
 }
 )
 

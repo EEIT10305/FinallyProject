@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8" />
     <title>WebSocket Test</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script language="javascript" type="text/javascript">
         var wsUri = "ws://echo.websocket.org/";
         var output;
+        window.addEventListener("load", init, false); 
+        
             function init() {
                 output = document.getElementById("output");
                 testWebSocket();
@@ -27,24 +32,60 @@
                 writeToScreen("CONNECTED"); 
                 doSend("WebSocket rocks"); 
             }  
-            function onClose(evt) { 
-                writeToScreen("DISCONNECTED"); 
+            function doSend(message) { 
+                writeToScreen("SENT: " + message);
+                websocket.send("送給message"); 
             }  
             function onMessage(evt) { 
                 writeToScreen('RESPONSE: ' + evt.data+''); 
                 websocket.close(); 
             }  
+            function onClose(evt) { 
+                writeToScreen("DISCONNECTED"); 
+            }  
             function onError(evt) { 
                 writeToScreen('ERROR: ' + evt.data); 
             }  
-            function doSend(message) { 
-                writeToScreen("SENT: " + message);
-                websocket.send(message); 
-            }  
+            
             function writeToScreen(message) { 
                 var pre = document.createElement("p"); pre.style.wordWrap = "break-word"; pre.innerHTML = message; output.appendChild(pre); 
             }  
-            window.addEventListener("load", init, false);  
-        </script>  
-        <h2>WebSocket Test</h2>  
-        <div id="output"></div>  
+             
+        </script> 
+        </head>
+<body>
+
+        <h2>WebSocket Test</h2>
+          
+        <div id="output" style="border:1px solid black">666</div>
+        <br>
+        
+        <textarea rows="10" cols="20" id="memo" name="memo"></textarea> 
+        <button type="button" id="submit">submit</button> 
+        
+        <script type="text/javascript">
+        $(document).ready(function(){
+        	
+        	
+            $("#submit").click(function(){
+        	var memo = $("#memo").val();
+//         	alert(memo)
+            	$.ajax({
+            		type:"post",
+            		url:"insertMessage",
+            		data:{"memo":memo},
+            		success:function(data){
+            			alert("success!!")
+            		}
+            	})
+            })
+        	
+        	
+        	
+        })
+        
+        </script>
+</body>
+
+
+</html> 
