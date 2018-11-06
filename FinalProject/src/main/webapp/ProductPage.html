@@ -420,11 +420,11 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-<<<<<<< HEAD
+
         
       <script type="text/javascript">
 		$(document).ready(function() {
-				$.get("ShowAllProduct",
+				$.get("ShowtoAllProduct",
 							function(data, status) {		
 								if (status == "success") {		
 									var querydata = $.parseJSON(data);
@@ -450,12 +450,14 @@
 				function click(){
 					sessionStorage.c1 = event.target.value
 					alert(window.sessionStorage.c1)
-					if(sessionStorage.CartId != null)
- 					sessionStorage.CartId=27
+// 					if(sessionStorage.CartId != null)
+ 					sessionStorage.CartId=1
+ 					alert(sessionStorage.CartId)
 					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
 // 						if(data=="null"){
 // 							alert("請重新登入")
 // 						}
+						
 						alert(sessionStorage.CartId);
 						alert(111);
 						alert(data);

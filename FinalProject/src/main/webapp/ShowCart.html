@@ -289,7 +289,7 @@ article {
 								</table>
 							</div>
 						</div>
-
+								<div id="showtotal"></div>
 						<div style="padding: 30px">
 							<button class="btn btn-secondary collapsed" type="button"
 								data-toggle="collapse" data-target="#collapseTwo"
@@ -426,6 +426,7 @@ article {
 		</div>
 		
 		<button id="david">iiiiiii</button>
+		
 	</footer>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
@@ -486,16 +487,19 @@ article {
  												 esum = esum + json.productBean.price  * $("#"+uuu).val()
 												alert(esum)
  								
-												
+												  $("#showtotal").html("esum =" + esum)
 												
 												$("#"+uuu).change(function(){
 												    temp = $("#"+uuu).val();
 												    
 												    sum = esum ;
 												    sum = sum + json.productBean.price  * temp
-												   
+												   	
 												    alert(sum)
-													
+												    sessionStorage.totalsum=sum
+												    alert("sessionStorage.totalsum =" + sessionStorage.totalsum)
+												    
+												    $("#showtotal").html("sessionStorage.totalsum =" + sessionStorage.totalsum)
 												})
 												
  													
@@ -524,7 +528,7 @@ article {
 							})
 							
 						$("#david").click(function(){
-							alert(sessionStorage.sum);
+							alert(sessionStorage.totalsum);
 						})	
  				})
   </script> 
