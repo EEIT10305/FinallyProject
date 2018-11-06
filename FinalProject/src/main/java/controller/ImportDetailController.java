@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.concurrent.SynchronousQueue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import model.bean.BranchStockBean;
 import model.bean.ImportBean;
 import model.bean.ImportDetailBean;
+import model.dao.BranchStockDAO;
 import model.service.ImportDetailService;
 import model.service.ImportService;
 
@@ -25,48 +26,54 @@ public class ImportDetailController {
 	@Autowired
 	private ImportService importService;
 	
+	@Autowired
+	private BranchStockDAO branchStockDAO;
 
 	@RequestMapping("/pages/detail.controller")
-	public String method(Integer improtid, Model model) {
+	public String showDetail(Integer improtid, Model model) {
 		System.out.println("import id ========================" + improtid);
 	
 		List<ImportDetailBean> detailresult = importDetailService.selectAllByID(improtid);
 		
+		if(improtid!=0) {			
+			System.out.println("importid has value======================================================");
+			
+			model.addAttribute("detail", detailresult);
+		}else {
+			System.out.println("importid is nullllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
+			return null;
+		}
+			
 		
-		model.addAttribute("detail", detailresult);
-
-		
-		return "/Backstage_Detail.jsp";
+		return "/Backstage_Search_Import_Result.jsp";
 	}
 	
 
 
 	@RequestMapping("/pages/import.updateController")
-	public String update(ImportBean bean, String statu, Integer improtid, Model model) {
-		System.out.println("importid++++++++++++++++++++" + improtid + improtid.getClass());
-		System.out.println("update controller==========================" + statu);
-		System.out.println(statu.getClass() + "---------------------------------");
-		if(statu.contains("on")) {			
-			String off = "off";
-			statu = off;
-			System.out.println("on================================" + statu);			
-		}
+	public String update(ImportBean bean, Integer improtid, Model model) {
+
+		System.out.println("importtttttttttttttttttttttttttttttttttttttttiiiiiiiiiiiiiiiid" + improtid);
 		
-		else if("off".equals(statu)) {
-			String on = "on";
-			statu = on;
+		String statu = importService.selectByimprotid(improtid).getStatu();
+		
+		if("on".equals(statu)) {
+			statu = "off";
+			System.out.println("on================================" + statu);
+			
+		}else if("off".equals(statu)) {
+			statu = "on";
 			System.out.println("off===============================" + statu);
 		}
 		
-		System.out.println("updating++++++++++++++++++++++++++++++++++++++" + statu);
-//		List<ImportBean> result = 
 				importService.updateStatus(statu, improtid);
-//		model.addAttribute("success", result);
-		System.out.println("Update controller============================ update success");
-		
-		
-		
-		return "/Backstage_Success.jsp";
+
+			
+		List<BranchStockBean> result = importService.insertBranchStock(improtid);
+	
+		model.addAttribute("stock", result);
+			
+		return "/Backstage_Search_Import_Result.jsp";
 
 	}
 

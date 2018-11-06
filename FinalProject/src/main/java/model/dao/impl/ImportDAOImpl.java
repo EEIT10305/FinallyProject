@@ -23,7 +23,7 @@ public class ImportDAOImpl implements ImportDAO {
 
 	@Override
 	public List<ImportBean> selectAll() {
-		return this.getSession().createQuery("FROM ImportBean", ImportBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM ImportBean", ImportBean.class).getResultList();
 	}
 
 	@Override
@@ -150,11 +150,16 @@ public class ImportDAOImpl implements ImportDAO {
 		query.executeUpdate();
 //		return this.getSession().createQuery(hql).setParameter("statu", statu).setParameter("improtid", improtid).list();
 		return null;
-		
-
 	}
 
-	
+	@Override
+	public ImportBean getImportDetail(Integer improtid){
+
+		String hql = "From ImportBean where improtid =: improtid";
+		
+		return this.getSession().createQuery(hql, ImportBean.class).setParameter("improtid", improtid).getSingleResult();
+	}
+		
 	
 
 }

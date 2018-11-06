@@ -10,13 +10,13 @@ import model.dao.ImportDetailDAO;
 import model.dao.ProductDAO;
 import model.service.ImportDetailService;
 @Service
-public class ImportDetailImpl implements ImportDetailService{
+public class ImportDetailServiceImpl implements ImportDetailService{
 
 	
 	@Autowired
 	ImportDetailDAO importDetailDAO;
 		
-	public ImportDetailImpl() {
+	public ImportDetailServiceImpl() {
 
 	}
 	
