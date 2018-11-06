@@ -12,4 +12,5 @@ public interface CartDetailDAO {
 	    boolean delete(CartDetailBean bean);
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
+		List<CartDetailBean> selectAllByCartId(Integer cartid);
 }

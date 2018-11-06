@@ -42,6 +42,7 @@ article {
 // 		alert(sessionStorage.CABINETname)
 // 		alert(sessionStorage.VGAname)
 // 		alert(sessionStorage.STORAGEname)
+		sessionStorage.pay="false";
 		$.post("TestController")
 		$("form > select").hide();
 		$("#inlineRadio4").click(function() {
@@ -68,63 +69,154 @@ article {
 			if (!$(".mymodal:hover").length) {
 				$("fieldset").hide();
 			}
-		})
+		});
 		ShowCartItems()
-	})
+// 		$("#CheckCar").click(CheckProducts)
+// 		$("#CheckOrder").click(CheckPay)
+		$("#CheckOrderSubmit").click(CheckOrderByPay)
+		$("[name='inlineRadioOptions']").click(HideAddress)
+	});
 	function ShowCartItems(){
-		var count=1;
-		alert("AA")
-		$.post("showCartDetail",{"model":sessionStorage.MBname},function(data,status){
-			if (status == "success") {
-                var querydata = $.parseJSON(data);
-                    $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                    count++
-               }
-		})
-		$.post("showCartDetail",{"model":sessionStorage.CPUname},function(data,status){
-			if (status == "success") {
+// 		var count=1;
+// 		sessionStorage.CartId=4
+// 		$.post("showCartDetail",{"model":sessionStorage.MBname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                     $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                     count++
+//                }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CPUname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.RAMname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.POWERSUPPLIERname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CABINETname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                 var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.VGAname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.STORAGEname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+			
+		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+			if(status=="success"){
 				var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
+				var count=1;
+				var sum=0;
+                $.each(querydata, function (index, json) {
+                	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td><tr>");
+                 	sum += json.productBean.price
+                	count++
+                })
+			$("#show").append("總價:"+sum)
+			sessionStorage.TotalPrice=sum
+			}
 		})
-		$.post("showCartDetail",{"model":sessionStorage.RAMname},function(data,status){
-			if (status == "success") {
-				var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
-		})
-		$.post("showCartDetail",{"model":sessionStorage.POWERSUPPLIERname},function(data,status){
-			if (status == "success") {
-				var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
-		})
-		$.post("showCartDetail",{"model":sessionStorage.CABINETname},function(data,status){
-			if (status == "success") {
-                var querydata = $.parseJSON(data);
-                var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
-		})
-		$.post("showCartDetail",{"model":sessionStorage.VGAname},function(data,status){
-			if (status == "success") {
-				var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
-		})
-		$.post("showCartDetail",{"model":sessionStorage.STORAGEname},function(data,status){
-			if (status == "success") {
-				var querydata = $.parseJSON(data);
-                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+"照片!!!"+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
-                count++
-            }
-		})
+		
 	}
+	//確認產品進購物車
+// 	function CheckProducts(){
+// 		$.post("XXX",{"":""},function)(data,status){
+			
+// 		})
+// 	}
+	//確認已結帳
+	
+// 	function CheckPay(){
+// 		$.post("CheckProductsToPay",function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+// 				sessionStorage.pay=querydata
+// 				if(sessionStorage.pay!="true"){
+// 					alert("付款失敗，請重新選擇")
+// 					$("#CheckOrderByPay").hide()
+// 				}else if(sessionStorage.pay=="true"){
+// 					$("#CheckOrderByPay").show()
+// 				}
+//             }
+// 		})
+// 	}
+	function HideAddress(){
+		if($("input[name='inlineRadioOptions']:checked").val()=="宅配"){
+			$("#CheckAddressDiv").show()
+			
+		}else if($("input[name='inlineRadioOptions']:checked").val()=="門市取貨"){
+			$("#CheckAddressDiv").hide()
+		}
+	}
+	function CheckOrderByPay(){
+// 				alert()
+// 				alert()
+// 				alert($("input[name='RadioOptionsToPay']:checked").val())
+// 				alert($("#CheckName").val())
+// 				alert($("#CheckPhone").val())
+// 				alert($("#CheckAddress").val())
+// 				$.post("")
+
+				if($("input[name='inlineRadioOptions']:checked").val()=="宅配"){
+					$.post("CheckOrderListByHome",{"Name":$("#CheckName").val(),"Address":$("#CheckAddress").val(),"Price":sessionStorage.TotalPrice},function(data,status){
+						if (status == "success") {
+			 				var querydata = $.parseJSON(data);
+							sessionStorage.OrderID=querydata.orderid
+								$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
+									var query = $.parseJSON(data);
+									alert("交易已成功，共有"+query+"筆訂單細項")
+		 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
+								})
+			             }
+					})
+				}else if($("input[name='inlineRadioOptions']:checked").val()=="門市取貨"){
+	            	 $.post("CheckOrderListByShop",{"Name":$("#CheckName").val(),"Address":$("#SelectShop").find("option:selected").text(),"Price":sessionStorage.TotalPrice},function(data,status){
+	            		 if (status == "success") {
+				 				var querydata = $.parseJSON(data);
+								sessionStorage.OrderID=querydata.orderid
+									$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
+										var query = $.parseJSON(data);
+										alert("交易已成功，共有"+query+"筆訂單細項")
+			 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
+									})
+				             }
+	            	 })
+	             }
+	}
+// 		$.post("CheckProductsToPay",function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+				
+//         	}
+// 		})
 </script>
 </head>
 
@@ -366,13 +458,14 @@ article {
 
 									</tbody>
 								</table>
+								<div id="show"></div>
 							</div>
 						</div>
 
 						<div style="padding: 30px">
-							<button class="btn btn-secondary collapsed" type="button"
+							<button id="CheckCart" class="btn btn-secondary collapsed" type="button"
 								data-toggle="collapse" data-target="#collapseTwo"
-								aria-expanded="false" aria-controls="collapseThree">下一步</button>
+								aria-expanded="false" aria-controls="collapseThree">下一步1</button>
 						</div>
 					</div>
 				</div>
@@ -391,23 +484,23 @@ article {
 						<div class="card-body">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									name="RadioOptionsToPay" id="inlineRadio1" value="刷卡">
 								<label class="form-check-label" for="inlineRadio1"><img
-									src="image/credit-card.png" width="45px"> 刷卡</label>
+									src="image/credit-card.png" width="45px"> 歐付寶</label>
 							</div>
 							<div class="dropdown-divider"></div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="inlineRadioOptions" id="inlineRadio2" value="option2">
+									name="RadioOptionsToPay" id="inlineRadio2" value="option2">
 								<label class="form-check-label" for="inlineRadio2"><img
-									src="image/icon.png" width="45px"> 付現</label>
+									src="image/linepay_logo.png" width="45px"> Line Pay</label>
 							</div>
 
 						</div>
-						<div style="padding: 30px">
+						<div id="CheckOrder" style="padding: 30px">
 							<button class="btn btn-secondary collapsed" type="button"
 								data-toggle="collapse" data-target="#collapseThree"
-								aria-expanded="false" aria-controls="collapseThree">下一步</button>
+								aria-expanded="false" aria-controls="collapseThree">下一步2</button>
 						</div>
 
 					</div>
@@ -426,7 +519,7 @@ article {
 						<div class="card-body">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="inlineRadioOptions" id="inlineRadio3" value="option1"
+									name="inlineRadioOptions" id="inlineRadio3" value="宅配"
 									checked> <label class="form-check-label"
 									for="inlineRadio3"><img src="image/truck.png"
 									width="45px"> 宅配</label>
@@ -434,15 +527,16 @@ article {
 							<div class="dropdown-divider"></div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="inlineRadioOptions" id="inlineRadio4" value="option2">
+									name="inlineRadioOptions" id="inlineRadio4" value="門市取貨">
 								<label class="form-check-label" for="inlineRadio4"><img
 									src="image/shop.png" width="45px"> 門市取貨</label>
 							</div>
 
 							<form>
 								<div class="dropdown-divider"></div>
-								<br> <select class="form-control form-control-sm">
-									<option>請選擇分店</option>
+								<br> <select id="SelectShop" class="form-control form-control-sm">
+									<option>大選電腦:大安店</option>
+									<option>大選電腦:板橋店</option>
 								</select>
 
 								<div class="form-group">
@@ -454,21 +548,21 @@ article {
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="inputEmail4">姓名</label> <input type="email"
+										<label for="inputEmail4">姓名</label> <input id="CheckName" type="email"
 											class="form-control" id="inputEmail4" placeholder="Email">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputCity">手機</label> <input type="text"
+									<label for="inputCity">手機</label> <input id="CheckPhone" type="text"
 										class="form-control" id="inputCity" placeholder="09xxxxxxxx">
 								</div>
-								<div class="form-group">
-									<label for="inputAddress2">地址</label> <input type="text"
+								<div id="CheckAddressDiv" class="form-group">
+									<label for="inputAddress2">地址</label> <input id="CheckAddress" type="text"
 										class="form-control" id="inputAddress2">
 								</div>
 								<div class="form-row"></div>
 
-								<button type="submit" class="btn btn-secondary">送出</button>
+								<button id="CheckOrderSubmit" type="button" class="btn btn-secondary">送出</button>
 							</form>
 						</div>
 					</div>

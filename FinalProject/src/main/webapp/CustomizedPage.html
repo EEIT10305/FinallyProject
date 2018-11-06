@@ -1262,16 +1262,25 @@
                 		   })
                    }
                    function returnPageToCart(){
-                	   sessionStorage.TotalPrice= $("#totalPrice").html()
-                	   sessionStorage.MBname= $("#showMB").find("option:selected").text()
-                	   sessionStorage.CPUname= $("#showCPU").find("option:selected").text()
-                	   sessionStorage.RAMname= $("#showRAM").find("option:selected").text()
-                	   sessionStorage.POWERSUPPLIERname= $("#showPOWERSUPPLIER").find("option:selected").text()
-                	   sessionStorage.CABINETname= $("#showCABINET").find("option:selected").text()
-                	   sessionStorage.VGAname= $("#showVGA").find("option:selected").text()
-                	   sessionStorage.STORAGEname= $("#showSTORAGE").find("option:selected").text()
-                	   window.location.href="http://localhost:8081/FinalProject/ShowCart.html";
-                	  
+//                 	   sessionStorage.MBname= $("#showMB").find("option:selected").text()
+//                 	   sessionStorage.CPUname= $("#showCPU").find("option:selected").text()
+//                 	   sessionStorage.RAMname= $("#showRAM").find("option:selected").text()
+//                 	   sessionStorage.POWERSUPPLIERname= $("#showPOWERSUPPLIER").find("option:selected").text()
+//                 	   sessionStorage.CABINETname= $("#showCABINET").find("option:selected").text()
+//                 	   sessionStorage.VGAname= $("#showVGA").find("option:selected").text()
+//                 	   sessionStorage.STORAGEname= $("#showSTORAGE").find("option:selected").text()
+                	   
+						sessionStorage.CartId=5
+                	    sessionStorage.TotalPrice= $("#totalPrice").html()
+						$.post("showCartDetail",{"model":$("#showMB").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showCPU").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showRAM").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showPOWERSUPPLIER").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showCABINET").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showVGA").find("option:selected").text(),"CartId":sessionStorage.CartId})
+						$.post("showCartDetail",{"model":$("#showSTORAGE").find("option:selected").text(),"CartId":sessionStorage.CartId})
+                	   
+                	    window.location.href="http://localhost:8081/FinalProject/ShowCart.html";
                    }
                    
                    function turnpage(){
@@ -1279,8 +1288,6 @@
                 	    $(".forcard1").hide();
                      	$("#pg"+$(this).html()).show();
                      	
-//                        $("#changepagebtn"+x).parent().attr("class", "page-item");
-//                        $("#changepagebtn"+x).attr("class", "mypage-link");
 					$("#pagebtn li").attr("class","page-item")
                     $("#pagebtn li a").attr("class","mypage-link")
                        
