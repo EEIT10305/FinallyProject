@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import misc.SpringJavaConfiguration;
 import model.bean.CartBean;
@@ -15,15 +16,15 @@ import model.bean.CartDetailBean;
 import model.bean.MemberBean;
 import model.bean.ProductBean;
 import model.dao.CartDAO;
+
 @Repository
 public class CartDAOImpl implements CartDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
 	@Autowired
-	ProductDAOImpl produtDAOImpl;
+	private ProductDAOImpl productDAOImpl;
 	
+	public CartDAOImpl() {}
 	private Integer memberid = null;
 
 	private Session getSession() {
@@ -34,9 +35,9 @@ public class CartDAOImpl implements CartDAO {
 		SessionFactory sessionfactroy=(SessionFactory) ctx.getBean("sessionFactory");
 		sessionfactroy.getCurrentSession().beginTransaction();
 		CartDAOImpl cartDAOImpl=(CartDAOImpl) ctx.getBean("cartDAOImpl");
-		Boolean selects = cartDAOImpl.updatestatus(10);
-		System.out.println(selects);
+		Boolean selects = cartDAOImpl.updatestatus(3);
 		sessionfactroy.getCurrentSession().getTransaction().commit();
+		System.out.println(selects);
 		sessionfactroy.close();
 	}
 
@@ -127,9 +128,10 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public ProductBean insertmodelfromProduct(String model) {
 		String hql = "from ProductBean where model=: model";
-		ProductBean productbean = produtDAOImpl.getSession().
+		ProductBean productbean = productDAOImpl.getSession().
 		createQuery(hql,ProductBean.class).setParameter("model", model).getSingleResult();  //利用model這個條件去得到productbean
 		return productbean ;
+	//	return null;
 
 	}
 
@@ -140,6 +142,7 @@ public class CartDAOImpl implements CartDAO {
 		this.getSession().delete(cb);
 		return true;
 	}
+	
 	@Override
 	public boolean updatestatus(int cartid) {
 		String hql = "from CartBean where cartid=: cartid";

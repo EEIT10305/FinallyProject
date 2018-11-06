@@ -2,13 +2,9 @@ package model.service.Impl;
 
 import java.util.List;
 
-
-import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.CartBean;
 import model.bean.CartDetailBean;
@@ -16,7 +12,7 @@ import model.bean.MemberBean;
 import model.bean.ProductBean;
 import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
-import model.dao.impl.ProductDAOImpl;
+import model.dao.ProductDAO;
 import model.service.CartService;
 @Service
 @Transactional
@@ -26,8 +22,7 @@ public class CartServiceimpl implements CartService {
 	
 	@Autowired 
 	CartDetailDAO  cartDetailDao;
-	@Autowired
-	ProductDAOImpl produtDAOImpl;
+
 	
 	
 	public CartServiceimpl() {
@@ -45,7 +40,7 @@ public class CartServiceimpl implements CartService {
 	}
 
 	@Override
-	public void insert(String model , Integer CartId) {
+	public void insert(String model , Integer CartId) {		//之後再這裡傳入MemberId
 		
 //		String hql = "from ProductBean where model=: model";
 //		ProductBean productbean = produtDAOImpl.getSession().
@@ -54,11 +49,11 @@ public class CartServiceimpl implements CartService {
 //		System.out.println(model);
 //		System.out.println("================================");
 		ProductBean productbean = Dao.insertmodelfromProduct(model);
-		CartBean cartbean = new CartBean();			//開啟一個bean讓後面可以直接完整的insert進去
-		cartbean.setDate("2018-11-03");
-		cartbean.setMemberid(2);		
-		cartbean.setStatus("noPay");
-		Dao.insert(cartbean);
+//		CartBean cartbean = new CartBean();			//開啟一個bean讓後面可以直接完整的insert進去
+//		cartbean.setDate("2018/11/06");				//關於cart的部分先不看 會以登入之後給CartId為主，之後都會以CartID來判斷
+//		cartbean.setMemberid(1);					//之後會再以拿到的CartBean get MemberID出來
+//		cartbean.setStatus("nopay");		
+//		Dao.insert(cartbean);
 		System.out.println("進入購物車");
 		
 		CartDetailBean CartDetailbean = new CartDetailBean();    	//開啟一個bean讓後面可以直接完整的insert進去

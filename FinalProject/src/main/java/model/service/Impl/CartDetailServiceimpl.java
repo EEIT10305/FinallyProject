@@ -2,13 +2,9 @@ package model.service.Impl;
 
 import java.util.List;
 
-
-import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.CartDetailBean;
 import model.dao.CartDetailDAO;
@@ -36,8 +32,6 @@ public class CartDetailServiceimpl implements CartDetailService {
 
 	@Override
 	public CartDetailBean selectById(Integer cartid) {
-//		dao.insert
-//		dao.eXXX
 		return Dao.selectById(cartid);
 	}
 

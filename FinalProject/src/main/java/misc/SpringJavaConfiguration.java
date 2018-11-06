@@ -38,7 +38,7 @@ public class SpringJavaConfiguration {
 		}
 		return (DataSource) factory.getObject();
 	}
-//	@Bean//一般JAVA應用程式連資料庫
+	@Bean//一般JAVA應用程式連資料庫
 	public DataSource dataSourcemanager() {
 		DriverManagerDataSource DMDS = new DriverManagerDataSource();
 		DMDS.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -51,16 +51,16 @@ public class SpringJavaConfiguration {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder =
-				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
+				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
 
 		Properties props = new Properties();
 
 		props.put("hibernate.hbm2ddl.auto","update"); //有此行才會自行創建表格
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+
 //		props.put("hibernate.current_session_context_class", "thread");
 		props.put("hibernate.show_sql", "false");
 		props.put("hibernate.format_sql", "false");
-
 //		props.put("transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		builder.addProperties(props);
 		
@@ -79,7 +79,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception{
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setDataSource(dataSource());
+		transactionManager.setDataSource(dataSourcemanager());
 		return transactionManager;
 	}
     
