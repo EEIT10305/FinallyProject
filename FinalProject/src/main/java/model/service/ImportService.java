@@ -2,6 +2,7 @@ package model.service;
 
 import java.util.List;
 
+import model.bean.BranchStockBean;
 import model.bean.ImportBean;
 
 public interface ImportService {
@@ -23,5 +24,9 @@ public interface ImportService {
 	
 
 	List<ImportBean> updateStatus(String statu, Integer improtid);
+
+	List<BranchStockBean> insertBranchStock(Integer improtid);
+
+	ImportBean selectByimprotid(Integer improtid);
 
 }

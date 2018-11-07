@@ -9,9 +9,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import misc.SpringJavaConfiguration;
 import model.bean.ImportBean;
+import model.dao.BranchStockDAO;
+import model.dao.impl.BranchStockDAOImpl;
 import model.dao.impl.ImportDAOImpl;
 import model.dao.impl.ImportDetailDAOImpl;
 import model.dao.impl.ProductDAOImpl;
+import model.service.ImportService;
 
 public class TestImport {
 
@@ -40,6 +43,7 @@ public class TestImport {
 //		}
 //	}
 	
+
 	
 	@Test
 	public void testProductDao() {
@@ -54,6 +58,29 @@ public class TestImport {
 		
 //		System.out.println(dao.selectAll());
 	}
+	
+	@Test
+	public void testimportService() {
+		ImportService service = context.getBean(ImportService.class);
+		System.out.println(service.insertBranchStock(1));
+		
+	}
+	
+	@Test
+	public void testBranchStock() {
+		BranchStockDAOImpl bean = context.getBean(BranchStockDAOImpl.class);
+//		System.out.println(bean.updateBranchStock(1, 1313, "on"));
+//		System.out.println(bean.selectAllByID(1));
+//		System.out.println(bean.selectAllByID(1));
+		System.out.println(bean.insertintoStock(200, 1, null, "on"));
+		
+
+//		System.out.println(bean.selectAll());
+	}
+	
+	
+	
+	
 	@Test
 	public void testBrandDao() {
 		ImportDAOImpl dao = context.getBean(ImportDAOImpl.class);
@@ -63,9 +90,11 @@ public class TestImport {
 //		System.out.println(dao.selectAll());		
 //		System.out.println(dao.selectByArrivedate("2018/06/21") + "arrivedate=======");
 //		System.out.println(dao.selectByStatus("on"));
-		System.out.println(dao.selectByOrderdate("2018/01/20"));
+//		System.out.println(dao.selectByOrderdate("2018/01/20"));
 //		System.out.println(dao.updateStatus("on", 1));;
 	
+
+		System.out.println(dao.getImportDetail(1));
 //	    System.out.println(dao.updateStatus("on"));
 		
 		

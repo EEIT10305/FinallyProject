@@ -74,7 +74,7 @@
 			<div class="navv">
 				<ul>
 					<li>
-						<a id="test" href=""> <img src="image/shopping-cart.png"
+						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
 					</li>
@@ -132,14 +132,11 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button class="mymodelbtn btn-primary" onclick="checkLoginState()">使用facebook登入</button>
-							
-							<!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>-->
-							<div class="fb-login-button" data-width="1000" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-							<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" auto_logout_link="true" size="large"	show_faces="true"></fb:login-button> -->
-							<div class="g-signin2" data-onsuccess="onSignIn"></div>
-							<!-- <div class="dropdown-divider"></div> -->
-							<!-- <button class="mymodelbtn btn-primary">使用google登入</button> -->
+							<!-- <button class="mymodelbtn btn-primary" onclick="FBLogin()">使用facebook登入</button> -->
+							<!-- <div style="display: inline;" class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div> -->
+							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
+							<div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div>
+							<div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="400"></div>
 						</div>
 						
 					
@@ -209,6 +206,7 @@
                     <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
 			</div>
+<!-- 			----------------------model----------------------------------------------------------->
 			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
@@ -276,13 +274,12 @@
 			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
 			<a href=""> <img src="image/001.png" width="80px">
 			</a>
-			 <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+			 <p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
             <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999
 			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
 		</div>
 
 	</footer>
-    
 		<!--處理登入-->
 		<script src="js/login.js"></script>
 		<!--第三方登入javascript-->

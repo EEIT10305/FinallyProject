@@ -3,6 +3,7 @@ package testDao;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -202,11 +203,16 @@ public class TestDAO {
 	
 	@Test
 	public void testOrderDetailDao() {
-		OrderDetailBean bean = new OrderDetailBean(null, 1, 2,"brand1","category1","model1",12,12);
+//		OrderDetailBean bean = new OrderDetailBean(null, 1, 2,"brand1","category1","model1",12,12);
 		OrderDetailDAO dao = context.getBean(OrderDetailDAO.class);
-		dao.insert(bean);
-		System.out.println(dao.selectAll());
-		System.out.println(dao.selectById(1));
+//		dao.insert(bean);
+//		System.out.println(dao.selectAll());
+//		System.out.println(dao.selectById(1));
+		List<Map<String, Object>> list = dao.countSoldPro();
+		for(int i = 0 ; i < list.size() ; i ++) {
+			System.out.println(list.get(i).get("pro"));
+			System.out.println(list.get(i).get("sum"));
+		}
 //		System.out.println(dao.update(bean));
 	}
 	

@@ -26,14 +26,16 @@ public class WallServiceImpl implements WallService {
 	}
 	@Override
 	public boolean changePhotoSeq(String str,String change,String amount) {
-		if(str != null && str.length() > 0 && change != null &&  change.length() > 0 && amount != null && amount.length() > 0) {
+		if(str != null && str.length() > 0 && amount != null && amount.length() > 0) {
 			String getStr [] = str.split(",");
 			int count = 0;
 			for(String get : getStr) {
 				wallDao.updateSeqBySrc(count++, get);
 			}
-			if(getStr.length < Integer.parseInt(amount)) {
-			    wallDao.updateNoSeqBySrc(change); 	
+			if(change != null &&  change.length() > 0 ) {
+				if(getStr.length < Integer.parseInt(amount)) {
+					wallDao.updateNoSeqBySrc(change); 	
+				}				
 			}
 
 			return true;

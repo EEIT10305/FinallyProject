@@ -48,6 +48,7 @@
             })
         })
     </script>
+    <script src="js/firstpageyuan.js"></script>
 </head>
 
 <body>
@@ -83,7 +84,7 @@
             <div class="navv">
                 <li>
                     <ul>
-                        <a id="test" href="">
+                        <a id="test" href="/FinalProject/ShowCart.html">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
                     </ul>
@@ -114,11 +115,11 @@
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
+                <div  id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button> -->
                 </div>
             </div>
 
@@ -133,7 +134,7 @@
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                <div  id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
 
                 </div>
 
@@ -149,7 +150,11 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-
+  <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
             </div>
             <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -173,8 +178,8 @@
 
 
 
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+            <input id="searchspace" type="text" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
@@ -247,7 +252,7 @@
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-          <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+          <p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
             <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999</p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
@@ -275,10 +280,37 @@
 
                     if(data=="email"){
                         $("#errorMail").html(data+"輸入有誤");
-                    } else if (data=="password"){
+                    } 
+                    else if (data=="password"){
                         $("#errorPassword").html(data+"輸入有誤");
                     }
-                    if (data=="notFoundData"){
+                    else if (data==$("#userInputEmail").val()){
+                        $.ajax({
+                    type: "POST",
+                    url: "catchMemberCartId",
+                    data: {email: data },
+                    success: function (data) {
+                        // alert('有沒有抓到cartId??');
+                        // alert(data);
+                        sessionStorage.CarId=data;
+                        alert('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
+
+                        var Days = 30;//cookie設定30天
+                        var exp = new Date();
+                        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                        document.cookie = "CarId=" + sessionStorage.CarId+";expires=" + exp.toGMTString();
+                    }
+                });
+
+                 var Days = 30;//cookie設定30天
+                 var exp = new Date();
+                 exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                 document.cookie = "email=" + data+";expires=" + exp.toGMTString();
+                 alert('一般會員登入+把email塞到cookie裡面');
+                 window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                    }
+                    
+                    else if (data=="notFoundData"){
                         $("#errorBoth").html("你輸入的帳號或是密碼有錯啦!還是你他媽的沒註冊?");
                     }
                 }

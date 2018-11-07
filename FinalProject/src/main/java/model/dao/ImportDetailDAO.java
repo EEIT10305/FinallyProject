@@ -14,4 +14,5 @@ public interface ImportDetailDAO {
 	boolean update(ImportDetailBean bean);
 	
 	List<ImportDetailBean> selectAllByID(Integer improtid);
+
 }

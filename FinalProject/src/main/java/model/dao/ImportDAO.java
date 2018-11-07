@@ -30,6 +30,8 @@ public interface ImportDAO {
 	
 	List<ImportBean> updateStatus(String statu, Integer improtid);
 
+	ImportBean getImportDetail(Integer improtid);
+
 	
 
 
