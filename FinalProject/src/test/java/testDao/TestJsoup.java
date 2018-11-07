@@ -36,16 +36,17 @@ public class TestJsoup {
 
 //				 // 从 URL 直接加载 HTML 文档
 		
-				 Document doc = Jsoup.connect("http://www.gh3c.com.tw/index.php?app=goods&id=23429")
+				 Document doc = Jsoup.connect("http://www.gh3c.com.tw/")
 						  .data("query", "Java")   // 请求参数
 						  .userAgent("I ’ m jsoup") // 设置 User-Agent 
 						  .cookie("auth", "token") // 设置 cookie 
 						  .timeout(3000)           // 设置连接超时时间
 						  .post(); 
-				 Elements bodyEles = doc.select("span.jqzoom");
+				 Elements bodyEles = doc.select("a.hover");
 				 for(Element item : bodyEles){
-		            	array.add(item.text());  	 
-		            	System.out.println("bodyEles5.get(i).attr(\"src\"):"+item.childNode(0).attr("src"));
+//		            	array.add(item.text());  	 
+		            	System.out.println("attr(\"href\"):"+item.attr("href"));
+		            	System.out.println("text():"+item.text());
 		            }
 //				 Elements links = doc.select("span[href]"); // 具有 href 属性的链接
 //				 Elements pngs = doc.select("img[src$=.png]");// 所有引用 png 图片的元素
