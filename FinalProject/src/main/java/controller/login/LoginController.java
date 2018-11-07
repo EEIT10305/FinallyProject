@@ -103,10 +103,10 @@ public String getUserInfo(String userInfo) {
 		System.out.println("此facebook尚未!!!還沒!!!註冊過");
 	MemberBean bean = new MemberBean();
 	bean.setEmail(j.get("email").toString());
-	bean.setName(j.get("name").toString());
-	bean.setPassword("facebook");
+	bean.setmembername(j.get("name").toString());
+	bean.setmemberpassword("facebook");
 	bean.setPermission("facebook");
-	bean.setAddress("facebook");
+	bean.setmemberaddress("facebook");
 	bean.setPhone("facebook");
 	bean.setGender("facebook");
 	registerService.saveMember(bean);	
@@ -129,10 +129,10 @@ public String getGoogleInfo(String email, String name) {
 	
 	MemberBean bean = new MemberBean();
 	bean.setEmail(email);
-	bean.setName(name);
-	bean.setPassword("google");
+	bean.setmembername(name);
+	bean.setmemberpassword("google");
 	bean.setPermission("google");
-	bean.setAddress("google");
+	bean.setmemberaddress("google");
 	bean.setPhone("google");
 	bean.setGender("google");
 	

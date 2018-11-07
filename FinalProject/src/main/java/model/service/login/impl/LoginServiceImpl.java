@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 		if(mb!=null) {
 			if(password!=null && password.length()!=0) {
 				String inputPwd = password ; 
-				String memeberPwd = mb.getPassword();
+				String memeberPwd = mb.getmemberpassword();
 				if(memeberPwd.equals(inputPwd)) {
 					return mb;
 				}else {
