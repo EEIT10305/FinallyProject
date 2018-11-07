@@ -203,6 +203,7 @@ public class LoginController {
 		JSONObject j = new JSONObject(userInfo);
 		System.out.println("email抓不抓得到" + j.get("email"));// gn01046294@hotmail.com
 //驗證資料
+
 		String userFBLonin = (String) j.get("email");
 		System.out.println("臉書的email轉成stringQQ : " + userFBLonin);
 		if (loginService.checkEmailPwd(userFBLonin, "facebook") != null) {
@@ -243,10 +244,10 @@ public class LoginController {
 			System.out.println("此facebook尚未!!!還沒!!!註冊過");
 			MemberBean bean = new MemberBean();
 			bean.setEmail(j.get("email").toString());
-			bean.setName(j.get("name").toString());
-			bean.setPassword("facebook");
+			bean.setmembername(j.get("name").toString());
+			bean.setmemberpassword("facebook");
 			bean.setPermission("facebook");
-			bean.setAddress("facebook");
+			bean.setmemberaddress("facebook");
 			bean.setPhone("facebook");
 			bean.setGender("facebook");
 			registerService.saveMember(bean);
@@ -255,6 +256,7 @@ public class LoginController {
 			return userFBLonin;
 		}
 	}
+
 //-----------------google----------------------
 
 	@RequestMapping(path = "processGoogleLogin", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
@@ -300,10 +302,10 @@ public class LoginController {
 		} else {
 			MemberBean bean = new MemberBean();
 			bean.setEmail(email);
-			bean.setName(name);
-			bean.setPassword("google");
+			bean.setmembername(name);
+			bean.setmemberpassword("google");
 			bean.setPermission("google");
-			bean.setAddress("google");
+			bean.setmemberaddress("google");
 			bean.setPhone("google");
 			bean.setGender("google");
 
@@ -318,6 +320,7 @@ public class LoginController {
 	@ResponseBody
 	public String catchCartId(String email) {
 		
+
 		System.out.println("有沒有抓到登入後的請求??????");
 		System.out.println(email);
 		
@@ -327,7 +330,6 @@ public class LoginController {
 		
 		cartBean = cartService.selectMemberId(bean.getMemberid());
 		
-
 		for(CartBean cartBeanList:cartBean) {
 			memberInfo.put(cartBeanList.getStatus(), cartBeanList.getCartid());
 		

@@ -12,13 +12,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "transfer")
+@Table(name = "transferlist")
 public class TransferBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer transferid;
 	@Column(nullable = false)
-	private String date;
+	private String transferdate;
 	@Column(nullable = false)
 	private Integer proid;
 	@Column(nullable = false)
@@ -46,11 +46,11 @@ public class TransferBean {
 		super();
 	}
 
-	public TransferBean(Integer transferid, String date, Integer proid, Integer amount, Integer staff_id,Integer branchidin,
+	public TransferBean(Integer transferid, String transferdate, Integer proid, Integer amount, Integer staff_id,Integer branchidin,
 			Integer branchidout, BranchBean branchBeanin, BranchBean branchBeanout, ProductBean productBean,StaffBean staffBean) {
 		super();
 		this.transferid = transferid;
-		this.date = date;
+		this.transferdate = transferdate;
 		this.proid = proid;
 		this.amount = amount;
 		this.staff_id = staff_id;
@@ -64,11 +64,11 @@ public class TransferBean {
 
 	
 
-	public TransferBean(Integer transferid, Integer amount, Integer branchidin, Integer branchidout, String date,
+	public TransferBean(Integer transferid, Integer amount, Integer branchidin, Integer branchidout, String transferdate,
 			Integer proid,Integer staff_id) {
 		super();
 		this.transferid = transferid;
-		this.date = date;
+		this.transferdate = transferdate;
 		this.proid = proid;
 		this.amount = amount;
 		this.branchidin = branchidin;
@@ -85,11 +85,11 @@ public class TransferBean {
 	}
 
 	public String getDate() {
-		return date;
+		return transferdate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(String transferdate) {
+		this.transferdate = transferdate;
 	}
 
 	public Integer getProid() {

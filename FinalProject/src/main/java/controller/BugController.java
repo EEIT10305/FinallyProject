@@ -15,17 +15,25 @@ public class BugController {
 	@Autowired
 	private BugService bugService = new BugServiceImpl();
 	
-	@RequestMapping(path="ShowAllProduct",produces="text/html;charset=utf-8")
+	@RequestMapping(path="ShowProductByCategory",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String method() {
-		return new Gson().toJson(bugService.getAllModel());	
+	public String method(String category) {
+		return new Gson().toJson(bugService.getSubTablePro(category));	
 	}
+	@RequestMapping(path="BugWebsiteCategory",produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String method2(String origin) {
+		return new Gson().toJson(bugService.getWebProCategory(origin));
+	}
+	
 	@RequestMapping(path="BugWebsite",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String method2(String orgin ,String page) {
+	public String method3(String orgin ,String page) {
+		System.out.println(orgin + "," + page);
 		System.out.println(bugService.getAllWebProduct(orgin ,page));
 		return new Gson().toJson(bugService.getAllWebProduct(orgin ,page));
 	}
+	
 	
 
 }

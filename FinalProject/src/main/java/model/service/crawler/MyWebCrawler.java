@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
 public class MyWebCrawler {
 
 	public HashMap<String, Set<String>> visitPage(String pageUrl) {
-		 HashMap<String, Set<String>> list = new HashMap<>();
-		 Set<String> numberPage = new HashSet<>();
-		 Set<String> proPage = new HashSet<>();
+		HashMap<String, Set<String>> hm = new HashMap<>();
+		Set<String> numberPage = new HashSet<>();
+		Set<String> proPage = new HashSet<>();
 		try {
 			Document doc = Jsoup.connect(pageUrl).data("query", "Java") // 请求参数
 					.userAgent("yinyuanmeow") // 设置 User-Agent
@@ -27,20 +27,20 @@ public class MyWebCrawler {
 					.post();
 			Elements bodyEles = doc.select("a[target$=_blank] ,a.page_link");// 商品連結
 			for (Element item : bodyEles) {
-				HashMap<String, String> hm = new HashMap<>();
-				if (item.attr("href").startsWith("index.php?app=store")) {
+//				System.out.println(item.attr("href"));
+				if (item.attr("href").startsWith("index.php?app=search")) {
 					numberPage.add(item.attr("href"));
-				} else if (item.attr("href").startsWith("index.php?app=goods")) {
+				} else if (item.attr("href").startsWith("index.php?app=goods&id")) {
 					proPage.add(item.attr("href"));
 				}
-				list.put("numberPage", numberPage);
-				list.put("proPage", proPage);
+				hm.put("numberPage", numberPage);
+				hm.put("proPage", proPage);
 			}
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return hm;
 	}
 
 	public ArrayList<HashMap<String, String>> visitContentPage(String contentUrl) {
@@ -62,10 +62,32 @@ public class MyWebCrawler {
 				hm.put("price",bodyEles.get(i).text());
 				hm.put("proName",bodyEles2.get(i).text());
 				hm.put("picture",bodyEles5.get(i).childNode(0).attr("src"));
-				System.out.println(bodyEles5.get(i).attr("src"));
 				list.add(hm);
 			}
 
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<HashMap<String, String>> getWebProCategory(String origin) {
+		ArrayList<HashMap<String, String>> list = new  ArrayList<>();
+		try {
+			Document doc = Jsoup.connect(origin).data("query", "Java") // 请求参数
+					.userAgent("yinyuanmeow") // 设置 User-Agent
+					.cookie("auth", "token") // 设置 cookie
+					.timeout(3000) // 设置连接超时时间
+					.post();
+			Elements bodyEles =  doc.select("a.hover");// 商品連結
+			for (Element item : bodyEles) {
+				HashMap<String, String> hm = new HashMap<>();
+				System.out.println(item.text() +"-------------------" +item.attr("href"));
+				hm.put("catagory" ,item.text());
+				hm.put("cateUrl",item.attr("href"));
+				list.add(hm);
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();

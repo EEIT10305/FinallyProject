@@ -7,9 +7,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jdk.nashorn.internal.runtime.ECMAException;
 import model.bean.BranchStockBean;
 import model.dao.BranchStockDAO;
 
@@ -31,7 +33,17 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 	public BranchStockBean selectById(int id) {
 		return this.getSession().get(BranchStockBean.class, id);
 	}
-
+	@Override	
+	public BranchStockBean selectAllByID(Integer proid) {
+		String hql = "From BranchStockBean where proid =:proid";
+		try {
+			BranchStockBean bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("proid", proid).getSingleResult();			
+			return bean;
+		}catch(Exception e) {
+			return null;
+		}
+	}	
+	
 	@Override
 	public BranchStockBean insert(BranchStockBean bean) {
 		if (bean != null) {
@@ -60,4 +72,41 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean updateBranchStock(Integer amount, String statu, Integer proid){
+		this.getSession();
+		String hql = "Update BranchStockBean set amount =: amount , statu =: statu where proid =: proid";
+		Query query = this.getSession().createQuery(hql)
+				.setParameter("amount", amount)
+				.setParameter("statu", statu)
+				.setParameter("proid", proid);
+		 int re = query.executeUpdate();
+		 if(re > 0) {
+			 return  true;
+		 }
+		
+		return false;
+	}
+	
+	@Override
+	public BranchStockBean insertintoStock(Integer amount, Integer branchid, Integer proid, String statu){
+		this.getSession();
+		
+		BranchStockBean bean = new BranchStockBean();		
+		bean.setAmount(amount);
+		bean.setBranchid(branchid);
+		bean.setProid(proid);
+		bean.setStatu(statu);
+		this.getSession().save(bean);	
+		
+		return bean;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

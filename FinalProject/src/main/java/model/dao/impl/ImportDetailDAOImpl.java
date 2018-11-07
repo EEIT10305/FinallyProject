@@ -32,9 +32,10 @@ public class ImportDetailDAOImpl implements ImportDetailDAO {
 
 	@Override
 	public List<ImportDetailBean> selectAllByID(Integer improtid) {
-		
-		return this.getSession().createQuery("FROM ImportDetailBean where improtid=:improtid", ImportDetailBean.class).setParameter("improtid", improtid).list();
+		String hql = "FROM ImportDetailBean where improtid=:improtid";
+		return this.getSession().createQuery(hql, ImportDetailBean.class).setParameter("improtid", improtid).list();
 	}
+	
 
 	@Override
 	public ImportDetailBean insert(ImportDetailBean bean) {
@@ -63,4 +64,10 @@ public class ImportDetailDAOImpl implements ImportDetailDAO {
 		}
 		return false;
 	}
+
+
+	
+
+	
+	
 }
