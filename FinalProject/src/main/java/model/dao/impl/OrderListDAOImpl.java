@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.CartBean;
 import model.bean.OrderListBean;
 import model.dao.OrderListDAO;
 @Repository
@@ -67,5 +68,49 @@ public class OrderListDAOImpl implements OrderListDAO {
 	public void setMemberId(Integer memberid) {
 		this.memberid = memberid;
 		
+	}
+
+	@Override
+	public boolean updateOrderStatusByOrderId(int orderid) {
+		String hql = "from OrderListBean where orderid=: orderid";
+		this.getSession().get(OrderListBean.class, orderid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("orderid", orderid).getSingleResult();
+		orderListBean.setStatu("pay");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderArriveByOrderId(int orderid) {
+		String hql = "from OrderListBean where orderid=: orderid";
+		this.getSession().get(OrderListBean.class, orderid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("orderid", orderid).getSingleResult();
+		orderListBean.setArrive("arrived");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderStatusByMemberId(int memberid) {
+		String hql = "from OrderListBean where memberid=: memberid";
+		this.getSession().get(OrderListBean.class, memberid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("memberid", memberid).getSingleResult();
+		orderListBean.setStatu("pay");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderArriveByMemberId(int memberid) {
+		String hql = "from OrderListBean where memberid=: memberid";
+		this.getSession().get(OrderListBean.class, memberid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("memberid", memberid).getSingleResult();
+		orderListBean.setArrive("arrived");
+		this.getSession().update(orderListBean);
+		return true;
 	}
 }

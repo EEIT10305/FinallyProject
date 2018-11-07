@@ -43,7 +43,7 @@ public class CartServiceimpl implements CartService {
 	public void insert(String model , Integer CartId) {		//之後再這裡傳入MemberId
 		
 //		String hql = "from ProductBean where model=: model";
-//		ProductBean productbean = produtDAOImpl.getSession().
+//		ProductBean productbean = produtDAOImpl.getSession().			//已經改為下方Dao方法直接匯入並找尋對應的product
 //				createQuery(hql,ProductBean.class).setParameter("model", model).getSingleResult();		//利用model這個條件去得到productbean
 //		System.out.println("================================");
 //		System.out.println(model);
