@@ -39,7 +39,7 @@
             border-color: grey;
         }
     </style>
-    <script>
+    <!-- <script>
     $(document).ready(function(){
         $.post("TestController")
         $('button[name="becheckbtn"]').next().hide();
@@ -65,8 +65,10 @@
         })
     })
 
-    </script>
+
+    </script>-->
     <script src="js/firstpageyuan.js"></script>
+
 </head>
 
 <body>
@@ -125,16 +127,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form>
+                    
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputPassword1">密碼</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
+                            </div> -->
                            <span> <a href="Register.html"> 尚未註冊?</a>
 							</span>
 							
@@ -150,7 +152,7 @@
 							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
 							
 						</div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -273,7 +275,7 @@
                 <ul>
                     <li><a style="color:#6c757d" href="">訂單紀錄</a></li>
                     <li><a style="color:#6c757d" href="">願望清單</a></li>
-                    <li><a style="color:#6c757d" href="" id="memberClickSelfInfo">修改會員資料</a></li>
+                    <li class="memberInfo" style="color:#6c757d" id="memberClickSelfInfo">修改會員資料</li>
                     <li><a style="color:#6c757d" href="">貨到通知</a></li>
                 </ul>
             </div>
@@ -355,21 +357,21 @@
                    
                 </div>
                 <div class="dropdown-divider"></div>
-                <form>
+              
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputName">姓名</label><span id="testname"></span>
-                            <input type="email" class="form-control" id="inputName" >
+                            <label for="inputName">姓名</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">性別</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man">
                                 <label class="form-check-label" for="inlineRadio1">男</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman">
                                 <label class="form-check-label" for="inlineRadio2">女</label>
                             </div>
                         </div>
@@ -377,27 +379,27 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <!-- <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"> -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">密碼</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <!-- <label for="memberInputPassword4">密碼</label>
+                            <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password"> -->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputCity">手機</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+                        <label for="inputPhone">手機</label>
+                        <input type="text" class="form-control" id="inputPhone" placeholder="">
                     </div>
     
                     <div class="form-group">
-                        <label for="inputAddress2">地址</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                        <label for="inputAddress">地址</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="">
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-secondary">修改</button>
-                </form> 
+                    <button type="submit" class="btn btn-secondary" id="memberUpdateInfo">修改</button>
+               
     </article>
 </div>
     <footer>

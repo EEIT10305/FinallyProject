@@ -108,6 +108,9 @@ p {
 .loginByGoogle{
     float: left;
 }
+.memberInfo {
+    cursor: pointer;
+}
 /*-------------------------秉毅用--------------------------------------------------------*/
 .mymodelbtn {
    margin:10px 0px;

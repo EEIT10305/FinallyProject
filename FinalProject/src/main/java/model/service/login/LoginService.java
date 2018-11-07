@@ -8,4 +8,5 @@ public interface LoginService {
 	
 	public MemberBean checkEmail(String email);
 	
+	
 }

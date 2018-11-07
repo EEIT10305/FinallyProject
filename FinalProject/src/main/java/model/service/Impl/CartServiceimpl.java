@@ -12,7 +12,6 @@ import model.bean.MemberBean;
 import model.bean.ProductBean;
 import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
-import model.dao.ProductDAO;
 import model.service.CartService;
 @Service
 @Transactional
@@ -87,6 +86,7 @@ public class CartServiceimpl implements CartService {
 	}
 
 	@Override
+
 	public boolean checkMember(int memberId) {
 	
 		return Dao.checkMember(memberId);
@@ -110,6 +110,17 @@ public class CartServiceimpl implements CartService {
 	@Override
 	public boolean updatestatus(int cartid) {
 		return Dao.updatestatus(cartid);
+	}
+
+	@Override
+	public List<CartBean> selectMemberId(Integer memberid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartBean saveCartBean(CartBean bean) {
+		return Dao.insert(bean);
 	}
 	
 	

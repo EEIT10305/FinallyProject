@@ -280,10 +280,37 @@
 
                     if(data=="email"){
                         $("#errorMail").html(data+"輸入有誤");
-                    } else if (data=="password"){
+                    } 
+                    else if (data=="password"){
                         $("#errorPassword").html(data+"輸入有誤");
                     }
-                    if (data=="notFoundData"){
+                    else if (data==$("#userInputEmail").val()){
+                        $.ajax({
+                    type: "POST",
+                    url: "catchMemberCartId",
+                    data: {email: data },
+                    success: function (data) {
+                        // alert('有沒有抓到cartId??');
+                        // alert(data);
+                        sessionStorage.CarId=data;
+                        alert('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
+
+                        var Days = 30;//cookie設定30天
+                        var exp = new Date();
+                        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                        document.cookie = "CarId=" + sessionStorage.CarId+";expires=" + exp.toGMTString();
+                    }
+                });
+
+                 var Days = 30;//cookie設定30天
+                 var exp = new Date();
+                 exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                 document.cookie = "email=" + data+";expires=" + exp.toGMTString();
+                 alert('一般會員登入+把email塞到cookie裡面');
+                 window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                    }
+                    
+                    else if (data=="notFoundData"){
                         $("#errorBoth").html("你輸入的帳號或是密碼有錯啦!還是你他媽的沒註冊?");
                     }
                 }
