@@ -1,10 +1,5 @@
 package controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServlet;
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import model.bean.ProductBean;
-import model.service.MainPageSelectService;
 import model.service.NavigateService;
 
 @Controller
 public class ProductSelectByCategoryController {
 	@Autowired
 	NavigateService nav;
-	@Autowired
-	MainPageSelectService mainpageselect;
+	
 	
 	//類別標籤
 	@RequestMapping(path = "SelectByCategory",produces="text/html;charset=UTF-8")
@@ -103,11 +95,13 @@ public class ProductSelectByCategoryController {
 	@ResponseBody
 	public String leftTag(String leftcategory, String leftbrand, Integer leftprice) {
 		System.out.println("======================================");
-		System.out.println("leftcategory="+leftcategory);
+			System.out.println("leftcategory="+leftcategory);
 		System.out.println("leftbrand="+leftbrand);
 		System.out.println("leftprice="+leftprice);
-		System.out.println("======================================");		
+		System.out.println("======================================");
 		
+		
+		 
 			//分類 品牌 價格 都有選
 			if (!"ini".equals(leftcategory) && !"ini".equals(leftbrand) && !leftprice.equals(0)) {
 //				System.out.println("==============================");
@@ -136,12 +130,192 @@ public class ProductSelectByCategoryController {
 			} else {				
 				return null;
 			}
-			
-		
-		
-		
-
 	}
 	
+	
+	
+	@RequestMapping(path = "orderByPrice",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String orderByPrice(String category, String brand, Integer price, String searchspace, String leftcategory, String leftbrand, Integer leftprice) {
+		System.out.println("======================================");
+		System.out.println("category="+category);
+		System.out.println("brand="+brand);
+		System.out.println("price="+price);
+		System.out.println("searchspace="+searchspace);
+		System.out.println("leftcategory="+leftcategory);
+		System.out.println("leftbrand="+leftbrand);
+		System.out.println("leftprice="+leftprice);
+		System.out.println("======================================");		
+		
+		// 用上方分類 品牌 價格
+				if("ini".equals(leftcategory) && "ini".equals(leftbrand) && leftprice.equals(0) && (searchspace).equals("ini") || (searchspace).equals("")) {  
+					//分類 品牌 價格 都有選
+					if (!"ini".equals(category) && !"ini".equals(brand) && !price.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌 價格 "); 
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraPriorderbyprice(category,  brand, price));
+					} // 分類 品牌 有選
+					else if (!"ini".equals(category) && !"ini".equals(brand) && price.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraorderbyprice(category, brand));
+					}// 分類 價格 有選
+					else if (!"ini".equals(category) && "ini".equals(brand) && !price.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatPriorderbyprice(category, price));
+					}// 只選分類
+					else if(!"ini".equals(category) && "ini".equals(brand) && price.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatorderbyprice(category));				
+					}
+
+		
+//					System.out.println("==============================");
+//					System.out.println("上上尚上尚上尚上上上上上666666666666666666 ");
+//					System.out.println("==============================");
+//					return new Gson().toJson(nav.selectByCatBraPriorderbyprice(category,  brand, price));
+					
+				}
+		//用空白搜尋欄
+				else if(!"ini".equals(searchspace)) {
+					System.out.println("==============================");
+					System.out.println("searchspacesearchspacesearchspacesearchspacesearchspace ");
+					System.out.println("==============================");
+					return new Gson().toJson(nav.selectByinputorderbyprice(searchspace));
+				}
+		//用左方分類 品牌 價格
+				else if("ini".equals(category) && "ini".equals(brand) && price.equals(0) && (searchspace).equals("ini") || (searchspace).equals("")) {
+					System.out.println("==============================");
+					System.out.println("佐佐佐佐佐佐佐佐佐左邊 ");
+					System.out.println("==============================");
+					//分類 品牌 價格 都有選
+					if (!"ini".equals(leftcategory) && !"ini".equals(leftbrand) && !leftprice.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraPriorderbyprice(leftcategory, leftbrand, leftprice));		
+						
+					} // 分類 品牌 有選
+					else if (!"ini".equals(leftcategory) && !"ini".equals(leftbrand) && leftprice.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraorderbyprice(leftcategory, leftbrand));
+					}// 分類 價格 有選
+					else if (!"ini".equals(leftcategory) && "ini".equals(leftbrand) && !leftprice.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatPriorderbyprice(leftcategory, leftprice));
+					}// 只選分類
+					else if(!"ini".equals(leftcategory) && "ini".equals(leftbrand) && leftprice.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatorderbyprice(leftcategory));				
+					}
+					
+				}
+				return null;
+	}
+	
+	
+	//依相關性排列------------------------------------------------
+	@RequestMapping(path = "orderByRelation",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String orderByRelation(String category, String brand, Integer price, String searchspace, String leftcategory, String leftbrand, Integer leftprice) {
+		System.out.println("======================================");
+		System.out.println("category="+category);
+		System.out.println("brand="+brand);
+		System.out.println("price="+price);
+		System.out.println("searchspace="+searchspace);
+		System.out.println("leftcategory="+leftcategory);
+		System.out.println("leftbrand="+leftbrand);
+		System.out.println("leftprice="+leftprice);
+		System.out.println("======================================");		
+		
+		// 用上方分類 品牌 價格
+				if("ini".equals(leftcategory) && "ini".equals(leftbrand) && leftprice.equals(0) && (searchspace).equals("ini") || (searchspace).equals("")) {  
+					//分類 品牌 價格 都有選
+					if (!"ini".equals(category) && !"ini".equals(brand) && !price.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌 價格 "); 
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraPri(category,  brand, price));
+					} // 分類 品牌 有選
+					else if (!"ini".equals(category) && !"ini".equals(brand) && price.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBra(category, brand));
+					}// 分類 價格 有選
+					else if (!"ini".equals(category) && "ini".equals(brand) && !price.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatPri(category, price));
+					}// 只選分類
+					else if(!"ini".equals(category) && "ini".equals(brand) && price.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCat(category));				
+					}
+
+		
+//					System.out.println("==============================");
+//					System.out.println("上上尚上尚上尚上上上上上666666666666666666 ");
+//					System.out.println("==============================");
+//					return new Gson().toJson(nav.selectByCatBraPriorderbyprice(category,  brand, price));
+					
+				}
+		//用空白搜尋欄
+				else if(!"ini".equals(searchspace)) {
+					System.out.println("==============================");
+					System.out.println("searchspacesearchspacesearchspacesearchspacesearchspace ");
+					System.out.println("==============================");
+					return new Gson().toJson(nav.selectByinput(searchspace));
+				}
+		//用左方分類 品牌 價格
+				else if("ini".equals(category) && "ini".equals(brand) && price.equals(0) && (searchspace).equals("ini") || (searchspace).equals("")) {
+					System.out.println("==============================");
+					System.out.println("佐佐佐佐佐佐佐佐佐左邊 ");
+					System.out.println("==============================");
+					//分類 品牌 價格 都有選
+					if (!"ini".equals(leftcategory) && !"ini".equals(leftbrand) && !leftprice.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBraPri(leftcategory, leftbrand, leftprice));		
+						
+					} // 分類 品牌 有選
+					else if (!"ini".equals(leftcategory) && !"ini".equals(leftbrand) && leftprice.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 品牌");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatBra(leftcategory, leftbrand));
+					}// 分類 價格 有選
+					else if (!"ini".equals(leftcategory) && "ini".equals(leftbrand) && !leftprice.equals(0)) { 
+//						System.out.println("==============================");
+//						System.out.println("分類 價格 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCatPri(leftcategory, leftprice));
+					}// 只選分類
+					else if(!"ini".equals(leftcategory) && "ini".equals(leftbrand) && leftprice.equals(0)) {
+//						System.out.println("==============================");
+//						System.out.println("分類 ");
+//						System.out.println("==============================");
+						return new Gson().toJson(nav.selectByCat(leftcategory));				
+					}
+					
+				}
+				return null;
+	}
 	
 }

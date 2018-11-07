@@ -3,15 +3,13 @@ package controller.register;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.MemberBean;
-import model.service.register.impl.RegisterServiceImpl;
+import model.service.register.RegisterService;
 
 @Controller
 public class RegisterController {
@@ -21,7 +19,7 @@ public class RegisterController {
 	private Matcher matcher = null;
 	
 	@Autowired
-	private RegisterServiceImpl registerService;
+	private RegisterService registerService;
 	
 	@RequestMapping(path="processregister",produces="text/html;charset=utf-8")// 接收資料
 	@ResponseBody

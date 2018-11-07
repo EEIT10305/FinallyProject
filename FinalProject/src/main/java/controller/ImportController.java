@@ -26,7 +26,7 @@ public class ImportController {
 	private ImportDetailService importDetailService;
 	
 	@RequestMapping("/pages/search.controller")
-	public String method(ImportBean bean, String arrivedate, String orderdate, String statu, Integer improtid,
+	public String searchResult(ImportBean bean, String arrivedate, String orderdate, String statu, Integer improtid,
 			Model model) {
 //
 //		System.out.println("arrivedate1------------------" + arrivedate);
@@ -94,12 +94,7 @@ public class ImportController {
 //		System.out.println("orderdate2+++++++++++++++++" + orderdate);
 //		System.out.println("statu2+++++++++++++++++++++" + statu);
 		
-//		if ("Detail".equals(improtid)) {
-//			List<ImportDetailBean> result = importDetailService.selectAllByID(improtid);
-//			model.addAttribute("detail", result);
-//			return "/Backstage_Detail.jsp";
-//		}
-		return "/Backstage_Purchase_03.jsp";
+		return "/Backstage_Search_Import_Result.jsp";
 
 	}
 

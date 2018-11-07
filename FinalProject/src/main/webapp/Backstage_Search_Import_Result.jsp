@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*,model.bean.ImportBean" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+	<%-- <%@ include file="TestShoppingCart.jsp" %> --%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,23 +172,9 @@
 
 
 		}
-
-		.t12 {
-			font-family: 微軟正黑體;
-			font-size: 20px;
-			color: rgb(185, 31, 31);
-			border: 2px solid #003366;
-			width: 450px;
-			margin: 20px;
-
-		}
-
-		.t13 {
-			color: #0f0d0d;
-		}
-
-		.t14 {
-			text-align: center;
+		td{
+		   width:100px;
+		
 		}
 	</style>
 
@@ -198,18 +190,18 @@
 					<img src="./pic/unnamed.png" width="200px">
 				</div>
 				<div class="n1" id="s1">
-					<a href="./Backstage_index.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_index.jsp" title="Beats">
 						<p>
 							<br>本月公告</p>
 				</div>
 
 				<div class="n1" id="s2">
-					<a href="./Backstage_storehouse.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Transfer.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Purchase.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Import.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
@@ -249,9 +241,9 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 
-				<a href="./Backstage_Purchase.jsp" title="Beats">進貨作業</a>
+				<a href="/FinalProject/Backstage_Import.jsp" title="Beats">進貨作業</a>
 				<span>/</span>
-				<a href="./Backstage_Purchase_01.jsp" title="Beats">查詢進貨</a>
+				<a href="/FinalProject/Backstage_Search_Import.jsp" title="Beats">查詢進貨</a>
 			</div>
 			<br>
 			<br>
@@ -261,55 +253,113 @@
 		</header>
 	</div>
 
-	<body align="center">
-		<div align="center">
-			<table class="t12">
-				<br>
-				<br>
-				<div class="d2">進貨資料</div>
-				<br>
-				
-				<tr class="t14">
-					<td>訂單號碼</td>
-					<td>訂購日期</td>
-					<td>商品名稱</td>
-					<td>單價</td>
-					<td>數量</td>
-					<td>總金額</td>
-				</tr>
-				<tr class="t13">
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-				</tr>
-				<tr class="t13">
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-					<td>123</td>
-				</tr>
-				<tr class="t13"></tr>
-				<td>123</td>
-				<td>123</td>
-				<td>123</td>
-				<td>123</td>
-				<td>123</td>
-				<td>123</td>
-
-				</tr>
-			</table>
-		</div>
-		<br>
-		<br>
+	<body>
 
 
+	
+	
+<c:if test = "${not empty user}">
+<table border = "2px">
+<caption>Import</caption>
+<thead>
+
+	<tr>
+		<th>Import ID</th>
+		<th>Arrive Date</th>
+		<th>Order Date</th>
+		<th>Status</th>
+		<th>Update Status</th>		
+</thead>
+<tbody>
+	<c:forEach var="row" items="${user}" >
+
+		<tr>
+			<td><input type = "hidden" name = "improtid" value = "${row.improtid}">${row.improtid}</td>						
+			<td>${row.arrivedate}</td>
+			<td>${row.orderdate}</td>
+			<td>${row.statu}</td>
+			<td><a href="/FinalProject/pages/detail.controller?improtid=${row.improtid}">Detail</a></td>
+
+		</tr>
+		
+	</c:forEach>
+
+</tbody>
+</table>
+</c:if>
+<c:if test= "${not empty detail}">
+<form action = "/FinalProject/pages/import.updateController">
+<table border = "2px" >
+<caption>Import Detail</caption>
+
+<thead>
+	<tr>
+		<th>Import ID</th>
+		<th>Amount</th>
+		<th>Product ID</th>
+		<th>Brand</th>
+		<th>Category</th>
+		<th>Model</th>
+		<th>Picture</th>
+		<th>Price</th>
+		<th>Import</th>
+
+</thead>
+
+<tbody>
+	<c:forEach var="row2" items="${detail}">
+		<tr>
+			<td><input type = "hidden" name = "improtid" value = "${row2.improtid}">${row2.improtid}</td>
+			<td>${row2.amount}</td>
+			<td>${row2.proid}</td>
+			<td>${row2.productBean.brandBean.brand}</td>
+			<td>${row2.productBean.categoryBean.category}</td>
+			<td>${row2.productBean.model}</td>
+			<td>${row2.productBean.picture}</td>	
+			<td>${row2.productBean.price}</td>		
+			<td><input type = "submit" value = "import" ></td>
+		</tr>
+	</c:forEach>
+</tbody>
+</table>
+
+<br>
+<br>
+</form>
+</c:if>
+<c:if test= "${not empty stock}">
+
+<table border = "2px">
+<caption>Branch Stock</caption>
+<thead>
+	<tr>
+		<th>Branch Stock ID</th>
+		<th>Amount</th>
+		<th>Branch ID</th>
+		<th>Product id</th>
+		<th>Status</th>
 
 
+</thead>
+
+<tbody>
+	<c:forEach var="row2" items="${stock}">
+		<tr>
+			<td>${row2.branch_stock_id}</td>
+			<td>${row2.amount}</td>
+			<td>${row2.branchid}</td>
+			<td>${row2.proid}</td>
+			<td>${row2.statu}</td>
+
+		</tr>
+	</c:forEach>
+</tbody>
+</table>
+
+<br>
+<br>
+
+</c:if>
 
 	</body>
 	<div>
@@ -324,6 +374,4 @@
 		<br>
 	</div>
 </body>
-
-
 </html>

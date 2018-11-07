@@ -1,6 +1,5 @@
 package model.dao.impl;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
 import model.bean.PinginBean;
+import model.bean.PinginDetailBean;
 import model.dao.PinginDAO;
 @Repository
 public class PinginDAOImpl implements PinginDAO {
@@ -69,6 +69,10 @@ public class PinginDAOImpl implements PinginDAO {
 		}
 		return false;
 	}
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		ApplicationContext context =

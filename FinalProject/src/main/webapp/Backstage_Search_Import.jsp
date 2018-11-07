@@ -186,12 +186,12 @@
 				</div>
 
 				<div class="n1" id="s2">
-					<a href="./Backstage_storehouse.jsp" title="Beats">
+					<a href="./Backstage_Transfer.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Purchase.jsp" title="Beats">
+					<a href="./Backstage_Import.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
@@ -231,9 +231,9 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 
-				<a href="./Backstage_Purchase.jsp" title="Beats">進貨作業</a>
+				<a href="./Backstage_Import.jsp" title="Beats">進貨作業</a>
 				<span>/</span>
-				<a href="./Backstage_Purchase_01.jsp" title="Beats">查詢進貨</a>
+				<a href="./Backstage_Search_Import.jsp" title="Beats">查詢進貨</a>
 			</div>
 			<br>
 			<br>
@@ -270,9 +270,8 @@
 
 					<br>
 					<br>
-					
-					<div class="sut" style="margin-left:40px">
-						<a href="./Backstage_Purchase_02.jsp" title="Beats"> 
+
+					<div class="sut" style="margin-left:40px">						
 						<input type="submit" value="送出" style="width:120px;height:40px;font-size:20px;"> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="reset" value="清除" style="width:120px;height:40px;font-size:20px;">
 					</div>

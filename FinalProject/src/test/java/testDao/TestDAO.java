@@ -97,15 +97,33 @@ public class TestDAO {
 	}
 	
 	@Test
+	public void testCartDetailDelete() {
+		CartDetailDAO dao = context.getBean(CartDetailDAO.class);
+		List<CartDetailBean> aa = (List<CartDetailBean>)dao.selectbycartId(18);
+		System.out.println(aa);
+		Boolean selects = dao.deletebycartId(18);
+		System.out.println(selects);
+	}
+	
+	@Test
+	public void testCartDelete() {
+		CartDAO dao = context.getBean(CartDAO.class);
+		List<CartBean> aa =  (List<CartBean>) dao.selectById(9);
+		System.out.println(aa);
+		Boolean selects = dao.deletebyCartId(9);
+		System.out.println(selects);
+	}
+	
+	@Test
 	public void testCategoryDao() {
 		CategoryBean bean = new CategoryBean(null, "Ram", "Ram");
 		CategoryDAO dao = context.getBean(CategoryDAO.class);
-
+		
 		dao.insert(bean);
 //		System.out.println(dao.selectAll());
 //123	System.out.println(dao.selectById(1));
-     //	System.out.println(dao.update(bean));
-
+		//	System.out.println(dao.update(bean));
+		
 	}
 	
 	@Test

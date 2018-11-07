@@ -39,7 +39,7 @@
             border-color: grey;
         }
     </style>
-    <script>
+    <!-- <script>
     $(document).ready(function(){
         $.post("TestController")
         $('button[name="becheckbtn"]').next().hide();
@@ -65,8 +65,10 @@
         })
     })
 
-    </script>
-    
+
+    </script>-->
+    <script src="js/firstpageyuan.js"></script>
+
 </head>
 
 <body>
@@ -96,7 +98,7 @@
             <div class="navv">
                <ul>
 					<li>
-						<a id="test" href=""> <img src="image/shopping-cart.png"
+						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
 					</li>
@@ -125,16 +127,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form>
+                    
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputPassword1">密碼</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
+                            </div> -->
                            <span> <a href="Register.html"> 尚未註冊?</a>
 							</span>
 							
@@ -150,7 +152,7 @@
 							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
 							
 						</div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -165,11 +167,11 @@
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button>
-                    <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button>
+                <div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">桌上型電腦</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">主機板</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">CPU</button> -->
+<!--                     <button name="category" class="dropdown-item menuitemstyle" type="button">記憶體</button> -->
                 </div>
                 </div>
 
@@ -184,7 +186,7 @@
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+                <div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
                     
                 </div>
 
@@ -200,7 +202,11 @@
                         <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
-                   
+                    <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
             </div>
             <div class="modal fade" id="mustchoose" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -224,8 +230,8 @@
 
 
 
-            <input type="text" style="line-height:45px;" size="30px">
-            <button style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
+            <input  id="searchspace" type="text" style="line-height:45px;" size="30px">
+            <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
                 <span>
                     <img src="image/loupe.png" width="20px;">
@@ -269,7 +275,7 @@
                 <ul>
                     <li><a style="color:#6c757d" href="">訂單紀錄</a></li>
                     <li><a style="color:#6c757d" href="">願望清單</a></li>
-                    <li><a style="color:#6c757d" href="" id="memberClickSelfInfo">修改會員資料</a></li>
+                    <li class="memberInfo" style="color:#6c757d" id="memberClickSelfInfo">修改會員資料</li>
                     <li><a style="color:#6c757d" href="">貨到通知</a></li>
                 </ul>
             </div>
@@ -351,21 +357,21 @@
                    
                 </div>
                 <div class="dropdown-divider"></div>
-                <form>
+              
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputName">姓名</label><span id="testname"></span>
-                            <input type="email" class="form-control" id="inputName" >
+                            <label for="inputName">姓名</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">性別</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man">
                                 <label class="form-check-label" for="inlineRadio1">男</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman">
                                 <label class="form-check-label" for="inlineRadio2">女</label>
                             </div>
                         </div>
@@ -373,27 +379,27 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <!-- <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"> -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">密碼</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <!-- <label for="memberInputPassword4">密碼</label>
+                            <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password"> -->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputCity">手機</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+                        <label for="inputPhone">手機</label>
+                        <input type="text" class="form-control" id="inputPhone" placeholder="">
                     </div>
     
                     <div class="form-group">
-                        <label for="inputAddress2">地址</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                        <label for="inputAddress">地址</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="">
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-secondary">修改</button>
-                </form> 
+                    <button type="submit" class="btn btn-secondary" id="memberUpdateInfo">修改</button>
+               
     </article>
 </div>
     <footer>
@@ -425,9 +431,8 @@
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
-            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
-            </p>
+            <p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999</p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
 

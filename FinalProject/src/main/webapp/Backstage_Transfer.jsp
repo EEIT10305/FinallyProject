@@ -147,12 +147,12 @@
 							<br>本月公告</p>
 				</div>
 				<div class="n1" id="s2">
-					<a href="./Backstage_storehouse.jsp" title="Beats">
+					<a href="./Backstage_Transfer.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Purchase.jsp" title="Beats">
+					<a href="./Backstage_Import.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
@@ -192,7 +192,7 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 				
-				<a href="./Backstage_storehouse.jsp" title="Beats">庫存管理</a>
+				<a href="./Backstage_Transfer.jsp" title="Beats">庫存管理</a>
 			</div>
 			<br>
 			<br>
@@ -221,7 +221,7 @@
 				<tr>
 					調撥貨品
 					<td>
-						<a href="./Backstage_Purchase_01.jsp" title="Beats">
+						<a href="./Backstage_1231313.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>
