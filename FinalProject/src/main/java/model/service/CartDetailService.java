@@ -6,11 +6,13 @@ import model.bean.CartDetailBean;
 
 public interface CartDetailService {
 	List<CartDetailBean> selectAll();
-    CartDetailBean selectById(int id);
+    CartDetailBean selectById(Integer cartid);
     CartDetailBean insert(CartDetailBean bean);
     boolean update(CartDetailBean bean);
-    boolean delete(CartDetailBean bean);
+    boolean deletebycartId(int cartid);
     Integer getMemberId();
     void setMemberId(Integer memberid);
+    //CartDetailBean selectCartId(int CartId);
+    List<CartDetailBean> selectbycartId(int cartid);
     
 }

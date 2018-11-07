@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,6 @@ import model.service.ImportService;
 
 @Controller
 @SessionAttributes(names = { "user" })
-
 public class ImportController {
 
 	@Autowired

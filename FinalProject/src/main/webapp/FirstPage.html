@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -24,8 +23,8 @@
 				var querydata = $.parseJSON(data);	
 				var text=""
 				$.each(querydata, function(index, json) {
-				text +='<div class="card" style="width: 18rem; padding: 10px;">'+
-				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" alt="Card image cap">'+
+				text +='<div class="card" style="width: 15rem; padding: 10px;">'+
+				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="220px" alt="Card image cap">'+
 				'<div class="card-body">'+
 				'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
 				'<h5 class="card-title">'+json.model+'</h5>'+
@@ -39,21 +38,23 @@
 			}})
     })
 </script>
+
+<script src="js/firstpageyuan.js"></script>
 </head>
 
 <body>
 <div id="show"></div>
-	<header>
+	<header style="width:100%">
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a href="FirstPage.html"> <img src="image/001.png"
 							width="120px">
 						</a>
-					</ul>
-				</li>
+					</li>
+				</ul>
 
 			</div>
 			<div class="navv">
@@ -69,7 +70,6 @@
 							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
 							width="20px"> <br>商品比較
 					</button></a>
-
 			</div>
 			<div class="navv">
 				<ul>
@@ -94,7 +94,6 @@
 		</div>
 		
 		<!-- Modal -->
-
 		<div style="margin:0px auto" class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
@@ -107,19 +106,21 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form>
+					
 						<div class="modal-body">
 							<div class="form-group">
-								<label for="exampleInputEmail1">Email</label> <input
-									type="email" class="form-control" id="exampleInputEmail1"
+								<label for="exampleInputEmail1">Email</label><span class="errorMsg" id="memberLoginErrorEmail"></span> 
+								<input
+									type="email" class="form-control" id="memberInputEmail"
 									aria-describedby="emailHelp" placeholder="Enter email">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">密碼</label> <input
-									type="password" class="form-control" id="exampleInputPassword1"
+								<label for="exampleInputPassword1">密碼</label><span class="errorMsg" id="memberLoginErrorPassword"></span> 
+								<input
+									type="password" class="form-control" id="memberInputPassword"
 									placeholder="Password">
 							</div>
-							<span> <a href="Register.html"> 尚未註冊?</a>
+							<span> <a href="Register.html"> 尚未註冊?</a><span id="memberBothErrorMsg" style="color: red"></span> 
 							</span>
 							
 						    <br>
@@ -131,16 +132,21 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
-							
+							<!-- <button class="mymodelbtn btn-primary" onclick="FBLogin()">使用facebook登入</button> -->
+							<!-- <div style="display: inline;" class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div> -->
+							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
+							<div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div>
+							<div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="400"></div>
 						</div>
 						
-					</form>
+					
 				</div>
 			</div>
 		</div>
 
 	</header>
+
+
 
 	<nav>
 		<!--搜尋器和輪播牆-->
@@ -157,6 +163,9 @@
                   
                 </div>
 			</div>
+
+            
+
 
 
 			<div class="btn-group">
@@ -221,6 +230,8 @@
 
 
 
+
+
 		  <input id="searchspace" type="text" name="searchspace" style="line-height:45px;" size="30px">
             <button id="searchbtn" style="padding:0px 50px" type="button" class="btn btn-secondary btnwidth">
                 搜尋
@@ -229,18 +240,13 @@
                 </span>
             </button>
         </div>
-		<!-- 以下是輪播牆 -->
-        <div id="carouselExampleIndicatorsup" >
-		
-        
-        </div>
+        <!-- 以下是輪播牆 -->
+        <div id="carouselExampleIndicatorsup"></div>
+
 	</nav>
 	<article>
 			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
-		<div class="forcard">
-		</div>
-
-
+		<div class="forcard"></div>
 
 	</article>
 	<footer>
@@ -267,17 +273,22 @@
 			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
 			<a href=""> <img src="image/001.png" width="80px">
 			</a>
-			<p>欣亞數位股份有限公司 版權所有© Sinya Digital Corporation. All rights
-				reserved.</p>
-			<p>臺灣 807 高雄市三民區建國二路121號 網購客服專線(市話撥打)：0800-380-380
-				網購客服專線(手機撥打)：02-23512801</p>
+			 <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999
 			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
 		</div>
 
 	</footer>
-    
-
-	<script
+		<!--處理登入-->
+		<script src="js/login.js"></script>
+		<!--第三方登入javascript-->
+		<script src="js/otherLogin.js"></script>
+		<!--google登入用-->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!--google登入用-->
+        <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'>
+		
+		<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -289,115 +300,7 @@
 		crossorigin="anonymous"></script>
 	
 <script type="text/javascript">
-        $(document).ready(function () {
-        	sessionStorage.category = "ini";
-            sessionStorage.brand = "ini";
-            sessionStorage.price = 0;
-            sessionStorage.searchspace = "ini";
-        	
-        	
-            $.get("SelectByCategory", function (data, status) {
-                if (status == "success") {
-                    var querydata = $.parseJSON(data);
-                    $.each(querydata, function (index, json) {
-                        $("#categorybtn").append("<button id='category" + json.code + "' name='category' class='dropdown-item menuitemstyle' type='button' value='"
-                            + json.category + "'>" + json.category + "</button>");
-
-                        document.getElementById("category" + json.code).addEventListener("click", clickcategory);
-
-                    })
-
-                    $('button.menuitemstyle').click(function () {
-                        $(this).parent().siblings(".btnwidth").text($(this).text());
-                    })
-                    $('button[name="becheckbtn"]').next().hide();
-                    $('button[name="category"]').click(function () {
-                        $('button[name="becheckbtn"]').hide();
-                        $('button[name="becheckbtn"]').next().show();
-                    })
-                    
-                    
-                    
-                }
-            })
-            
-           
-            
-            
-            
-            function clickcategory() {
-                $('#brandtitle').text("廠牌");
-                $('#pricetitle').text("價格");
-                $('#brandbtn').empty();
-                document.getElementById("pricebtn1").addEventListener("click",clickprice);
-                document.getElementById("pricebtn2").addEventListener("click",clickprice);
-                document.getElementById("pricebtn3").addEventListener("click",clickprice);
-                document.getElementById("pricebtn4").addEventListener("click",clickprice);
-                document.getElementById("pricebtn5").addEventListener("click",clickprice);
-                
-                sessionStorage.category = event.target.value;
-             
-                //      傳category給brand標籤去搜尋producttable
-                $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
-                    if (status == "success") {
-                        var querydata = $.parseJSON(data);
-                        $.each(querydata, function (index, json) {
-                            $("#brandbtn").append("<button id='" + json.brand + "'name='brand' class='dropdown-item menuitemstyle' type='button' value='"
-                                + json.brand + "'>" + json.brand + "</button>");
-                            document.getElementById(""+json.brand).addEventListener("click",clickbrand);
-                            
-           
-                        })
-                        $('button.menuitemstyle').click(function () {
-                            $(this).parent().siblings(".btnwidth").text($(this).text());
-                        })
-
-                       
-                    }
-                })
-                
-                function clickbrand(){
-                	sessionStorage.brand = event.target.value;
-                }
-                function clickprice(){
-             	    sessionStorage.price = event.target.value;
-                }
-
-
-            }
-        })
-    </script>
-<script type="text/javascript">
-$(document).ready(function(){
-    document.getElementById("searchspace").addEventListener("blur", storesearchspace);   //存
-	document.getElementById("searchspace").addEventListener("focus", removesearchspace);  //清除
-
-     function storesearchspace(){
-         sessionStorage.searchspace = event.target.value;
-//          alert(sessionStorage.searchspace);
-     }	
-     function removesearchspace(){
-        sessionStorage.searchspace = "ini";
-       //  alert(sessionStorage.searchspace);
-     }
-	
-	
-$("#searchbtn").click(function(){
-	$.post("userInput",{"category":sessionStorage.category,
-		                     "brand":sessionStorage.brand,
-		                     "price":sessionStorage.price,
-		                     "searchspace":sessionStorage.searchspace},  
-		                     function(data,status){
-		                    	 sessionStorage.data = data
-// 		                    	 alert("要跳了 " + sessionStorage.data);
- 		                    	 window.location.href="http://localhost:8081/FinalProject/ProductPage.html";
-		                     }
-			)
-})
-	
-	
-})
-
+      
 </script>	
 		
 </body>

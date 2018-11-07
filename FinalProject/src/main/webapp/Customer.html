@@ -14,7 +14,7 @@
     <style>
         aside{
             float:left;
-            width:20%;
+            width:18%;
             margin:20px;
         }
         article{
@@ -39,7 +39,7 @@
             border-color: grey;
         }
     </style>
-    <script>
+    <!-- <script>
     $(document).ready(function(){
         $.post("TestController")
         $('button[name="becheckbtn"]').next().hide();
@@ -65,20 +65,21 @@
         })
     })
 
-    </script>
+    </script> -->
+    
 </head>
 
 <body>
-    <header>
+    <header style="width:100%">
         <div style="align-items:baseline;" class="d-flex justify-content-between">
             <div class="navv">
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <a href="FirstPage.html">
                             <img src="image/001.png" width="120px">
                         </a>
-                    </ul>
-                </li>
+                    </li>
+                </ul>
 
             </div>
             <div class="navv">
@@ -93,23 +94,27 @@
                     <br>商品比較</button></a>
             </div>
             <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="">
-                            <img src="image/shopping-cart.png" width="30px">
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
+               <ul>
+					<li>
+						<a id="test" href=""> <img src="image/shopping-cart.png"
+							width="30px">
+						</a>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
 
-                    </ul>
-                </li>
-                  <fieldset id="myModal" class="mymodal" >
-                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a></div>
-                        </fieldset>
+					</li>
+				</ul>
+				<fieldset id="myModal" class="mymodal">
+					<div class="dropdown-divider"></div>
+					<a href='ShowCart.html'><button style="width: 300px"
+							class='btn btn-dark'>查看購物車</button></a>
+			</fieldset>
+			</div>
             </div>
-        </div>
+       
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -120,16 +125,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form>
+                    
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputPassword1">密碼</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
+                            </div> -->
                            <span> <a href="Register.html"> 尚未註冊?</a>
 							</span>
 							
@@ -145,7 +150,7 @@
 							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
 							
 						</div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -264,8 +269,8 @@
                 <ul>
                     <li><a style="color:#6c757d" href="">訂單紀錄</a></li>
                     <li><a style="color:#6c757d" href="">願望清單</a></li>
+                    <li class="memberInfo" style="color:#6c757d" id="memberClickSelfInfo">修改會員資料</li>
                     <li><a style="color:#6c757d" href="">貨到通知</a></li>
-                    <li><a style="color:#6c757d"href="">修改會員資料</a></li>
                 </ul>
             </div>
             
@@ -296,7 +301,7 @@
                                     <a class="nav-link" href="#">願望清單</a>
                                   </li>
                                   <li class="nav-item">
-                                        <a class="nav-link" href="#">修改會員資料</a>
+                                        <a class="nav-link" href="#" id="memberClickSelf">分辨修改會員資料</a>
                                       </li>
                         </ul>
                         </div>
@@ -342,25 +347,25 @@
                             </div>
            
             </div> -->
-              <div>參考的會員資料樣式 -->
+            <div>參考的會員資料樣式
                    
                 </div>
                 <div class="dropdown-divider"></div>
-                <form>
+              
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">姓名</label>
-                            <input type="email" class="form-control" id="inputEmail4" >
+                            <label for="inputName">姓名</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">性別</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man">
                                 <label class="form-check-label" for="inlineRadio1">男</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman">
                                 <label class="form-check-label" for="inlineRadio2">女</label>
                             </div>
                         </div>
@@ -368,27 +373,27 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <!-- <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"> -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">密碼</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <!-- <label for="memberInputPassword4">密碼</label>
+                            <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password"> -->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputCity">手機</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+                        <label for="inputPhone">手機</label>
+                        <input type="text" class="form-control" id="inputPhone" placeholder="">
                     </div>
     
                     <div class="form-group">
-                        <label for="inputAddress2">地址</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                        <label for="inputAddress">地址</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="">
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-secondary">修改</button>
-                </form> 
+                    <button type="submit" class="btn btn-secondary" id="memberUpdateInfo">修改</button>
+               
     </article>
 </div>
     <footer>
@@ -420,9 +425,8 @@
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-            <p>欣亞數位股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
-            <p>臺灣 807 高雄市三民區建國二路121號　網購客服專線(市話撥打)：0800-380-380　網購客服專線(手機撥打)：02-23512801
-            </p>
+            <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999</p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
         </div>
 
@@ -432,6 +436,8 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-</body>
+       <script src="js/updateMemberInfo.js"></script><!--  秉毅用 -->
+
+    </body>
 
 </html>

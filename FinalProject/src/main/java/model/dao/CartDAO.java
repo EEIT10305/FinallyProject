@@ -3,13 +3,24 @@ package model.dao;
 import java.util.List;
 
 import model.bean.CartBean;
+import model.bean.MemberBean;
+import model.bean.ProductBean;
 
 public interface CartDAO {
-	 List<CartBean> selectAll();
-	    CartBean selectById(int id);
+	    List<CartBean> selectAll();
+	    CartBean selectById(int cartid);
 	    CartBean insert(CartBean bean);
 	    boolean update(CartBean bean);
 	    boolean delete(CartBean bean);
-	    Integer getMemberId();
-	    void setMemberId(Integer memberid);
+	    MemberBean getMemberId();
+	    void setMemberId(int memberId);
+	    boolean checkMember(int memberid);
+	    CartBean selectByMemberId(int memberid);
+	    void  getCartId();
+	    public ProductBean insertmodelfromProduct(String model);
+	    
+	    boolean deletebyCartId(int  cartid);
+	    boolean updatestatus(int cartid);
+		
+	
 }

@@ -93,13 +93,13 @@
 
 
                              $("#fordatainput").sortable({//排序功能 
-                            	 cursor: "move"//游標便十字
+                            	 cursor: "grab"//游標便十字
                              });
             				 $("#fordatainput2").sortable({//排序功能 
             					 connectWith: "#fordatainput"
                              });
                              $("#fordatainput2").sortable({//排序功能 
-                            	 cursor: "move"//游標便十字
+                            	 cursor: "grab"//游標便十字
                              });
             				 $("#fordatainput").sortable({//排序功能 
             					 connectWith: "#fordatainput2"

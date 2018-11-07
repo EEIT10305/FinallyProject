@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.ImportDetailBean;
 import model.dao.ImportDetailDAO;
-import model.dao.ProductDAO;
 import model.service.ImportDetailService;
 @Service
 public class ImportDetailServiceImpl implements ImportDetailService{

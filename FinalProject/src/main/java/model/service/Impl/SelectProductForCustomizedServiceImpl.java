@@ -5,11 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import model.bean.BrandBean;
 import model.bean.CabinetBean;
+import model.bean.CartDetailBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
 import model.bean.MbBean;
@@ -20,16 +23,20 @@ import model.bean.ProductBean;
 import model.bean.RamBean;
 import model.bean.StorageBean;
 import model.bean.VgaBean;
+import model.dao.CartDetailDAO;
 import model.dao.MbDAO;
 import model.dao.ProductDAO;
 import model.service.SelectProductForCustomizedService;
 
 @Service
+@Transactional
 public class SelectProductForCustomizedServiceImpl implements SelectProductForCustomizedService {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
 	private MbDAO mbDAO;
+	@Autowired
+	private CartDetailDAO cartDetailDAO;
 
 	@Override
 	public List<MbBean> selectMb() {
@@ -140,6 +147,15 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 		return productDAO.selectProductPrice(model);
 	}
 	@Override
+	public ProductBean showCartDetailInService(String model,Integer CartId) {
+		ProductBean PB = productDAO.selectProductPrice(model);
+		CartDetailBean CDB= new CartDetailBean(null,1,CartId,PB.getProid());//Integer id, Integer amount,Integer cartid, Integer proid
+		cartDetailDAO.insert(CDB);
+		
+		return PB;
+	}
+	
+	@Override
 	public List<PinginBean> showAllProductImgInService() {
 	
 		return productDAO.showAllProductImg();
@@ -173,5 +189,10 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 	public CabinetBean showCabinetPowerInService(String Cabinetmodel) {
 		
 		return productDAO.showCabinetPower(Cabinetmodel);
+	}
+	@Override
+	public List<PowerSupplierBean> showPowerSupplierByTotalPowerInService(Integer PowerModel) {
+		
+		return productDAO.showPowerSupplier(PowerModel);
 	}
 }
