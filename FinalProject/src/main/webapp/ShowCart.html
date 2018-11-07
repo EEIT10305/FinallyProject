@@ -129,7 +129,7 @@ article {
 //                 count++
 //             }
 // 		})
-			
+		sessionStorage.CartId = 1;	
 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 			if(status=="success"){
 				var querydata = $.parseJSON(data);
@@ -227,13 +227,13 @@ article {
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a href="FirstPage.html"> <img src="image/001.png"
 							width="120px">
 						</a>
-					</ul>
-				</li>
+					</li>
+				</ul>
 
 			</div>
 			<div class="navv">
@@ -251,27 +251,27 @@ article {
 					</button></a>
 			</div>
 			<div class="navv">
-				<li>
-					<ul>
+				<ul>
+					<li>
 						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
-					</ul>
-					<ul>
+					</li>
+					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
 						</a>
 
-					</ul>
-				</li>
+					</li>
+				</ul>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
-			</div>
 			</fieldset>
+			</div>
 		</div>
-		</div>
+	
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
