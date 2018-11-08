@@ -82,6 +82,21 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean updateBean(Integer id,Integer amount) {		
+		CartDetailBean bean = this.getSession().get(CartDetailBean.class,id);
+			if (bean != null) {
+				try {
+					bean.setAmount(amount);
+					this.getSession().flush();
+					return true;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}		
+		return false;
+	}
 
 	@Override
 	public boolean deletebycartId(Integer cartid) {
