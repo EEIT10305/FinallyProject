@@ -589,14 +589,14 @@ article {
     	}
 	  function showPowerSupplierPrice(){
 	   		$.post("showInitPrice",{"model":$(this).find("option:selected").text()},function (data, status) {
-				if (status == "success") {
+				
+	   			if (status == "success") {
 						var querydata = $.parseJSON(data);
 				                $("#POWERSUPPLIERPrice").html(querydata.price)
 				    }
 			CalculateTotalPrice();
 				});
 	   		CalculateTotalPower();
-	   		PowerSupplierByTotalPower();
 		}
 	  function showStoragePrice(){
 			$.post("showStoragePower",{"Storagemodel":$(this).find("option:selected").text()},function (data, status) {
@@ -755,6 +755,7 @@ article {
                             		sessionStorage.initpowersuppliermodel=json.model
                             		$("#POWERSUPPLIERPrice").html(json.price)
                             	}
+                        	
                             $("#showPOWERSUPPLIER").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
                         	}
                         })
@@ -1207,21 +1208,7 @@ article {
 
                                 }
                             })
-                            $.get("selectPowerSupplierForCustomized", function (
-                                data, status) {
-                                if (status == "success") {
-                                    var querydata = $.parseJSON(data);
-                                    $.each(querydata, function (index, json) {
-                                    	if(json.model!=sessionStorage.powersuppliermodel){
-                                    		if(index==0){
-                                        		sessionStorage.initpowersuppliermodel=json.model
-                                        	}
-                                        $("#showPOWERSUPPLIER").append("<option value='"+json.psu+"' name='"+json.model+"'>" + json.model+ "</option>");
-                                    	}
-                                    })
 
-                                }
-                            })
                             CalculateTotalPower();
                     	}
                    function CalculateTotalPower(){
@@ -1244,7 +1231,7 @@ article {
 			                			     parseInt($("#POWERSUPPLIERPrice").html()))
                    }
                    function PowerSupplierByTotalPower(){
-                	   $.post("showPowerSupplierByTotalPower",{"PowerModel":(parseInt($("#totalPower").html())+300)},function(data,status){
+                	   $.post("showPowerSupplierByTotalPower",{"PowerModel":parseInt($("#totalPower").html())},function(data,status){
                 		   if (status == "success") {
                                var querydata = $.parseJSON(data);
                                $("#showPOWERSUPPLIER").html("")

@@ -15,19 +15,19 @@ public class MemberBean {
 	private Integer memberid;//流水號
 	
 	@Column(nullable=false)
-	private String name;//真實姓名
+	private String membername;//真實姓名
 	
 	@Column(nullable=false)
 	private String email;//email
 	
 	@Column(nullable=false)
-	private String password;
+	private String memberpassword;
 	
 	@Column(nullable=false)
 	private String permission;
 	
 	@Column(nullable=false)
-	private String address;
+	private String memberaddress;
 	
 	@Column(nullable=false)
 	private String phone;
@@ -37,14 +37,14 @@ public class MemberBean {
 	
 	public MemberBean() {}
 	
-	public MemberBean(Integer memberid, String name, String email, String password, String permission, String address,
+	public MemberBean(Integer memberid, String membername, String email, String memberpassword, String permission, String memberaddress,
 			String phone, String gender) {
 		this.memberid = memberid;
-		this.name = name;
+		this.membername = membername;
 		this.email = email;
-		this.password = password;
+		this.memberpassword = memberpassword;
 		this.permission = permission;
-		this.address = address;
+		this.memberaddress = memberaddress;
 		this.phone = phone;
 		this.gender = gender;
 	}
@@ -54,11 +54,11 @@ public class MemberBean {
 	public void setMemberid(Integer memberid) {
 		this.memberid = memberid;
 	}
-	public String getName() {
-		return name;
+	public String getmembername() {
+		return membername;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setmembername(String membername) {
+		this.membername = membername;
 	}
 	public String getEmail() {
 		return email;
@@ -66,11 +66,11 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getmemberpassword() {
+		return memberpassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setmemberpassword(String memberpassword) {
+		this.memberpassword = memberpassword;
 	}
 	public String getPermission() {
 		return permission;
@@ -78,11 +78,11 @@ public class MemberBean {
 	public void setPermission(String permission) {
 		this.permission = permission;
 	}
-	public String getAddress() {
-		return address;
+	public String getmemberaddress() {
+		return memberaddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setmemberaddress(String memberaddress) {
+		this.memberaddress = memberaddress;
 	}
 	public String getPhone() {
 		return phone;
@@ -99,8 +99,8 @@ public class MemberBean {
 
 	@Override
 	public String toString() {
-		return "MemberBean [memberid=" + memberid + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", permission=" + permission + ", address=" + address + ", phone=" + phone + ", gender=" + gender
+		return "MemberBean [memberid=" + memberid + ", membername=" + membername + ", email=" + email + ", memberpassword=" + memberpassword
+				+ ", permission=" + permission + ", memberaddress=" + memberaddress + ", phone=" + phone + ", gender=" + gender
 				+ "]";
 	}
 		

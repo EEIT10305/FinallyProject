@@ -51,11 +51,11 @@ public class MemberDAOImpl implements MemberDAO {
 		if (bean != null) {
 			MemberBean temp = this.getSession().get(MemberBean.class, bean.getMemberid());
 			if (temp != null) {
-				temp.setName(bean.getName());
+				temp.setmembername(bean.getmembername());
 				temp.setEmail(bean.getEmail());
-				temp.setPassword(bean.getEmail());
+				temp.setmemberpassword(bean.getEmail());
 				temp.setPermission(bean.getPermission());
-				temp.setAddress(bean.getAddress());
+				temp.setmemberaddress(bean.getmemberaddress());
 				temp.setPhone(bean.getPhone());
 				temp.setGender(bean.getGender());
 				return true;
