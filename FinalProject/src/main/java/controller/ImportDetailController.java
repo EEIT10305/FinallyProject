@@ -74,7 +74,7 @@ public class ImportDetailController {
 		List<BranchStockBean> result = importService.insertBranchStock(improtid);
 	
 		model.addAttribute("stock", result);
-			
+
 		return "/Backstage_Search_Import_Result.jsp";
 
 	}
