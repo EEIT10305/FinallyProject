@@ -136,16 +136,95 @@ article {
 				var count=1;
 				var sum=0;
                 $.each(querydata, function (index, json) {
-                	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td><tr>");
-                 	sum += json.productBean.price
+                	
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+//                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+count+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+count+"' value='"+count+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+count).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+count).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
+
+                	 document.getElementById("modify"+count).addEventListener("click",modifyAmount);
+                	
+                	
+                 	sum += json.productBean.price * json.amount
                 	count++
                 })
-			$("#show").append("總價:"+sum)
+			$("#show").append("總價: "+sum + " 元")
 			sessionStorage.TotalPrice=sum
 			}
 		})
 		
 	}
+
+function modifyAmount(){
+	var id = $(this).attr("value")
+	var amount = $("#select" + id).val();	
+	$.post("updateCartDetailAmount",
+		   {"id":id,"amount":amount},function(data,status){ 			
+			    alert("修改數量成功");	
+				$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+					if(status=="success"){
+						var querydata = $.parseJSON(data);
+						var count=1;
+						var sum=0;
+						 $("#itembody").html("");
+		                $.each(querydata, function (index, json) {
+		                	
+//		                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+//		                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
+			                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+count+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+count+"' value='"+count+"'>修改數量</button></td></tr>");
+		                	for(var i=1; i<=10;i++){
+		                		if(i==json.amount){
+		                			$("#select"+count).append("<option value='"+i+"' selected>"+i+"</option>")
+		                		}else {                			
+		                		$("#select"+count).append("<option value='"+i+"'>"+i+"</option>")
+		                		}
+		                	}
+
+		                	
+		                	 document.getElementById("modify"+count).addEventListener("click",modifyAmount);
+		                	
+		                	
+		                 	sum += json.productBean.price * json.amount
+		                	count++
+		                })
+		            $("#show").html("總價: "+sum + " 元");   
+					
+					sessionStorage.TotalPrice=sum
+					}
+				})
+	         	
+	})
+	
+}
+
+
+//----------------------這是敬諺的---------------------------------------
+// 		sessionStorage.CartId = 1;	
+// 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+// 			if(status=="success"){
+// 				var querydata = $.parseJSON(data);
+// 				var count=1;
+// 				var sum=0;
+//                 $.each(querydata, function (index, json) {
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td></tr>");
+//                  	sum += json.productBean.price
+//                 	count++
+//                 })
+// 			$("#show").append("總價:"+sum)
+// 			sessionStorage.TotalPrice=sum
+// 			}
+// 		})
+		
+// 	}
+//----------------------------------------------------------------	
 	//確認產品進購物車
 // 	function CheckProducts(){
 // 		$.post("XXX",{"":""},function)(data,status){
@@ -417,7 +496,7 @@ article {
 	</nav>
 	<div style="overflow: auto; background-color: whitesmoke;">
 		<article
-			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 50%; background-color: white;">
+			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
 			<div class="accordion" id="accordionExample">
 				<div class="card">
 					<div class="card-header" id="headingOne">
@@ -441,6 +520,7 @@ article {
 											<th scope="col">商品型號</th>
 											<th scope="col">價格</th>
 											<th scope="col">數量</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 
@@ -470,7 +550,7 @@ article {
 								
 							</div>
 						</div>
-								<div id="show" style="color:red;text-align:right;padding-right:100px;"></div>
+								<div id="show" style="font-size:24px;font-weight:bold;color:red;text-align:right;padding-right:100px;padding-top:20px"></div>
 								<div id="showtotal"></div>
 						<div style="padding: 30px">
 							<button id="CheckCart" class="btn btn-secondary collapsed" type="button"
