@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/fp.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="js/productpage.js"></script>
+    <script src="js/basic.js"></script>
     <title>商品頁</title>
     <style>
         aside {
@@ -44,29 +45,7 @@
         }
     </style>
     
-    <script>
-        $(document).ready(function () {
-            $.post("TestController")
-            $('button[name="becheckbtn"]').next().hide();
-            $('button.menuitemstyle').click(function () {
-                $(this).parent().siblings(".btnwidth").text($(this).text());
-            })
-            $('button[name="category"]').click(function () {
-                $('button[name="becheckbtn"]').hide();
-                $('button[name="becheckbtn"]').next().show();
-                // 這裡可以加動態產生的品牌或價格選項
-        })
-        
-        $('#test').mouseover(function(){
-        	$("fieldset").show();
-        });
-        $('#test').mouseout(function () {
-            if (!$(".mymodal:hover").length) {
-            	$("fieldset").hide();
-                  }
-        })
-    })
-</script>
+ 
 
 </head>
 
@@ -74,13 +53,15 @@
     <header>
         <div style="align-items:baseline;" class="d-flex justify-content-between">
             <div class="navv">
-                <li>
-                    <ul>
+
+                <ul>
+                    <li>
                         <a href="FirstPage.html">
                             <img src="image/001.png" width="120px">
                         </a>
-                    </ul>
-                </li>
+                    </li>
+                </ul>
+
 
             </div>
             <div class="navv">
@@ -101,27 +82,27 @@
                 </a>
             </div>
             <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="">
+                <ul>
+                    <li>
+                        <a id="test" href="/FinalProject/ShowCart.html">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
-
-                    </ul>
-                </li>
                 <fieldset id="myModal" class="mymodal">
                     <div class="dropdown-divider"></div>
                     <a href='ShowCart.html'>
                         <button style="width:300px" class='btn btn-dark'>查看購物車</button>
                     </a>
-            </div>
             </fieldset>
+                    </li>
+                    <li>
+                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
+                            <img src="image/avatar.png" width="30px"> </a>
+
+                    </li>
+                </ul>
+            </div>
         </div>
-        </div>
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -306,7 +287,7 @@
             <div>
                 <!-- 共有幾項商品 -->
                 <h2 id="wearehere"></h2>
-                <h3 id="proamount">歡迎光臨 大選電腦！</h3>
+                <h3 id="proamount">抱歉！找不到相關商品</h3>
 
 
                 <div id="orderbywhat" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -408,7 +389,7 @@
             <a href="">
                 <img src="image/001.png" width="80px">
             </a>
-            <p>大選電腦股份有限公司　版權所有© Sinya Digital Corporation. All rights reserved.</p>
+            <p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
             <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999
             </p>
             <p>客服服務專線 服務時間：10:00 ~ 17:00</p>
@@ -422,55 +403,55 @@
         crossorigin="anonymous"></script>
 
         
-      <script type="text/javascript">
-		$(document).ready(function() {
-				$.get("ShowtoAllProduct",
-							function(data, status) {		
-								if (status == "success") {		
-									var querydata = $.parseJSON(data);
-									$.each(querydata, function(index, json) {
-										$("#show").append(
-												"<tr><td>" + json.picture
-												+ "</td><td>" 
-												+ json.model
-												+ "</td><td>"
-												+ json.price
-												+"</td><td>"
-												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
-												+ "</td></tr>");
+<!--       <script type="text/javascript"> 
+// 		$(document).ready(function() {
+// 				$.get("ShowtoAllProduct",
+// 							function(data, status) {		
+// 								if (status == "success") {		
+// 									var querydata = $.parseJSON(data);
+// 									$.each(querydata, function(index, json) {
+// 										$("#show").append(
+// 												"<tr><td>" + json.picture
+// 												+ "</td><td>" 
+// 												+ json.model
+// 												+ "</td><td>"
+// 												+ json.price
+// 												+"</td><td>"
+// 												+ "<button id='" + json.model+"' type='button' name='model'  value='"+ json.model +"'>add to cart</button>"
+// 												+ "</td></tr>");
 										
-										document.getElementById(""+json.model).addEventListener("click",click);
+// 										document.getElementById(""+json.model).addEventListener("click",click);
 										
-									}) 
+// 									}) 
 									
 
-								}
-							})
+// 								}
+// 							})
 								
-				function click(){
-					sessionStorage.c1 = event.target.value
-					alert(window.sessionStorage.c1)
-// 					if(sessionStorage.CartId != null)
- 					sessionStorage.CartId=1
- 					alert(sessionStorage.CartId)
-					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
-// 						if(data=="null"){
-// 							alert("請重新登入")
-// 						}
+// 				function click(){
+// 					sessionStorage.c1 = event.target.value
+// 					alert(window.sessionStorage.c1)
+// // 					if(sessionStorage.CartId != null)
+//  					sessionStorage.CartId=1
+//  					alert(sessionStorage.CartId)
+// 					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// // 						if(data=="null"){
+// // 							alert("請重新登入")
+// // 						}
 						
-						alert(sessionStorage.CartId);
-						alert(111);
-						alert(data);
+// 						alert(sessionStorage.CartId);
+// 						alert(111);
+// 						alert(data);
 						
 						
-					})
+// 					})
 					
 					
-				}
+// 				}
 					
 					
-				})
-	</script>  
+// 				})
+ 	</script>   -->
         
 </body>
 

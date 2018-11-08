@@ -18,8 +18,8 @@ public class TestBug {
 	
 	public static void main(String[] args) {
 		BugService bugService = new BugServiceImpl();
-	
-		
+	    ArrayList<HashMap<String, String>> result = bugService.getAllWebProduct("http://www.gh3c.com.tw/", "http://www.gh3c.com.tw/index.php?app=search&cate_id=61");
+		System.out.println(result.size());
 //		String strurl="https://www.eclife.com.tw/pc_nb/moreinfo_125205.htm";
 //		String coll= "";
 //		        //創建url爬取核心對象

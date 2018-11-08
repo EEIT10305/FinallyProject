@@ -12,14 +12,19 @@
 <link rel="stylesheet" href="css/fp.css">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/flot/jquery.flot.min.js"></script>    
+    <script type="text/javascript" src="/js/flot/jquery.flot.symbol.js"></script>
+    <script type="text/javascript" src="/js/flot/jquery.flot.axislabels.js"></script>
+	<script type="text/javascript" src="js/flot/jquery.js"></script>
+	<script type="text/javascript" src="js/flot/jquery.flot.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
-	<script src="js/basic.js"></script>
-	<script src="js/backpage.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/backpage.js"></script>
+<script src="js/crawler.js"></script>
 <title>後台</title>
 <style>
 a {
@@ -27,26 +32,57 @@ a {
 	font-size: 24px;
 	font-family: "微軟正黑體"
 }
-tr td{
-border:1px solid black;
-width:70px;
-}
-.mytable{
-    width: 30%;
-    max-width: 100%;
-    margin:1rem auto;
-    background-color: transparent;
-}
-.mytable tbody tr td{
-    width: 500px;
 
+tr td {
+	border: 1px solid black;
+	width: 70px;
 }
+
+.mytable {
+	width: 50%;
+	max-width: 100%;
+	margin: 1rem auto;
+	background-color: transparent;
+}
+
+.mytable tbody tr td {
+	width: 500px;
+}
+    .mymodal2 {
+    display: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    position: absolute;
+    right:50px;
+    }
 </style>
+<script>
+$(document).ready(function(){
+	$('#test').mouseover(function(){
+    	$("#myModal").show();
+    });
+    $('#test').mouseout(function () {
+        if (!$('#myModal:hover').length) {
+        	$("#myModal").hide();            	
+        }
+    })
+	$('#mailshow').mouseover(function() {
+		$("#mymail").show();
+	});
+	$('#mailshow').mouseout(function() {
+		if (!$("#mymail:hover").length) {
+			$("#mymail").hide();
+		}
+	})
+})
+</script>
 
 </head>
 
 <body>
-	<header style="width:100%">
+	<header style="width: 100%">
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
 			<div class="navv" style="width: 80%">
@@ -54,38 +90,43 @@ width:70px;
 					<!-- <li class="nav-item">
                               <a class="nav-link" href="#"><img src="image/001.png" width="50px"></a>
                             </li> -->
-					<li class="nav-item"><a class="nav-link" href="#" onclick='click1("#pagestyle")'>畫面管理</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">商品上架</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						onclick='click1("#pagestyle")'>畫面/商品管理</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">會員管理</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">訂單管理</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" onclick='click1("#bugpage")'>爬蟲分析</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						onclick='click1("#chartpage")'>分析圖表</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						onclick='click1("#bugpage")'>爬蟲分析</a></li>
 				</ul>
 			</div>
 			<div class="navv">
 				<ul>
 					<li>
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-							<img src="image/envelope.png" width="30px">
-						</a>
+					<a id="mailshow" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
+					  <img src="image/envelope.png" width="30px"></a>
+				   <fieldset id="mymail" class="mymodal2">
+				      <div></div> 
+				      <div class="dropdown-divider"></div> 
+				      <button style="width: 300px" class='btn btn-dark'>查看其他信件</button> 
+				  </fieldset>
 					</li>
-					<li>
-						<a id="test" href=""> <img src="image/cat.png"
-							width="30px">
-						</a>
-					</li>
-				</ul>
+					<li><a id="test" href=""> <img src="image/cat.png"
+							width="30px"></a>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='FirstPage.html'>
 						<button style="width: 300px" class='btn btn-dark'>登出</button>
 					</a>
-			</fieldset>
+				</fieldset>
+					</li>
+				</ul>
 			</div>
 		</div>
-		
+
 	</header>
 	<article>
-<!-----------------------------------------------畫面調整畫面----------------------------------------------- -->
+		<!-----------------------------------------------畫面調整畫面----------------------------------------------- -->
 		<div id="pagestyle"
 			style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
 			<div style="width: 80%; align-items: flex-start;">
@@ -99,7 +140,7 @@ width:70px;
 						style="background: aliceblue; text-align: center; padding: 10px">
 						<h6 id="area1"></h6>
 					</div>
-					<div style="overflow:scroll;height: 350px;width: 100%"  >
+					<div style="overflow: scroll; height: 350px; width: 100%">
 						<ol class="forinput" style="btext-align: center;"
 							id="fordatainput">
 						</ol>
@@ -108,21 +149,24 @@ width:70px;
 						style="background: aliceblue; text-align: center; padding: 10px">
 						<h6 id="area2"></h6>
 					</div>
-					<div style="overflow:scroll;height: 350px;" >
+					<div style="overflow: scroll; height: 350px;">
 
 						<ol class="forinput" style="btext-align: center; width: 100%"
 							id="fordatainput2">
-							
+
 						</ol>
 					</div>
 					<div
 						style="background: aliceblue; text-align: center; padding: 10px">
-						<button style="display:none" id="changemodel" data-toggle="modal" data-target="#foradd"
+						<button style="display: none" id="changemodel" data-toggle="modal"
+							data-target="#foradd" class="btn btn-secondary">Add</button>
+						<button style="display: none" id="changemodel2"
+							data-toggle="modal" data-target="#foradd2"
 							class="btn btn-secondary">Add</button>
-						<button style="display:none" id="changemodel2" data-toggle="modal" data-target="#foradd2"
-							class="btn btn-secondary">Add</button>
-						<button style="display:none" id="forremove" class="btn btn-secondary">Remove</button>
-						<button style="display:none" id="forremove2" class="btn btn-secondary">Remove</button>
+						<button style="display: none" id="forremove"
+							class="btn btn-secondary">Remove</button>
+						<button style="display: none" id="forremove2"
+							class="btn btn-secondary">Remove</button>
 					</div>
 				</div>
 			</div>
@@ -141,19 +185,19 @@ width:70px;
 						</button>
 					</div>
 					<form>
-					<div class="modal-body">
-						<input type="file" id="uploadfile">
-						<div id="showphoto"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="reset" class="btn btn-primary"  id="foraddbtn">上傳</button>
-					</div>
+						<div class="modal-body">
+							<input type="file" id="uploadfile">
+							<div id="showphoto"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-primary" id="foraddbtn">上傳</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		
-        <div class="modal fade" id="foradd2" tabindex="-1" role="dialog"
+
+		<div class="modal fade" id="foradd2" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -165,108 +209,214 @@ width:70px;
 						</button>
 					</div>
 					<form>
-					<div class="modal-body">
-						<select id="select1" >
-						</select>
-						<div id="showphoto2"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="reset" class="btn btn-primary"  id="foraddbtn2">上架</button>
-					</div>
+						<div class="modal-body">
+							<select id="select1">
+							</select>
+							<div id="showphoto2"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-primary" id="foraddbtn2">上架</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-<!-- 	---------------爬蟲分析畫面---------------------------------------------------------------------->
-	<div id="bugpage"  style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
-			<div  style="width: 80%;height:800px; align-items: flex-start;overflow:scroll;">
+		<!-- 	---------------爬蟲分析畫面---------------------------------------------------------------------->
+		<div id="bugpage"
+			style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
+			<div
+				style="width: 80%; height: 800px; align-items: flex-start; overflow: scroll;">
+
 			</div>
 			<div style="width: 20%; align-items: flex-start;">
-				<div style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
+				<div
+					style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
 					<div
 						style="background: aliceblue; text-align: center; padding: 10px">
 						<h6 id="area2">選擇網站</h6>
 						<select id="selectbug2">
-						    <option value="http://www.gh3c.com.tw/">光華商場</option>
-						</select>
-						<select id="selectbug3">
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=61">CPU</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=60">主機板</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=63">記憶體</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=62">顯示卡</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=64">硬碟</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=58">機殼</option>
-						    <option value="http://www.gh3c.com.tw/index.php?app=search&cate_id=59">電源供應器</option>
-						</select>
-						<button class="btn btn-secondary">送出</button>
+							<option value="meow">請選擇網站</option>
+							<option value="http://www.gh3c.com.tw/">光華商場</option>
+						</select> <select id="selectbug3">
+						</select><br>
+						<button class="btn btn-secondary">爬取商品資訊</button>
 					</div>
-					
-					<div style="background: aliceblue; text-align: center; padding: 10px">
+
+					<div
+						style="background: aliceblue; text-align: center; padding: 10px">
 						<h6 id="area1">選擇型號</h6>
 						<select id="selectbug1">
-						</select>
-						
+						</select><br>
+						<button class="btn btn-secondary">單一商品比較</button>
 					</div>
-					
+					<div id="showpro" style="width: 100%; padding: 10px 60px"></div>
 
 				</div>
 			</div>
 		</div>
+		<!-- 	---------------分析圖表畫面---------------------------------------------------------------------->
+		<div id="chartpage"
+			style="margin-top: 50px; flex-wrap: wrap; display: inline-flex; width: 100%;">
+			<div
+				style="width: 80%; height: 800px; align-items: flex-start; overflow: scroll;">
+				<div id="flot-placeholder" style="width: 1000px; height: 500px;margin:50px auto;"></div>
+                <div></div>
+			</div>
+			<div style="width: 20%; align-items: flex-start;">
+				<div
+					style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
+					<div
+						style="background: aliceblue; text-align: center; padding: 10px">
+						<h6 id="area2">分析圖表</h6>
+						<select id="chartselect">
+							<option value="meow">------</option>
+							<option value="">銷售圖表</option>
+						</select><br>
+						<button class="btn btn-secondary">產生圖表</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	
-	
+
+
 	</article>
-	
-	
-	
+
 	<script>
-	$(document).ready(function(){
+		$("#chartselect").next().next().click(function(){
+			$.post("ChartSelect", function(data, status) {
+				if (status == "success") {
+					var datata = [];
+					var ticks = [];
+					var query = $.parseJSON(data)
+					var count = 0;
+					var str= '<table class="mytable table-striped">';
+					str +='<thead><tr><th scope="col">#</th><th scope="col">商品型號</th><th scope="col">商品數量</th></tr></thead><tbody>'
+					$.each(query, function(index, json) {
+                        var ele = new Array(count, json.sum);
+						datata[index] = ele;
+						var ele2 = new Array(count, json.pro.model);
+						ticks[index] = ele2
+						str += '<tr><td>' + (count+1) + '</td><td>' + json.pro.model +'</td><td>' + json.sum +'</td></tr>'
+						count++;
+					})
+                    str += '</tbody></table>'
+                    
+					var dataset = [ {
+						label : "數量",
+						data : datata,
+						color : "grey"
+					} ];
+			var options = {
+				series : {
+					bars : {
+						show : true
+					}
+				},
+				bars : {
+					align : "center",
+					barWidth : 0.1
+				},
+				xaxis : {
+					axisLabel : "商品型號",
+					axisLabelUseCanvas : true,
+					axisLabelFontSizePixels : 12,
+					axisLabelFontFamily : '微軟正黑體',
+					axisLabelPadding : 20,
+					ticks : ticks
+				},
+				yaxis : {
+					axisLabel : "數量",
+					axisLabelUseCanvas : true,
+					axisLabelFontSizePixels : 12,
+					axisLabelFontFamily : '微軟正黑體',
+					axisLabelPadding : 3,
+					tickFormatter : function(v, axis) {
+						return v + "個";
+					}
+				},
+				legend : {
+					noColumns : 0,
+					labelBoxBorderColor : "#000000",
+					position : "nw"
+				},
+				grid : {
+					hoverable : true,
+					borderWidth : 2,
+					backgroundColor : {
+						colors : [ "#ffffff", "#EDF5FF" ]
+					}
+				}
+			};
+			$.plot($("#flot-placeholder"), dataset, options);
+			   $("#flot-placeholder").next().html(str)
+			   $("#flot-placeholder").UseTooltip();
+				
+				}
+			})
 
-	})
-	$("#selectbug3").next().click(function(){
-		$.post("BugWebsite",{
-			"orgin":$("#selectbug2").val(),
-			"page":$("#selectbug3").val()
-		},function(data, status){
-			if(status == "success"){
-				var query = $.parseJSON(data);
-				var str = '<table class="mytable table-striped">';
-				var count = 1;
-             str += '<thead><tr><th scope="col">#</th><th scope="col">商品圖片</th><th scope="col">商品名稱</th><th scope="col">商品價格</th></tr></thead><tbody>'
-				$.each(query,function(index, json){
-					str += '<tr><th scope="row">' + (count++) + '</th><td><img src="http://www.gh3c.com.tw/' + json.picture +'" width="100px" ></td><td>' +json.proName +'</td><td>' + json.price + '</td></tr>' 
-				})
-				str += '</tbody></table>'
-				$("#bugpage").children(":first-child").html(str);
-			}
-		})
-	})
-	var bugflag1 = true;
-	$("#selectbug1").click(function(){
-		if(bugflag1){
-		$.post("ShowAllProduct",function(data, status){
-			if(status == "success"){
-				var quertData = $.parseJSON(data)
-				var bugselect = "";
-				$.each(quertData, function(index,json){
-					bugselect += '<option value="'+json.model+','+json.price+'">' + json.model + '</option>' 
-				})
-				$("#selectbug1").html(bugselect)
-			}
-		})
-			bugflag1 = false
-		}
-	})
-	
+
+		});
+		
+		   
+		   function gd(year, month, day) {
+	            return new Date(year, month, day).getTime();
+	        }
+	 
+	        var previousPoint = null, previousLabel = null;
+	 
+	        $.fn.UseTooltip = function () {
+	            $(this).bind("plothover", function (event, pos, item) {
+	                if (item) {
+	                    if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+	                        previousPoint = item.dataIndex;
+	                        previousLabel = item.series.label;
+	                        $("#tooltip").remove();
+	 
+	                        var x = item.datapoint[0];
+	                        var y = item.datapoint[1];
+	 
+	                        var color = item.series.color;
+	 
+	                        //console.log(item.series.xaxis.ticks[x].label);                
+	 
+	                        showTooltip(item.pageX,
+	                        item.pageY,
+	                        color,
+	                        "<strong>" + item.series.label + "</strong><br>" + item.series.xaxis.ticks[x].label + " : <strong>" + y + "</strong> 個");
+	                    }
+	                } else {
+	                    $("#tooltip").remove();
+	                    previousPoint = null;
+	                }
+	            });
+	        };
+	 
+	        function showTooltip(x, y, color, contents) {
+	            $('<div id="tooltip">' + contents + '</div>').css({
+	                position: 'absolute',
+	                display: 'none',
+	                top: y - 40,
+	                left: x - 120,
+	                border: '2px solid ' + color,
+	                padding: '3px',
+	                'font-size': '9px',
+	                'border-radius': '5px',
+	                'background-color': '#fff',
+	                'font-family': '微軟正黑體',
+	                opacity: 0.9
+	            }).appendTo("body").fadeIn(200);
+	        }
+		  
+
 	</script>
-
-
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 		crossorigin="anonymous"></script>
+
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"

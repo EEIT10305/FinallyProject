@@ -16,19 +16,18 @@ public class StaffBean {
 	private Integer staff_id;
 	
 	@Column(nullable=false)
-	private String name;
-	
+	private String empname;
 	@Column(nullable=false)
 	private String email;
 	
 	@Column(nullable=false)
-	private String password;
+	private String emppassword;
 	
 	@Column(nullable=false)
 	private String permission;
 	
 	@Column(nullable=false)
-	private String address;
+	private String empaddress;
 	
 	@Column(nullable=false)
 	private String phone;
@@ -39,18 +38,18 @@ public class StaffBean {
 	
 	@Override
 	public String toString() {
-		return "StaffBean [staff_id=" + staff_id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", permission=" + permission + ", address=" + address + ", phone=" + phone + "]";
+		return "StaffBean [staff_id=" + staff_id + ", empname=" + empname + ", email=" + email + ", emppassword="
+				+ emppassword + ", permission=" + permission + ", empaddress=" + empaddress + ", phone=" + phone + "]";
 	}
 
-	public StaffBean(Integer staff_id, String address, String email, String name, String password, String permission, String phone) {
+	public StaffBean(Integer staff_id, String empaddress, String email, String empname, String emppassword, String permission, String phone) {
 		super();
 		this.staff_id = staff_id;
-		this.name = name;
+		this.empname = empname;
 		this.email = email;
-		this.password = password;
+		this.emppassword = emppassword;
 		this.permission = permission;
-		this.address = address;
+		this.empaddress = empaddress;
 		this.phone = phone;
 	}
 	public Integer getStaff_id() {
@@ -60,10 +59,10 @@ public class StaffBean {
 		this.staff_id = staff_id;
 	}
 	public String getName() {
-		return name;
+		return empname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String empname) {
+		this.empname = empname;
 	}
 	public String getEmail() {
 		return email;
@@ -72,16 +71,16 @@ public class StaffBean {
 		this.email = email;
 	}
 	public String getPassword() {
-		return password;
+		return emppassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String emppassword) {
+		this.emppassword = emppassword;
 	}
 	public String getAddress() {
-		return address;
+		return empaddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(String empaddress) {
+		this.empaddress = empaddress;
 	}
 	public String getPhone() {
 		return phone;

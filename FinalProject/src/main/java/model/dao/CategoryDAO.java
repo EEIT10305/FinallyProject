@@ -10,5 +10,7 @@ public interface CategoryDAO {
     CategoryBean insert(CategoryBean bean);
     boolean update(CategoryBean bean);
 	CategoryBean getCategoryBeanBycategorycode(String category);
+	List<Object> selectSubTable(String hql);
+
    
 }

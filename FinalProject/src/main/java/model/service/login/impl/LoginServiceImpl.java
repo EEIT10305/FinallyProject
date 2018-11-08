@@ -1,5 +1,7 @@
 package model.service.login.impl;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
 		if(mb!=null) {
 			if(password!=null && password.length()!=0) {
 				String inputPwd = password ; 
-				String memeberPwd = mb.getPassword();
+				String memeberPwd = mb.getmemberpassword();
 				if(memeberPwd.equals(inputPwd)) {
 					return mb;
 				}else {
