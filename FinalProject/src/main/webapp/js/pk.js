@@ -110,7 +110,6 @@ $(document).ready(function(){
 	
 	
 	function addToCart1(){	
-		alert($('tbody tr td:eq(14)').html());
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(2)').html(),"CartId":sessionStorage.CartId})
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(4)').html(),"CartId":sessionStorage.CartId})
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(6)').html(),"CartId":sessionStorage.CartId})
@@ -121,8 +120,7 @@ $(document).ready(function(){
 		alert("加入購物車成功");
 	}
 	
-	function addToCart2(){	
-		alert($('tbody tr td:eq(3)').html());
+	function addToCart2(){		
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(3)').html(),"CartId":sessionStorage.CartId})
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(5)').html(),"CartId":sessionStorage.CartId})
 		$.post("showCartDetail",{"model":$('tbody tr td:eq(7)').html(),"CartId":sessionStorage.CartId})
