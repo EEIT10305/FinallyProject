@@ -1,50 +1,46 @@
 package testDao;
 
-import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 public class TestExcel {
-	public static void main(String[] args) {
+	public static String outputFile = "C:\\temp\\test.xls";
 
-		FileInputStream fis;
-		POIFSFileSystem fs;
-		HSSFWorkbook wb;
-		String filePath = "c:/temp/test.xlsx";
-		try {  
+	public static void main(String argv[]) {
+		try {
 
-			fis = new FileInputStream(filePath);
-			fs = new POIFSFileSystem(fis);
-			wb = new HSSFWorkbook(fs);
-			HSSFSheet sheet = wb.getSheetAt(0);
-			// 取得Excel第一個sheet(從0開始)
-			HSSFCell cell;
+//		　　 創建新的Excel 活頁簿
+			HSSFWorkbook workbook = new HSSFWorkbook();
 
-			// getPhysicalNumberOfRows這個比較好
-			for (int i = 0; i < sheet.getPhysicalNumberOfRows(); i++) {
-				// 由於第 0 Row 為 title, 故 i 從 1 開始
-				HSSFRow row = sheet.getRow(i); // 取得第 i Row
-				if (row != null) {
-					for (int j = 0; j < 9; j++) { // 看資料需要的欄數
-						cell = row.getCell(j);
-						System.out.println(cell.toString());// 取出j列j行的值
-					}
-				}
+//		　　// 在Excel活頁簿中建一工作表，其名為缺省值
+//		　　　　　　// 如要新建一名為"效益指標"的工作表，其語句為：
+//		　　　　　　// HSSFSheet sheet = workbook.createSheet("效益指標");
+			HSSFSheet sheet = workbook.createSheet();
 
-			}
+//		　　// 在索引0的位置創建行（最頂端的行）
+			HSSFRow row = sheet.createRow((short) 0);
 
-			fis.close();// 懶的寫到外面去了...
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
+//		　　//在索引0的位置創建儲存格（左上端）
+			HSSFCell cell = row.createCell((short) 0);
+//		　　// 定義儲存格為字串類型
+//			cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+//		　　// 在儲存格中輸入一些內容
+			cell.setCellValue("增加值");
+//		　　// 新建一輸出檔案流
+			FileOutputStream fOut = new FileOutputStream(outputFile);
+//		　　// 把相應的Excel 活頁簿存檔
+			workbook.write(fOut);
+			fOut.flush();
+//		　　// 操作結束，關閉檔
+			fOut.close();
+			System.out.println("檔生成...");
+		} catch (Exception e) {
+			System.out.println("已運行 xlCreate() : " + e);
 		}
-
 	}
-
-	
-	
 
 }
