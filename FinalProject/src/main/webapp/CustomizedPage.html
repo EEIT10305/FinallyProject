@@ -92,25 +92,6 @@ article {
 			$(this).children(":last-child").hide();
 		})
 
-		$('button[name="becheckbtn"]').next().hide();
-		$('button.menuitemstyle').click(function() {
-			$(this).parent().siblings(".btnwidth").text($(this).text());
-		})
-		$('button[name="category"]').click(function() {
-			$('button[name="becheckbtn"]').hide();
-			$('button[name="becheckbtn"]').next().show();
-
-			// 這裡可以加動態產生的品牌或價格選項
-
-			$('#test').mouseover(function() {
-				$("fieldset").show();
-			});
-			$('#test').mouseout(function() {
-				if (!$(".mymodal:hover").length) {
-					$("fieldset").hide();
-				}
-			})
-		})
 	})
 </script>
 </head>
@@ -148,15 +129,21 @@ article {
             <div class="navv">
                <ul>
 					<li>
-						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
-							width="30px">
-					</a></li>
-				</ul>
+						<a id="test" href="/FinalProject/ShowCart.html">
+						<img src="image/shopping-cart.png" width="30px"></a>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
 				</fieldset>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+
+					</li>
+				</ul>
 			</div>
 		</div>
 
@@ -322,7 +309,7 @@ article {
 						</div></li>
 					<li class="nav-item dropdown"><a id="Price"
 						style="color: grey" class="nav-link dropdown-toggle"
-						data-toggle="modal" data-target="#mustchoose" href="#" role="button" aria-haspopup="true"
+						data-toggle="modal" data-target="#mustchoose2" href="#" role="button" aria-haspopup="true"
 						aria-expanded="false">價格</a>
 						<div id="selectPrice" class="dropdown-menu">
 							<!-- 新增的選項 -->
@@ -352,6 +339,29 @@ article {
 					</div>
 				</div>
 			</div>
+<!-- 	----------------------------		modal2---------------------------------------->
+			<div class="modal fade" id="mustchoose2" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div style="margin:0px auto" class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇廠牌</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 
 			<div id="selectPingin">
 
@@ -757,8 +767,6 @@ article {
                  function checkCategory() {
                     $("#Brand").attr("data-toggle","dropdown")
          			$("#Brand").attr("data-target","")
-         			$("#Price").attr("data-toggle","dropdown")
-         			$("#Price").attr("data-target","")
                                     	if($("#Category").html()!=$(this).html()){
                                         $("#Category").html($(this).html());
                                         $("#Brand").html("廠牌");
@@ -778,6 +786,8 @@ article {
                                     }
                  
                  function checkBrand() {
+                	 $("#Price").attr("data-toggle","dropdown")
+          			$("#Price").attr("data-target","")
                                     	if($("#Brand").html()!=$(this).html()){
                                     		$("#selectPrice").html("");
                                         	$("#Brand").html($(this).html());

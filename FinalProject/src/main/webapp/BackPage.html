@@ -48,7 +48,36 @@ tr td {
 .mytable tbody tr td {
 	width: 500px;
 }
+    .mymodal2 {
+    display: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    position: absolute;
+    right:50px;
+    }
 </style>
+<script>
+$(document).ready(function(){
+	$('#test').mouseover(function(){
+    	$("#myModal").show();
+    });
+    $('#test').mouseout(function () {
+        if (!$('#myModal:hover').length) {
+        	$("#myModal").hide();            	
+        }
+    })
+	$('#mailshow').mouseover(function() {
+		$("#mymail").show();
+	});
+	$('#mailshow').mouseout(function() {
+		if (!$("#mymail:hover").length) {
+			$("#mymail").hide();
+		}
+	})
+})
+</script>
 
 </head>
 
@@ -73,20 +102,25 @@ tr td {
 			</div>
 			<div class="navv">
 				<ul>
-					<li><a href="" data-toggle="modal"
-						data-target="#exampleModalCenter"> <img
-							src="image/envelope.png" width="30px">
-					</a></li>
+					<li>
+					<a id="mailshow" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
+					  <img src="image/envelope.png" width="30px"></a>
+				   <fieldset id="mymail" class="mymodal2">
+				      <div></div> 
+				      <div class="dropdown-divider"></div> 
+				      <button style="width: 300px" class='btn btn-dark'>查看其他信件</button> 
+				  </fieldset>
+					</li>
 					<li><a id="test" href=""> <img src="image/cat.png"
-							width="30px">
-					</a></li>
-				</ul>
+							width="30px"></a>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='FirstPage.html'>
 						<button style="width: 300px" class='btn btn-dark'>登出</button>
 					</a>
 				</fieldset>
+					</li>
+				</ul>
 			</div>
 		</div>
 
@@ -376,7 +410,6 @@ tr td {
 		  
 
 	</script>
-
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script

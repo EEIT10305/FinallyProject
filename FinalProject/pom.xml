@@ -18,7 +18,18 @@
 
 
 	<dependencies>
-		
+	<!-- https://mvnrepository.com/artifact/com.github.virtuald/curvesapi -->
+<!-- <dependency> -->
+<!--     <groupId>com.github.virtuald</groupId> -->
+<!--     <artifactId>curvesapi</artifactId> -->
+<!--     <version>1.03</version> -->
+<!-- </dependency> -->
+	
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
 
 		<dependency>
 			<!-- jsoup HTML parser library @ https://jsoup.org/ -->
