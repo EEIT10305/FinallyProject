@@ -1021,8 +1021,7 @@ $(document).ready(function(){
                             data: {"model":$(this).prev().prev().text(),
                            	    "CartId":sessionStorage.CartId},             
                             success: function (data) {
-                                alert("加入購物車成功！")
-//                                alert(data)
+                                alert("加入購物車成功！")//                                
                             }
                         });
                    }
