@@ -81,7 +81,6 @@ public class RegisterController {
 			memberBean.setGender(gender);
 		}
 		
-		System.out.println(memberBean);
 		//驗證資料
 		//根據model執行結果，導向view
 		if(registerService.userExists(email)!=null) {

@@ -34,6 +34,7 @@ public interface CartService {
 
 	boolean updatestatus(int cartid);
 
+	List<CartBean> selectMemberIdList(Integer memberid);
 	
 	public CartBean saveCartBean(CartBean bean);
 }

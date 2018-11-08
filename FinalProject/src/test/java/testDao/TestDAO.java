@@ -45,7 +45,6 @@ import model.dao.BranchDAO;
 import model.dao.BranchStockDAO;
 import model.dao.BrandDAO;
 import model.dao.CabinetDAO;
-import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
 import model.dao.CategoryDAO;
 import model.dao.CpuDAO;
@@ -67,6 +66,7 @@ import model.dao.TransferDAO;
 import model.dao.VgaDAO;
 import model.dao.WallDAO;
 import model.dao.WishDAO;
+import model.service.CartDAO;
 
 public class TestDAO {
 

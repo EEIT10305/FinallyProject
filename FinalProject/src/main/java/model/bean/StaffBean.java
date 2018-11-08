@@ -14,22 +14,35 @@ public class StaffBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer staff_id;
+	
 	@Column(nullable=false)
 	private String name;
+	
 	@Column(nullable=false)
 	private String email;
+	
 	@Column(nullable=false)
 	private String password;
+	
 	@Column(nullable=false)
 	private String permission;
+	
 	@Column(nullable=false)
 	private String address;
+	
 	@Column(nullable=false)
 	private String phone;
 	
 	public StaffBean() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "StaffBean [staff_id=" + staff_id + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", permission=" + permission + ", address=" + address + ", phone=" + phone + "]";
+	}
+
 	public StaffBean(Integer staff_id, String address, String email, String name, String password, String permission, String phone) {
 		super();
 		this.staff_id = staff_id;
