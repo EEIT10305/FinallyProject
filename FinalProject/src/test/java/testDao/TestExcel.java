@@ -15,7 +15,7 @@ public class TestExcel {
 		POIFSFileSystem fs;
 		HSSFWorkbook wb;
 		String filePath = "c:/temp/test.xlsx";
-		try {
+		try {  
 
 			fis = new FileInputStream(filePath);
 			fs = new POIFSFileSystem(fis);
