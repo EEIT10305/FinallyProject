@@ -18,9 +18,9 @@ public class BranchBean {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer branchid;
 	@Column(nullable=false)
-	private String name;
+	private String shopname;
 	@Column(nullable=false)
-	private String address;
+	private String shopaddress;
 	@Column(nullable=false)
 	private String phone;
 	public Integer getBranchid() {
@@ -30,16 +30,16 @@ public class BranchBean {
 		this.branchid = branchid;
 	}
 	public String getName() {
-		return name;
+		return shopname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String shopname) {
+		this.shopname = shopname;
 	}
 	public String getAddress() {
-		return address;
+		return shopaddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(String shopaddress) {
+		this.shopaddress = shopaddress;
 	}
 	public String getPhone() {
 		return phone;
@@ -48,11 +48,11 @@ public class BranchBean {
 		this.phone = phone;
 	}
 	
-	public BranchBean(Integer branchid, String name, String address, String phone) {
+	public BranchBean(Integer branchid, String shopname, String shopaddress, String phone) {
 		super();
 		this.branchid = branchid;
-		this.name = name;
-		this.address = address;
+		this.shopname = shopname;
+		this.shopaddress = shopaddress;
 		this.phone = phone;
 	}
 	

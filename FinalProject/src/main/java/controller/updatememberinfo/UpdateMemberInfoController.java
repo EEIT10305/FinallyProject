@@ -45,10 +45,10 @@ public class UpdateMemberInfoController {
 		System.out.println(address);
 		MemberBean queryMemberInfo = updateService.selectMemberInfo(email);
 		if (queryMemberInfo != null) {
-			queryMemberInfo.setName(name);
+			queryMemberInfo.setmembername(name);
 			queryMemberInfo.setGender(gender);
 			queryMemberInfo.setPhone(phone);
-			queryMemberInfo.setAddress(address);
+			queryMemberInfo.setmemberaddress(address);
 
 		} else {
 			// 會員資料是空 代表有錯誤!!

@@ -70,6 +70,10 @@
 							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
 							width="20px"> <br>商品比較
 					</button></a>
+					<!--==================================測試第三方登出=================================-->
+					<button type="button" onclick="signOut();">Sign out</button>
+					<button onclick="fbLogout()">facebook登出</button>
+					<!--==================================測試第三方登出=================================-->
 			</div>
 			<div class="navv">
 				<ul>
@@ -77,6 +81,11 @@
 						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
+				<fieldset id="myModal" class="mymodal">
+					<div class="dropdown-divider"></div>
+					<a href='ShowCart.html'><button style="width: 300px"
+							class='btn btn-dark'>查看購物車</button></a>
+			</fieldset>
 					</li>
 					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -85,11 +94,6 @@
 
 					</li>
 				</ul>
-				<fieldset id="myModal" class="mymodal">
-					<div class="dropdown-divider"></div>
-					<a href='ShowCart.html'><button style="width: 300px"
-							class='btn btn-dark'>查看購物車</button></a>
-			</fieldset>
 			</div>
 		</div>
 		
@@ -132,10 +136,10 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<!-- <button class="mymodelbtn btn-primary" onclick="FBLogin()">使用facebook登入</button> -->
+							<button class="mymodelbtn btn-primary" onclick="fbLogin()">使用facebook登入</button>
 							<!-- <div style="display: inline;" class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div> -->
 							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
-							<div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div>
+							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
 							<div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="400"></div>
 						</div>
 						
@@ -206,6 +210,7 @@
                     <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
                 </div>
 			</div>
+<!-- 			----------------------model----------------------------------------------------------->
 			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">

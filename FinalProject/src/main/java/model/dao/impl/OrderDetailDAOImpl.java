@@ -1,9 +1,11 @@
 package model.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	@Override
 	public List<OrderDetailBean> selectAll() {
 		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).setMaxResults(50).list();
+	}
+    
+	@Override
+	public List<Map<String,Object>> countSoldPro() {
+//		Query list = this.getSession().createQuery("SELECT new map(proid,SUM(amount)) FROM OrderDetailBean GROUP BY proid").setMaxResults(50);
+		List<Map<String,Object>> map =this.getSession().createQuery("SELECT new Map(proid as pro,SUM(amount) as sum) FROM OrderDetailBean GROUP BY proid").list();
+		return map;
 	}
 
 	@Override

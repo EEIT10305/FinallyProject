@@ -10,6 +10,24 @@ $("#memberClickSelfInfo").click(function (){
         if(status == "success"){
             alert('資料從後端controller傳回來成功')
             var memberBeans = $.parseJSON(data);
+            if(memberBeans.name=='facebook'){
+                $("#inputName").attr("placeholder",'Login By Facebook');
+            }
+            if(memberBeans.name=='google'){
+                $("#inputName").attr("placeholder",'Login By Google');
+            }
+            if(memberBeans.phone=='facebook'){
+                $("#inputName").attr("placeholder",'Login By Facebook');
+            }
+            if(memberBeans.phone=='google'){
+                $("#inputName").attr("placeholder",'Login By Google');
+            }
+            if(memberBeans.address=='facebook'){
+                $("#inputName").attr("placeholder",'Login By Facebook');
+            }
+            if(memberBeans.address=='google'){
+                $("#inputName").attr("placeholder",'Login By Google');
+            }
             $("#inputName").attr("placeholder",memberBeans.name);
             $("#inputPhone").attr("placeholder",memberBeans.phone);
             $("#inputAddress").attr("placeholder",memberBeans.address);

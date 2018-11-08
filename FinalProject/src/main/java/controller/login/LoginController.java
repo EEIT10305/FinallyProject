@@ -60,17 +60,24 @@ public class LoginController {
 		// 根據model執行結果，導向view
 		if (bean == null) {// 找不到會員資料~請註冊
 			return "notFoundData";
-		} else if (bean.getPermission() == "gm" && bean.getPermission().equals("gm")) {
+		} 
+		
+		else if (bean.getPermission() == "gm" && bean.getPermission().equals("gm")) {
 			System.out.println("是否能抓到權限是gm呢?? : " + bean.getPermission());
 			return "gmLogin";
-		} else {// 找到會員資料 將會員email傳回前端
+		}
+		
+		else {// 找到會員資料 將會員email傳回前端
 			Date date = new Date();//建立進入這隻controller的時間
 			String strDate = sdFormat.format(date);//建立進入這隻controller的時間
+			
 			System.out.println("網站會員正常登入");
+			
 			Integer memberid = bean.getMemberid();//取出會員的id
 			System.out.println("會員的id="+memberid);
+			
 			// 將此會員的資料寫進cartBean內
-			List<CartBean> cmb = cartService.selectMemberId(memberid);// 以會員的id查詢會員的cartId
+			List<CartBean> cmb = cartService.selectMemberIdList(memberid);// 以會員的id查詢會員的cartId
 			List<String> addMemberStatus=new ArrayList<String>();
 			System.out.println("用會員id查詢的cartBean有沒有資料??"+cmb);
 			CartBean cartBean = new CartBean();//建立一個新的cartBean後面用來新增
@@ -93,6 +100,7 @@ public class LoginController {
 			}
 			if(addMemberStatus.contains("nopay")) {
 			}
+			
 			return bean.getEmail();
 		}
 	}
@@ -127,7 +135,7 @@ public class LoginController {
 			Integer memberid = bean.getMemberid();//取出會員的id
 			System.out.println("會員的id="+memberid);
 			// 將此會員的資料寫進cartBean內
-			List<CartBean> cmb = cartService.selectMemberId(memberid);// 以會員的id查詢會員的cartId
+			List<CartBean> cmb = cartService.selectMemberIdList(memberid);// 以會員的id查詢會員的cartId
 			List<String> addMemberStatus=new ArrayList<String>();
 			System.out.println("用會員id查詢的cartBean有沒有資料??"+cmb);
 			CartBean cartBean = new CartBean();//建立一個新的cartBean後面用來新增
@@ -161,7 +169,7 @@ public class LoginController {
 			Integer memberid = bean.getMemberid();//取出會員的id
 			System.out.println("會員的id="+memberid);
 			// 將此會員的資料寫進cartBean內
-			List<CartBean> cmb = cartService.selectMemberId(memberid);// 以會員的id查詢會員的cartId
+			List<CartBean> cmb = cartService.selectMemberIdList(memberid);// 以會員的id查詢會員的cartId
 			List<String> addMemberStatus=new ArrayList<String>();
 			System.out.println("用會員id查詢的cartBean有沒有資料??"+cmb);
 			CartBean cartBean = new CartBean();//建立一個新的cartBean後面用來新增
@@ -203,6 +211,7 @@ public class LoginController {
 		JSONObject j = new JSONObject(userInfo);
 		System.out.println("email抓不抓得到" + j.get("email"));// gn01046294@hotmail.com
 //驗證資料
+
 		String userFBLonin = (String) j.get("email");
 		System.out.println("臉書的email轉成stringQQ : " + userFBLonin);
 		if (loginService.checkEmailPwd(userFBLonin, "facebook") != null) {
@@ -215,7 +224,7 @@ public class LoginController {
 			Integer memberid = bean.getMemberid();//取出會員的id
 			System.out.println("會員的id="+memberid);
 			// 將此會員的資料寫進cartBean內
-			List<CartBean> cmb = cartService.selectMemberId(memberid);// 以會員的id查詢會員的cartId
+			List<CartBean> cmb = cartService.selectMemberIdList(memberid);// 以會員的id查詢會員的cartId
 			List<String> addMemberStatus=new ArrayList<String>();
 			System.out.println("用會員id查詢的cartBean有沒有資料??"+cmb);
 			CartBean cartBean = new CartBean();//建立一個新的cartBean後面用來新增
@@ -243,18 +252,19 @@ public class LoginController {
 			System.out.println("此facebook尚未!!!還沒!!!註冊過");
 			MemberBean bean = new MemberBean();
 			bean.setEmail(j.get("email").toString());
-			bean.setName(j.get("name").toString());
-			bean.setPassword("facebook");
+			bean.setmembername(j.get("name").toString());
+			bean.setmemberpassword("facebook");
 			bean.setPermission("facebook");
-			bean.setAddress("facebook");
+			bean.setmemberaddress("facebook");
 			bean.setPhone("facebook");
-			bean.setGender("facebook");
+			bean.setGender("man");
 			registerService.saveMember(bean);
 			System.out.println("有沒有新增一個fb的bean_" + bean);
 			
 			return userFBLonin;
 		}
 	}
+
 //-----------------google----------------------
 
 	@RequestMapping(path = "processGoogleLogin", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
@@ -272,7 +282,7 @@ public class LoginController {
 			Integer memberid = googleLoginInfo.getMemberid();//取出會員的id
 			System.out.println("會員的id="+memberid);
 			// 將此會員的資料寫進cartBean內
-			List<CartBean> cmb = cartService.selectMemberId(memberid);// 以會員的id查詢會員的cartId
+			List<CartBean> cmb = cartService.selectMemberIdList(memberid);// 以會員的id查詢會員的cartId
 			List<String> addMemberStatus=new ArrayList<String>();
 			System.out.println("用會員id查詢的cartBean有沒有資料??"+cmb);
 			CartBean cartBean = new CartBean();//建立一個新的cartBean後面用來新增
@@ -300,12 +310,12 @@ public class LoginController {
 		} else {
 			MemberBean bean = new MemberBean();
 			bean.setEmail(email);
-			bean.setName(name);
-			bean.setPassword("google");
+			bean.setmembername(name);
+			bean.setmemberpassword("google");
 			bean.setPermission("google");
-			bean.setAddress("google");
+			bean.setmemberaddress("google");
 			bean.setPhone("google");
-			bean.setGender("google");
+			bean.setGender("man");
 
 			System.out.println(bean);
 			registerService.saveMember(bean);
@@ -318,15 +328,19 @@ public class LoginController {
 	@ResponseBody
 	public String catchCartId(String email) {
 		
+
 		System.out.println("有沒有抓到登入後的請求??????");
 		System.out.println(email);
 		
 		MemberBean bean = loginService.checkEmail(email);
+		System.out.println("有沒有抓到會員資料:");
+		System.out.println(bean);
+		System.out.println("有沒有抓到會員的id???："+bean.getMemberid());
 		List<CartBean> cartBean=null;
 		Map<String,Integer> memberInfo = new HashMap<String,Integer>();
 		
-		cartBean = cartService.selectMemberId(bean.getMemberid());
-		
+		cartBean = cartService.selectMemberIdList(bean.getMemberid());
+		System.out.println("會員的cartId"+cartBean);
 
 		for(CartBean cartBeanList:cartBean) {
 			memberInfo.put(cartBeanList.getStatus(), cartBeanList.getCartid());
