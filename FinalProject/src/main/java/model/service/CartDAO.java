@@ -6,11 +6,14 @@ import model.bean.CartBean;
 import model.bean.MemberBean;
 import model.bean.ProductBean;
 
-public interface CartService {
-
+public interface CartDAO {
 	List<CartBean> selectAll();
 
+	List<CartBean> selectByMemberIdList(Integer memberId);
+	
 	CartBean selectById(int cartid);
+
+	CartBean insert(CartBean bean);
 
 	boolean update(CartBean bean);
 
@@ -18,23 +21,18 @@ public interface CartService {
 
 	MemberBean getMemberId();
 
-	void setMemberId(Integer memberid);
-
-	List<CartBean> selectMemberId(Integer memberid);
-
-	void insert(String model, Integer CartId);
+	void setMemberId(int memberId);
 
 	boolean checkMember(int memberid);
 
-	public CartBean selectByMemberId(int memberid);
+	CartBean selectByMemberId(int memberid);
+
+	void getCartId();
 
 	public ProductBean insertmodelfromProduct(String model);
 
-	public boolean deletebycartId(int cartid);
+	boolean deletebyCartId(int cartid);
 
 	boolean updatestatus(int cartid);
 
-	List<CartBean> selectMemberIdList(Integer memberid);
-	
-	public CartBean saveCartBean(CartBean bean);
 }
