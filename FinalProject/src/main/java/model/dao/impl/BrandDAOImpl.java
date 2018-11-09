@@ -6,11 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.dao.BrandDAO;
 @Repository
+@Transactional
 public class BrandDAOImpl implements BrandDAO {
 	@Autowired
 	private SessionFactory sessionFactory;

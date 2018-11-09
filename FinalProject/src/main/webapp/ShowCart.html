@@ -36,6 +36,7 @@ article {
 </style>
 <script>
 	$(document).ready(function() {
+		
 // 		alert(sessionStorage.TotalPrice)
 // 		alert(sessionStorage.MBname)
 // 		alert(sessionStorage.CPUname)
@@ -60,6 +61,7 @@ article {
 		$("[name='inlineRadioOptions']").click(HideAddress)
 	});
 	function ShowCartItems(){
+
 // 		var count=1;
 // 		sessionStorage.CartId=4
 // 		$.post("showCartDetail",{"model":sessionStorage.MBname,"CartId":sessionStorage.CartId},function(data,status){
@@ -252,8 +254,13 @@ function modifyAmount(){
 							sessionStorage.OrderID=querydata.orderid
 								$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
 									var query = $.parseJSON(data);
+									$.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+										if (status == "success") {
+											$("#OPay").html(data)
+										}
+									})
 									alert("交易已成功，共有"+query+"筆訂單細項")
-		 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
+// 		 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
 								})
 			             }
 					})
@@ -264,12 +271,18 @@ function modifyAmount(){
 								sessionStorage.OrderID=querydata.orderid
 									$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
 										var query = $.parseJSON(data);
+										$.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+											if (status == "success") {
+												$("#OPay").html(data)
+											}
+										})
 										alert("交易已成功，共有"+query+"筆訂單細項")
-			 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
+// 			 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
 									})
 				             }
 	            	 })
 	             }
+					
 	}
 // 		$.post("CheckProductsToPay",function(data,status){
 // 			if (status == "success") {
@@ -283,6 +296,7 @@ function modifyAmount(){
 </head>
 
 <body>
+	<div id="OPay"></div>
 	<header style="width:100%">
 		<div style="align-items: baseline;"
 			class="d-flex justify-content-between">
@@ -313,14 +327,27 @@ function modifyAmount(){
 			<div class="navv">
 				<ul>
 					<li>
+
 						<a id="test" href="/FinalProject/ShowCart.html">
 						<img src="image/shopping-cart.png" width="30px">
+
 						</a>
+
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+
+					</li>
+				</ul>
+
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
 			</fieldset>
+
 					</li>
 					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -331,6 +358,7 @@ function modifyAmount(){
 				</ul>
 			</div>
 		</div>
+
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"

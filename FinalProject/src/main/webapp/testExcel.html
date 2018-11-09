@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+西元
+<input id="yyyy" type="text" maxlength="4" size="4">年
+<input id="MM" type="text" maxlength="2" size="2">月
+<input id="dd" type="text" maxlength="2" size="2">日
+</div>
+<table>
+<tbody id="ShowReport">
+</tbody>
+</table>
+<button id="show" type="button">製作報表</button>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#show").click(showexcel)
+})
+function showexcel(){
+	$.post("ShowExcel",{"yyyy":$("#yyyy").val(),"MM":$("#MM").val(),"dd":$("#dd").val()},function(data,status){
+		if(status == "success"){
+			$("#ShowReport").html("<tr><th>產品編號</th><th>產品名稱</th><th>倉庫編號</th><th>數量</th><th>狀態</th></tr>")
+			 var querydata = $.parseJSON(data);
+			$.each(querydata,function (index,json) {
+				$("#ShowReport").append("<tr><td>"+json.proid+"</td><td>"+json.productBean.model+"</td><td>"+json.branchid+"</td><td>"+json.amount+"</td><td>"+json.statu+"</td></tr>")
+			})
+		}
+	})
+}
+</script>
+</body>
+</html>

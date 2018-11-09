@@ -51,7 +51,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder =
-				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
+				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
 
 		Properties props = new Properties();
 
@@ -79,7 +79,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception{
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setDataSource(dataSourcemanager());
+		transactionManager.setDataSource(dataSource());
 		return transactionManager;
 	}
     

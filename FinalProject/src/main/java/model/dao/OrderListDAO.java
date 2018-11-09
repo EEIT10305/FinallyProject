@@ -12,5 +12,12 @@ public interface OrderListDAO {
 	    boolean update(OrderListBean bean);
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
+
+	    boolean updateOrderStatusByOrderId(int orderid);
+	    boolean updateOrderArriveByOrderId(int orderid);
+	    boolean updateOrderStatusByMemberId(int memberid);
+	    boolean updateOrderArriveByMemberId(int memberid);
 		MemberBean selectMemberIdByEmail(String email);
+		List<OrderListBean> selectAllByTime(String Time);
+
 }
