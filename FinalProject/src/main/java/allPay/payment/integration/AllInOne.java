@@ -54,6 +54,7 @@ import allPay.payment.integration.verification.VerifyTradeNoAio;
  * @author mark.chiu
  *
  */
+
 public class AllInOne extends AllInOneBase{
 	
 	private final static Logger log = Logger.getLogger(AllInOne.class.getName());
