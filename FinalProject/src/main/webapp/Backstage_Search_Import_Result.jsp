@@ -201,15 +201,17 @@
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="/FinalProject/Backstage_Import.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
@@ -241,7 +243,7 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 
-				<a href="/FinalProject/Backstage_Import.jsp" title="Beats">進貨作業</a>
+				<a href="/FinalProject/Backstage_Import_Index.jsp" title="Beats">進貨作業</a>
 				<span>/</span>
 				<a href="/FinalProject/Backstage_Search_Import.jsp" title="Beats">查詢進貨</a>
 			</div>
@@ -274,7 +276,7 @@
 	<c:forEach var="row" items="${user}" >
 
 		<tr>
-			<td><input type = "hidden" name = "improtid" value = "${row.improtid}">${row.improtid}</td>						
+			<td><input type = "hidden" name = "improtid" value = "${row.improtid}">${row.improtid}</td>			
 			<td>${row.arrivedate}</td>
 			<td>${row.orderdate}</td>
 			<td>${row.statu}</td>
@@ -288,7 +290,7 @@
 </table>
 </c:if>
 <c:if test= "${not empty detail}">
-<form action = "/FinalProject/pages/import.updateController">
+<!-- <form action = "/FinalProject/pages/import.updateController"> -->
 <table border = "2px" >
 <caption>Import Detail</caption>
 
@@ -310,14 +312,15 @@
 	<c:forEach var="row2" items="${detail}">
 		<tr>
 			<td><input type = "hidden" name = "improtid" value = "${row2.improtid}">${row2.improtid}</td>
-			<td>${row2.amount}</td>
+			<td><input type = "hidden" name = "amount" value = "${row2.amount}">${row2.amount}</td>
 			<td>${row2.proid}</td>
 			<td>${row2.productBean.brandBean.brand}</td>
 			<td>${row2.productBean.categoryBean.category}</td>
 			<td>${row2.productBean.model}</td>
 			<td>${row2.productBean.picture}</td>	
-			<td>${row2.productBean.price}</td>		
-			<td><input type = "submit" value = "import" ></td>
+			<td>${row2.productBean.price}</td>			
+			<!-- <td><input type = "submit" value = "import"></td> -->
+			<td><a href = "/FinalProject/pages/import.updateController?improtid=${row2.improtid}&proid=${row2.proid}">Import</a></td>
 		</tr>
 	</c:forEach>
 </tbody>
@@ -325,7 +328,7 @@
 
 <br>
 <br>
-</form>
+<!-- </form> -->
 </c:if>
 <c:if test= "${not empty stock}">
 
@@ -333,10 +336,9 @@
 <caption>Branch Stock</caption>
 <thead>
 	<tr>
-		<th>Branch Stock ID</th>
+		<th>Product ID</th>
 		<th>Amount</th>
 		<th>Branch ID</th>
-		<th>Product id</th>
 		<th>Status</th>
 
 
@@ -345,10 +347,9 @@
 <tbody>
 	<c:forEach var="row2" items="${stock}">
 		<tr>
-			<td>${row2.branch_stock_id}</td>
+			<td>${row2.proid}</td>
 			<td>${row2.amount}</td>
 			<td>${row2.branchid}</td>
-			<td>${row2.proid}</td>
 			<td>${row2.statu}</td>
 
 		</tr>

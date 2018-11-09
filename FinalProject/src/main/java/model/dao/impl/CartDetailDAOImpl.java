@@ -42,7 +42,7 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 
 	@Override
 	public List<CartDetailBean> selectAll() {
-		return this.getSession().createQuery("FROM CartDetailBean", CartDetailBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM CartDetailBean", CartDetailBean.class).list();
 	}
 	@Override
 	public List<CartDetailBean> selectAllByCartId(Integer cartid) {

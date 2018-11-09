@@ -42,9 +42,15 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 
 	@Override
 	public List<BranchStockBean> selectAll() {
-		return this.getSession().createQuery("FROM BranchStockBean", BranchStockBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM BranchStockBean", BranchStockBean.class).list();
 	}
-
+	@Override
+	public List<BranchStockBean> selectAllByBranchId(Integer BranchId) {
+		return this.getSession().createQuery("FROM BranchStockBean where branchid=:BranchId", BranchStockBean.class).setParameter("BranchId", BranchId).list();
+	}
+	
+	
+	
 	@Override
 	public BranchStockBean selectById(int id) {
 		return this.getSession().get(BranchStockBean.class, id);
@@ -52,6 +58,17 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 	@Override	
 	public BranchStockBean selectAllByID(Integer proid) {
 		String hql = "From BranchStockBean where proid =:proid";
+		try {
+			BranchStockBean bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("proid", proid).getSingleResult();			
+			return bean;
+		}catch(Exception e) {
+			return null;
+		}
+	}	
+	
+	@Override	
+	public BranchStockBean selectAllBy(Integer proid) {
+		String hql = "From BranchStockBean where proid =:proid and branchid=1";
 		try {
 			BranchStockBean bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("proid", proid).getSingleResult();			
 			return bean;

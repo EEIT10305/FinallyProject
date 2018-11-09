@@ -64,7 +64,7 @@ public class StaffDAOImpl implements StaffDAO {
 		String hql = "FROM StaffBean WHERE email = :email and emppassword = :password";
 		Session session = getSession();
 		try {
-		sb = (StaffBean) session.createQuery(hql).setParameter("email", userId)
+		sb = session.createQuery(hql,StaffBean.class).setParameter("email", userId)
 												 .setParameter("password", password)
 												 .getSingleResult();
 		}catch(Exception ex) {
