@@ -67,7 +67,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean selectByEmail(String email) {// 查詢此email是否有人用過
 		MemberBean mb = null;
-		String hql = "FROM MemberBean m WHERE m.email = :email ";
+		String hql = "FROM MemberBean WHERE email = :email ";
 		Session session = getSession();
 		Query query = session.createQuery(hql);
 		query = query.setParameter("email", email);
@@ -83,7 +83,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean checkEmailPwd(String email, String password) {// 判斷使用者登入的帳號密碼是否正確
 		MemberBean mb = null;
-		String hql = "FROM MemberBean m WHERE m.email = :email and m.password = :password";
+		String hql = "FROM MemberBean WHERE email = :email and memberpassword = :password";
 		Session session = getSession();
 		try {
 			mb = (MemberBean) session.createQuery(hql)

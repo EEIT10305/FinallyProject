@@ -147,12 +147,12 @@
 							<br>本月公告</p>
 				</div>
 				<div class="n1" id="s2">
-					<a href="./Backstage_Transfer.jsp" title="Beats">
+					<a href="./Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Import.jsp" title="Beats">
+					<a href="./Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
@@ -192,7 +192,7 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 				
-				<a href="./Backstage_Import.jsp" title="Beats">進貨作業</a>
+				<a href="./Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
 			</div>
 			<br>
 			<br>
@@ -207,7 +207,7 @@
 		<div class="t9" align="center">
 			<table>
 				<tr>
-					新增進貨
+					查詢庫存
 					<td>
 						<a href="./vipPassword.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
@@ -219,9 +219,9 @@
 		<div class="t9" align="center">
 			<table>
 				<tr>
-					查詢進貨
+					調撥貨品
 					<td>
-						<a href="./Backstage_Search_Import.jsp" title="Beats">
+						<a href="./Backstage_Transfer_Search.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>
@@ -297,4 +297,5 @@
 	</footer>
 
 </body>
+
 </html>

@@ -5,7 +5,7 @@ import java.util.List;
 import model.bean.BranchStockBean;
 
 public interface BranchStockDAO {
-	 List<BranchStockBean> selectAll();
+	    List<BranchStockBean> selectAll();
 	    BranchStockBean selectById(int id);
 	    BranchStockBean insert(BranchStockBean bean);
 	    boolean update(BranchStockBean bean);		
@@ -13,4 +13,8 @@ public interface BranchStockDAO {
 		boolean updateBranchStock(Integer amount, String statu, Integer proid);
 		BranchStockBean insertintoStock(Integer amount, Integer branchid, Integer proid, String statu);
 		Integer getAmountByproid(Integer proid);
+		List<BranchStockBean> selectByProId(Integer proid);
+		List<BranchStockBean> selectAllByBranchID(Integer branchid);
+		List<BranchStockBean> updateList(List<BranchStockBean> branchStockBean, Integer x);
+
 }

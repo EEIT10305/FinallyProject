@@ -1,6 +1,6 @@
 $(document).ready(function () {
-	
-	
+	sessionStorage.CartId=1
+
     //顯示從firstpage搜尋到的產品
     //顯示從上方搜尋到的產品
 
@@ -121,6 +121,10 @@ $(document).ready(function () {
     $("#changepagebtn1").parent().attr("class", "page-item active");
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
     
+//    var cookies = document.cookie;//先取cookie
+//    var isUserInside = cookies.split("email=")[1].split(";")[0];
+    
+    
     $.each(proidArray,function(index,proid){
     	if(proid!="zero"){
     		//庫存沒貨   變貨到通知我
@@ -133,7 +137,8 @@ $(document).ready(function () {
     			}
     		})
     		//已加入願望清單的話  變紅愛心
-    		$.post("heartXXXXXXX",{"proid":proid},function(data,status){      //beanyeeeeeeeeeeeeee  搜尋願望清單有沒有資料
+    		$.post("processFirstMemberLoadWish",{"proId":proid,"email":"wenchen@gmail.com"},function(data,status){      //beanyeeeeeeeeeeeeee  搜尋願望清單有沒有資料
+    			
     			if(data!=null){
     				$("#wish"+proid).find("img").attr("src","image/like.png");  				
                     document.getElementById("wish"+proid).removeEventListener("click",addToWish); 

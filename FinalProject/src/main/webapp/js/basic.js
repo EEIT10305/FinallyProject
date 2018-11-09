@@ -9,14 +9,21 @@ $(document).ready(function() {
 			$('button[name="becheckbtn"]').next().show();
 			// 這裡可以加動態產生的品牌或價格選項
 		})
-
-		
-		$('#test').mouseover(function() {
-			$("fieldset").show();
+	
+		$('#test').mouseover(function(){
+        	$("#myModal").show();
+        });
+        $('#test').mouseout(function () {
+            if (!$('#myModal:hover').length) {
+            	$("#myModal").hide();            	
+            }
+        })
+		$('#mailshow').mouseover(function() {
+			$("#mymail").show();
 		});
-		$('#test').mouseout(function() {
-			if (!$(".mymodal:hover").length) {
-				$("fieldset").hide();
+		$('#mailshow').mouseout(function() {
+			if (!$("#mymail:hover").length) {
+				$("#mymail").hide();
 			}
 		})
 	})

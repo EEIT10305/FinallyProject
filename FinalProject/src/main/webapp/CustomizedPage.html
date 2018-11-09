@@ -13,8 +13,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/wall.js"></script>
-<script src="js/basic.js"></script>
+<!-- <script src="js/wall.js"></script> -->
+<!-- <script src="js/basic.js"></script> -->
 <title>客製化頁</title>
 <style>
 aside {
@@ -92,25 +92,6 @@ article {
 			$(this).children(":last-child").hide();
 		})
 
-		$('button[name="becheckbtn"]').next().hide();
-		$('button.menuitemstyle').click(function() {
-			$(this).parent().siblings(".btnwidth").text($(this).text());
-		})
-		$('button[name="category"]').click(function() {
-			$('button[name="becheckbtn"]').hide();
-			$('button[name="becheckbtn"]').next().show();
-
-			// 這裡可以加動態產生的品牌或價格選項
-
-			$('#test').mouseover(function() {
-				$("fieldset").show();
-			});
-			$('#test').mouseout(function() {
-				if (!$(".mymodal:hover").length) {
-					$("fieldset").hide();
-				}
-			})
-		})
 	})
 </script>
 </head>
@@ -148,15 +129,21 @@ article {
             <div class="navv">
                <ul>
 					<li>
-						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
-							width="30px">
-					</a></li>
-				</ul>
+						<a id="test" href="/FinalProject/ShowCart.html">
+						<img src="image/shopping-cart.png" width="30px"></a>
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
 				</fieldset>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+
+					</li>
+				</ul>
 			</div>
 		</div>
 
@@ -219,7 +206,6 @@ article {
                             <th scope="col"></th>
                             <th scope="col">型號</th>
                             <th scope="col">價格</th>
-                            <th scope="col">剩餘數量</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -322,7 +308,7 @@ article {
 						</div></li>
 					<li class="nav-item dropdown"><a id="Price"
 						style="color: grey" class="nav-link dropdown-toggle"
-						data-toggle="modal" data-target="#mustchoose" href="#" role="button" aria-haspopup="true"
+						data-toggle="modal" data-target="#mustchoose2" href="#" role="button" aria-haspopup="true"
 						aria-expanded="false">價格</a>
 						<div id="selectPrice" class="dropdown-menu">
 							<!-- 新增的選項 -->
@@ -352,6 +338,29 @@ article {
 					</div>
 				</div>
 			</div>
+<!-- 	----------------------------		modal2---------------------------------------->
+			<div class="modal fade" id="mustchoose2" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div style="margin:0px auto" class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇廠牌</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 
 			<div id="selectPingin">
 
@@ -482,25 +491,25 @@ article {
 		                 		if (status == "success") {
 		                        var querydata = $.parseJSON(data);
 		                        $.each(querydata,function (index,json) {
-		                        	if(json.category=="mb"){
+		                        	if(json.category=="主機板"){
 		                            	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
 		                               }
 		                            if(json.category=="cpu"){
 		                            	$(".card").children(":last-child").append("CPU:"+json.model+"<br>");
 		                               }
-		                            if(json.category=="ram"){
-		                                $(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+		                            if(json.category=="記憶體"){
+		                                $(".card").children(":last-child").append("記憶體:"+json.model+"<br>");
 		                               }
-		                             if(json.category=="powersupplier"){
+		                             if(json.category=="電源供應器"){
 		                                $(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
 		                               }
-		                             if(json.category=="cabinet"){
+		                             if(json.category=="機殼"){
 		                                $(".card").children(":last-child").append("機殼:"+json.model+"<br>");
 		                               }
-		                             if(json.category=="vga"){
+		                             if(json.category=="顯示卡"){
 		                                $(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
 		                               }
-		                             if(json.category=="storage"){
+		                             if(json.category=="硬碟"){
 		                                $(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
 		                               }
 		                            })
@@ -758,8 +767,6 @@ article {
                  function checkCategory() {
                     $("#Brand").attr("data-toggle","dropdown")
          			$("#Brand").attr("data-target","")
-         			$("#Price").attr("data-toggle","dropdown")
-         			$("#Price").attr("data-target","")
                                     	if($("#Category").html()!=$(this).html()){
                                         $("#Category").html($(this).html());
                                         $("#Brand").html("廠牌");
@@ -779,6 +786,8 @@ article {
                                     }
                  
                  function checkBrand() {
+                	 $("#Price").attr("data-toggle","dropdown")
+          			$("#Price").attr("data-target","")
                                     	if($("#Brand").html()!=$(this).html()){
                                     		$("#selectPrice").html("");
                                         	$("#Brand").html($(this).html());
@@ -832,25 +841,25 @@ article {
 		                                                                		 if (status == "success") {
 		                                                                                 var querydata = $.parseJSON(data);
 		                                                                                 $.each(querydata,function (index,json) {
-		                                                                                         if(json.category=="mb"){
+		                                                                                         if(json.category=="主機板"){
 		                                                                                        	 $(".card").children(":last-child").append("主機板:"+json.model+"<br>");
 		                                                                                         }
 		                                                                                         if(json.category=="cpu"){
 		                                                                                        	 $(".card").children(":last-child").append("CPU:"+json.model+"<br>");
 		                                                                                         }
-		                                                                                         if(json.category=="ram"){
-		                                                                                        	 $(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+		                                                                                         if(json.category=="記憶體"){
+		                                                                                        	 $(".card").children(":last-child").append("記憶體:"+json.model+"<br>");
 		                                                                                         }
-		                                                                                         if(json.category=="powersupplier"){
+		                                                                                         if(json.category=="電源供應器"){
 		                                                                                        	 $(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
 		                                                                                         }
-		                                                                                         if(json.category=="cabinet"){
+		                                                                                         if(json.category=="機殼"){
 		                                                                                        	 $(".card").children(":last-child").append("機殼:"+json.model+"<br>");
 		                                                                                         }
-		                                                                                         if(json.category=="vga"){
+		                                                                                         if(json.category=="顯示卡"){
 		                                                                                        	 $(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
 		                                                                                         }
-		                                                                                         if(json.category=="storage"){
+		                                                                                         if(json.category=="硬碟"){
 		                                                                                        	 $(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
 		                                                                                        	
 		                                                                                         }
@@ -915,25 +924,25 @@ article {
 				                                           		 if (status == "success") {
 				                                                            var querydata = $.parseJSON(data);
 				                                                            $.each(querydata,function (index,json) {
-				                                                                    if(json.category=="mb"){
+				                                                                    if(json.category=="主機板"){
 				                                                                    	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
 				                                                                    }
 				                                                                    if(json.category=="cpu"){
 				                                                                    	$(".card").children(":last-child").append("CPU:"+json.model+"<br>");
 				                                                                    }
-				                                                                    if(json.category=="ram"){
-				                                                                    	$(".card").children(":last-child").append("RAM:"+json.model+"<br>");
+				                                                                    if(json.category=="記憶體"){
+				                                                                    	$(".card").children(":last-child").append("記憶體	:"+json.model+"<br>");
 				                                                                    }
-				                                                                    if(json.category=="powersupplier"){
+				                                                                    if(json.category=="電源供應器"){
 				                                                                    	$(".card").children(":last-child").append("電源供應器:"+json.model+"<br>");
 				                                                                    }
-				                                                                    if(json.category=="cabinet"){
+				                                                                    if(json.category=="機殼"){
 				                                                                    	$(".card").children(":last-child").append("機殼:"+json.model+"<br>");
 				                                                                    }
-				                                                                    if(json.category=="vga"){
+				                                                                    if(json.category=="顯示卡"){
 				                                                                    	$(".card").children(":last-child").append("顯示卡:"+json.model+"<br>");
 				                                                                    }
-				                                                                    if(json.category=="storage"){
+				                                                                    if(json.category=="硬碟"){
 				                                                                    	$(".card").children(":last-child").append("硬碟:"+json.model+"<br>");
 				                                                                    }
 				                                                                    })
@@ -956,7 +965,7 @@ article {
                             if (status == "success") {
                                     var querydata = $.parseJSON(data);
                                     $.each(querydata,function (index,json) {
-                                            if(json.category=="mb"){
+                                            if(json.category=="主機板"){
                                             	$("#showMB").html("")
                                             	sessionStorage.mbmodel=json.model
                                             	$("#MBPrice").html(json.price)
@@ -969,32 +978,32 @@ article {
                                             	$("#CPUPrice").html(json.price)
                                             	$("#showCPU").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
-                                            if(json.category=="ram"){
+                                            if(json.category=="記憶體"){
                                             	$("#showRAM").html("")
                                             	sessionStorage.rammodel=json.model
                                             	sessionStorage.rampsu=json.psu
                                             	$("#RAMPrice").html(json.price)
                                             	$("#showRAM").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
-                                            if(json.category=="powersupplier"){
+                                            if(json.category=="電源供應器"){
                                             	$("#showPOWERSUPPLIER").html("")
                                             	sessionStorage.powersuppliermodel=json.model
                                             	$("#POWERSUPPLIERPrice").html(json.price)
                                             	$("#showPOWERSUPPLIER").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
-                                            if(json.category=="cabinet"){
+                                            if(json.category=="機殼"){
                                             	$("#showCABINET").html("")
                                             	sessionStorage.cabinetmodel=json.model
                                             	$("#CABINETPrice").html(json.price)
                                             	$("#showCABINET").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
-                                            if(json.category=="vga"){
+                                            if(json.category=="顯示卡"){
                                             	$("#showVGA").html("")
                                             	sessionStorage.vgamodel=json.model
                                             	$("#VGAPrice").html(json.price)
                                             	$("#showVGA").append("<option value='"+json.psu+"'>"+ json.model+"</option>");
                                             }
-                                            if(json.category=="storage"){
+                                            if(json.category=="硬碟"){
                                             	$("#showSTORAGE").html("")
                                             	sessionStorage.storagemodel=json.model
                                             	$("#STORAGEPrice").html(json.price)
@@ -1240,7 +1249,7 @@ article {
 //                 	   sessionStorage.VGAname= $("#showVGA").find("option:selected").text()
 //                 	   sessionStorage.STORAGEname= $("#showSTORAGE").find("option:selected").text()
                 	   
-						sessionStorage.CartId=5
+						sessionStorage.CartId=1
                 	    sessionStorage.TotalPrice= $("#totalPrice").html()
 						$.post("showCartDetail",{"model":$("#showMB").find("option:selected").text(),"CartId":sessionStorage.CartId})
 						$.post("showCartDetail",{"model":$("#showCPU").find("option:selected").text(),"CartId":sessionStorage.CartId})

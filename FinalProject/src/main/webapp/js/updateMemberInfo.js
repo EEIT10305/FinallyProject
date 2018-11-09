@@ -10,9 +10,41 @@ $("#memberClickSelfInfo").click(function (){
         if(status == "success"){
             alert('資料從後端controller傳回來成功')
             var memberBeans = $.parseJSON(data);
-            $("#inputName").attr("placeholder",memberBeans.name);
-            $("#inputPhone").attr("placeholder",memberBeans.phone);
-            $("#inputAddress").attr("placeholder",memberBeans.address);
+            alert(memberBeans.membername);
+            alert(memberBeans.phone);
+            alert(memberBeans.memberaddress);
+            $("#inputName").attr("placeholder",memberBeans.membername);
+            // if(memberBeans.membername=='facebook'){
+            //     $("#inputName").attr("placeholder",'Login By Facebook');
+            // }
+            // else if(memberBeans.membername=='google'){
+            //     $("#inputName").attr("placeholder",'Login By Google');
+            // }
+            // else{
+            //     $("#inputName").attr("placeholder",memberBeans.membername);
+            // }
+
+            if(memberBeans.phone=='facebook'){
+                $("#inputPhone").attr("placeholder",'Login By Facebook');
+            }
+            else if(memberBeans.phone=='google'){
+                $("#inputPhone").attr("placeholder",'Login By Google');
+            }
+            else {
+                $("#inputPhone").attr("placeholder",memberBeans.phone);
+            }
+            if(memberBeans.memberaddress=='facebook'){
+                $("#inputAddress").attr("placeholder",'Login By Facebook');
+            }
+            else if(memberBeans.memberaddress=='google'){
+                $("#inputAddress").attr("placeholder",'Login By Google');
+            }
+            else{
+                $("#inputAddress").attr("placeholder",memberBeans.memberaddress);
+            }
+            // $("#inputName").attr("placeholder",memberBeans.membername);
+            // $("#inputPhone").attr("placeholder",memberBeans.phone);
+            // $("#inputAddress").attr("placeholder",memberBeans.memberaddress);
             if(memberBeans.gender=="man"){
                 $('#inlineRadio1').prop("checked",true);
                 $('#inlineRadio2').prop("checked",false);
