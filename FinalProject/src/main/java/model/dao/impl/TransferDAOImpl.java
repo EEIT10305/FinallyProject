@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.TransferBean;
 import model.dao.TransferDAO;
 @Repository
+@Transactional
 public class TransferDAOImpl implements TransferDAO {
 	@Autowired
 	private SessionFactory sessionFactory;

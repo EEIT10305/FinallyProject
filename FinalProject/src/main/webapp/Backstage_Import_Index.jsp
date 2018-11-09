@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,model.bean.ImportBean" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +38,7 @@
 			color: #ffffff;
 			height: 60%;
 			position: relative;
-
+			
 		}
 
 		/*頁首文字*/
@@ -95,15 +89,6 @@
 			float: right;
 		}
 
-		.d1 {
-			height: 550px;
-			/* 高度 120 */
-			width: 550px;
-			/* 寬度 120*/
-			border: 2px #003366;
-			/* 虛線邊框 2 像素 深藍色*/
-		}
-
 		.t9 {
 			height: 150px;
 			/* 高度 120 */
@@ -131,13 +116,6 @@
 			float: left;
 		}
 
-		.d2 {
-			font-family: 微軟正黑體;
-			text-align: center;
-			font-size: 50px;
-		}
-
-
 
 		.t3 {
 			font-size: 20px;
@@ -149,33 +127,6 @@
 			font-family: 微軟正黑體;
 			text-align: center;
 		}
-
-		.t8 {
-			font-family: 微軟正黑體;
-			font-size: 24px;
-			color: rgb(2, 17, 19);
-		}
-
-		.tid {
-			width: 100px;
-			margin: 25px;
-			color: #0a0503;
-			font-size: 30px;
-
-
-		}
-
-		.sut1 {
-			width: 450px;
-			margin: 20px;
-			;
-
-
-		}
-		td{
-		   width:100px;
-		
-		}
 	</style>
 
 
@@ -186,22 +137,22 @@
 		<header>
 			<div class="n0">
 				<div class="n_1" id="s0">
-
+					
 					<img src="./pic/unnamed.png" width="200px">
 				</div>
+
 				<div class="n1" id="s1">
-					<a href="/FinalProject/Backstage_index.jsp" title="Beats">
+					<a href="./Backstage_index.jsp" title="Beats">
 						<p>
 							<br>本月公告</p>
 				</div>
-
 				<div class="n1" id="s2">
-					<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">
+					<a href="./Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="/FinalProject/Backstage_Import.jsp" title="Beats">
+					<a href="./Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
@@ -213,7 +164,7 @@
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
-
+							
 						</p>
 				</div>
 				<div class="n2" id="s5">
@@ -223,7 +174,7 @@
 						<img src="./images/account.png" width="100px">
 					</a>
 					</a>
-
+					
 				</div>
 				<div class="n2" id="s6">
 					<a href="./index.jsp" title="Beats"> </a>
@@ -240,10 +191,8 @@
 				</span>
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
-
-				<a href="/FinalProject/Backstage_Import.jsp" title="Beats">進貨作業</a>
-				<span>/</span>
-				<a href="/FinalProject/Backstage_Search_Import.jsp" title="Beats">查詢進貨</a>
+				
+				<a href="./Backstage_Import_Index.jsp" title="Beats">進貨作業</a>
 			</div>
 			<br>
 			<br>
@@ -252,117 +201,89 @@
 
 		</header>
 	</div>
-
-	<body>
-
-
-	
-	
-<c:if test = "${not empty user}">
-<table border = "2px">
-<caption>Import</caption>
-<thead>
-
-	<tr>
-		<th>Import ID</th>
-		<th>Arrive Date</th>
-		<th>Order Date</th>
-		<th>Status</th>
-		<th>Update Status</th>		
-</thead>
-<tbody>
-	<c:forEach var="row" items="${user}" >
-
-		<tr>
-			<td><input type = "hidden" name = "improtid" value = "${row.improtid}">${row.improtid}</td>						
-			<td>${row.arrivedate}</td>
-			<td>${row.orderdate}</td>
-			<td>${row.statu}</td>
-			<td><a href="/FinalProject/pages/detail.controller?improtid=${row.improtid}">Detail</a></td>
-
-		</tr>
-		
-	</c:forEach>
-
-</tbody>
-</table>
-</c:if>
-<c:if test= "${not empty detail}">
-<form action = "/FinalProject/pages/import.updateController">
-<table border = "2px" >
-<caption>Import Detail</caption>
-
-<thead>
-	<tr>
-		<th>Import ID</th>
-		<th>Amount</th>
-		<th>Product ID</th>
-		<th>Brand</th>
-		<th>Category</th>
-		<th>Model</th>
-		<th>Picture</th>
-		<th>Price</th>
-		<th>Import</th>
-
-</thead>
-
-<tbody>
-	<c:forEach var="row2" items="${detail}">
-		<tr>
-			<td><input type = "hidden" name = "improtid" value = "${row2.improtid}">${row2.improtid}</td>
-			<td>${row2.amount}</td>
-			<td>${row2.proid}</td>
-			<td>${row2.productBean.brandBean.brand}</td>
-			<td>${row2.productBean.categoryBean.category}</td>
-			<td>${row2.productBean.model}</td>
-			<td>${row2.productBean.picture}</td>	
-			<td>${row2.productBean.price}</td>		
-			<td><input type = "submit" value = "import" ></td>
-		</tr>
-	</c:forEach>
-</tbody>
-</table>
-
-<br>
-<br>
-</form>
-</c:if>
-<c:if test= "${not empty stock}">
-
-<table border = "2px">
-<caption>Branch Stock</caption>
-<thead>
-	<tr>
-		<th>Branch Stock ID</th>
-		<th>Amount</th>
-		<th>Branch ID</th>
-		<th>Product id</th>
-		<th>Status</th>
+	<div class="t10" align="center">
 
 
-</thead>
+		<div class="t9" align="center">
+			<table>
+				<tr>
+					新增進貨
+					<td>
+						<a href="./vipPassword.jsp" title="Beats">
+							<img src="./images/account.png" width="100px">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="t9" align="center">
+			<table>
+				<tr>
+					查詢進貨
+					<td>
+						<a href="./Backstage_Search_Import.jsp" title="Beats">
+							<img src="./images/account.png" width="100px">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="t9" align="center">
+			<table>
+				<tr>
+					修改資料
+					<td>
+						<a href="vipDelete.jsp" onclick="return(confirm('確定刪除?'))">
+							<img src="./images/account.png" width="100px">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="t9" align="center">
+			<table>
+				<tr>刪除資料
+					<td>
+						<a href="./VipOut.jsp" title="Beats">
+							<img src="./images/account.png" width="100px">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br>
 
-<tbody>
-	<c:forEach var="row2" items="${stock}">
-		<tr>
-			<td>${row2.branch_stock_id}</td>
-			<td>${row2.amount}</td>
-			<td>${row2.branchid}</td>
-			<td>${row2.proid}</td>
-			<td>${row2.statu}</td>
+	<br>
+	<h1>_________________＊＊交貨注意事項＊＊_________________</h1>
+	<br>
+	<p class="t3">＊收到訂單後請務必於三天內通知下單者交期，數量或價格等相關事項。</p>
+	<p class="t3">交貨前若有更改亦請通知下單者或重新上傳(供應商) </p>
+	<p class="t3">＊進貨日前一天下午03:00前，必須通知下單者進貨明細或填妥ASN並上傳，以利進貨作業。</p>
+	<p class="t3">＊交貨趟數超過一次且非同一時間，請依交貨趟數通知下單者各趟進貨明細或填妥表格並上傳。</p>
+	<p class="t3">＊當天臨時有急貨要交, 請於前晚10:00 前(當天上午 9:30 後到貨) 或當天10:00前(當天中午前到貨)</p>
+	<p class="t3">提供進貨明細或填妥 表格 並上傳, 再通知庫房安排收貨, 請仍依各倉規定的交貨時段交貨。</p>
 
-		</tr>
-	</c:forEach>
-</tbody>
-</table>
-
-<br>
-<br>
-
-</c:if>
-
-	</body>
-	<div>
+	</h2>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<div>
 		<footer>
 			<div class="f0">
 
@@ -371,7 +292,9 @@
 
 			</div>
 		</footer>
-		<br>
+		
 	</div>
+	</footer>
+
 </body>
 </html>

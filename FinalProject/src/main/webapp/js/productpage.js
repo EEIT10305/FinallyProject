@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	
+	sessionStorage.CartId=1
 	
     //顯示從firstpage搜尋到的產品
     //顯示從上方搜尋到的產品

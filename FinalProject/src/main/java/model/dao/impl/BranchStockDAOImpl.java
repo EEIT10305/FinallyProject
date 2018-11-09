@@ -10,12 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import jdk.nashorn.internal.runtime.ECMAException;
 import model.bean.BranchStockBean;
 import model.dao.BranchStockDAO;
 
 @Repository
+@Transactional
 public class BranchStockDAOImpl implements BranchStockDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -44,6 +45,22 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 		}
 	}	
 	
+	
+	@Override	
+	public List<BranchStockBean> selectAllByBranchID(Integer branchid) {
+		String hql = "From BranchStockBean where branchid =:branchid";
+		try {
+			List<BranchStockBean> bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("branchid", branchid).getResultList();			
+			return bean;
+		}catch(Exception e) {
+			return null;
+		}
+	}	
+	
+	
+	
+	
+	
 	@Override
 	public BranchStockBean insert(BranchStockBean bean) {
 		if (bean != null) {
@@ -71,6 +88,19 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 			}
 		}
 		return false;
+	}
+	@Override
+	public List<BranchStockBean> updateList(List<BranchStockBean> branchStockBean, Integer x){
+		BranchStockBean temp = this.getSession().get(BranchStockBean.class, branchStockBean.get(x).getBranch_stock_id());
+		temp.setBranchid(branchStockBean.get(x).getBranchid());
+		temp.setProid(branchStockBean.get(x).getProid());
+		temp.setAmount(branchStockBean.get(x).getAmount());
+		temp.setStatu(branchStockBean.get(x).getStatu());
+		this.getSession().flush();
+	
+		
+		return null;
+				
 	}
 	
 	@Override

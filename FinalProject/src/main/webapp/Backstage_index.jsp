@@ -159,12 +159,12 @@
 							<br>本月公告</p>
 				</div>
 				<div class="n1" id="s2">
-					<a href="./Backstage_Transfer.jsp" title="Beats">
+					<a href="./Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Import.jsp" title="Beats">
+					<a href="./Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
