@@ -61,7 +61,7 @@ public class StaffDAOImpl implements StaffDAO {
 	public StaffBean selectByUseridPwd(String userId, String password) {
 
 		StaffBean sb = null;
-		String hql = "FROM StaffBean s WHERE s.email = :email and s.password = :password";
+		String hql = "FROM StaffBean WHERE email = :email and emppassword = :password";
 		Session session = getSession();
 		try {
 		sb = (StaffBean) session.createQuery(hql).setParameter("email", userId)

@@ -14,7 +14,8 @@ $(document).ready(function(){
    alert('使用者cookie不是空的'); 
        if(cookies.indexOf("email=")!=-1){//    cookies.indexOf("email=");//-1是不存在
           alert('使用者有email的資訊,判斷是否為我們家的會員')
-        var isUserInside = cookies.split("email=")[1].split(";")[0]
+        var isUserInside = cookies.split("email=")[1].split(";")[0];
+        alert('cookie內的email:'+isUserInside);//測試完刪除
            $.ajax({
                type: "POST",
                url: "processFirstUser",
@@ -24,10 +25,27 @@ $(document).ready(function(){
                 //    alert(data);
                    
                    var returnData = $.parseJSON(data);
-                   
-                   if(data=="userIsOurMember"){
-                    alert('使用者的cookie內的mail資料是我們家的會員 需隱藏登入按鈕!秀出會員按鈕');
+                   if(returnData.email==isUserInside){
+                    alert('使用者的cookie內的mail資料是我們家的會員 隱藏登入按鈕!秀出會員按鈕');
                     //$('#已登入的圖示').hide();
+                    $.ajax({
+                        type: "POST",
+                        url: "catchMemberCartId",
+                        data: {
+                            email: returnData.email, 
+                        },
+                        success: function (data) {
+                            alert('有沒有抓到cartId??');
+                            // alert(data);
+                            sessionStorage.CartId=data;
+                            alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
+    
+                            var Days = 30;//cookie設定30天
+                            var exp = new Date();
+                            exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                            document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                        }
+                    });
                    }
                    else if(returnData.permission=="facebook"){
                         alert("已判斷使用者是facebook登入")
