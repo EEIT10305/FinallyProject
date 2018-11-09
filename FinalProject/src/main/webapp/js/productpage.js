@@ -123,8 +123,8 @@ $(document).ready(function () {
     
 //    var cookies = document.cookie;//先取cookie
 //    var isUserInside = cookies.split("email=")[1].split(";")[0];
-    
-    
+    var cookies = document.cookie;//先取cookie
+    var isUserInside = cookies.split("email=")[1].split(";")[0];
     $.each(proidArray,function(index,proid){
     	if(proid!="zero"){
     		//庫存沒貨   變貨到通知我
@@ -137,7 +137,7 @@ $(document).ready(function () {
     			}
     		})
     		//已加入願望清單的話  變紅愛心
-    		$.post("processFirstMemberLoadWish",{"proId":proid,"email":"wenchen@gmail.com"},function(data,status){      //beanyeeeeeeeeeeeeee  搜尋願望清單有沒有資料
+    		$.post("processFirstMemberLoadWish",{"proId":proid,"email":isUserInside},function(data,status){      //beanyeeeeeeeeeeeeee  搜尋願望清單有沒有資料
     			
     			if(data!=null){
     				$("#wish"+proid).find("img").attr("src","image/like.png");  				

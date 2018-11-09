@@ -70,16 +70,22 @@ public class WishController {
 	@RequestMapping(path = "processFirstMemberLoadWish", produces = "text/html;charset=utf-8")
 	@ResponseBody
 	public String processFirstMemberLoadWish(String email, Integer proId) {
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  " + email);
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  " + proId);
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println("從資料庫撈會員的願望清單controller");
+		System.out.println("有沒有接收到會員的Email??=> " + email);
+		System.out.println("有沒有接收到user點選的商品id??=> " + proId);
 		MemberBean memberBean = loginService.checkEmail(email);
-		System.out.println("memberBeanmemberBeanmemberBean  " +memberBean);
-		 WishBean wishBean = wishService.selectByMemberIdProId(memberBean.getMemberid(), proId);
+		System.out.println("透過email有沒有撈取到會員資料" +memberBean);
 		
-		return new Gson().toJson(wishBean);
+	
+			WishBean wishBean;
+			try {//會員有願望清單資料
+				wishBean = wishService.selectByMemberIdProId(memberBean.getMemberid(), proId);
+				System.out.println(wishBean);
+				return new Gson().toJson(wishBean);
+			} catch (Exception e) {//會員沒有願望清單資料
+				return "nowish";
+			}
+	
 	}
 	
 }

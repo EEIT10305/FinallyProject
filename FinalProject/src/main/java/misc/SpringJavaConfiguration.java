@@ -79,7 +79,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception{
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setDataSource(dataSourcemanager());
+		transactionManager.setDataSource(dataSource());
 		return transactionManager;
 	}
     
