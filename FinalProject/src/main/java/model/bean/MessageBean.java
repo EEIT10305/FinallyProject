@@ -21,17 +21,26 @@ public class MessageBean {
 	private String date;
 	@Column(nullable=false)
 	private String message;
+	@Column(nullable=false)
+	private String title;
+	@Column(nullable=false)
+	private String readstatu;
 	public MessageBean() {
 		super();
 	}
-	public MessageBean(Integer message_id, String date, Integer memberidA, Integer memberidB, String message) {
+	
+	public MessageBean(Integer message_id, Integer memberidA, Integer memberidB, String date, String message,
+			String title, String readstatu) {
 		super();
 		this.message_id = message_id;
 		this.memberidA = memberidA;
 		this.memberidB = memberidB;
 		this.date = date;
 		this.message = message;
+		this.title = title;
+		this.readstatu = readstatu;
 	}
+
 	public Integer getMessage_id() {
 		return message_id;
 	}
@@ -61,6 +70,19 @@ public class MessageBean {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getReadstatu() {
+		return readstatu;
+	}
+	public void setReadstatu(String readstatu) {
+		this.readstatu = readstatu;
 	}
 	
 	
