@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import model.bean.BrandBean;
 import model.bean.CabinetBean;
+import model.bean.CartDetailBean;
 import model.bean.CategoryBean;
 import model.bean.CpuBean;
 import model.bean.MbBean;
@@ -22,6 +23,7 @@ import model.bean.ProductBean;
 import model.bean.RamBean;
 import model.bean.StorageBean;
 import model.bean.VgaBean;
+import model.dao.CartDetailDAO;
 import model.dao.MbDAO;
 import model.dao.ProductDAO;
 import model.service.SelectProductForCustomizedService;
@@ -33,6 +35,8 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 	private ProductDAO productDAO;
 	@Autowired
 	private MbDAO mbDAO;
+	@Autowired
+	private CartDetailDAO cartDetailDAO;
 
 	@Override
 	public List<MbBean> selectMb() {
@@ -139,9 +143,14 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 	}
 	@Override
 	public ProductBean showInitPriceInService(String model) {
-	
 		return productDAO.selectProductPrice(model);
 	}
+	@Override
+	public ProductBean showCartDetailInService(String model,Integer CartId) {
+		cartDetailDAO.insert(new CartDetailBean(null,1,CartId,productDAO.selectProductPrice(model).getProid()));
+		return productDAO.selectProductPrice(model);
+	}
+	
 	@Override
 	public List<PinginBean> showAllProductImgInService() {
 	

@@ -3,15 +3,13 @@ package controller.register;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.MemberBean;
-import model.service.register.impl.RegisterServiceImpl;
+import model.service.register.RegisterService;
 
 @Controller
 public class RegisterController {
@@ -21,7 +19,7 @@ public class RegisterController {
 	private Matcher matcher = null;
 	
 	@Autowired
-	private RegisterServiceImpl registerService;
+	private RegisterService registerService;
 	
 	@RequestMapping(path="processregister",produces="text/html;charset=utf-8")// 接收資料
 	@ResponseBody
@@ -44,7 +42,7 @@ public class RegisterController {
 		if(name==null||name.length()==0||name.equals("")) {
 			return "name";
 		}else {
-			memberBean.setName(replaceSpecialCharater(name));
+			memberBean.setmembername(replaceSpecialCharater(name));
 		}
 		
 		if(email==null||email.length()==0||email.equals("")) {
@@ -59,7 +57,7 @@ public class RegisterController {
 			pattern = Pattern.compile(PASSWORD_PATTERN);
 			matcher = pattern.matcher(password);
 			if(matcher.matches()) {
-				memberBean.setPassword(replaceSpecialCharater(password));
+				memberBean.setmemberpassword(replaceSpecialCharater(password));
 			}else {
 				return "password";
 			}
@@ -70,7 +68,7 @@ public class RegisterController {
 		if(address==null||address.length()==0||address.equals("")) {
 			return "address";
 		}else {
-			memberBean.setAddress(replaceSpecialCharater(address));
+			memberBean.setmemberaddress(replaceSpecialCharater(address));
 		}
 		if(phone==null||phone.length()==0||phone.equals("")) {
 			return "phone";

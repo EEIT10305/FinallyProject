@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.BranchBean;
+import model.bean.BranchStockBean;
 import model.bean.CartBean;
 import model.bean.CartDetailBean;
 import model.bean.MemberBean;
 import model.bean.ProductBean;
+import model.dao.BranchStockDAO;
 import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
-import model.dao.ProductDAO;
 import model.service.CartService;
 @Service
 @Transactional
@@ -22,6 +24,9 @@ public class CartServiceimpl implements CartService {
 	
 	@Autowired 
 	CartDetailDAO  cartDetailDao;
+	
+	@Autowired
+	BranchStockDAO branchStockDAO;
 
 	
 	
@@ -55,12 +60,26 @@ public class CartServiceimpl implements CartService {
 //		cartbean.setStatus("nopay");		
 //		Dao.insert(cartbean);
 		System.out.println("進入購物車");
-		
-		CartDetailBean CartDetailbean = new CartDetailBean();    	//開啟一個bean讓後面可以直接完整的insert進去
-		CartDetailbean.setCartid(CartId);
-		CartDetailbean.setProid(productbean.getProid());
-		CartDetailbean.setAmount(1);
-		cartDetailDao.insert(CartDetailbean);
+		Boolean isdup = cartDetailDao.checkProductisAlive(productbean.getProid());
+		if(isdup == true) {
+			CartDetailBean  cdb= cartDetailDao.selectByProductId(productbean.getProid());
+//			List<CartDetailBean> cdb = this.getSession()
+//					.createQuery(hql,CartDetailBean.class)
+//					.setParameter("cartid", cartid).getResultList();
+			Integer amount =cdb.getAmount();
+			amount = amount +1 ;
+			cdb.setAmount(amount);
+			cartDetailDao.update(cdb);
+
+		}
+		else {
+			CartDetailBean CartDetailbean = new CartDetailBean();    	//開啟一個bean讓後面可以直接完整的insert進去
+			CartDetailbean.setCartid(CartId);
+			CartDetailbean.setProid(productbean.getProid());
+			CartDetailbean.setAmount(1);
+			cartDetailDao.insert(CartDetailbean);
+		}
+	
 		
 	//	return Dao.insert(bean);
 	}
@@ -87,6 +106,7 @@ public class CartServiceimpl implements CartService {
 	}
 
 	@Override
+
 	public boolean checkMember(int memberId) {
 	
 		return Dao.checkMember(memberId);
@@ -111,6 +131,45 @@ public class CartServiceimpl implements CartService {
 	public boolean updatestatus(int cartid) {
 		return Dao.updatestatus(cartid);
 	}
+
+	@Override
+	public List<CartBean> selectMemberId(Integer memberid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartBean saveCartBean(CartBean bean) {
+		return Dao.insert(bean);
+	}
+
+	@Override
+	public Integer FindProid(String model) {
+		ProductBean  productBean = new ProductBean();
+		productBean = Dao.insertmodelfromProduct(model);
+		Integer Proid = productBean.getProid();
+		return Proid;
+		
+	}
+
+	@Override
+	public Integer CheckAmount(String Model) {
+		ProductBean productBean =branchStockDAO.selectByModel(Model);
+		Integer proid =productBean.getProid();
+		Integer Number = branchStockDAO.checkAmmount(proid);
+		return Number;
+		
+		
+	}
+
+	@Override
+	public Boolean updateProidamount(Integer proid) {
+		Boolean isDup = cartDetailDao.checkProductisAlive(proid);
+		return isDup;
+	}
+
+	
+	
 	
 	
 	

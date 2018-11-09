@@ -46,6 +46,7 @@ public class VerifyAioCheckOut extends PaymentVerifyBase {
 		for(Field field : cls.getDeclaredFields()){
 			fieldNames.add(field.getName());
 		}
+		
 		Element ele = (Element)doc.getElementsByTagName("AioCheckOut").item(0);
 		NodeList nodeList = ele.getElementsByTagName("param");
 		for(int i = 0; i < nodeList.getLength(); i++){
@@ -53,12 +54,14 @@ public class VerifyAioCheckOut extends PaymentVerifyBase {
 			if(fieldNames.contains(tmpEle.getAttribute("name"))){
 				try {
 					method = cls.getMethod("get"+tmpEle.getAttribute("name").substring(0, 1).toUpperCase()+tmpEle.getAttribute("name").substring(1), null);
+                   //出事啦
 					objValue = method.invoke(obj, null).toString();
 				} catch (Exception e) {
 					throw new AllPayException(ErrorMessage.OBJ_MISSING_FIELD);
 				}
-				if(!(obj instanceof InvoiceObj))
+				if(!(obj instanceof InvoiceObj)) {
 					requireCheck(tmpEle.getAttribute("name"), objValue, tmpEle.getAttribute("require").toString());
+				}
 				valueCheck(tmpEle.getAttribute("type"), objValue, tmpEle);
 			} else{
 				continue;

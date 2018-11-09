@@ -154,4 +154,10 @@ public class SelectProductForCustomizedController {
 		
 		return new Gson().toJson(SPFCS.showPowerSupplierByTotalPowerInService(PowerModel));
 	}
+	@RequestMapping(path="showCartDetail",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String showCartDetailInController(String model,Integer CartId) {
+		return new Gson().toJson(SPFCS.showCartDetailInService(model,CartId));
+	}
+	
 }

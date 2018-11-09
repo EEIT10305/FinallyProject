@@ -266,12 +266,13 @@ public class ExampleAllInOne {
 	
 	public static String genAioCheckOutOneTime(){		//信用卡結帳用這個(一次付清)
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
-		obj.setMerchantTradeNo("test2018110702");			//產生自己的訂單邏輯  每次訂單編號必須不一樣否則網頁會說已經重複  從test2018110601開次
+		obj.setMerchantTradeNo("test2018110704");			//產生自己的訂單邏輯  每次訂單編號必須不一樣否則網頁會說已經重複  從test2018110601開次
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
 		obj.setTotalAmount("50");
 		obj.setTradeDesc("test Description");
 		obj.setItemName("TestItem");
 	//	obj.setItemName("3c產品");
+	//	obj.setReturnURL("http://localhost:8081/FinalProject/ShowCart.html");
 		obj.setReturnURL("http://211.23.128.214:5000");		//ex返回的網頁
 		obj.setNeedExtraPaidInfo("N");
 		obj.setHoldTradeAMT("0");

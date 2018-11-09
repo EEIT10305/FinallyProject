@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+	sessionStorage.CartId=1
+	
     //顯示從firstpage搜尋到的產品
     //顯示從上方搜尋到的產品
 
@@ -96,14 +97,15 @@ $(document).ready(function () {
                 '</a>' +
                 '</span>' +
                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
-                "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                '<a href="#" class="btn btn-danger">加入購物車' +
+                "<h5  class='card-title' style='color:red' >$" + priceArray[b] + "</h5>" +
+                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                 '<img src="image/shopping-cart (1).png" width="20px">' +
                 '</a>' +
                 '</div>' +
-                '</div>' +
+                '</div>' +                
                 '</div>')
-
+            document.getElementById("add"+b).addEventListener("click",addToCart);       
+                
         }
 
         c = b;
@@ -118,6 +120,23 @@ $(document).ready(function () {
     $("#page1").show();
     $("#changepagebtn1").parent().attr("class", "page-item active");
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
+
+
+ 
+    
+    function addToCart(){
+//         alert($(this).prev().prev().text())
+         $.ajax({
+             type: "post",
+             url: "AddtToCartController",
+             data: {"model":$(this).prev().prev().text(),
+            	    "CartId":sessionStorage.CartId},             
+             success: function (data) {
+                 alert("加入購物車成功！")
+//                 alert(data)
+             }
+         });
+    }
 
     function turnpage(){
     	$("#pagebtn li").attr("class","page-item");
@@ -181,6 +200,8 @@ $(document).ready(function () {
         document.getElementById("pricebtn5").addEventListener("click", clickprice);
 
         sessionStorage.category = event.target.value;
+        sessionStorage.brand = "ini";
+        sessionStorage.price = 0;
 
         //      傳category給brand標籤去搜尋producttable
         $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
@@ -238,7 +259,7 @@ $(document).ready(function () {
             function (data, status) {
                 sessionStorage.data = data
                 // 		                    	 alert("要跳了 " + sessionStorage.data);
-                window.location.href = "http://localhost:8081/FinalProject/ProductPage.html";
+                window.location.href = "/FinalProject/ProductPage.html";
             }
         )
     })
@@ -361,13 +382,13 @@ $(document).ready(function () {
                             '</span>' +
                             "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                             "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                            '<a href="#" class="btn btn-danger">加入購物車' +
+                            '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                             '<img src="image/shopping-cart (1).png" width="20px">' +
                             '</a>' +
                             '</div>' +
                             '</div>' +
                             '</div>')
-
+                            document.getElementById("add"+b).addEventListener("click",addToCart); 
                     }
 
                     c = b;
@@ -383,6 +404,20 @@ $(document).ready(function () {
                 $("#changepagebtn1").parent().attr("class", "page-item active");
                 $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                function addToCart(){
+//                    alert($(this).prev().prev().text())
+                    $.ajax({
+                        type: "post",
+                        url: "AddtToCartController",
+                        data: {"model":$(this).prev().prev().text(),
+                       	    "CartId":sessionStorage.CartId},             
+                        success: function (data) {
+                            alert("加入購物車成功！")
+//                            alert(data)
+                        }
+                    });
+               }
+                
                 function turnpage(){
                 	$("#pagebtn li").attr("class","page-item");
                 	$("#pagebtn li a").attr("class","mypage-link");
@@ -508,13 +543,13 @@ $(document).ready(function () {
                                 '</span>' +
                                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                                 "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                                '<a href="#" class="btn btn-danger">加入購物車' +
+                                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                                 '<img src="image/shopping-cart (1).png" width="20px">' +
                                 '</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>')
-
+                                document.getElementById("add"+b).addEventListener("click",addToCart); 
                         }
 
                         c = b;
@@ -530,6 +565,20 @@ $(document).ready(function () {
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function addToCart(){
+//                        alert($(this).prev().prev().text())
+                        $.ajax({
+                            type: "post",
+                            url: "AddtToCartController",
+                            data: {"model":$(this).prev().prev().text(),
+                           	    "CartId":sessionStorage.CartId},             
+                            success: function (data) {
+                                alert("加入購物車成功！")
+//                                alert(data)
+                            }
+                        });
+                   }
+                    
                     function turnpage(){
                     	$("#pagebtn li").attr("class","page-item");
                     	$("#pagebtn li a").attr("class","mypage-link");
@@ -658,13 +707,13 @@ $(document).ready(function () {
                                 '</span>' +
                                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                                 "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                                '<a href="#" class="btn btn-danger">加入購物車' +
+                                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                                 '<img src="image/shopping-cart (1).png" width="20px">' +
                                 '</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>')
-
+                                document.getElementById("add"+b).addEventListener("click",addToCart);
                         }
 
                         c = b;
@@ -680,6 +729,19 @@ $(document).ready(function () {
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function addToCart(){
+//                        alert($(this).prev().prev().text())
+                        $.ajax({
+                            type: "post",
+                            url: "AddtToCartController",
+                            data: {"model":$(this).prev().prev().text(),
+                           	    "CartId":sessionStorage.CartId},             
+                            success: function (data) {
+                                alert("加入購物車成功！")
+//                                alert(data)
+                            }
+                        });
+                   }
                     function turnpage(){
                     	$("#pagebtn li").attr("class","page-item");
                     	$("#pagebtn li a").attr("class","mypage-link");
@@ -784,13 +846,13 @@ $(document).ready(function(){
                                 '</span>' +
                                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                                 "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                                '<a href="#" class="btn btn-danger">加入購物車' +
+                                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                                 '<img src="image/shopping-cart (1).png" width="20px">' +
                                 '</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>')
-
+                                document.getElementById("add"+b).addEventListener("click",addToCart); 
                         }
 
                         c = b;
@@ -806,6 +868,19 @@ $(document).ready(function(){
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function addToCart(){
+//                        alert($(this).prev().prev().text())
+                        $.ajax({
+                            type: "post",
+                            url: "AddtToCartController",
+                            data: {"model":$(this).prev().prev().text(),
+                           	    "CartId":sessionStorage.CartId},             
+                            success: function (data) {
+                                alert("加入購物車成功！")
+//                                alert(data)
+                            }
+                        });
+                   }
                     function turnpage(){
                     	$("#pagebtn li").attr("class","page-item");
                     	$("#pagebtn li a").attr("class","mypage-link");
@@ -916,13 +991,13 @@ $(document).ready(function(){
                                 '</span>' +
                                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                                 "<h5 class='card-title' style='color:red'>$" + priceArray[b] + "</h5>" +
-                                '<a href="#" class="btn btn-danger">加入購物車' +
+                                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
                                 '<img src="image/shopping-cart (1).png" width="20px">' +
                                 '</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>')
-
+                                document.getElementById("add"+b).addEventListener("click",addToCart); 
                         }
 
                         c = b;
@@ -938,6 +1013,19 @@ $(document).ready(function(){
                     $("#changepagebtn1").parent().attr("class", "page-item active");
                     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
 
+                    function addToCart(){
+//                        alert($(this).prev().prev().text())
+                        $.ajax({
+                            type: "post",
+                            url: "AddtToCartController",
+                            data: {"model":$(this).prev().prev().text(),
+                           	    "CartId":sessionStorage.CartId},             
+                            success: function (data) {
+                                alert("加入購物車成功！")
+//                                alert(data)
+                            }
+                        });
+                   }
                     function turnpage(){
                     	$("#pagebtn li").attr("class","page-item");
                     	$("#pagebtn li a").attr("class","mypage-link");
@@ -956,4 +1044,3 @@ $(document).ready(function(){
 	
 })
 
-    

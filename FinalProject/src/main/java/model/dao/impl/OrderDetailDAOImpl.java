@@ -1,12 +1,15 @@
 package model.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.MemberBean;
 import model.bean.OrderDetailBean;
 import model.dao.OrderDetailDAO;
 @Repository
@@ -24,10 +27,22 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	public List<OrderDetailBean> selectAll() {
 		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).setMaxResults(50).list();
 	}
+    
+	@Override
+	public List<Map<String,Object>> countSoldPro() {
+//		Query list = this.getSession().createQuery("SELECT new map(proid,SUM(amount)) FROM OrderDetailBean GROUP BY proid").setMaxResults(50);
+		List<Map<String,Object>> map =this.getSession().createQuery("SELECT new Map(proid as pro,SUM(amount) as sum) FROM OrderDetailBean GROUP BY proid").list();
+		return map;
+	}
 
 	@Override
 	public OrderDetailBean selectById(int id) {
 		return this.getSession().get(OrderDetailBean.class, id);
+	}
+	@Override
+	public List<OrderDetailBean> selectByOrderId(Integer OrderId) {
+		String hql="from OrderDetailBean where orderid=:OrderId";
+		return this.getSession().createQuery(hql,OrderDetailBean.class).setParameter("OrderId", OrderId).getResultList();
 	}
 
 	@Override
@@ -71,6 +86,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	public void setMemberId(Integer memberid) {
 		this.memberid = memberid;
 		
+	}
+
+	@Override
+	public MemberBean selectMemberIdByEmail(String email) {
+		return null;
 	}
 
 }

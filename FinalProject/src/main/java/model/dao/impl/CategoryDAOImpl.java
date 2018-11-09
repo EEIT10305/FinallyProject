@@ -33,6 +33,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
+	public List<Object> selectSubTable(String hql) {
+		return this.getSession().createQuery(hql).list();
+	}
+	@Override
 	public CategoryBean insert(CategoryBean bean) {
 		if(bean!=null) {
 			if(true) {

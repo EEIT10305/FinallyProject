@@ -57,7 +57,7 @@ li {
     margin-bottom:50px;
     background:whitesmoke;
     padding:30px 50px;
-    justify-content:space-around;
+    align-content:flex-start;
 
 }
 .card{
@@ -107,6 +107,9 @@ p {
 }
 .loginByGoogle{
     float: left;
+}
+.memberInfo {
+    cursor: pointer;
 }
 /*-------------------------秉毅用--------------------------------------------------------*/
 .mymodelbtn {

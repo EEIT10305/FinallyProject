@@ -90,9 +90,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public MemberBean getMemberId() {
-		MemberBean mb = new MemberBean();
-		this.getSession().get(MemberBean.class, memberid);
-		return mb;
+		return this.getSession().get(MemberBean.class, memberid);
 	}
 
 

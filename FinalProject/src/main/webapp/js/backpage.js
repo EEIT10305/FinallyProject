@@ -146,7 +146,6 @@
                     $("#area1").text("首頁輪播牆");
                     $("#area2").text("暫存區");
                     
-                    var amount = 0;//得到一開始的上架圖片數用
                     $.post("WallController2",function(data, status) {//-----------------------輪播牆不要的
             			if (status == "success") {
             				var querydata = $.parseJSON(data);
@@ -156,6 +155,29 @@
 
             				})
             				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
+            				$(".forinput li").mouseup(function(){
+           					 flag1 = true;
+           					 change = $(this).children().attr("src");
+           				 }).mouseleave(function(){//滑鼠離開觸發進資料庫更換圖片順序
+           					 if(flag1){
+           						 var str = $("#fordatainput li").eq(0).children().attr("src");
+           						 for(var i = 1 ; i < $('#fordatainput').children().length ; i ++){
+           					        str += "," + $("#fordatainput li").eq(i).children().attr("src");
+           						 }
+           						 
+           						 $.post("ChangePicController",{
+           							 "str":str,
+           							 "change":change,
+           							 "amount": amount
+           						 },function(){
+           							 if (status == "success") {
+           		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+           		            				amount = $('#fordatainput').children().length;
+           						     }
+           						 })
+           					     flag1 = false;	 
+           					 }
+           				 });
             			    }
             			})
                     $.post("WallController",function(data, status) {//-----------------------輪播牆要的
@@ -164,7 +186,6 @@
                             var text = '';
             				$.each(querydata, function(index, json) {
             					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
-
             				})  
             				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
             				
@@ -254,6 +275,7 @@
         	//一開始畫面先藏起來後面有按上面的項目再顯示
             $("#pagestyle").hide();
             $("#bugpage").hide();
+            $("#chartpage").hide();
     
             var data=""
         	    $("#uploadfile").change(function (e) {

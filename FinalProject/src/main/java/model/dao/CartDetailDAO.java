@@ -8,14 +8,18 @@ import model.bean.MemberBean;
 
 public interface CartDetailDAO {
 	 List<CartDetailBean> selectAll();
+	 List<CartDetailBean> selectAllByCartId(Integer cartid);
 	    CartDetailBean selectById(int id);
 	    CartDetailBean insert(CartDetailBean bean);
 	    boolean update(CartDetailBean bean);
-//	    boolean deletebycartId(int cartid);
+	    boolean deletebycartId(Integer cartid);
 	    MemberBean getMemberId(int memberId);
-	    //CartDetailBean selectCartId(int cartid);
 	    List<CartDetailBean> selectbycartId(int cartid);
+//	    boolean delete(CartDetailBean bean);
+//	    boolean deletebycartId(int cartid);
+	    //CartDetailBean selectCartId(int cartid);
 	    //void setMemberId(Integer memberid);
-		boolean deletebycartId(Integer cartid);
+	    boolean checkProductisAlive(int proid);
+	    CartDetailBean selectByProductId(int proid);
 	    
 }
