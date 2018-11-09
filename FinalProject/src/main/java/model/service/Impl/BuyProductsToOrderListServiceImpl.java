@@ -17,11 +17,11 @@ import model.bean.CartDetailBean;
 import model.bean.OrderDetailBean;
 import model.bean.OrderListBean;
 import model.dao.BranchStockDAO;
-import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
 import model.dao.OrderDetailDAO;
 import model.dao.OrderListDAO;
 import model.service.BuyProductsToOrderListService;
+import model.service.CartDAO;
 @Service
 @Transactional
 public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderListService {

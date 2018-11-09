@@ -19,6 +19,8 @@ public class WishDAOImpl implements WishDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	public WishDAOImpl() {}
+	
 	@Override
 	public List<WishBean> selectAll() {
 		return this.getSession().createQuery("FROM WishBean", WishBean.class).setMaxResults(50).list();
@@ -63,5 +65,29 @@ public class WishDAOImpl implements WishDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<WishBean> selectByMemberId(Integer memberId) {
+		String hql = "FROM WishBean w WHERE w.memberid:memberid";
+		return this.getSession().createQuery(hql).setParameter("memberid", memberId).list();
+	}
+
+	@Override
+	public WishBean selectByMemberIdProId(Integer memberId,Integer proid) {
+		String hql = "FROM WishBean WHERE memberid:memberId and proid:proid ";
+		return this.getSession().createQuery(hql,WishBean.class).setParameter("memberid", memberId).setParameter("proid", proid).getSingleResult();
+	}
+
+	@Override
+	public List<WishBean> selectAllByProId(Integer proid) {
+		String hql = "From WishBean where proid =:proid";
+		return this.getSession().createQuery(hql, WishBean.class).setParameter("proid", proid).list();
+	}
+
+	@Override
+	public WishBean selectByProId(Integer proId) {
+		return null;
 	}
 }

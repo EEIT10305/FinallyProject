@@ -32,4 +32,14 @@ public class PkController {
 		return new Gson().toJson(pk.showPinginDetail(pkNo));
 	}
 	
+	@RequestMapping(path="updateCartDetailAmount", produces="text/html;charset=UTF-8")	
+	@ResponseBody
+	public String updateCartDetailAmount(Integer cartid, Integer amount,Integer proid) {
+		System.out.println("=============================================================================");
+        System.out.println("idididididiiddiididid    " + cartid);
+        System.out.println("amountamount    " + amount);        
+        System.out.println("=============================================================================");
+          pk.updateCartDetailAmount(cartid, amount,proid);
+          return("修改數量成功");
+	}
 }

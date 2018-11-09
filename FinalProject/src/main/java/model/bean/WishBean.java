@@ -3,13 +3,11 @@ package model.bean;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="wish")
@@ -22,7 +20,7 @@ public class WishBean {
 	@Column(nullable=false)
 	private Integer proid;
 	@Column(nullable=false)
-	private Integer tracked;
+	private Integer tracked;//0:取消願望清單 1:正在關注中  2:單純點選貨到通知  3:已加購物車點選貨到通知
 	@ManyToOne
 	@JoinColumn(name="memberid",insertable=false,updatable=false)
 	private MemberBean memberBean;
@@ -32,6 +30,13 @@ public class WishBean {
 	public WishBean() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "WishBean [wishid=" + wishid + ", memberid=" + memberid + ", proid=" + proid + ", tracked=" + tracked
+				+ ", memberBean=" + memberBean + ", productBean=" + productBean + "]";
+	}
+
 	public WishBean(Integer wishid, Integer memberid, Integer proid, Integer tracked, MemberBean memberBean,
 			ProductBean productBean) {
 		super();

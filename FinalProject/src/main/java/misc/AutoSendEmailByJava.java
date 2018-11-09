@@ -64,4 +64,47 @@ public class AutoSendEmailByJava {
 		   throw new RuntimeException(e);
 		  }
 	}
+	
+	
+	public static void processMemberWishNotice(String memberEmail, String subject, String text) {
+		String host = "smtp.gmail.com";
+		  int port = 587;
+		  final String username = "gn01046295@gmail.com";//帳號
+		  final String password = "fighter1003";//your password
+
+		  Properties props = new Properties();
+		  props.put("mail.smtp.host", host);
+		  props.put("mail.smtp.auth", "true");
+		  props.put("mail.smtp.starttls.enable", "true");
+		  props.put("mail.smtp.port", port);
+		  Session session = Session.getInstance(props, new Authenticator() {
+		   protected PasswordAuthentication getPasswordAuthentication() {
+		    return new PasswordAuthentication(username, password);
+		   }
+		  });
+
+		  try {
+
+		   Message message = new MimeMessage(session);
+		   message.setFrom(new InternetAddress("gn01046295@gmail.com"));
+		   message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(memberEmail));
+		   message.setSubject(subject);
+		   message.setText(text);
+
+		   Transport transport = session.getTransport("smtp");
+		   transport.connect(host, port, username, password);
+
+		   Transport.send(message);
+
+		   System.out.println("寄送email結束.");
+
+		  } catch (MessagingException e) {
+		   throw new RuntimeException(e);
+		  }	
+	}
+	
+	
+	
+	
+	
 	}

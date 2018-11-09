@@ -11,45 +11,23 @@
     <link rel="stylesheet" href="css/fp.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
       <script src="js/pk.js"></script>
-    <title>比較表頁</title>
-    <style>
-    </style>
-    <script>
-    $(document).ready(function(){
-        $('button[name="becheckbtn"]').next().hide();
-        $('button.menuitemstyle').click(function(){
-            $(this).parent().siblings(".btnwidth").text($(this).text());
-        })
-        $('button[name="category"]').click(function(){
-            $('button[name="becheckbtn"]').hide();
-            $('button[name="becheckbtn"]').next().show();
-                // 這裡可以加動態產生的品牌或價格選項
-        })
-
-        $('#test').mouseover(function(){
-        	$("fieldset").show();
-        });
-        $('#test').mouseout(function () {
-            if (!$(".mymodal:hover").length) {
-            	$("fieldset").hide();
-                  }
-        })
-    })
-    </script>
+      <script src="js/basic.js"></script>
     <script src="js/firstpageyuan.js"></script>
+    <title>比較表頁</title>
+ 
 </head>
 
 <body>
     <header style="width:100%">
         <div style="align-items:baseline;" class="d-flex justify-content-between">
             <div class="navv">
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <a href="FirstPage.html">
                             <img src="image/001.png" width="120px">
                         </a>
-                    </ul>
-                </li>
+                    </li>
+                </ul>
 
             </div>
             <div class="navv">
@@ -65,23 +43,30 @@
                    
             </div>
             <div class="navv">
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <a id="test" href="/FinalProject/ShowCart.html">
                             <img src="image/shopping-cart.png" width="30px">
                         </a>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <a href="" data-toggle="modal" data-target="#exampleModalCenter">
                             <img src="image/avatar.png" width="30px"> </a>
 
-                    </ul>
-                </li>
+
+                    </li>
+                </ul>
+
                   <fieldset id="myModal" class="mymodal" >
-                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a></div>
+                  <div class="dropdown-divider"></div><a href='ShowCart.html'><button style="width:300px" class='btn btn-dark'>查看購物車</button></a>
+
                         </fieldset>
+
+                    </li>
+                </ul>
+                  </div>
             </div>
-        </div>
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -297,14 +282,10 @@
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                    <th scope="row"></th>
-                                                    <td><a href="#" class="btn btn-danger">加入購物車
-                                                            <img src="image/shopping-cart (1).png" width="20px">
-                                                        </a></td>
-                                                    <td><a href="#" class="btn btn-danger">加入購物車
-                                                            <img src="image/shopping-cart (1).png" width="20px">
-                                                        </a></td>
-                                                </tr>
+                                                <th scope="row"></th>
+                                                <td><div style="width:180px;"></div></td>
+                                                <td><div style="width:180px;"></div></td>
+                                           </tr>
     
                             </tbody>
                         </table>

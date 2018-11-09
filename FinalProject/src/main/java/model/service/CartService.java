@@ -2,9 +2,7 @@ package model.service;
 
 import java.util.List;
 
-import model.bean.BranchBean;
 import model.bean.CartBean;
-import model.bean.CartDetailBean;
 import model.bean.MemberBean;
 import model.bean.ProductBean;
 
@@ -36,6 +34,9 @@ public interface CartService {
 
 	boolean updatestatus(int cartid);
 
+
+	List<CartBean> selectMemberIdList(Integer memberid);
+	
 	public CartBean saveCartBean(CartBean bean);
 	
 	public Integer FindProid(String model);

@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/fp.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/firstpageyuan.js"></script>
+<script src="js/basic.js"></script>
 <title>購物車頁</title>
 <style>
 aside {
@@ -53,24 +54,6 @@ article {
 		$("#inlineRadio3").click(function() {
 			$("form > select").hide();
 		})
-		$('button[name="becheckbtn"]').next().hide();
-		$('button.menuitemstyle').click(function() {
-			$(this).parent().siblings(".btnwidth").text($(this).text());
-		})
-		$('button[name="category"]').click(function() {
-			$('button[name="becheckbtn"]').hide();
-			$('button[name="becheckbtn"]').next().show();
-			// 這裡可以加動態產生的品牌或價格選項
-		})
-
-		$('#test').mouseover(function() {
-			$("fieldset").show();
-		});
-		$('#test').mouseout(function() {
-			if (!$(".mymodal:hover").length) {
-				$("fieldset").hide();
-			}
-		});
 		ShowCartItems()
 // 		$("#CheckCar").click(CheckProducts)
 // 		$("#CheckOrder").click(CheckPay)
@@ -78,24 +61,153 @@ article {
 		$("[name='inlineRadioOptions']").click(HideAddress)
 	});
 	function ShowCartItems(){
-		
 
+// 		var count=1;
+// 		sessionStorage.CartId=4
+// 		$.post("showCartDetail",{"model":sessionStorage.MBname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                     $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                     count++
+//                }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CPUname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.RAMname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.POWERSUPPLIERname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CABINETname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                 var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.VGAname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.STORAGEname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+		sessionStorage.CartId = 1;	
 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 			if(status=="success"){
 				var querydata = $.parseJSON(data);
 				var count=1;
 				var sum=0;
                 $.each(querydata, function (index, json) {
-                	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td><tr>");
-                 	sum += json.productBean.price
+                	
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+//                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
+
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
+                	
+                	
+                 	sum += json.productBean.price * json.amount
                 	count++
                 })
-			$("#show").append("總價:"+sum)
+			$("#show").append("總價: "+sum + " 元")
 			sessionStorage.TotalPrice=sum
 			}
 		})
 		
 	}
+
+function modifyAmount(){
+	var proid = $(this).attr("value")
+	var amount = $("#select" + proid).val();	
+// 	alert("amount= "+amount)
+	$.post("updateCartDetailAmount",
+		   {"cartid":sessionStorage.CartId,"proid":proid,"amount":amount},function(data,status){ 			
+			    alert("修改數量成功");	
+				$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+					if(status=="success"){
+						var querydata = $.parseJSON(data);
+						var count=1;
+						var sum=0;
+						 $("#itembody").html("");
+		                $.each(querydata, function (index, json) {
+		                	
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
+
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
+		                	
+		                	
+		                 	sum += json.productBean.price * json.amount
+		                	count++
+		                })
+		            $("#show").html("總價: "+sum + " 元");   
+					
+					sessionStorage.TotalPrice=sum
+					}
+				})
+	         	
+	})
+	
+}
+
+
+//----------------------這是敬諺的---------------------------------------
+// 		sessionStorage.CartId = 1;	
+// 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+// 			if(status=="success"){
+// 				var querydata = $.parseJSON(data);
+// 				var count=1;
+// 				var sum=0;
+//                 $.each(querydata, function (index, json) {
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td></tr>");
+//                  	sum += json.productBean.price
+//                 	count++
+//                 })
+// 			$("#show").append("總價:"+sum)
+// 			sessionStorage.TotalPrice=sum
+// 			}
+// 		})
+		
+// 	}
+//----------------------------------------------------------------	
 	//確認產品進購物車
 // 	function CheckProducts(){
 // 		$.post("XXX",{"":""},function)(data,status){
@@ -215,9 +327,12 @@ article {
 			<div class="navv">
 				<ul>
 					<li>
-						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
-							width="30px">
+
+						<a id="test" href="/FinalProject/ShowCart.html">
+						<img src="image/shopping-cart.png" width="30px">
+
 						</a>
+
 					</li>
 					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -226,14 +341,24 @@ article {
 
 					</li>
 				</ul>
+
 				<fieldset id="myModal" class="mymodal">
 					<div class="dropdown-divider"></div>
 					<a href='ShowCart.html'><button style="width: 300px"
 							class='btn btn-dark'>查看購物車</button></a>
 			</fieldset>
+
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+
+					</li>
+				</ul>
 			</div>
 		</div>
-	
+
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -379,7 +504,7 @@ article {
 	</nav>
 	<div style="overflow: auto; background-color: whitesmoke;">
 		<article
-			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 50%; background-color: white;">
+			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
 			<div class="accordion" id="accordionExample">
 				<div class="card">
 					<div class="card-header" id="headingOne">
@@ -403,6 +528,7 @@ article {
 											<th scope="col">商品型號</th>
 											<th scope="col">價格</th>
 											<th scope="col">數量</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 
@@ -432,7 +558,7 @@ article {
 								
 							</div>
 						</div>
-								<div id="show" style="color:red;text-align:right;padding-right:100px;"></div>
+								<div id="show" style="font-size:24px;font-weight:bold;color:red;text-align:right;padding-right:100px;padding-top:20px"></div>
 								<div id="showtotal"></div>
 						<div style="padding: 30px">
 							<button id="CheckCart" class="btn btn-secondary collapsed" type="button"

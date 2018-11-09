@@ -26,17 +26,36 @@
 				text +='<div class="card" style="width: 15rem; padding: 10px;">'+
 				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="220px" alt="Card image cap">'+
 				'<div class="card-body">'+
-				'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
+				'<img class="wishheart" src="image/heart.png" width="20px">'+
 				'<h5 class="card-title">'+json.model+'</h5>'+
 				'<h5 class="card-title" style="color: red">$'+json.price+'</h5>'+
 				'<a href="#" class="btn btn-danger">加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>'+
                 '</div></div>'
-					
 				})
-
 				$(".forcard").html(text);
+
+//秉毅測試 				$('.wishheart').click(function(){
+// 					var cookies = document.cookie;//先取cookie
+// 					var isUserInside = cookies.split("email=")[1].split(";")[0];
+// 				$.ajax({
+// 					type: "POST",
+// 					url: "processMemberWish",
+// 					data: {
+// 						email:isUserInside,
+// 						proId:1//等胤源寫好
+// 					},
+// 					success: function (response) {
+						
+// 					}
+// 				});
+//秉毅測試  				});
 			}})
-    })
+	});
+	
+
+
+
+
 </script>
 
 <script src="js/firstpageyuan.js"></script>
@@ -70,6 +89,10 @@
 							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
 							width="20px"> <br>商品比較
 					</button></a>
+					<!--==================================測試第三方登出=================================-->
+					<button type="button" onclick="signOut();">Sign out</button>
+					<button onclick="fbLogout()">facebook登出</button>
+					<!--==================================測試第三方登出=================================-->
 			</div>
 			<div class="navv">
 				<ul>
@@ -77,6 +100,11 @@
 						<a id="test" href="/FinalProject/ShowCart.html"> <img src="image/shopping-cart.png"
 							width="30px">
 						</a>
+				<fieldset id="myModal" class="mymodal">
+					<div class="dropdown-divider"></div>
+					<a href='ShowCart.html'><button style="width: 300px"
+							class='btn btn-dark'>查看購物車</button></a>
+			</fieldset>
 					</li>
 					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -85,11 +113,6 @@
 
 					</li>
 				</ul>
-				<fieldset id="myModal" class="mymodal">
-					<div class="dropdown-divider"></div>
-					<a href='ShowCart.html'><button style="width: 300px"
-							class='btn btn-dark'>查看購物車</button></a>
-			</fieldset>
 			</div>
 		</div>
 		
@@ -132,10 +155,10 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<!-- <button class="mymodelbtn btn-primary" onclick="FBLogin()">使用facebook登入</button> -->
+							<button class="mymodelbtn btn-primary" onclick="fbLogin()">使用facebook登入</button>
 							<!-- <div style="display: inline;" class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div> -->
 							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
-							<div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div>
+							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
 							<div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="400"></div>
 						</div>
 						

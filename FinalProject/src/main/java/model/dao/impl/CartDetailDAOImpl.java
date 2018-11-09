@@ -83,6 +83,22 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean updateBean(Integer cartid,Integer amount,Integer proid) {
+		String hql="from CartDetailBean where cartid=:cartid and proid=:proid";
+		CartDetailBean bean = this.getSession().createQuery(hql,CartDetailBean.class).setParameter("cartid", cartid).setParameter("proid", proid).getSingleResult();
+			if (bean != null) {
+				try {
+					bean.setAmount(amount);
+					this.getSession().flush();
+					return true;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}		
+		return false;
+	}
 
 //	@Override
 //	public boolean deletebycartId(Integer cartid) {

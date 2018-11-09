@@ -9,4 +9,6 @@ public interface MessageDAO {
 	    MessageBean selectById(int id);
 	    MessageBean insert(MessageBean bean);
 	    boolean update(MessageBean bean);
+	    List<MessageBean> selectByMemberB(Integer member);
+		List<MessageBean> selectByMemberBAll(Integer member);
 }

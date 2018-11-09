@@ -1,76 +1,160 @@
-//---------------------------------------------------------------------------------------------fb登入3
-     //應用程式編號，進入 https://developers.facebook.com/apps/ 即可看到
-     let FB_appID = "301951257305688";
-        
-     //FB Login 官方文件：https://developers.facebook.com/docs/facebook-login/web
-
-     // Load the Facebook Javascript SDK asynchronously
-     (function (d, s, id) {
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) return;
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2";
-         fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-
-     window.fbAsyncInit = function () {
-         FB.init({
-             appId: "301951257305688",//FB appID
-             // cookie: true,  // enable cookies to allow the server to access the session
-             xfbml: true,  // parse social plugins on this page
-             version: 'v3.2' // use graph api version
-         });
-
-     };
-
-     //使用自己客製化的按鈕來登入
-     function FBLogin() {
-         
-         FB.login(function (response) {
-             FB.api('/me?fields=name,first_name,last_name,email', function(response) {
-                 // alert('fb登入') 
-     //将用户信息传回服务端
-//     	        	window.location.href="TestFBLogin.do?userInfo="+JSON.stringify(response);
-
-      $.ajax({
-             type:"POST",
-             url:"processFacebookLogin",
-             data:{
-                 userInfo:JSON.stringify(response)
-             },
-             success:function(data){
-                 alert("這裡是facebook的登入:"+data)
-                 
-                     var Days = 30;//cookie設定30天
-                     var exp = new Date();
-                     exp.setTime(exp.getTime() + Days*24*60*60*1000);
-                     document.cookie = "email=" + data+";expires=" + exp.toGMTString();
-                     alert('facebook登入+把email塞到cookie裡面');
-                     window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
-                 
-             }
-         });
-     // document.getElementById('status').innerHTML =
-     //     'Thanks for logging in, ' + response.name + '!';
- });
-         }, { scope: 'public_profile,email' });
-
-     }
-
-
-function fblogout(){     // facebook 登出
-FB.getLoginStatus(
-function (response){
-if(response.status === 'connected'){
-FB.logout(function(response){    //使用者已成功登出
-alert("成功登出。");
-// localStorage.clear();
-// //再 refresh 一次，讓登入登出按鈕能正常顯示
-// location.replace( "放欲導回網站的URL" );
-});
-} 
-});
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.reload(true);
 }
+//----------------------------------------------------------------------------------------------fb登入4
+window.fbAsyncInit = function () {
+    // FB JavaScript SDK configuration and setup
+    FB.init({   
+        appId: '301951257305688', // FB App ID
+        cookie: false,  // enable cookies to allow the server to access the session
+        xfbml: true,  // parse social plugins on this page
+        version: 'v3.2' // use graph api version 2.8
+    });
+
+    // Check whether the user already logged in
+    FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+            //display user data
+            getFbUserData();
+        }
+    });
+};
+
+// Load the JavaScript SDK asynchronously
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Facebook login with JavaScript SDK
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            getFbUserData();
+        } 
+    }, { scope: 'email' });
+}
+
+// Fetch the user profile data from facebook
+function getFbUserData() {
+    FB.api('/me?fields=name,first_name,last_name,email',
+        function (response) {
+           alert('臉書登入登入登入登入登入登入登入');
+
+$.ajax({
+     type:"POST",
+     url:"processFacebookLogin",
+     data:{
+         userInfo:JSON.stringify(response)
+     },
+     success:function(data){
+         alert("這裡是facebook的登入:"+data)
+         
+             var Days = 30;//cookie設定30天
+             var exp = new Date();
+             exp.setTime(exp.getTime() + Days*24*60*60*1000);
+             document.cookie = "email=" + data+";expires=" + exp.toGMTString();
+             alert('facebook登入+把email塞到cookie裡面');
+             if($('#exampleModalCenter').is(':hidden')){
+            }else{
+             $('#exampleModalCenter').hide();
+             window.location.reload(true);
+            }
+     }
+ });
+
+        });
+}
+
+// Logout from facebook
+function fbLogout() {
+    FB.logout(function () {
+        clearAllCookie();
+        alert('臉書登出登出登出登出登出登出登出登出');
+    });
+}
+//---------------------------------------------------------------------------------------------fb登入3
+//      //應用程式編號，進入 https://developers.facebook.com/apps/ 即可看到
+//      let FB_appID = "301951257305688";
+        
+//      //FB Login 官方文件：https://developers.facebook.com/docs/facebook-login/web
+
+//      // Load the Facebook Javascript SDK asynchronously
+//      (function (d, s, id) {
+//          var js, fjs = d.getElementsByTagName(s)[0];
+//          if (d.getElementById(id)) return;
+//          js = d.createElement(s); js.id = id;
+//          js.src = "https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.2";
+//          fjs.parentNode.insertBefore(js, fjs);
+//      }(document, 'script', 'facebook-jssdk'));
+
+//      window.fbAsyncInit = function () {
+//          FB.init({
+//              appId: "301951257305688",//FB appID
+//              // cookie: true,  // enable cookies to allow the server to access the session
+//              xfbml: true,  // parse social plugins on this page
+//              version: 'v3.2' // use graph api version
+//          });
+
+//      };
+
+//      //使用自己客製化的按鈕來登入
+//      function FBLogin() {
+         
+//          FB.login(function (response) {
+//              FB.api('/me?fields=name,first_name,last_name,email', function(response) {
+//                  // alert('fb登入') 
+//      //将用户信息传回服务端
+// //     	        	window.location.href="TestFBLogin.do?userInfo="+JSON.stringify(response);
+
+//       $.ajax({
+//              type:"POST",
+//              url:"processFacebookLogin",
+//              data:{
+//                  userInfo:JSON.stringify(response)
+//              },
+//              success:function(data){
+//                  alert("這裡是facebook的登入:"+data)
+                 
+//                      var Days = 30;//cookie設定30天
+//                      var exp = new Date();
+//                      exp.setTime(exp.getTime() + Days*24*60*60*1000);
+//                      document.cookie = "email=" + data+";expires=" + exp.toGMTString();
+//                      alert('facebook登入+把email塞到cookie裡面');
+                 
+//              }
+//          });
+//      // document.getElementById('status').innerHTML =
+//      //     'Thanks for logging in, ' + response.name + '!';
+//  });
+//          }, { scope: 'public_profile,email' });
+
+//      }
+
+
+// function fblogout(){     // facebook 登出
+// FB.getLoginStatus(
+// function (response){
+// if(response.status === 'connected'){
+// FB.logout(function(response){    //使用者已成功登出
+// alert("成功登出。");
+// // localStorage.clear();
+// // //再 refresh 一次，讓登入登出按鈕能正常顯示
+// // location.replace( "放欲導回網站的URL" );
+// });
+// } 
+// });
+// }
 // =============================================================================================google登入
 
 function signOut() {
@@ -78,7 +162,8 @@ function signOut() {
    auth2.signOut().then(function() {
        console.log('User signed out.');
    });
-   alert("google登出")
+   alert("google登出");
+   clearAllCookie();
 }
 
 // 		function onSignIn(googleUser) {
@@ -117,7 +202,7 @@ console.log('Name: ' + profile.getName());
 console.log('Image URL: ' + profile.getImageUrl());
 console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 //測試有無進入google登入的方訊
-alert("這裡是google的登入:"+profile.getEmail())
+// alert("這裡是google的登入:"+profile.getEmail())
 
 $.ajax({
 type: "POST",
@@ -127,13 +212,16 @@ data: {
    email:profile.getEmail()
    },
 success: function (data) {
-   alert('這裡是google的登入成功後的方訊 :'+data);
+//    alert('這裡是google的登入成功後的方訊 :'+data);
    var Days = 30;//cookie設定30天
    var exp = new Date();
    exp.setTime(exp.getTime() + Days*24*60*60*1000);
    document.cookie = "email=" + data+";expires=" + exp.toGMTString();
-   alert('google登入+把email塞到cookie裡面');
-   window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+   if($('#exampleModalCenter').is(':hidden')){
+   }else{
+    $('#exampleModalCenter').hide();
+    window.location.reload(true);
+   }
 }
 });
 }

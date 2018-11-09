@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.bean.BranchBean;
-import model.bean.BranchStockBean;
 import model.bean.CartBean;
 import model.bean.CartDetailBean;
 import model.bean.MemberBean;
 import model.bean.ProductBean;
 import model.dao.BranchStockDAO;
-import model.dao.CartDAO;
 import model.dao.CartDetailDAO;
+import model.service.CartDAO;
 import model.service.CartService;
 @Service
 @Transactional
@@ -134,7 +132,7 @@ public class CartServiceimpl implements CartService {
 
 	@Override
 	public List<CartBean> selectMemberId(Integer memberid) {
-		// TODO Auto-generated method stub
+		Dao.selectByMemberId(memberid);
 		return null;
 	}
 
@@ -144,6 +142,7 @@ public class CartServiceimpl implements CartService {
 	}
 
 	@Override
+
 	public Integer FindProid(String model) {
 		ProductBean  productBean = new ProductBean();
 		productBean = Dao.insertmodelfromProduct(model);
@@ -170,6 +169,12 @@ public class CartServiceimpl implements CartService {
 
 	
 	
+
+	public List<CartBean> selectMemberIdList(Integer memberid) {
+		
+		return Dao.selectByMemberIdList(memberid);
+	}
+
 	
 	
 	

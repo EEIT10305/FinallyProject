@@ -18,20 +18,29 @@ public class MessageBean {
 	@Column(nullable=false)
 	private Integer memberidB;
 	@Column(nullable=false)
-	private String date;
+	private String dat;
 	@Column(nullable=false)
-	private String message;
+	private String messag;
+	@Column(nullable=false)
+	private String title;
+	@Column(nullable=false)
+	private String readstatu;
 	public MessageBean() {
 		super();
 	}
-	public MessageBean(Integer message_id, String date, Integer memberidA, Integer memberidB, String message) {
+	
+	public MessageBean(Integer message_id, Integer memberidA, Integer memberidB, String dat, String messag,
+			String title, String readstatu) {
 		super();
 		this.message_id = message_id;
 		this.memberidA = memberidA;
 		this.memberidB = memberidB;
-		this.date = date;
-		this.message = message;
+		this.dat = dat;
+		this.messag = messag;
+		this.title = title;
+		this.readstatu = readstatu;
 	}
+
 	public Integer getMessage_id() {
 		return message_id;
 	}
@@ -50,17 +59,30 @@ public class MessageBean {
 	public void setMemberidB(Integer memberidB) {
 		this.memberidB = memberidB;
 	}
-	public String getDate() {
-		return date;
+	public String getDat() {
+		return dat;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDat(String dat) {
+		this.dat = dat;
 	}
-	public String getMessage() {
-		return message;
+	public String getMessag() {
+		return messag;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessag(String messag) {
+		this.messag = messag;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getReadstatu() {
+		return readstatu;
+	}
+	public void setReadstatu(String readstatu) {
+		this.readstatu = readstatu;
 	}
 	
 	

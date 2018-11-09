@@ -90,11 +90,7 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 
 	@Override
 	public List<CpuBean> checkCpuInService(String Mbmodel) {
-		MbBean mbBean = productDAO.checkByMb(Mbmodel);
-		String Feet = mbBean.getFeet();
-
-		return productDAO.checkCpuByFeet(Feet);
-
+		return productDAO.checkCpuByFeet(productDAO.checkByMb(Mbmodel).getFeet());
 	}
 
 	@Override
@@ -105,8 +101,7 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 
 	@Override
 	public Set<BrandBean> selectBrandInService(String Category) {
-		CategoryBean categoryBean = productDAO.CategoryTurnCategoryid(Category);
-		List<ProductBean> list = productDAO.selectByCategory(categoryBean.getCategoryid());
+		List<ProductBean> list = productDAO.selectByCategory(productDAO.CategoryTurnCategoryid(Category).getCategoryid());
 		Set<BrandBean> set = new HashSet<>();
 		for (int x = 0; x < list.size(); x++) {
 			set.add(productDAO.BrandidTurnBrand(list.get(x).getBrandid()));
