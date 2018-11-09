@@ -63,7 +63,7 @@ $(document).ready(function(){
 					str1_2 += '<span style="margin-left:5px"><img id="img'+json.message_id+'" src="image/'+json.readstatu+'.png" width="20px" ></span></td>'
 				    str1_2 += "</tr></table></div>"
 				    
-				    str2 += '<div id="hehe'+json.message_id+'" style="height:500px;display:none;width:60%;margin:50px auto; border:1px solid black;padding:20px;line-height:30px;">'
+				    str2 += '<div id="hehe'+json.message_id+'" style="background-image:url(image/1327616d-e269-4691-946b-36cf76b668fcb.png);-webkit-background-size:100% 100%;display:none;width:70%;height:650px;margin:30px auto;padding-top:10%;padding-left:14%;line-height:30px;">'
 					str2 += '<span style="font-size:24px;font-weight:bold">Title : </span><span>'+json.title+'</span><br>'
 					str2 += '<span style="font-size:24px;font-weight:bold">From : </span><span>'+json.memberidA.empname+'</span><br>'
 					str2 += '<span style="font-size:24px;font-weight:bold">Time : </span><span>'+json.date+'</span><br>'

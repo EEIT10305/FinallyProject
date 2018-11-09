@@ -37,8 +37,8 @@ public class MailServiceImpl implements MailService {
 			hm.put("message_id" , bean.getMessage_id());
 			hm.put("memberidA", staffDao.selectById(bean.getMemberidA()));
 			hm.put("memberidB", memberDao.selectById(bean.getMemberidB()));
-			hm.put("date", bean.getDate());
-			hm.put("message", bean.getMessage());
+			hm.put("date", bean.getDat());
+			hm.put("message", bean.getMessag());
 			hm.put("title", bean.getTitle());
 			hm.put("readstatu", bean.getReadstatu());
 			list.add(hm);
@@ -59,8 +59,8 @@ public class MailServiceImpl implements MailService {
 				hm.put("message_id" , bean.getMessage_id());
 				hm.put("memberidA", staffDao.selectById(bean.getMemberidA()));
 				hm.put("memberidB", memberDao.selectById(bean.getMemberidB()));
-				hm.put("date", bean.getDate());
-				hm.put("message", bean.getMessage());
+				hm.put("date", bean.getDat());
+				hm.put("message", bean.getMessag());
 				hm.put("title", bean.getTitle());
 				hm.put("readstatu", bean.getReadstatu());
 				list.add(hm);

@@ -34,7 +34,18 @@ public interface CartService {
 
 	boolean updatestatus(int cartid);
 
+
 	List<CartBean> selectMemberIdList(Integer memberid);
 	
 	public CartBean saveCartBean(CartBean bean);
+	
+	public Integer FindProid(String model);
+	
+	Integer CheckAmount(String Model);
+	
+
+	Boolean updateProidamount(Integer proid);
+	
+	
+	
 }

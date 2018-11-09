@@ -62,7 +62,7 @@ public class TestImport {
 	@Test
 	public void testimportService() {
 		ImportService service = context.getBean(ImportService.class);
-		System.out.println(service.insertBranchStock(1));
+//		System.out.println(service.insertBranchStock(1));
 		
 	}
 	

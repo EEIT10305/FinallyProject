@@ -138,13 +138,11 @@ public class SelectProductForCustomizedServiceImpl implements SelectProductForCu
 	}
 	@Override
 	public ProductBean showInitPriceInService(String model) {
-	
 		return productDAO.selectProductPrice(model);
 	}
 	@Override
 	public ProductBean showCartDetailInService(String model,Integer CartId) {
 		cartDetailDAO.insert(new CartDetailBean(null,1,CartId,productDAO.selectProductPrice(model).getProid()));
-		
 		return productDAO.selectProductPrice(model);
 	}
 	

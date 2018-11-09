@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.MemberBean;
 import model.bean.OrderDetailBean;
 import model.dao.OrderDetailDAO;
 @Repository
@@ -24,7 +25,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
 	@Override
 	public List<OrderDetailBean> selectAll() {
-		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).list();
+	}
+	@Override
+	public List<OrderDetailBean> selectAllByOrderId(Integer OrderId) {
+		return this.getSession().createQuery("FROM OrderDetailBean where orderid=:OrderId", OrderDetailBean.class).setParameter("OrderId", OrderId).list();
 	}
     
 	@Override
@@ -37,6 +42,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	@Override
 	public OrderDetailBean selectById(int id) {
 		return this.getSession().get(OrderDetailBean.class, id);
+	}
+	@Override
+	public List<OrderDetailBean> selectByOrderId(Integer OrderId) {
+		String hql="from OrderDetailBean where orderid=:OrderId";
+		return this.getSession().createQuery(hql,OrderDetailBean.class).setParameter("OrderId", OrderId).getResultList();
 	}
 
 	@Override
@@ -80,6 +90,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	public void setMemberId(Integer memberid) {
 		this.memberid = memberid;
 		
+	}
+
+	@Override
+	public MemberBean selectMemberIdByEmail(String email) {
+		return null;
 	}
 
 }
