@@ -21,7 +21,7 @@
                             var text = '';
                             var bugsel = '<option>---</option>';
             				$.each(querydata, function(index, json) {
-            					text +='<li><table style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+            					text +='<li><table style="font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
             				
             				})
             				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
@@ -57,7 +57,7 @@
         							 "amount":amount
         						 },function(){
         							 if (status == "success") {
-        		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+        		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
         		            				amount = $('#fordatainput').children().length;
 //        		            				alert("222:"+amount);
         						     }
@@ -72,7 +72,7 @@
             				var querydata = $.parseJSON(data);
                             var text = '';
             				$.each(querydata, function(index, json) {
-            					text +='<li><table style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+            					text +='<li><table style="font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px"></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
 
             				})  
             				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
@@ -125,7 +125,7 @@
             							 "amount":amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
 //            		            				alert("333:"+amount);
             						     }
@@ -151,7 +151,7 @@
             				var querydata = $.parseJSON(data);
                             var text = '';
             				$.each(querydata, function(index, json) {
-            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="99%" height="48px"></li>';							
 
             				})
             				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
@@ -171,7 +171,7 @@
            							 "amount": amount
            						 },function(){
            							 if (status == "success") {
-           		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+           		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
            		            				amount = $('#fordatainput').children().length;
            						     }
            						 })
@@ -185,7 +185,7 @@
             				var querydata = $.parseJSON(data);
                             var text = '';
             				$.each(querydata, function(index, json) {
-            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="150px"></li>';							
+            					text +='<li style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)"><img src="'+json.photosrc+'" width="99%" height="48px"></li>';							
             				})  
             				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
             				
@@ -247,7 +247,7 @@
             							 "amount": amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
             						     }
             						 })
@@ -276,6 +276,8 @@
             $("#pagestyle").hide();
             $("#bugpage").hide();
             $("#chartpage").hide();
+            $("#mailpage").hide();
+            $("#orderpage").hide();
     
             var data=""
         	    $("#uploadfile").change(function (e) {
@@ -339,7 +341,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
@@ -396,7 +398,7 @@
             							 "amount": amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
             						     }
             						 })
@@ -454,7 +456,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
@@ -513,7 +515,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
@@ -539,8 +541,7 @@
             				$("#select1").change(function(){
             					var split = $("#select1").val().split(",");
             					addid = split[2]
-            					text=""
-            					text +='<div class="card" style="width: 18rem; padding: 10px;">'+
+            					text ='<div class="card" style="width: 18rem; padding: 10px;">'+
             					'<img class="card-img-top" src="image/'+split[0]+'.jpg" width="100px" alt="Card image cap">'+
             					'<div class="card-body">'+
             					'<a href="#"> <img src="image/heart.png" width="20px"></a>'+
@@ -549,7 +550,7 @@
             					'<a href="#" class="btn btn-danger">加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>'+
             			         '</div></div>'			
  
-            					$("#select1").parent().append(text);
+            					$("#showphoto2").html(text);
             						
             					
             				})

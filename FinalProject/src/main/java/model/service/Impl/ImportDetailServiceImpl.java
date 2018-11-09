@@ -10,6 +10,7 @@ import model.bean.ImportDetailBean;
 import model.dao.ImportDetailDAO;
 import model.service.ImportDetailService;
 @Service
+@Transactional
 public class ImportDetailServiceImpl implements ImportDetailService{
 
 	

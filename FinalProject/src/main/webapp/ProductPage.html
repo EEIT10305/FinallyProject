@@ -428,16 +428,18 @@
 // 								}
 // 							})
 								
-// 				function click(){
-// 					sessionStorage.c1 = event.target.value
-// 					alert(window.sessionStorage.c1)
-// // 					if(sessionStorage.CartId != null)
-//  					sessionStorage.CartId=1
-//  					alert(sessionStorage.CartId)
-// 					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
-// // 						if(data=="null"){
-// // 							alert("請重新登入")
-// // 						}
+
+				function click(){
+					sessionStorage.c1 = event.target.value
+					alert(window.sessionStorage.c1)
+ 					//if(sessionStorage.CartId != null)
+ 					sessionStorage.CartId=1
+ 					//alert(sessionStorage.CartId)
+					$.post("AddtToCartController",{"model":event.target.value,"CartId":sessionStorage.CartId},function(data){		//"model"對應的是上方設置的button name :model 
+// 						if(data=="null"){
+// 							alert("請重新登入")
+// 						}
+
 						
 // 						alert(sessionStorage.CartId);
 // 						alert(111);

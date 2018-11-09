@@ -44,8 +44,13 @@ public class AddtToCartController {
 		} else {
 			
 			//cartService.insertmodelfromProduct(model);
+
 			
 			cartService.insert(model, CartId);
+			}
+//			else {
+//				
+//			}
 			
 //			CartBean cartbean = cartService.selectByMemberId(2);
 //			cartbean = cartService.selectByMemberId(memberid);
@@ -63,7 +68,7 @@ public class AddtToCartController {
 		//	return new Gson().toJson(cartDetailService.selectById(model,CartId));
 		//	return new Gson().toJson(cartDetailService.selectCartId(CartId));
 		}
-	}
+	
 
 	@RequestMapping(path = "ShowToCart", produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -89,5 +94,21 @@ public class AddtToCartController {
 		cartDetailService.update(bean);
 		return "update success";
 	}
+	
+	
+	@RequestMapping(path = "CheckAmount", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String updatCartAmount(String Model) {
+		Integer Number =cartService.CheckAmount(Model);
+		if(Number>0){
+			return "成功加入購物車";
+		}
+		else {
+			return "商品現在缺貨，到貨會馬上通知您";
+		}
+		
+		
+	}
+
 
 }

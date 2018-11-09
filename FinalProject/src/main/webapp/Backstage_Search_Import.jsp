@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,20 +187,22 @@
 				</div>
 
 				<div class="n1" id="s2">
-					<a href="./Backstage_Transfer.jsp" title="Beats">
+					<a href="./Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Import.jsp" title="Beats">
+					<a href="./Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
@@ -231,7 +234,7 @@
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
 
-				<a href="./Backstage_Import.jsp" title="Beats">進貨作業</a>
+				<a href="./Backstage_Import_Index.jsp" title="Beats">進貨作業</a>
 				<span>/</span>
 				<a href="./Backstage_Search_Import.jsp" title="Beats">查詢進貨</a>
 			</div>
@@ -261,7 +264,7 @@
 					<div class="sut1">
 						<label for="" class="tid"  > 貨物狀態:</label>
 						<select  style="width:150px" name="statu" value = "${param.statu}">
-							<option value = "on">已進貨</option>							
+							<option value = "on">已進貨</option>
 							<option value = "off">未進貨</option>
 
 						</select>

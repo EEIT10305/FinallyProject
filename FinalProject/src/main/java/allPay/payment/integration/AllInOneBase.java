@@ -29,17 +29,19 @@ public class AllInOneBase {
 	protected static String fundingReconDetailUrl;
 	protected static String aioChargebackUrl;
 	protected static String[] ignorePayment;
-	public AllInOneBase(){
-//		try{
+	
+	public AllInOneBase(){				//假設要用web的話須把37,38,39三行註解拿開    ，假設是跑測試程式則把41~44的註解拿開
+		try{
 			Document doc;
 			
 			/* when using web project, please use the following code with try/catch wrapped*/
-//			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
-//			doc = AllPayFunction.xmlParser(configPath);
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
+			doc = AllPayFunction.xmlParser(configPath);
 			/* when using testing code*/
-			String paymentConfPath = "./src/main/resources/payment_conf.xml";
-			doc = AllPayFunction.xmlParser(paymentConfPath);
+//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
+//			doc = AllPayFunction.xmlParser(paymentConfPath);
 			
 			doc.getDocumentElement().normalize();
 			//OperatingMode
@@ -72,9 +74,9 @@ public class AllInOneBase {
 			if(HashKey == null){
 				throw new AllPayException(ErrorMessage.MInfo_NOT_SETTING);
 			}
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

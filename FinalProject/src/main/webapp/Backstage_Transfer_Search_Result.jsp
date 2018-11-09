@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@
 			color: #ffffff;
 			height: 60%;
 			position: relative;
-			
+
 		}
 
 		/*頁首文字*/
@@ -89,6 +90,15 @@
 			float: right;
 		}
 
+		.d1 {
+			height: 550px;
+			/* 高度 120 */
+			width: 550px;
+			/* 寬度 120*/
+			border: 2px #003366;
+			/* 虛線邊框 2 像素 深藍色*/
+		}
+
 		.t9 {
 			height: 150px;
 			/* 高度 120 */
@@ -116,6 +126,13 @@
 			float: left;
 		}
 
+		.d2 {
+			font-family: 微軟正黑體;
+			text-align: center;
+			font-size: 50px;
+		}
+
+
 
 		.t3 {
 			font-size: 20px;
@@ -127,6 +144,33 @@
 			font-family: 微軟正黑體;
 			text-align: center;
 		}
+
+		.t8 {
+			font-family: 微軟正黑體;
+			font-size: 24px;
+			color: rgb(2, 17, 19);
+		}
+
+		.tid {
+			width: 100px;
+			margin: 25px;
+			color: #0a0503;
+			font-size: 30px;
+
+
+		}
+
+		.sut1 {
+			width: 450px;
+			margin: 20px;
+			;
+
+
+		}
+		td{
+		   width:100px;
+		
+		}
 	</style>
 
 
@@ -137,34 +181,36 @@
 		<header>
 			<div class="n0">
 				<div class="n_1" id="s0">
-					
+
 					<img src="./pic/unnamed.png" width="200px">
 				</div>
-
 				<div class="n1" id="s1">
-					<a href="./Backstage_index.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_index.jsp" title="Beats">
 						<p>
 							<br>本月公告</p>
 				</div>
+
 				<div class="n1" id="s2">
-					<a href="./Backstage_Transfer.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>
 				<div class="n1" id="s3">
-					<a href="./Backstage_Import.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Import_Index.jsp" title="Beats">
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
-							
+
 						</p>
 				</div>
 				<div class="n2" id="s5">
@@ -174,7 +220,7 @@
 						<img src="./images/account.png" width="100px">
 					</a>
 					</a>
-					
+
 				</div>
 				<div class="n2" id="s6">
 					<a href="./index.jsp" title="Beats"> </a>
@@ -191,8 +237,10 @@
 				</span>
 				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
-				
-				<a href="./Backstage_Import.jsp" title="Beats">進貨作業</a>
+
+				<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
+				<span>/</span>
+				<a href="/FinalProject/Backstage_Transfer_Search_Result.jsp" title="Beats">調撥貨品</a>
 			</div>
 			<br>
 			<br>
@@ -201,100 +249,48 @@
 
 		</header>
 	</div>
-	<div class="t10" align="center">
 
+<body>
+Search Result
 
-		<div class="t9" align="center">
-			<table>
-				<tr>
-					新增進貨
-					<td>
-						<a href="./vipPassword.jsp" title="Beats">
-							<img src="./images/account.png" width="100px">
-						</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="t9" align="center">
-			<table>
-				<tr>
-					查詢進貨
-					<td>
-						<a href="./Backstage_Search_Import.jsp" title="Beats">
-							<img src="./images/account.png" width="100px">
-						</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="t9" align="center">
-			<table>
-				<tr>
-					修改資料
-					<td>
-						<a href="vipDelete.jsp" onclick="return(confirm('確定刪除?'))">
-							<img src="./images/account.png" width="100px">
-						</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="t9" align="center">
-			<table>
-				<tr>刪除資料
-					<td>
-						<a href="./VipOut.jsp" title="Beats">
-							<img src="./images/account.png" width="100px">
-						</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<br>
+<form action = "/FinalProject/pages/transfer.controller">
+<table border = "2px">
+<caption>Transfer</caption>
+<thead>
 
-	<br>
-	<h1>_________________＊＊交貨注意事項＊＊_________________</h1>
-	<br>
-	<p class="t3">＊收到訂單後請務必於三天內通知下單者交期，數量或價格等相關事項。</p>
-	<p class="t3">交貨前若有更改亦請通知下單者或重新上傳(供應商) </p>
-	<p class="t3">＊進貨日前一天下午03:00前，必須通知下單者進貨明細或填妥ASN並上傳，以利進貨作業。</p>
-	<p class="t3">＊交貨趟數超過一次且非同一時間，請依交貨趟數通知下單者各趟進貨明細或填妥表格並上傳。</p>
-	<p class="t3">＊當天臨時有急貨要交, 請於前晚10:00 前(當天上午 9:30 後到貨) 或當天10:00前(當天中午前到貨)</p>
-	<p class="t3">提供進貨明細或填妥 表格 並上傳, 再通知庫房安排收貨, 請仍依各倉規定的交貨時段交貨。</p>
-
-	</h2>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<footer>
-		<div>
-		<footer>
-			<div class="f0">
-
-				<p>E-amil:aaa@gmail.com &nbsp; Tel:(02)2222-2222 &nbsp;</p>
-				<p>台北市復興南路一段390號 &nbsp; &copy; 2018 All Rights Reserved Quality Art Technology CO.</p>
-
-			</div>
-		</footer>
+	<tr>
+		<th>Branch Stock ID</th>
+		<th>Branch Name</th>
+		<th>Amount</th>
+		<th>Product Brand</th>
+		<th>Product Model</th>
+		<th>Product ID</th>
+		<th>Product Category</th>
 		
-	</div>
-	</footer>
+		
+		
+		
+</thead>
+<tbody>
+	<c:forEach var="row" items="${transfer}" >
+
+		<tr>
+			<td>${row.branch_stock_id}</td>
+			<td>${row.branchBean.name}</td>
+			<td>${row.amount}</td>
+			<td>${row.productBean.brandBean.brand}</td>
+			<td>${row.productBean.model}</td>
+			<td>${row.proid}</td>
+			<td>${row.productBean.categoryBean.category}</td>						
+			<td><a href="/FinalProject/pages/transfer.controller?branchstockid=${row.branch_stock_id}&amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}">Transfer</a></td>			
+			<!--/FinalProject/pages/transfer.controller?amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}-->
+		</tr>
+		
+	</c:forEach>
+
+</tbody>
+</table>
+</form>
 
 </body>
 </html>

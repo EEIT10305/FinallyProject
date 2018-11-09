@@ -1,5 +1,8 @@
 package allPay.payment.integration.domain;
 
+
+import allPay.payment.integration.allPayOperator.AllPayFunction;
+
 /**
  * 產生信用卡一次付清訂單物件
  * @author mark.chiu
@@ -10,6 +13,11 @@ public class AioCheckOutOneTime {
 	/**
 	 * MerchantID
 	 * 會員編號(由allPay提供)
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 */
 	private String MerchantID = "";
 	

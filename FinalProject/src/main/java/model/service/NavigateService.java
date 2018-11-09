@@ -21,6 +21,7 @@ public interface NavigateService {
 	List<ProductBean> selectByCatBraorderbyprice(String category, String brand);
 	List<ProductBean> selectByCatorderbyprice(String category);
 	List<ProductBean> selectByinputorderbyprice(String searchspace);
+	Integer getAmountByproid(Integer proid);
 	
 	
 }

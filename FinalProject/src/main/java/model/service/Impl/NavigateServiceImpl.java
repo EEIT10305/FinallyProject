@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import model.bean.BrandBean;
 import model.bean.CategoryBean;
 import model.bean.ProductBean;
+import model.dao.BranchStockDAO;
 import model.dao.BrandDAO;
 import model.dao.CategoryDAO;
 import model.dao.ProductDAO;
@@ -26,6 +27,8 @@ public class NavigateServiceImpl implements NavigateService {
 	private BrandDAO brandDAO;
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private BranchStockDAO branchStockDAO;
 
 	// 分類標籤內顯示所有分類
 	@Override
@@ -155,7 +158,10 @@ public class NavigateServiceImpl implements NavigateService {
 //			System.out.println("=======================================");
 			return productDAO.selectByinputorderbyprice(searchspace);
 		}
+	    @Override
+		public Integer getAmountByproid(Integer proid) {
+			return branchStockDAO.getAmountByproid(proid);
+		}
 	
-	
-	
+		
 }

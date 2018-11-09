@@ -9,19 +9,35 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import jdk.nashorn.internal.runtime.ECMAException;
+import misc.SpringJavaConfiguration;
 import model.bean.BranchStockBean;
+import model.bean.ProductBean;
 import model.dao.BranchStockDAO;
 
 @Repository
+@Transactional
 public class BranchStockDAOImpl implements BranchStockDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	public static void main(String[] args) {
+	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
+		SessionFactory sessionfactroy=(SessionFactory) ctx.getBean("sessionFactory");
+		sessionfactroy.getCurrentSession().beginTransaction();
+		BranchStockDAOImpl branchStockDAOImpl= (BranchStockDAOImpl) ctx.getBean("branchStockDAOImpl");
+		Integer selects = branchStockDAOImpl.checkAmmount(3);
+		sessionfactroy.getCurrentSession().getTransaction().commit();
+		System.out.println(selects);
+	    sessionfactroy.close();
 	}
 
 	@Override
@@ -32,7 +48,9 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 	public List<BranchStockBean> selectAllByBranchId(Integer BranchId) {
 		return this.getSession().createQuery("FROM BranchStockBean where branchid=:BranchId", BranchStockBean.class).setParameter("BranchId", BranchId).list();
 	}
-
+	
+	
+	
 	@Override
 	public BranchStockBean selectById(int id) {
 		return this.getSession().get(BranchStockBean.class, id);
@@ -47,6 +65,33 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 			return null;
 		}
 	}	
+	
+	@Override	
+	public BranchStockBean selectAllBy(Integer proid) {
+		String hql = "From BranchStockBean where proid =:proid and branchid=1";
+		try {
+			BranchStockBean bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("proid", proid).getSingleResult();			
+			return bean;
+		}catch(Exception e) {
+			return null;
+		}
+	}	
+	
+	
+	@Override	
+	public List<BranchStockBean> selectAllByBranchID(Integer branchid) {
+		String hql = "From BranchStockBean where branchid =:branchid";
+		try {
+			List<BranchStockBean> bean= this.getSession().createQuery(hql, BranchStockBean.class).setParameter("branchid", branchid).getResultList();			
+			return bean;
+		}catch(Exception e) {
+			return null;
+		}
+	}	
+	
+	
+	
+	
 	
 	@Override
 	public BranchStockBean insert(BranchStockBean bean) {
@@ -75,6 +120,19 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 			}
 		}
 		return false;
+	}
+	@Override
+	public List<BranchStockBean> updateList(List<BranchStockBean> branchStockBean, Integer x){
+		BranchStockBean temp = this.getSession().get(BranchStockBean.class, branchStockBean.get(x).getBranch_stock_id());
+		temp.setBranchid(branchStockBean.get(x).getBranchid());
+		temp.setProid(branchStockBean.get(x).getProid());
+		temp.setAmount(branchStockBean.get(x).getAmount());
+		temp.setStatu(branchStockBean.get(x).getStatu());
+		this.getSession().flush();
+	
+		
+		return null;
+				
 	}
 	
 	@Override
@@ -106,16 +164,52 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 		
 		return bean;
 	}
+
 	@Override
 	public BranchStockBean selectbranchStock(Integer proid) {
 		String hql="from BranchStockBean where proid=:proid and branchid=1";
 		
 		return this.getSession().createQuery(hql,BranchStockBean.class).setParameter("proid", proid).getSingleResult();
 	}
+
+	@Override
+	public ProductBean selectByModel(String Model) {
+        String hql="from ProductBean where Model=:Model";
+        ProductBean  productBean = new ProductBean();
+        productBean = this.getSession()
+				.createQuery(hql,ProductBean.class).setParameter("Model", Model).getSingleResult();
+		return productBean;
+	}
+
+	@Override
+	public Integer checkAmmount(Integer proid) {
+		 String hql="from BranchStockBean where proid=:proid and branchid=1";
+		 BranchStockBean  branchStockBean = new BranchStockBean();
+		 branchStockBean = this.getSession()
+					.createQuery(hql,BranchStockBean.class).setParameter("proid", proid).getSingleResult();
+		 Integer number = branchStockBean.getAmount();
+			return number;
+	}
+
+
+
+
+	@Override
+	public List<BranchStockBean> selectByProId(Integer proid) {
+		String hql = "From BranchStockBean where proid =:proid";
+		return this.getSession().createQuery(hql, BranchStockBean.class).setParameter("proid", proid).list();
+	}
 	
+
 	
-	
-	
+	@Override
+	public Integer getAmountByproid(Integer proid) {
+		String hql = "from BranchStockBean where branchid=1 and proid= :proid";
+		BranchStockBean bean = this.getSession().createQuery(hql,BranchStockBean.class).setParameter("proid", proid).getSingleResult();
+		System.out.println("proid= " + proid);
+		return bean.getAmount();
+		
+	}
 	
 	
 	

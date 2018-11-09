@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.MemberBean;
 import model.bean.OrderDetailBean;
 import model.dao.OrderDetailDAO;
 @Repository
@@ -89,6 +90,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	public void setMemberId(Integer memberid) {
 		this.memberid = memberid;
 		
+	}
+
+	@Override
+	public MemberBean selectMemberIdByEmail(String email) {
+		return null;
 	}
 
 }

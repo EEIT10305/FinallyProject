@@ -25,7 +25,7 @@ public class TestExcel {
 			HSSFRow row = sheet.createRow((short) 0);
 
 //		　　//在索引0的位置創建儲存格（左上端）
-			HSSFCell cell = row.createCell((short) 0);
+		   HSSFCell cell = row.createCell((short) 0);
 //		　　// 定義儲存格為字串類型
 //			cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 //		　　// 在儲存格中輸入一些內容

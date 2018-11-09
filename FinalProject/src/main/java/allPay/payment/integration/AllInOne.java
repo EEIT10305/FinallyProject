@@ -526,6 +526,7 @@ public class AllInOne extends AllInOneBase{
 			aioCheckOutUrl = verify.getAPIUrl(operatingMode);
 			verify.verifyParams(obj);
 			if(invoice != null){
+				System.out.println(5);
 				log.info("aioCheckOut invoice params: " + invoice.toString());
 				verify.verifyParams(invoice);
 				verify.verifyInvoice(invoice);

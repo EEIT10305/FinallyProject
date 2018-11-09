@@ -318,4 +318,11 @@ public class ProductSelectByCategoryController {
 				return null;
 	}
 	
+	
+	@RequestMapping(path = "selectStock",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectStock(Integer proid) {
+		return new Gson().toJson(nav.getAmountByproid(proid));	
+	}
+	
 }

@@ -41,7 +41,9 @@ public class PkServiceImpl implements PkService {
   		return pinginDetailDAO.selectPinginDetailByName(name);
       }
     @Override
-    public void updateCartDetailAmount(Integer cartid, Integer amount,Integer proid) {   
+
+
+    public void updateCartDetailAmount(Integer cartid,Integer amount,Integer proid) {   
     	cartDetailDAO.updateBean(cartid,amount,proid);
     }
 }
