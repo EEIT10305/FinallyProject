@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,11 +157,14 @@
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
+				
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>

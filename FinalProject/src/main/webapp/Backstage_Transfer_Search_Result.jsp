@@ -200,11 +200,13 @@
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
