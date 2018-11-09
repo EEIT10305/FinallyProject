@@ -1,5 +1,6 @@
 package allPay.payment.integration.domain;
 
+
 import allPay.payment.integration.allPayOperator.AllPayFunction;
 
 /**

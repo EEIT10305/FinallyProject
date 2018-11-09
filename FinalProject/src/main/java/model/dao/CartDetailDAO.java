@@ -17,12 +17,11 @@ public interface CartDetailDAO {
 //	    boolean delete(CartDetailBean bean);
 //	    boolean deletebycartId(int cartid);
 	    //CartDetailBean selectCartId(int cartid);
-	    //void setMemberId(Integer memberid);
 
+	    //void setMemberId(Integer memberid);		
 	    boolean checkProductisAlive(int proid);
 	    CartDetailBean selectByProductId(int proid);
 
 		boolean updateBean(Integer cartid, Integer amount, Integer proid);
 
-	    
 }

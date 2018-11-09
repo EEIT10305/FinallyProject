@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,11 +157,14 @@
 						<p>
 							<br>進貨作業</p>
 				</div>
+				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
 							<br>員工管理</p>
 				</div>
+				</c:if>
+				
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
 						<p>
@@ -209,7 +213,7 @@
 				<tr>
 					查詢庫存
 					<td>
-						<a href="./vipPassword.jsp" title="Beats">
+						<a href="/FinalProject/Backstage_Transfer_Search.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>
@@ -221,7 +225,7 @@
 				<tr>
 					調撥貨品
 					<td>
-						<a href="./Backstage_Transfer_Search.jsp" title="Beats">
+						<a href="/FinalProject/pages/search.transfer.controller" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>

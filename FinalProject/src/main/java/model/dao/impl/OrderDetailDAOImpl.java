@@ -25,7 +25,11 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
 	@Override
 	public List<OrderDetailBean> selectAll() {
-		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM OrderDetailBean", OrderDetailBean.class).list();
+	}
+	@Override
+	public List<OrderDetailBean> selectAllByOrderId(Integer OrderId) {
+		return this.getSession().createQuery("FROM OrderDetailBean where orderid=:OrderId", OrderDetailBean.class).setParameter("OrderId", OrderId).list();
 	}
     
 	@Override

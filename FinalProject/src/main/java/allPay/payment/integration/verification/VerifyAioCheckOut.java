@@ -46,7 +46,7 @@ public class VerifyAioCheckOut extends PaymentVerifyBase {
 		for(Field field : cls.getDeclaredFields()){
 			fieldNames.add(field.getName());
 		}
-		
+
 		Element ele = (Element)doc.getElementsByTagName("AioCheckOut").item(0);
 		NodeList nodeList = ele.getElementsByTagName("param");
 		for(int i = 0; i < nodeList.getLength(); i++){

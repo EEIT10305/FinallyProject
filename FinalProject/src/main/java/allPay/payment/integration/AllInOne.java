@@ -525,7 +525,6 @@ public class AllInOne extends AllInOneBase{
 		try {
 			VerifyAioCheckOut verify = new VerifyAioCheckOut();
 			aioCheckOutUrl = verify.getAPIUrl(operatingMode);
-			
 			verify.verifyParams(obj);
 			if(invoice != null){
 				System.out.println(5);
@@ -538,7 +537,6 @@ public class AllInOne extends AllInOneBase{
 				invoice.setInvoiceItemName(AllPayFunction.urlEncode(invoice.getInvoiceItemName()));
 				invoice.setInvoiceItemWord(AllPayFunction.urlEncode(invoice.getInvoiceItemWord()));
 				invoice.setInvoiceRemark(AllPayFunction.urlEncode(invoice.getInvoiceRemark()));
-				
 				
 			}
 			out.append(genCheckOutHtmlCode(obj, invoice));

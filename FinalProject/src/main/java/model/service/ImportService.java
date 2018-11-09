@@ -25,8 +25,11 @@ public interface ImportService {
 
 	List<ImportBean> updateStatus(String statu, Integer improtid);
 
-	List<BranchStockBean> insertBranchStock(Integer improtid);
-
+//	List<BranchStockBean> insertBranchStock(Integer improtid);
+	
+		
 	ImportBean selectByimprotid(Integer improtid);
+
+	List<BranchStockBean> insertBranchStock(Integer improtid, Integer proid);
 
 }

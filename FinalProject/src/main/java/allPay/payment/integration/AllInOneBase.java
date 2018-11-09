@@ -29,6 +29,7 @@ public class AllInOneBase {
 	protected static String fundingReconDetailUrl;
 	protected static String aioChargebackUrl;
 	protected static String[] ignorePayment;
+	
 	public AllInOneBase(){				//假設要用web的話須把37,38,39三行註解拿開    ，假設是跑測試程式則把41~44的註解拿開
 		try{
 			Document doc;
