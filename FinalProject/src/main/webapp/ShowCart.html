@@ -114,7 +114,7 @@ article {
 //                 count++
 //             }
 // 		})
-		sessionStorage.CartId = 1;	
+		
 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 			if(status=="success"){
 				var querydata = $.parseJSON(data);

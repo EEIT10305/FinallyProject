@@ -195,7 +195,7 @@ $(document).ready(function () {
     	$(this).parent().attr("class", "page-item active");
         $(this).attr("class", "mypage-link mypagestyle");
         $(".forcard").hide();      
-        $("#page" + $(this).html()).show();
+        $("#page" + $(this).html()).fadeIn();
     }
 
 }
@@ -523,7 +523,7 @@ $(document).ready(function () {
                 	$(this).parent().attr("class", "page-item active");
                     $(this).attr("class", "mypage-link mypagestyle");
                     $(".forcard").hide();      
-                    $("#page" + $(this).html()).show();
+                    $("#page" + $(this).html()).fadeIn();
                 }
 
             }
@@ -725,7 +725,7 @@ $(document).ready(function () {
                     	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
                         $(".forcard").hide();      
-                        $("#page" + $(this).html()).show();
+                        $("#page" + $(this).html()).fadeIn();
                     }
 
                 }
@@ -936,7 +936,7 @@ $(document).ready(function () {
                     	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
                         $(".forcard").hide();      
-                        $("#page" + $(this).html()).show();
+                        $("#page" + $(this).html()).fadeIn();
                     }
 
                 }
@@ -1124,7 +1124,7 @@ $(document).ready(function(){
                     	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
                         $(".forcard").hide();      
-                        $("#page" + $(this).html()).show();
+                        $("#page" + $(this).html()).fadeIn();
                     }
 
 
@@ -1317,7 +1317,7 @@ $(document).ready(function(){
                     	$(this).parent().attr("class", "page-item active");
                         $(this).attr("class", "mypage-link mypagestyle");
                         $(".forcard").hide();      
-                        $("#page" + $(this).html()).show();
+                        $("#page" + $(this).html()).fadeIn();
                     }
 
 
