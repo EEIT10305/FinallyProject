@@ -104,8 +104,14 @@ public class BranchStockDAOImpl implements BranchStockDAO {
 	}
 	
 	
-	
-	
+	@Override
+	public Integer getAmountByproid(Integer proid) {
+		String hql = "from BranchStockBean where branchid=1 and proid= :proid";
+		BranchStockBean bean = this.getSession().createQuery(hql,BranchStockBean.class).setParameter("proid", proid).getSingleResult();
+		System.out.println("proid= " + proid);
+		return bean.getAmount();
+		
+	}
 	
 	
 	

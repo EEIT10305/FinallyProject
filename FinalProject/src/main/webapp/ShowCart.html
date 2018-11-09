@@ -140,16 +140,16 @@ article {
 //                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
 //                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
   $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
-                			"<select id='select"+count+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+count+"' value='"+count+"'>修改數量</button></td></tr>");
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
                 	for(var i=1; i<=10;i++){
                 		if(i==json.amount){
-                			$("#select"+count).append("<option value='"+i+"' selected>"+i+"</option>")
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
                 		}else {                			
-                		$("#select"+count).append("<option value='"+i+"'>"+i+"</option>")
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
                 		}
                 	}
 
-                	 document.getElementById("modify"+count).addEventListener("click",modifyAmount);
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
                 	
                 	
                  	sum += json.productBean.price * json.amount
@@ -163,10 +163,11 @@ article {
 	}
 
 function modifyAmount(){
-	var id = $(this).attr("value")
-	var amount = $("#select" + id).val();	
+	var proid = $(this).attr("value")
+	var amount = $("#select" + proid).val();	
+// 	alert("amount= "+amount)
 	$.post("updateCartDetailAmount",
-		   {"id":id,"amount":amount},function(data,status){ 			
+		   {"cartid":sessionStorage.CartId,"proid":proid,"amount":amount},function(data,status){ 			
 			    alert("修改數量成功");	
 				$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 					if(status=="success"){
@@ -176,20 +177,17 @@ function modifyAmount(){
 						 $("#itembody").html("");
 		                $.each(querydata, function (index, json) {
 		                	
-//		                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
-//		                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
-			                $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
-                			"<select id='select"+count+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+count+"' value='"+count+"'>修改數量</button></td></tr>");
-		                	for(var i=1; i<=10;i++){
-		                		if(i==json.amount){
-		                			$("#select"+count).append("<option value='"+i+"' selected>"+i+"</option>")
-		                		}else {                			
-		                		$("#select"+count).append("<option value='"+i+"'>"+i+"</option>")
-		                		}
-		                	}
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
 
-		                	
-		                	 document.getElementById("modify"+count).addEventListener("click",modifyAmount);
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
 		                	
 		                	
 		                 	sum += json.productBean.price * json.amount

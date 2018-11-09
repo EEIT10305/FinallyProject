@@ -51,20 +51,24 @@ $(document).ready(function () {
 
     model = "";
     price = "";
+    proid = "";
 
     $.each(querydata, function (index, json) {
         model += json.model + ",";
         price += json.price + ",";
+        proid += json.proid + ",";
     })
 
     model = "zero," + model;
     price = "zero," + price;
+    proid = "zero," + proid;
     //             alert(model)
     modelNoEnd = model.substring(0, model.lastIndexOf(","))   //去尾巴逗號
     priceNoEnd = price.substring(0, price.lastIndexOf(","))
 
     modelArray = model.substring(0, model.lastIndexOf(",")).split(",")    //拆開加入陣列
     priceArray = price.substring(0, price.lastIndexOf(",")).split(",")
+    proidArray = proid.substring(0, proid.lastIndexOf(",")).split(",")
 
     total = modelArray.length - 1;   //商品總筆數   - "zero" 那筆
     showamount = 4;              //一頁顯示幾筆
@@ -88,23 +92,19 @@ $(document).ready(function () {
                 '<div class="card" style="width: 15rem; padding: 10px;">' +
                 '<img class="card-img-top" src="image/'+ modelArray[b] +'.jpg" width="100px"  height="220px"  alt="Card image cap">' +
                 '<div class="card-body">' +
-                '<a href="#">' +
+                '<a style="cursor:pointer" id="wish'+proidArray[b]+'" value="'+proidArray[b]+'">' +
                 '<img src="image/heart.png" width="20px">' +
-                '</a>' +
-                '<span>' +
-                '<a href="#">' +
-                '<img src="image/football-signal-of-a-game-announcement-of-one-team-vs-other.png" width="20px">' +
-                '</a>' +
-                '</span>' +
+                '</a>' +               
                 "<h5 class='card-title'>" + modelArray[b] + "</h5>" +
                 "<h5  class='card-title' style='color:red' >$" + priceArray[b] + "</h5>" +
-                '<a href="#" id="add'+b+'" class="btn btn-danger">加入購物車' +
+                '<button style="cursor:pointer" id="add'+proidArray[b]+'" value="'+proidArray[b]+'" class="btn btn-danger">加入購物車' +
                 '<img src="image/shopping-cart (1).png" width="20px">' +
-                '</a>' +
+                '</button>' +
                 '</div>' +
                 '</div>' +                
                 '</div>')
-            document.getElementById("add"+b).addEventListener("click",addToCart);       
+            document.getElementById("add"+proidArray[b]).addEventListener("click",addToCart);       
+            document.getElementById("wish"+proidArray[b]).addEventListener("click",addToWish);       
                 
         }
 
@@ -120,9 +120,43 @@ $(document).ready(function () {
     $("#page1").show();
     $("#changepagebtn1").parent().attr("class", "page-item active");
     $("#changepagebtn1").attr("class", "mypage-link mypagestyle");
+    
+    $.each(proidArray,function(index,proid){
+    	if(proid!="zero"){
+    		//庫存沒貨   變貨到通知我
+    		$.post("selectStock",{"proid":proid},function(amount,status){
+    			if(amount=='0'){
+    				$("#add"+proid).html("貨到通知我");
+    				$("#add"+proid).attr("class","btn btn-secondary");
+    				document.getElementById("add"+proid).removeEventListener("click",addToCart);
+    				$("#add"+proid).click(unavailable);    				
+    			}
+    		})
+    		//已加入願望清單的話  變紅愛心
+    		$.post("heartXXXXXXX",{"proid":proid},function(data,status){      //beanyeeeeeeeeeeeeee  搜尋願望清單有沒有資料
+    			if(data!=null){
+    				$("#wish"+proid).find("img").attr("src","image/like.png");  				
+                    document.getElementById("wish"+proid).removeEventListener("click",addToWish); 
+                } 
+    		})
+    		
+    	}
+    })
 
-
- 
+ function unavailable(){
+    	//沒貨    商品加入願望清單controller    	
+    	var proid = $(this).attr("value");
+//    	alert(proid);
+    	$.post("unavailableXXXXXXXX",{"proid":proid},function(data,status){     //beanyeeeeeeeeeeeeee    點貨到通知我 加入願望清單  愛心也變紅
+    		$("#wish"+proid).find("img").attr("src","image/like.png");
+    		alert("商品已加入願望清單，抵達時會將通知您！")    		
+    	})    	
+    }
+    function addToWish(){                                                           //beanyeeeeeeeeeeeeee   點白愛心 加入願望清單
+        var proid =$(this).attr("value"); 
+        $("#wish"+proid).find("img").attr("src","image/like.png");
+//    	alert("wish " + proid )                           
+    }
     
     function addToCart(){
 //         alert($(this).prev().prev().text())
@@ -1021,7 +1055,8 @@ $(document).ready(function(){
                             data: {"model":$(this).prev().prev().text(),
                            	    "CartId":sessionStorage.CartId},             
                             success: function (data) {
-                                alert("加入購物車成功！")//                                
+                                alert("加入購物車成功！")
+//                                alert(data)
                             }
                         });
                    }
@@ -1042,4 +1077,3 @@ $(document).ready(function(){
      })     
 	
 })
-
