@@ -209,7 +209,7 @@
 				<tr>
 					查詢庫存
 					<td>
-						<a href="./vipPassword.jsp" title="Beats">
+						<a href="/FinalProject/Backstage_Transfer_Search.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>
@@ -221,7 +221,7 @@
 				<tr>
 					調撥貨品
 					<td>
-						<a href="./Backstage_Transfer_Search.jsp" title="Beats">
+						<a href="/FinalProject/pages/search.transfer.controller" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>
