@@ -56,8 +56,8 @@ public class MessageDAOImpl implements MessageDAO {
 				try {
 					temp.setMemberidA(bean.getMemberidA());
 					temp.setMemberidB(bean.getMemberidB());
-					temp.setDate(bean.getDate());
-					temp.setMessage(bean.getMessage());				
+					temp.setDat(bean.getDat());
+					temp.setMessag(bean.getMessag());				
 					return true;
 				} catch (Exception e) {
 					e.printStackTrace();

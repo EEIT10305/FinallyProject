@@ -42,5 +42,11 @@ public class BuyProductsToOrderListController {
 	public String ShowCartDetailInController(Integer Cartid) {
 		return new Gson().toJson(BPTOLS.ShowCartDetailInService(Cartid));
 	}
+	@RequestMapping(path="PayToOPay",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String PayToOPayInController(String OrderID,String Price) {			//歐付寶在這裡
+		
+		return BPTOLS.PayToOPayInService(OrderID,Price);
+	}
 
 }

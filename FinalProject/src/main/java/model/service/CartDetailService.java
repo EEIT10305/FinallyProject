@@ -14,5 +14,6 @@ public interface CartDetailService {
     void setMemberId(Integer memberid);
     //CartDetailBean selectCartId(int CartId);
     List<CartDetailBean> selectbycartId(int cartid);
+   
     
 }
