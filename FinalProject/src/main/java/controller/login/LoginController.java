@@ -195,6 +195,15 @@ public class LoginController {
 			return new Gson().toJson(bean);
 		} 
 		else {
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			return new Gson().toJson(bean);
 		}
 	}
@@ -327,7 +336,6 @@ public class LoginController {
 	@RequestMapping(path = "catchMemberCartId", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String catchCartId(String email) {
-		
 
 		System.out.println("有沒有抓到登入後的請求??????");
 		System.out.println(email);
@@ -335,7 +343,7 @@ public class LoginController {
 		MemberBean bean = loginService.checkEmail(email);
 		System.out.println("有沒有抓到會員資料:");
 		System.out.println(bean);
-		System.out.println("有沒有抓到會員的id???："+bean.getMemberid());
+		System.out.println("有沒有抓到會員的id???："+bean.getMemberid());//8
 		List<CartBean> cartBean=null;
 		Map<String,Integer> memberInfo = new HashMap<String,Integer>();
 		
@@ -344,9 +352,21 @@ public class LoginController {
 
 		for(CartBean cartBeanList:cartBean) {
 			memberInfo.put(cartBeanList.getStatus(), cartBeanList.getCartid());
-		
 		}
 		System.out.println("有沒有抓到該會員的購物車id???"+memberInfo.get("nopay"));
+		if(memberInfo.get("nopay")==null) {
+			Date date = new Date();//建立進入這隻controller的時間
+			String strDate = sdFormat.format(date);//建立進入這隻controller的時間
+			CartBean newCartBean = new CartBean();
+			newCartBean.setMemberid(bean.getMemberid());
+			newCartBean.setDate(strDate);
+			newCartBean.setStatus("nopay");
+			cartService.saveCartBean(newCartBean);
+			
+			System.out.println(newCartBean);
+			
+			return newCartBean.getCartid().toString();
+		}
 		System.out.println("會員id轉成字串");
 		System.out.println(memberInfo.get("nopay").toString());
 		return memberInfo.get("nopay").toString();
