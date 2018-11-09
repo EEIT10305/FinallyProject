@@ -388,7 +388,7 @@ public class TestDAO {
 	}
 	@Test
 	public void testMessageDao() {
-		MessageBean bean = new MessageBean(1,"10-18",1,2,"hello555");
+		MessageBean bean = new MessageBean(null, 3, 5, "2018/11/08 11:05:28", "測試的內容\\n耶耶耶\n澳烏烏烏", "測試用的不要問", "notyet");
 		MessageDAO dao = context.getBean(MessageDAO.class);
 		dao.insert(bean);
 		System.out.println(dao.selectAll());

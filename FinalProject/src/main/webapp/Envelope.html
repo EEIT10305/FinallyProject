@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/fp.css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript"
+	src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+<title>信箱圖</title>
+<style>
+*{
+magrin:0px;
+padding:0px;
+}
+</style>
+<script>
+$(document).ready(function(){
+    setInterval(request,100000);
+
+	document.cookie = "email=test@gmail.com";
+	var cookies = document.cookie;
+	var cookie = cookies.split(";");
+	var who = ""
+	for(var i = 0 ; i < cookie.length ; i++){
+		if(cookie[i].indexOf("email=") != -1){
+			who = cookie[i].split("=")[1]
+		}
+	}
+		$.post("MailController",{
+			"who":who
+		},function(data,status){
+			if(status == "success"){
+				if(data == "null"){
+				    $("#env1").show()
+				    $("#env2").hide()
+				}else{
+				    $("#env2").show()					
+				    $("#env1").hide()					
+				}
+			}
+
+		})
+})
+	function request(){
+	var cookies = document.cookie;
+	var cookie = cookies.split(";");
+	var who = ""
+	for(var i = 0 ; i < cookie.length ; i++){
+		if(cookie[i].indexOf("email=") != -1){
+			who = cookie[i].split("=")[1]
+		}
+	}
+		$.post("MailController",{
+			"who":who
+		},function(data,status){
+			if(status == "success"){
+				if(data == "null"){
+				    $("#env1").show()
+				    $("#env2").hide()
+				}else{
+				    $("#env2").show()					
+				    $("#env1").hide()					
+				}
+			}
+
+		})
+	
+}
+</script>
+</head>
+
+<body>
+<div style="display:none" id="env1"><img src="image/envelope.png" width="30px"></div>
+<div style="display:none" id="env2"><img src="image/envelope_2 .png" width="30px"></div>
+
+	<script
+		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
