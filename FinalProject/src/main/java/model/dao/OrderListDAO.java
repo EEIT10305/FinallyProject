@@ -13,4 +13,5 @@ public interface OrderListDAO {
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
 		MemberBean selectMemberIdByEmail(String email);
+		List<OrderListBean> selectAllByTime(String Time);
 }

@@ -12,4 +12,6 @@ public interface BranchStockDAO {
 		BranchStockBean selectAllByID(Integer proid);
 		boolean updateBranchStock(Integer amount, String statu, Integer proid);
 		BranchStockBean insertintoStock(Integer amount, Integer branchid, Integer proid, String statu);
+		List<BranchStockBean> selectAllByBranchId(Integer BranchId);
+		BranchStockBean selectbranchStock(Integer proid);
 }

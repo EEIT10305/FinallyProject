@@ -40,8 +40,8 @@ public class PkServiceImpl implements PkService {
   		System.out.println("=============================================================================");  		
   		return pinginDetailDAO.selectPinginDetailByName(name);
       }
-    
-    public void updateCartDetailAmount(Integer id, Integer amount) {   
-    	cartDetailDAO.updateBean(id,amount);
+    @Override
+    public void updateCartDetailAmount(Integer cartid, Integer amount,Integer proid) {   
+    	cartDetailDAO.updateBean(cartid,amount,proid);
     }
 }

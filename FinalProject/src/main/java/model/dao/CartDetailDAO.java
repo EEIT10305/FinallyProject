@@ -19,6 +19,6 @@ public interface CartDetailDAO {
 //	    boolean deletebycartId(int cartid);
 	    //CartDetailBean selectCartId(int cartid);
 	    //void setMemberId(Integer memberid);		
-		boolean updateBean(Integer id, Integer amount);
+		boolean updateBean(Integer cartid, Integer amount, Integer proid);
 	    
 }

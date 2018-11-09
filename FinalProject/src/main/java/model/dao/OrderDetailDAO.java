@@ -14,4 +14,6 @@ public interface OrderDetailDAO {
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
 		List<Map<String, Object>> countSoldPro();
+		List<OrderDetailBean> selectAllByOrderId(Integer OrderId);
+		List<OrderDetailBean> selectByOrderId(Integer OrderId);
 }
