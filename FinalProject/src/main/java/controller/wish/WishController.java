@@ -25,18 +25,56 @@ public class WishController {
 	
 	@RequestMapping(path = "processMemberWish", produces = "text/html;charset=utf-8")
 	@ResponseBody
-	public String processWish(String email, Integer proId/*,Xxxx ccCc*/) {
+	public String processWish(String email, Integer proId,Integer tracked) {
 //接收資料
-		System.out.println("點選愛心之後有沒有將值丟到controllerl：");
+		System.out.println("點選愛心或是貨到通知的controllerl：");
+		System.out.println(email);
 		System.out.println(proId);
 //		System.out.println(ccCc);
 //驗證資料
 		MemberBean memberInfo = loginService.checkEmail(email);
+		System.out.println("查不查得到會員資料????"+memberInfo);
 		Integer memberId = memberInfo.getMemberid();
 		
-		WishBean aWishRow = wishService.selectByMemberIdProId(memberId, proId);
 		WishBean newWishBean = new WishBean();
-		
+		if(tracked==2) {
+		try {
+			WishBean aWishRow = wishService.selectByMemberIdProId(memberId, proId);
+				System.out.println("使用者是點選貨到通知的按鈕");
+				if(aWishRow!=null) {//有願望清單 更改狀態
+					System.out.println("點選的商品已在願望清單 修改狀態");
+					aWishRow.setTracked(2);
+					wishService.update(aWishRow);
+					return "";
+				}
+		}catch(Exception e) {
+			System.out.println("點選的商品不在願望清單 新增一筆");
+			newWishBean.setMemberid(memberInfo.getMemberid());
+			newWishBean.setProid(proId);
+			newWishBean.setTracked(2);
+			wishService.insertAWishBean(newWishBean);
+			return "";
+		}
+		}
+		if(tracked==1) {
+			try {
+				WishBean aWishRow = wishService.selectByMemberIdProId(memberId, proId);
+					System.out.println("使用者是點選貨到通知的按鈕");
+					if(aWishRow!=null) {//有願望清單 更改狀態
+						System.out.println("點選的商品已在願望清單 修改狀態");
+						aWishRow.setTracked(1);
+						wishService.update(aWishRow);
+						return "";
+					}
+			}catch(Exception e) {
+				System.out.println("點選的商品不在願望清單 新增一筆");
+				newWishBean.setMemberid(memberInfo.getMemberid());
+				newWishBean.setProid(proId);
+				newWishBean.setTracked(1);
+				wishService.insertAWishBean(newWishBean);
+				return "";
+			}
+		}
 //		if("前端傳回的愛心狀態是紅色") {
 //			if(aWishRow!=null) {//有願望清單 更改狀態
 //				aWishRow.setTracked(1);
@@ -53,15 +91,20 @@ public class WishController {
 //			return "";//尚未確認需要回傳什麼
 //		}
 //		return "";
-//		if("前端傳回的狀態是貨到付款") {
+//		if(tracked==2) {
+//			System.out.println("使用者是點選貨到通知的按鈕");
 //			if(aWishRow!=null) {//有願望清單 更改狀態
+//				System.out.println("點選的商品已在願望清單 修改狀態");
 //				aWishRow.setTracked(2);
-//				return "";//尚未確認需要回傳什麼
+//				wishService.update(aWishRow);
+//				return "";
 //			}else {//沒有願望清單 新增一筆
+//				System.out.println("點選的商品不在願望清單 新增一筆");
 //				newWishBean.setMemberid(memberInfo.getMemberid());
 //				newWishBean.setProid(proId);
 //				newWishBean.setTracked(2);
-//				return "";//尚未確認需要回傳什麼
+//				wishService.insertAWishBean(newWishBean);
+//				return "";
 //			}
 //		}
 		return "";

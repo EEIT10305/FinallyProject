@@ -11,4 +11,6 @@ public interface WishService {
 	boolean update(WishBean bean);
 	
 	List<WishBean> selectByMemberId(Integer memberId);
+	
+	WishBean insertAWishBean (WishBean bean);
 }
