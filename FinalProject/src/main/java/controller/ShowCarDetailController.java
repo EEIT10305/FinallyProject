@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import allPay.payment.integration.domain.AioCheckOutOneTime;
 import model.bean.CartDetailBean;
 import model.service.CartDetailService;
 import model.service.CartService;
@@ -32,5 +33,4 @@ public class ShowCarDetailController {
 		return null;
 		
 	}
-
 }

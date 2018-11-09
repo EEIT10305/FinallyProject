@@ -8,12 +8,19 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import misc.AutoSendEmailByJava;
 import model.bean.BranchStockBean;
 import model.bean.ImportBean;
 import model.bean.ImportDetailBean;
+import model.bean.MemberBean;
+import model.bean.ProductBean;
+import model.bean.WishBean;
 import model.dao.BranchStockDAO;
 import model.dao.ImportDAO;
 import model.dao.ImportDetailDAO;
+import model.dao.MemberDAO;
+import model.dao.ProductDAO;
+import model.dao.WishDAO;
 import model.service.ImportService;
 
 @Service
@@ -27,6 +34,17 @@ public class ImportServiceImpl implements ImportService {
 
 	@Autowired
 	BranchStockDAO branchStockDAO;
+
+	@Autowired
+	MemberDAO memberDAO;
+	
+	@Autowired
+	WishDAO wishDAO;
+	
+	@Autowired
+	ProductDAO productDAO;
+
+
 
 	public ImportServiceImpl() {
 
@@ -111,8 +129,7 @@ public class ImportServiceImpl implements ImportService {
 //如果branch_stock裡面有ImportDetailBean的proid
 //update				
 			
-			if (branch.getProid()==proid) {
-				
+			if (branch.getProid()==proid) {				
 
 				System.out.println("branchid============================" + branch.getBranchid());
 				int total = importDetailBean.get(x).getAmount() + branch.getAmount();
@@ -120,6 +137,23 @@ public class ImportServiceImpl implements ImportService {
 				branch.setAmount(total);
 								
 				branchStockDAO.update(branch);
+				
+				
+				List<WishBean> allProWishList = wishDAO.selectAllByProId(importDetailBean.get(x).getProid());
+				System.out.println("補貨");
+				System.out.println("有沒有抓到會員的願望清單"+allProWishList);
+					for(WishBean everyWishList:allProWishList) {
+						System.out.println("進入迴圈");
+						if(everyWishList.getTracked()==2) {
+							MemberBean memberBean = memberDAO.selectById(everyWishList.getMemberid());
+							ProductBean productBean = productDAO.selectById(importDetailBean.get(x).getProid());
+							System.out.println("會員mail="+memberBean.getEmail()+"大選電腦提醒您!關注商品已到貨"+"商品名稱為："+productBean.getModel());
+							System.out.println("自動發mail第幾封?=>"+x);
+//							AutoSendEmailByJava.processMemberWishNotice(memberBean.getEmail(), "大選電腦提醒您!關注商品已到貨", "親愛的會員您好!您關注的商品:"+productBean.getModel()+"已到貨");
+						}
+					}
+					
+					
 				result.add(branch);
 				
 				break;

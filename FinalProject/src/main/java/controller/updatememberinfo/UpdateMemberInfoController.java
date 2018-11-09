@@ -59,31 +59,5 @@ public class UpdateMemberInfoController {
 		} else {
 			return "updatefail";
 		}
-//		return null;
 	}
 }
-
-//		MemberBean updateMemberData = new MemberBean();
-//			if (queryMemberInfo.getName() == name) {
-//				updateMemberData.setName(queryMemberInfo.getName());// updateMemberData.setName(name);
-//			} else {
-//				updateMemberData.setName(name);
-//			}
-//			
-//			if (queryMemberInfo.getGender() == gender) {
-//				updateMemberData.setGender(queryMemberInfo.getGender());
-//			} else {
-//				updateMemberData.setGender(gender);
-//			}
-//			
-//			if(queryMemberInfo.getPhone()==phone) {
-//				updateMemberData.setPhone(queryMemberInfo.getPhone());
-//			}else {
-//				updateMemberData.setGender(gender);
-//			}
-//			
-//			if(queryMemberInfo.getAddress()==address) {
-//				updateMemberData.setAddress(queryMemberInfo.getAddress());
-//			}else {
-//				updateMemberData.setAddress(address);
-//			}

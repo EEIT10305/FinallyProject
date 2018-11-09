@@ -17,4 +17,6 @@ public interface BuyProductsToOrderListService {
 
 	List<CartDetailBean> ShowCartDetailInService(Integer Cartid);
 
+	String PayToOPayInService(String OrderID, String Price);
+
 }

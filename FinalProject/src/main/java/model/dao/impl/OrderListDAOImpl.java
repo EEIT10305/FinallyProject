@@ -40,7 +40,6 @@ public class OrderListDAOImpl implements OrderListDAO {
 	public OrderListBean insert(OrderListBean bean) {
 		if(bean!=null) {
 				this.getSession().save(bean);
-				System.out.println(bean.getOrderid());
 				return bean;
 		}else {
 			return null;
@@ -73,4 +72,51 @@ public class OrderListDAOImpl implements OrderListDAO {
 		this.memberid = memberid;
 		
 	}
+
+	@Override
+	public boolean updateOrderStatusByOrderId(int orderid) {
+		String hql = "from OrderListBean where orderid=: orderid";
+		this.getSession().get(OrderListBean.class, orderid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("orderid", orderid).getSingleResult();
+		orderListBean.setStatu("pay");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderArriveByOrderId(int orderid) {
+		String hql = "from OrderListBean where orderid=: orderid";
+		this.getSession().get(OrderListBean.class, orderid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("orderid", orderid).getSingleResult();
+		orderListBean.setArrive("arrived");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderStatusByMemberId(int memberid) {
+		String hql = "from OrderListBean where memberid=: memberid";
+		this.getSession().get(OrderListBean.class, memberid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("memberid", memberid).getSingleResult();
+		orderListBean.setStatu("pay");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+
+	@Override
+	public boolean updateOrderArriveByMemberId(int memberid) {
+		String hql = "from OrderListBean where memberid=: memberid";
+		this.getSession().get(OrderListBean.class, memberid);
+		OrderListBean orderListBean= (OrderListBean) this.getSession().
+				createQuery(hql).setParameter("memberid", memberid).getSingleResult();
+		orderListBean.setArrive("arrived");
+		this.getSession().update(orderListBean);
+		return true;
+	}
+	
+	
+	
 }

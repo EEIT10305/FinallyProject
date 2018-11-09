@@ -53,6 +53,7 @@ public class ImportDetailController {
 
 
 	@RequestMapping("/pages/import.updateController")
+
 	public String update(ImportBean bean, Integer improtid, Integer proid, Model model) {
 
 		System.out.println("importtttttttttttttttttttttttttttttttttttttttiiiiiiiiiiiiiiiid" + improtid);
@@ -68,7 +69,7 @@ public class ImportDetailController {
 			System.out.println("off===============================" + statu);
 		}
 		
-				importService.updateStatus(statu, improtid);
+	    importService.updateStatus(statu, improtid);
 
 			
 		List<BranchStockBean> result = importService.insertBranchStock(improtid, proid);

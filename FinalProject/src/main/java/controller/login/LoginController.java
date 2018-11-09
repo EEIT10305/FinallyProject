@@ -195,7 +195,7 @@ public class LoginController {
 			return new Gson().toJson(bean);
 		} 
 		else {
-			return "userIsOurMember";
+			return new Gson().toJson(bean);
 		}
 	}
 

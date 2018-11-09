@@ -56,4 +56,24 @@ public class OrderListServiceimpl implements OrderListService {
 		
 	}
 
+	@Override
+	public boolean updateOrderStatusByOrderId(int orderid) {
+		return dao.updateOrderStatusByOrderId(orderid);
+	}
+
+	@Override
+	public boolean updateOrderArriveByOrderId(int orderid) {
+		return dao.updateOrderArriveByOrderId(orderid);
+	}
+
+	@Override
+	public boolean updateOrderStatusByMemberId(int memberid) {
+		return dao.updateOrderStatusByMemberId(memberid);
+	}
+
+	@Override
+	public boolean updateOrderArriveByMemberId(int memberid) {
+		return dao.updateOrderArriveByMemberId(memberid);
+	}
+
 }

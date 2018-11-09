@@ -27,6 +27,17 @@ public class MessageDAOImpl implements MessageDAO {
 	public MessageBean selectById(int id) {
 		return this.getSession().get(MessageBean.class, id);
 	}
+    
+	@Override
+	public List<MessageBean> selectByMemberB(Integer member) {
+		String hql = "FROM MessageBean WHERE memberidB = :memberidB AND readstatu='notyet'";
+		return this.getSession().createQuery(hql,MessageBean.class).setParameter("memberidB", member).list();
+	}
+	@Override
+	public List<MessageBean> selectByMemberBAll(Integer member) {
+		String hql = "FROM MessageBean WHERE memberidB = :memberidB ORDER BY readstatu";
+		return this.getSession().createQuery(hql,MessageBean.class).setParameter("memberidB", member).list();
+	}
 
 	@Override
 	public MessageBean insert(MessageBean bean) {
@@ -45,8 +56,8 @@ public class MessageDAOImpl implements MessageDAO {
 				try {
 					temp.setMemberidA(bean.getMemberidA());
 					temp.setMemberidB(bean.getMemberidB());
-					temp.setDate(bean.getDate());
-					temp.setMessage(bean.getMessage());				
+					temp.setDat(bean.getDat());
+					temp.setMessag(bean.getMessag());				
 					return true;
 				} catch (Exception e) {
 					e.printStackTrace();

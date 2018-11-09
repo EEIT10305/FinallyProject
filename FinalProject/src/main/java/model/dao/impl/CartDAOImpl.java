@@ -25,8 +25,8 @@ public class CartDAOImpl implements CartDAO {
 	private ProductDAOImpl productDAOImpl;
 	
 	public CartDAOImpl() {}
-	private Integer memberid = null;
 
+	Integer memberid = null;
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}

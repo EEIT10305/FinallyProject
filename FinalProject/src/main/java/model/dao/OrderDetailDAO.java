@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.bean.CartDetailBean;
+import model.bean.MemberBean;
 import model.bean.OrderDetailBean;
 
 public interface OrderDetailDAO {
@@ -14,4 +15,6 @@ public interface OrderDetailDAO {
 	    Integer getMemberId();
 	    void setMemberId(Integer memberid);
 		List<Map<String, Object>> countSoldPro();
+		MemberBean selectMemberIdByEmail(String email);
+		List<OrderDetailBean> selectByOrderId(Integer OrderId);
 }

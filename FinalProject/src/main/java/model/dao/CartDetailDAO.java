@@ -2,7 +2,6 @@ package model.dao;
 
 import java.util.List;
 
-import model.bean.CartBean;
 import model.bean.CartDetailBean;
 import model.bean.MemberBean;
 
@@ -18,7 +17,12 @@ public interface CartDetailDAO {
 //	    boolean delete(CartDetailBean bean);
 //	    boolean deletebycartId(int cartid);
 	    //CartDetailBean selectCartId(int cartid);
-	    //void setMemberId(Integer memberid);		
-		boolean updateBean(Integer id, Integer amount);
+	    //void setMemberId(Integer memberid);
+
+	    boolean checkProductisAlive(int proid);
+	    CartDetailBean selectByProductId(int proid);
+
+		boolean updateBean(Integer cartid, Integer amount, Integer proid);
+
 	    
 }
