@@ -84,8 +84,9 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 	}
 	
 	@Override
-	public boolean updateBean(Integer id,Integer amount) {		
-		CartDetailBean bean = this.getSession().get(CartDetailBean.class,id);
+	public boolean updateBean(Integer cartid,Integer amount,Integer proid) {
+		String hql="from CartDetailBean where cartid=:cartid and proid=:proid";
+		CartDetailBean bean = this.getSession().createQuery(hql,CartDetailBean.class).setParameter("cartid", cartid).setParameter("proid", proid).getSingleResult();
 			if (bean != null) {
 				try {
 					bean.setAmount(amount);

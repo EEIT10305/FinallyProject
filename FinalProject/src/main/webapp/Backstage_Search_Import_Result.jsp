@@ -3,7 +3,7 @@
 <%@ page import="java.util.*,model.bean.ImportBean" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-	<%-- <%@ include file="TestShoppingCart.jsp" %> --%>
+
 
 
 <!DOCTYPE html>
@@ -196,7 +196,7 @@
 				</div>
 
 				<div class="n1" id="s2">
-					<a href="/FinalProject/Backstage_Transfer.jsp" title="Beats">
+					<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
 							<br>庫存管理</p>
 				</div>

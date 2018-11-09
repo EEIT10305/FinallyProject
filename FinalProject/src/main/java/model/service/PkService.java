@@ -13,6 +13,6 @@ public interface PkService {
 
 	List<PinginDetailBean> showPinginDetail(String name);
 
-    void updateCartDetailAmount(Integer id, Integer amount);
+	void updateCartDetailAmount(Integer cartid, Integer amount, Integer proid);
 
 }

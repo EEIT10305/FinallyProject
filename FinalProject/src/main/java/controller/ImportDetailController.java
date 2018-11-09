@@ -53,7 +53,7 @@ public class ImportDetailController {
 
 
 	@RequestMapping("/pages/import.updateController")
-	public String update(ImportBean bean, Integer improtid, Model model) {
+	public String update(ImportBean bean, Integer improtid, Model model) {//個別進貨
 
 		System.out.println("importtttttttttttttttttttttttttttttttttttttttiiiiiiiiiiiiiiiid" + improtid);
 		
@@ -68,13 +68,13 @@ public class ImportDetailController {
 			System.out.println("off===============================" + statu);
 		}
 		
-				importService.updateStatus(statu, improtid);
+	    importService.updateStatus(statu, improtid);
 
 			
 		List<BranchStockBean> result = importService.insertBranchStock(improtid);
 	
 		model.addAttribute("stock", result);
-			
+
 		return "/Backstage_Search_Import_Result.jsp";
 
 	}

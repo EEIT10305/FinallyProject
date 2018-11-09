@@ -34,12 +34,12 @@ public class PkController {
 	
 	@RequestMapping(path="updateCartDetailAmount", produces="text/html;charset=UTF-8")	
 	@ResponseBody
-	public String updateCartDetailAmount(Integer id, Integer amount) {
+	public String updateCartDetailAmount(Integer cartid, Integer amount,Integer proid) {
 		System.out.println("=============================================================================");
-        System.out.println("idididididiiddiididid    " + id);
+        System.out.println("idididididiiddiididid    " + cartid);
         System.out.println("amountamount    " + amount);        
         System.out.println("=============================================================================");
-          pk.updateCartDetailAmount(id, amount);
+          pk.updateCartDetailAmount(cartid, amount,proid);
           return("修改數量成功");
 	}
 }
