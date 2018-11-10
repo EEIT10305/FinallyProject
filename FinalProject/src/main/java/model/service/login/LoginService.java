@@ -8,5 +8,5 @@ public interface LoginService {
 	
 	public MemberBean checkEmail(String email);
 	
-	
+	public MemberBean selectById(Integer memberId);
 }

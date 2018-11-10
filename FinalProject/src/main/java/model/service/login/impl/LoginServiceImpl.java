@@ -24,10 +24,6 @@ public class LoginServiceImpl implements LoginService {
 		return null;
 	}
 	
-	
-	
-	
-	
 	@Override
 	public MemberBean checkEmailPwd(String email, String password) {
 		MemberBean mb = memberDao.checkEmailPwd(email, password);
@@ -49,6 +45,11 @@ public class LoginServiceImpl implements LoginService {
 	public MemberBean checkEmail(String email) {
 //		MemberBean mb = memberDao.selectByEmail(email);
 		return memberDao.selectByEmail(email);
+	}
+
+	@Override
+	public MemberBean selectById(Integer memberId) {
+		return memberDao.selectById(memberId);
 	}
 
 		
