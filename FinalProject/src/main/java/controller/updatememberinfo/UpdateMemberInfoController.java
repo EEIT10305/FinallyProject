@@ -60,4 +60,5 @@ public class UpdateMemberInfoController {
 			return "updatefail";
 		}
 	}
+
 }

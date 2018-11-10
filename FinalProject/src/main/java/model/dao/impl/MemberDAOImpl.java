@@ -37,11 +37,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean insert(MemberBean bean) {// 新增一筆會員資料
 		if (bean != null) {
-			if (true) {
 				System.out.println(bean.getMemberid());
 				this.getSession().save(bean);
 				return bean;
-			}
+			
 		}
 		return null;
 	}

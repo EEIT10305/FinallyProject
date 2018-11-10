@@ -76,7 +76,7 @@ public class WishDAOImpl implements WishDAO {
 
 	@Override
 	public WishBean selectByMemberIdProId(Integer memberId,Integer proid) {
-		String hql = "FROM WishBean WHERE memberid:memberId and proid:proid ";
+		String hql = "FROM WishBean WHERE memberid=:memberid and proid=:proid ";
 		return this.getSession().createQuery(hql,WishBean.class).setParameter("memberid", memberId).setParameter("proid", proid).getSingleResult();
 	}
 
