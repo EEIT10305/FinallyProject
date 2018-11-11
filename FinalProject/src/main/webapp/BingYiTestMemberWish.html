@@ -11,6 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 </head>
 <body>
+
+    
+
     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfWishInfo">我的願望清單</li>
 
 
@@ -22,7 +25,29 @@
 </tbody>
 </table>
 
+
+<li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfPassword">修改我的密碼</li>
+請注意：密碼必須為8-10個字且必須包含大寫字母、小寫字母、數字與特殊字元[!@#$%^&*]
+<br>
+<label for="inputPassword4">舊密碼</label>
+<input type="password" class="form-control" id="userInputOldPassword" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,10}$" placeholder="請輸入您的舊密碼">
+<br>
+<span class="errorMsg" id="errorInputOldPassword"></span>
+<br>
+<label for="inputPassword4">新密碼</label>
+<input type="password" class="form-control" id="userInputNewPassword" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,10}$" placeholder="請輸入您的新密碼">
+<br>
+<span class="errorMsg" id="errorInputNewPassword"></span>
+<br>
+<label for="inputPassword4">確認密碼</label>
+<input type="password" class="form-control" id="userInputCheckPassword" required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,10}$" placeholder="請再次輸入您的新密碼">
+<br>
+<span class="errorMsg" id="errorInputCheckPassword"></span>
+<br>
+<span class="mouseOverChoosepointer" id="memberClickUpdatePasswordButton">送出</span><span class="errorMsg" id="errorInputOtherPassword"></span>
+
 <script>
+    /*-------------------------------------------------秀出會員自己的願望清單------------------------------------------------------------------*/
 $('#memberClickSelfWishInfo').click(function(){
 $.ajax({
     type: "POST",
@@ -52,6 +77,58 @@ $.ajax({
         }
     }
 });
+});
+/*-------------------------------------------------會員修改自己的密碼------------------------------------------------------------------*/
+$('#memberClickUpdatePasswordButton').click(function(){
+    alert('進入修改密碼的方訊')
+$.ajax({
+    type: "POST",
+    url: "processMemberUpdatePassword",
+    data: {
+        email:'123@gmail.com',  //=======目前寫死的 要記得從cookie內抓=====
+        oldPassword:$('#userInputOldPassword').val(),
+        newPassword:$('#userInputNewPassword').val(),
+        checkPassword:$('#userInputCheckPassword').val()
+    },
+    success: function (data) {
+        $('#errorInputOldPassword').html("");
+        $('#errorInputNewPassword').html("");
+        $('#errorInputCheckPassword').html("");
+        $('#errorInputOtherPassword').html("");
+        
+        alert('從controller回來了嗎??');
+        if(data=="oldPasswordError"){
+            $('#errorInputOldPassword').html("舊密碼不可為空!");
+        }
+        if(data=="oldPasswordInputError"){
+            $('#errorInputOldPassword').html("舊密碼輸入錯誤!");
+        }
+
+        if(data=="newPasswordInputNull"){
+            $('#errorInputNewPassword').html("新密碼不可為空!");
+        }
+        if(data=="newPasswordInputTypeError"){
+            $('#errorInputNewPassword').html("密碼必須符合安全規定!");
+        }
+        if(data=="newEqualOld"){
+            $('#errorInputNewPassword').html("新密碼不可和舊密碼相同!");
+        }
+
+        if(data=="checkPasswordNull"){
+            $('#errorInputCheckPassword').html("尚未輸入確認密碼!");
+        }
+        if(data=="checkPasswordTypeError"){
+            $('#errorInputCheckPassword').html("確認密碼輸入錯誤!");
+        }
+        if(data=="newAndCheckDifferent"){
+            $('#errorInputCheckPassword').html("確認密碼和您設定的新密碼不相同!");
+        }
+        if(data=="updatePasswordSuccess"){
+        alert('修改成功!')
+        }
+    }
+});
+
 });
 
 </script>
