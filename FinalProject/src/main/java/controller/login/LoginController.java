@@ -195,15 +195,6 @@ public class LoginController {
 			return new Gson().toJson(bean);
 		} 
 		else {
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			return new Gson().toJson(bean);
 		}
 	}

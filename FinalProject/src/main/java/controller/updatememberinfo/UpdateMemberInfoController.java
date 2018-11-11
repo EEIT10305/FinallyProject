@@ -17,10 +17,10 @@ public class UpdateMemberInfoController {
 	@Autowired
 	UpdateMemberInfoService updateService;
 
-	@RequestMapping(path = "processupdate", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+	@RequestMapping(path = "showMemberInfo", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String processUpdateMemberInfo(String email) {
-		System.out.println("有沒有進來做事?????");
+		System.out.println("這裡是會員點選修改會員資料 要秀出資訊的controller");
 		System.out.println(email);
 
 		MemberBean bean = updateService.selectMemberInfo(email);
@@ -37,22 +37,28 @@ public class UpdateMemberInfoController {
 	@RequestMapping(path = "checkprocessupdate", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String UpdateMemberInfo(String email, String name, String gender, String phone, String address) {
-		System.out.println("有沒有進來做事?????");
+		System.out.println("進入會員修改輸入資料的controller");
+		MemberBean queryMemberInfo = updateService.selectMemberInfo(email);
 		System.out.println(email);
 		System.out.println(name);
 		System.out.println(gender);
 		System.out.println(phone);
 		System.out.println(address);
-		MemberBean queryMemberInfo = updateService.selectMemberInfo(email);
-		if (queryMemberInfo != null) {
-			queryMemberInfo.setmembername(name);
-			queryMemberInfo.setGender(gender);
-			queryMemberInfo.setPhone(phone);
-			queryMemberInfo.setmemberaddress(address);
-
-		} else {
-			// 會員資料是空 代表有錯誤!!
+		if(name==null||name.length()==0||name.equals("")) {
+			name = queryMemberInfo.getmembername();
 		}
+		if(phone==null||phone.length()==0||phone.equals("")) {
+			phone = queryMemberInfo.getPhone();
+		}
+		if(address==null||address.length()==0||address.equals("")) {
+			address = queryMemberInfo.getmemberaddress();
+		}
+
+		queryMemberInfo.setmembername(name);
+		queryMemberInfo.setPhone(phone);
+		queryMemberInfo.setmemberaddress(address);
+		queryMemberInfo.setGender(gender);
+
 		System.out.println(queryMemberInfo);
 		if (updateService.updateMemberInfo(queryMemberInfo)) {
 			return "updatesuccess";

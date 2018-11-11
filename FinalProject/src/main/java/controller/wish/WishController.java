@@ -1,5 +1,7 @@
 package controller.wish;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,16 +99,23 @@ public class WishController {
 	}
 
 
-	@RequestMapping(path = "processMemberSelectWish", produces = "text/html;charset=utf-8")
+/*========================================================處理會員查看自己的願望清單========================================================*/
+	@RequestMapping(path = "processMemberSelectWishList", produces = "text/html;charset=utf-8")
 	@ResponseBody
-	public String processMemberSelectWish(String email) {
-	
-		loginService.checkEmail(email);
+	public String processMemberSelectWishList(String email) {
+		System.out.println("會員點選自己的願望清單的controllerl：");
+		System.out.println(email);
+		loginService.checkEmail(email).getMemberid();
+		System.out.println("會員ID=>"+loginService.checkEmail(email).getMemberid());
 		
+		List<WishBean> memberWishList = wishService.selectByMemberId(loginService.checkEmail(email).getMemberid());
+		for(WishBean temp:memberWishList) {
+		System.out.println("會員的願望清單=>>"+temp);	
+		}
+		System.out.println("查詢到的會員願望清單資料轉成json的格式:::");
+		System.out.println(new Gson().toJson(memberWishList));
 		
-		
-		
-		return "";
+		return new Gson().toJson(memberWishList);
 	}
 
 

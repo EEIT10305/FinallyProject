@@ -1,5 +1,7 @@
 package model.service.login;
 
+import java.util.List;
+
 import model.bean.MemberBean;
 
 public interface LoginService {
@@ -9,4 +11,6 @@ public interface LoginService {
 	public MemberBean checkEmail(String email);
 	
 	public MemberBean selectById(Integer memberId);
+	
+	public List<MemberBean> selectAll();
 }

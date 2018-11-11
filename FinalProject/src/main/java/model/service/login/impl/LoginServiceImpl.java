@@ -2,6 +2,8 @@ package model.service.login.impl;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public MemberBean selectById(Integer memberId) {
 		return memberDao.selectById(memberId);
+	}
+
+	@Override
+	public List<MemberBean> selectAll() {
+		
+		return memberDao.selectAll();
 	}
 
 		

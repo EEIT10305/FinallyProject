@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>秉毅測試看不懂?</title>
+
+
+    <link rel="stylesheet" href="css/fp.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+</head>
+<body>
+    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfWishInfo">我的願望清單</li>
+
+
+<table style="width:100%" class="myordertable table-striped">
+    <thead>
+        <tr><th scope="col">#</th><th scope="col">商品類型</th><th scope="col">品牌</th><th scope="col">商品型號</th><th scope="col">商品價格</th></tr>
+</thead>
+<tbody id="testMemberWishList"><!--秉毅測試用-->
+</tbody>
+</table>
+
+<script>
+$('#memberClickSelfWishInfo').click(function(){
+$.ajax({
+    type: "POST",
+    url: "processMemberSelectWishList",
+    data: {
+        email:'123@gmail.com'  //=======目前寫死的 要記得從cookie內抓=====
+    },
+    success: function (data) {
+        alert('controller回傳資料有沒有成功??')
+        var memberWish=$.parseJSON(data);
+        alert(memberWish)
+        var txt = "";
+        var a = 1;
+        if(memberWish.length===0){
+            $('#testMemberWishList').html('您尚未關注任何商品');
+        }
+        else{
+            for(i=0;i<memberWish.length;i++){
+            txt+="<tr><th scope='row'>"+a+"</th>";
+            txt+="<td>"+memberWish[i].productBean.categoryBean.category+"</td>";//商品類型
+            txt+="<td>"+memberWish[i].productBean.brandBean.brand+"</td>";//品牌
+            txt+="<td>"+memberWish[i].productBean.model+"</td>";//商品型號
+            txt+="<td>"+memberWish[i].productBean.price+"</td></tr>";//商品價格
+            a++;
+            }
+            $('#testMemberWishList').html(txt);
+        }
+    }
+});
+});
+
+</script>
+</body>
+</html>

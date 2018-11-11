@@ -4,7 +4,7 @@ $("#memberClickSelfInfo").click(function (){
     alert('測試有無進入此方訊');
     var isUserInside = cookies.split("email=")[1].split(";")[0]
     alert('有沒有抓到cookie內的email呢??→'+isUserInside);
-    $.post("processupdate",{
+    $.post("showMemberInfo",{
         email:isUserInside
     },function(data,status){
         if(status == "success"){
