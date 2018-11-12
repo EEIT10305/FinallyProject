@@ -70,7 +70,7 @@ public class WishDAOImpl implements WishDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WishBean> selectByMemberId(Integer memberId) {
-		String hql = "FROM WishBean w WHERE w.memberid:memberid";
+		String hql = "FROM WishBean WHERE memberid=:memberid";
 		return this.getSession().createQuery(hql).setParameter("memberid", memberId).list();
 	}
 

@@ -59,7 +59,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<ProductBean> selectByCategory(int Categoryid) {
-		String hql = "From ProductBean where Categoryid= :Categoryid";
+		String hql = "From ProductBean where statu='on' and Categoryid= :Categoryid";
 
 		return this.getSession().createQuery(hql, ProductBean.class).setParameter("Categoryid", Categoryid)
 				.getResultList();

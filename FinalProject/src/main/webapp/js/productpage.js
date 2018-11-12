@@ -253,6 +253,7 @@ $(document).ready(function () {
         sessionStorage.category = event.target.value;
         sessionStorage.brand = "ini";
         sessionStorage.price = 0;
+        sessionStorage.searchspace = "ini";
 
         //      傳category給brand標籤去搜尋producttable
         $.post("SelectByBrand", { "category": sessionStorage.category }, function (data, status) {
