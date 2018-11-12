@@ -1,5 +1,36 @@
-	$("#chartselect").next().next().click(function(){
-			$.post("ChartSelect", function(data, status) {
+		 $('#datepicker1').datepicker({
+		    format: "yyyy/mm/dd",
+		    startDate: "2018-02-25",
+		    autoclose: true,
+		    clearBtn: true,
+		    calendarWeeks: true,
+		    todayHighlight: true,
+		    language: 'zh-TW'
+		});
+	 
+	 $('#datepicker1').change(function(){
+		 var da = $('#datepicker1').val()
+	     $('#datepicker2').datepicker({
+		    format: "yyyy/mm/dd",
+		    startDate: da,
+		    autoclose: true,
+		    clearBtn: true,
+		    calendarWeeks: true,
+		    todayHighlight: true,
+		    language: 'zh-TW'
+	    	});
+		 
+	 })
+$("#chartselect").change(function(){
+	if($("#chartselect").val() == "sale"){
+		$("#chartselect").next().next().show();
+	}
+})
+    $("#forshowchart").click(function(){
+			$.post("ChartSelect", {
+				"start":$("#datepicker3").val(),
+				"end":$("#datepicker4").val()
+			},function(data, status) {
 				if (status == "success") {
 					var datata = [];
 					var ticks = [];

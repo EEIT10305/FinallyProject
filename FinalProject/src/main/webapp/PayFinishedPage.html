@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/fp.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/firstpageyuan.js"></script>
+<script src="js/basic.js"></script>
+<title>購物車頁</title>
+<style>
+aside {
+	float: left;
+	width: 20%;
+	margin: 10px;
+}
+
+article {
+	width: 75%;
+	margin: 10px;
+	padding: 100px;
+}
+.btn-mystylelink {
+	font-weight: 400;
+	color: grey;
+	background-color: transparent;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		var url = window.location.href.split("?")[1];
+		if(url.indexOf("&") == -1){
+			if(url.indexOf("transactionId=") != -1){
+				var tranid = url.split("=")[1]
+				alert(tranid)
+				var cookies = document.cookie;
+				var cookie = cookies.split("&");
+				var price = cookies.split("Price=")[1].split(";")[0];
+				alert(price)
+				$.post("PayToLinePayConfirm",{
+					"transactionId":tranid,
+					"price":price
+				},function(){
+					alert(交易確認成功)
+				})
+			}
+		}
+	})
+</script>
+
+
+</head>
+
+<body>
+	<div id="OPay"></div>
+	<header style="width:100%">
+		<div style="align-items: baseline;"
+			class="d-flex justify-content-between">
+			<div class="navv">
+				<ul>
+					<li>
+						<a href="FirstPage.html"> <img src="image/001.png"
+							width="120px">
+						</a>
+					</li>
+				</ul>
+
+			</div>
+			<div class="navv">
+				<a href="FirstPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/shopping-bag.png" width="20px"> <br>線上購物
+					</button></a> <a href="CustomizedPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/note.png" width="20px"> <br>自組電腦
+					</button></a> <a href="Pk.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img
+							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
+							width="20px"> <br>商品比較
+					</button></a>
+			</div>
+			<div class="navv">
+				<ul>
+					<li>
+						<a id="test" href="/FinalProject/ShowCart.html">
+						    <img src="image/shopping-cart.png" width="30px">
+                        </a>
+				        <fieldset id="myModal" class="mymodal">
+					        <div class="dropdown-divider"></div>
+					        <a href='ShowCart.html'><button style="width: 300px" class='btn btn-dark'>查看購物車</button></a>
+			            </fieldset>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+					</li>
+				</ul>
+
+
+					
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									type="email" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" placeholder="Enter email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">密碼</label> <input
+									type="password" class="form-control" id="exampleInputPassword1"
+									placeholder="Password">
+							</div>
+
+							<span> <a href="Register.html"> 尚未註冊?</a>
+							</span>
+							
+						    <br>
+							<button id="gogogsubmit"  class="mymodelbtn btn-dark">送出</button>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input"
+									id="exampleCheck1"> <label class="form-check-label"
+									for="exampleCheck1">記住密碼</label>
+							</div>
+							
+							<div class="dropdown-divider"></div>
+							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<nav>
+		<div class="search">
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">分類</button>
+				<button id="catebtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">桌上型電腦</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">主機板</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">CPU</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">記憶體</button> -->
+				</div>
+			</div>
+
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+				<button name="becheckbtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="modal"
+					data-target="#mustchoose">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2"></div>
+
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">價格</button>
+				<button name="becheckbtn" type="button" data-toggle="modal"
+					data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2">
+					  <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
+					</div>
+			</div>
+			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇分類</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<input id="searchspace" type="text" style="line-height: 45px;" size="30px">
+			<button id="searchbtn" style="padding: 0px 50px" type="button"
+				class="btn btn-secondary btnwidth">
+				搜尋 <span> <img src="image/loupe.png" width="20px;">
+				</span>
+			</button>
+		</div>
+
+
+
+	</nav>
+	<div style="overflow: auto; background-color: whitesmoke;">
+		<article
+			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
+			<div id="successpay">
+				恭喜您 !!付款完成
+			</div>
+		</article>
+	</div>
+	<footer>
+		<div style="background-color: #dad7cc;">
+			<ul class="nav">
+				<li class="nav-item"><a style="color: #6c757d"
+					class="nav-link active" href="#">隱私權政策</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">購物流程</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">付款方式</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">會員權益</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">售後服務</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">網路客服</a></li>
+
+			</ul>
+
+		</div>
+		<div
+			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
+			<a href=""> <img src="image/001.png" width="80px">
+			</a>
+			<p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999</p>
+			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
+		</div>
+
+	</footer>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

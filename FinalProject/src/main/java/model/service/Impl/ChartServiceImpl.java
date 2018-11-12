@@ -24,7 +24,7 @@ public class ChartServiceImpl implements ChartService {
 	private ProductDAO productDAO ; 
 	
 	@Override
-	public List<Map<String,Object>> getSoldPro() {
+	public List<Map<String,Object>> getSoldPro(String start,String end) {
 		List<Map<String,Object>> realresult = new ArrayList<>();
 		List<Map<String, Object>> result = orderDetailDAO.countSoldPro();
 		for(int i = 0 ; i < result.size() ; i ++) {

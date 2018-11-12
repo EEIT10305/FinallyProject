@@ -9,7 +9,7 @@ $(document).ready(function(){
    if(cookies==null||cookies=="null"||cookies==""||typeof(cookies)=="undefined"||typeof(cookies)==undefined||typeof(cookies)=="false"||typeof(cookies)==false){//如果該使用者的cookie是空的
        alert('cookie是空的,秀出可登入圖示');    
     // $('#未登入的圖示').hide();//秀出登入圖示
-
+       $("#lodinno").show();
    }else{//如果cookie不是空的
    alert('使用者cookie不是空的'); 
        if(cookies.indexOf("email=")!=-1){//    cookies.indexOf("email=");//-1是不存在
@@ -23,7 +23,6 @@ $(document).ready(function(){
                success: function (data) {
                    
                 //    alert(data);
-                   
                    var returnData = $.parseJSON(data);
                    if(returnData.email==isUserInside){
                     alert('使用者的cookie內的mail資料是我們家的會員 隱藏登入按鈕!秀出會員按鈕');
@@ -44,6 +43,8 @@ $(document).ready(function(){
                             var exp = new Date();
                             exp.setTime(exp.getTime() + Days*24*60*60*1000);
                             document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                            $("#lodinyes").show();
+                            $("#originallogout").show();
                         }
                     });
                    }
@@ -65,6 +66,8 @@ $(document).ready(function(){
                                 var exp = new Date();
                                 exp.setTime(exp.getTime() + Days*24*60*60*1000);
                                 document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                                $("#lodinyes").show();
+                                $("#fblogout").show();
                             }
                         });
                         //$('#未登入的圖示').hide();
@@ -86,6 +89,8 @@ $(document).ready(function(){
                             var exp = new Date();
                             exp.setTime(exp.getTime() + Days*24*60*60*1000);
                             document.cookie = "CartId=" + sessionStorage.CartId+";expires=" + exp.toGMTString();
+                            $("#lodinyes").show();
+                            $("#googlelogout").show();
                         }
                     });
                     //$('#未登入的圖示').hide();
@@ -153,7 +158,7 @@ $("#gogogsubmit").click(function () {
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
                  document.cookie = "email=" + data+";expires=" + exp.toGMTString();
                 // alert('一般會員登入+把email塞到cookie裡面');
-                 window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                 window.location.href = "/FinalProject/FirstPage.html";
             }
         }
     });

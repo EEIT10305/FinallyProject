@@ -8,6 +8,6 @@ import model.bean.OrderDetailBean;
 import model.bean.ProductBean;
 
 public interface ChartService {
-	List<Map<String, Object>> getSoldPro();
+	List<Map<String, Object>> getSoldPro(String start, String end);
     
 }
