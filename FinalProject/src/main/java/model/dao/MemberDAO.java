@@ -5,7 +5,7 @@ import model.bean.MemberBean;
 
 public interface MemberDAO {
 	    List<MemberBean> selectAll();
-	    MemberBean selectById(int id);
+	    MemberBean selectById(Integer memberId);
 	    MemberBean insert(MemberBean bean);
 	    boolean update(MemberBean bean);
 	    MemberBean selectByEmail(String email);

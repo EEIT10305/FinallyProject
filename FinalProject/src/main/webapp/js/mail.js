@@ -5,7 +5,7 @@ $(document).ready(function(){
 	})
 	 $("#mailpage").hide();
 	$("#mailshow").mouseover(function(){
-	document.cookie = "email=test@gmail.com";
+	document.cookie = "test@gmail.com";
 	var cookies = document.cookie;
 	var cookie = cookies.split(";");
 	var who = ""
@@ -88,5 +88,12 @@ $(document).ready(function(){
 		})
 	
 	})
+// 秉毅用的,查詢會員的訂單===========================================================
+
+
+
+
+
+
 })
 	

@@ -26,22 +26,21 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<MemberBean> selectAll() {// 查詢全部會員資料
-		return this.getSession().createQuery("FROM MemberBean", MemberBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("FROM MemberBean", MemberBean.class).list();
 	}
 
 	@Override
-	public MemberBean selectById(int id) {// 查詢單筆會員資料
-		return this.getSession().get(MemberBean.class, id);
+	public MemberBean selectById(Integer memberId) {// 查詢單筆會員資料
+		return this.getSession().get(MemberBean.class, memberId);
 	}
 
 	@Override
 	public MemberBean insert(MemberBean bean) {// 新增一筆會員資料
 		if (bean != null) {
-			if (true) {
 				System.out.println(bean.getMemberid());
 				this.getSession().save(bean);
 				return bean;
-			}
+			
 		}
 		return null;
 	}
@@ -53,7 +52,7 @@ public class MemberDAOImpl implements MemberDAO {
 			if (temp != null) {
 				temp.setmembername(bean.getmembername());
 				temp.setEmail(bean.getEmail());
-				temp.setmemberpassword(bean.getEmail());
+				temp.setmemberpassword(bean.getmemberpassword());
 				temp.setPermission(bean.getPermission());
 				temp.setmemberaddress(bean.getmemberaddress());
 				temp.setPhone(bean.getPhone());

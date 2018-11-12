@@ -25,18 +25,18 @@ public class RegisterController {
 	@ResponseBody
 	public String processUserRegister(String name, String email, String password, String permission, String address, String phone, String gender){
 		//接收資料
-//		System.out.println(name);
-//		
-//		System.out.println(email);
-//		System.out.println("經過格式轉換後的:"+replaceSpecialCharater(email));
-//		
-//		System.out.println(password);
-//		System.out.println("經過格式轉換後的:"+replaceSpecialCharater(password));
-//		
-//		System.out.println(permission);
-//		System.out.println(address);
-//		System.out.println(phone);
-//		System.out.println(gender);
+		System.out.println(name);
+		
+		System.out.println(email);
+		System.out.println("經過格式轉換後的:"+replaceSpecialCharater(email));
+		
+		System.out.println(password);
+		System.out.println("經過格式轉換後的:"+replaceSpecialCharater(password));
+		
+		System.out.println(permission);
+		System.out.println(address);
+		System.out.println(phone);
+		System.out.println(gender);
 		
 		MemberBean memberBean = new MemberBean();
 		if(name==null||name.length()==0||name.equals("")) {

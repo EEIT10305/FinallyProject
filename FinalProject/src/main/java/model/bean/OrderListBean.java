@@ -1,8 +1,5 @@
 package model.bean;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="order_list")
@@ -117,6 +113,12 @@ public class OrderListBean {
 	}
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+	
+	@Override
+	public String toString() {
+		return "OrderListBean [orderid=" + orderid + ", date=" + dat + ", memberid=" + memberid + ", total=" + total
+				+ ", shipping=" + shipping + ", address=" + addres + ", statu=" + statu + ", arrive=" + arrive + "]";
 	}
 
 	

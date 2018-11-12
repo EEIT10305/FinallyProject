@@ -430,6 +430,7 @@ article {
     <script type="text/javascript">
         $(document).ready(
                 function(){
+                	alert(sessionStorage.CartId)
                 	selectAllProduct()
                 	$("#checkProductByCart").click(returnPageToCart)
                     $.get("selectCategoryForCustomized",
@@ -1250,7 +1251,7 @@ article {
 //                 	   sessionStorage.VGAname= $("#showVGA").find("option:selected").text()
 //                 	   sessionStorage.STORAGEname= $("#showSTORAGE").find("option:selected").text()
                 	   
-						sessionStorage.CartId=1
+						
                 	    sessionStorage.TotalPrice= $("#totalPrice").html()
 						$.post("showCartDetail",{"model":$("#showMB").find("option:selected").text(),"CartId":sessionStorage.CartId})
 						$.post("showCartDetail",{"model":$("#showCPU").find("option:selected").text(),"CartId":sessionStorage.CartId})
@@ -1260,7 +1261,7 @@ article {
 						$.post("showCartDetail",{"model":$("#showVGA").find("option:selected").text(),"CartId":sessionStorage.CartId})
 						$.post("showCartDetail",{"model":$("#showSTORAGE").find("option:selected").text(),"CartId":sessionStorage.CartId})
                 	   
-                	    window.location.href="http://localhost:8081/FinalProject/ShowCart.html";
+                	    window.location.href="/FinalProject/ShowCart.html";
                    }
                    
                    function turnpage(){

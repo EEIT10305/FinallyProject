@@ -114,7 +114,7 @@ article {
 //                 count++
 //             }
 // 		})
-		sessionStorage.CartId = 1;	
+		
 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 			if(status=="success"){
 				var querydata = $.parseJSON(data);
@@ -642,7 +642,7 @@ function modifyAmount(){
 
 								<div class="form-group">
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" id="gridCheck">
+										<input class="form-check-input" type="checkbox" id="gridCheck" name="memberData" value="123456">
 										<label class="form-check-label" for="gridCheck"> 同會員資料
 										</label>
 									</div>
@@ -700,6 +700,47 @@ function modifyAmount(){
 		</div>
 
 	</footer>
+	<script type="text/javascript">
+	$('#gridCheck').click(function(){
+	//alert($("input[name='memberData']:checked").val())
+	var chcekboxValue = $("input[name='memberData']:checked").val();
+	if(chcekboxValue != null){
+		$.ajax({
+			type:"POST",
+			url:"GetMemberData",
+			data:{
+				email:"wenchen@gmail.com",
+				},
+				success:function(data){
+					//alert(data);
+					var members = $.parseJSON(data)
+					$('#CheckName').attr("value",members.email)
+					$('#CheckPhone').attr("value",members.phone)
+					$('#CheckAddress').attr("value",members.memberaddress)
+					$('#CheckName').attr("placeholder","您尚未輸入Email")
+					$('#CheckPhone').attr("placeholder","您尚未輸入電話")
+					$('#CheckAddress').attr("placeholder","您尚未輸入地址")
+// 					document.getElementById("CheckName").innerhtml=members.email;
+// 				  	document.getElementById("CheckPhone").innerhtml=members.phone;
+// 				 	document.getElementById("CheckAddress").innerhtml=members.memberaddress;
+				}
+		});
+	}else{
+		$('#CheckName').attr("value","")
+		$('#CheckPhone').attr("value","")
+		$('#CheckAddress').attr("value","")
+// 		document.getElementById("CheckName").innerhtml=""
+//   		document.getElementById("CheckPhone").innerhtml=""
+//  		document.getElementById("CheckAddress").innerhtml=""
+	}
+	
+	})
+	
+	
+
+
+	
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script

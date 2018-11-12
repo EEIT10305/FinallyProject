@@ -77,7 +77,6 @@ public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderList
 		obj.setTotalAmount("30");
 		obj.setTradeDesc("test Description");
 		obj.setItemName("3C產品");
-		
 	//	obj.setItemName("3c產品");
 		obj.setReturnURL("http://localhost:8081/FinalProject/FirstPage.html");		//ex返回的網頁
 		obj.setClientBackURL("http://localhost:8081/FinalProject/FirstPage.html");
@@ -111,7 +110,7 @@ public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderList
 			Amount=BSB.getAmount()-ODB.get(y).getAmount();
 			if(Amount>0) {
 				branchStockDAO.updateBranchStock(Amount,BSB.getStatu(),BSB.getProid());	
-				cartDetailDAO.deletebycartId(CartID);
+				//cartDetailDAO.deletebycartId(CartID);  		//先不要刪掉
 				cartDAO.updatestatus(CartID);
 				
 			}else {

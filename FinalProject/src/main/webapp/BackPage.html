@@ -349,12 +349,11 @@ $(function() {
                         <thead>
                             <tr><th scope="col">#</th><th scope="col">購買人</th><th scope="col">購買日期</th><th scope="col">訂單總價</th><th scope="col">訂單細項</th></tr>
                </thead>
-               <tbody>
-				<tr><th scope="row">1</th><td></td><td></td><td></td><td><button data-toggle="modal" data-target="#fororderdetail" class="btn btn-info" style="width:100%">查看細項</button></td></tr> 
-				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr> 
+               <tbody id="showOrderList">
 				</tbody>
 				</table>
-			
+				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr> -->
                 </div>
 			</div>
 			<div style="width: 20%; align-items: flex-start;">
@@ -365,13 +364,15 @@ $(function() {
 						<div style="margin:5px;">
 						<p>開始日期  <input id="datepicker1" width="276" style="margin:5px;"/></p>
 						<p>結束日期  <input id="datepicker2" width="276" style="margin:5px;"/></p>
-						<p>狀態 <select width="276" style="margin:5px;" >
+						<p>狀態 <select id="choosestatus" width="276" style="margin:5px;" >
 						<option >請選擇狀態</option>
 						<option value="pay">已付款</option>
 						<option value="nopay">未付款</option>
 						</select></p>
-						<button id="forshowchart" style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button>
-						</div>
+
+						<!-- <button id="gmClickSearch" style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button> -->
+						<button id="memberClickSearch" style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button><!--秉毅測試用-->
+					</div>
 					</div>
 				</div>
 			</div>
@@ -395,9 +396,10 @@ $(function() {
                         <thead>
                             <tr><th scope="col">#</th><th scope="col">商品型號</th><th scope="col">商品分類</th><th scope="col">商品品牌</th><th scope="col">商品單價</th><th scope="col">數量</th></tr>
                </thead>
-               <tbody>
-				<tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
-				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr> 
+               <!-- <tbody id="gmchooseMemberOrderDetail"> -->
+			   <tbody id="memberchooseMemberOrderDetail"><!--秉毅測試用-->
+				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr>  -->
 				</tbody>
 				</table>
 						</div>
@@ -475,6 +477,7 @@ $(function() {
 
 
 	</article>
+	<script src="js/gmQueryMemberOrder.js"></script><!--秉毅用-->
 	<script src="js/basic.js"></script>
 <script src="js/backpage.js"></script>
 <script src="js/crawler.js"></script>
