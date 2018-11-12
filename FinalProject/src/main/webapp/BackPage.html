@@ -99,8 +99,60 @@ tr td {
 }
 </style>
 <script>
+
+$(document).ready(function(){//信件功能
+    var t = setInterval(request,10000);
+
+	document.cookie = "email=test@gmail.com";
+	var cookies = document.cookie;
+	var cookie = cookies.split(";");
+	var who = ""
+	for(var i = 0 ; i < cookie.length ; i++){
+		if(cookie[i].indexOf("email=") != -1){
+			who = cookie[i].split("=")[1]
+		}
+	}
+		$.post("MailController",{
+			"who":who
+		},function(data,status){
+			if(status == "success"){
+				if(data == "null"){
+				    $("#env1").show()
+				    $("#env2").hide()
+				}else{
+				    $("#env2").show()					
+				    $("#env1").hide()					
+				}
+			}
+
+		})
+})
+	function request(){
+	var cookies = document.cookie;
+	var cookie = cookies.split(";");
+	var who = ""
+	for(var i = 0 ; i < cookie.length ; i++){
+		if(cookie[i].indexOf("email=") != -1){
+			who = cookie[i].split("=")[1]
+		}
+	}
+		$.post("MailController",{
+			"who":who
+		},function(data,status){
+			if(status == "success"){
+				if(data == "null"){
+				    $("#env1").show()
+				    $("#env2").hide()
+				}else{
+				    $("#env2").show()					
+				    $("#env1").hide()					
+				}
+			}
+
+		})
+	
+}
 $(function() {
-	 
 	 $('#datepicker1').datepicker({
 		    format: "yyyy/mm/dd",
 		    startDate: "2018-02-25",
@@ -156,8 +208,9 @@ $(function() {
 			<div class="navv">
 				<ul>
 					<li>
-					<a id="mailshow" href=""> 
-					  <iframe style="display:block;margin-top:5px;border:none;width:30px;height:30px;" src="Envelope.html"></iframe>
+					<a id="mailshow" href="">
+					 <img style="display:none" id="env1" src="image/envelope.png" width="30px">
+					 <img style="display:none" id="env2" src="image/envelope_2 .png" width="30px">
 					  </a>
 				   <fieldset id="mymail" class="mymodal2" style="width:580px;"> 
 				      <div id= "mailcontent"></div> 
@@ -296,29 +349,30 @@ $(function() {
                         <thead>
                             <tr><th scope="col">#</th><th scope="col">購買人</th><th scope="col">購買日期</th><th scope="col">訂單總價</th><th scope="col">訂單細項</th></tr>
                </thead>
-               <tbody>
-				<tr><th scope="row">1</th><td></td><td></td><td></td><td><button data-toggle="modal" data-target="#fororderdetail" class="btn btn-info" style="width:100%">查看細項</button></td></tr> 
-				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr> 
+               <tbody id="showOrderList">
 				</tbody>
 				</table>
-			
+				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr> -->
                 </div>
 			</div>
 			<div style="width: 20%; align-items: flex-start;">
 				<div
 					style="background: whitesmoke; width: 100%; border: 1px solid grey; height: 800px;">
 					<div style="padding: 10px;margin:5px 0px;">
-						<h6 style="text-align: center" id="area2">訂單管理</h6>
+						<h6 style="text-align: center" >訂單管理</h6>
 						<div style="margin:5px;">
 						<p>開始日期  <input id="datepicker1" width="276" style="margin:5px;"/></p>
 						<p>結束日期  <input id="datepicker2" width="276" style="margin:5px;"/></p>
-						<p>狀態 <select width="276" style="margin:5px;" >
+						<p>狀態 <select id="choosestatus" width="276" style="margin:5px;" >
 						<option >請選擇狀態</option>
 						<option value="pay">已付款</option>
 						<option value="nopay">未付款</option>
 						</select></p>
-						<button style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button>
-						</div>
+
+						<!-- <button id="gmClickSearch" style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button> -->
+						<button id="memberClickSearch" style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button><!--秉毅測試用-->
+					</div>
 					</div>
 				</div>
 			</div>
@@ -342,9 +396,10 @@ $(function() {
                         <thead>
                             <tr><th scope="col">#</th><th scope="col">商品型號</th><th scope="col">商品分類</th><th scope="col">商品品牌</th><th scope="col">商品單價</th><th scope="col">數量</th></tr>
                </thead>
-               <tbody>
-				<tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
-				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr> 
+               <!-- <tbody id="gmchooseMemberOrderDetail"> -->
+			   <tbody id="memberchooseMemberOrderDetail"><!--秉毅測試用-->
+				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr>  -->
 				</tbody>
 				</table>
 						</div>
@@ -405,8 +460,14 @@ $(function() {
 						<h6 id="area2">分析圖表</h6>
 						<select id="chartselect">
 							<option value="meow">------</option>
-							<option value="">銷售圖表</option>
+							<option value="sale">銷售圖表</option>
 						</select><br>
+						<div style="display:none;margin:5px;">
+						<p>開始日期  <input id="datepicker3" width="276" style="margin:5px;"/></p>
+						<p>結束日期  <input id="datepicker4" width="276" style="margin:5px;"/></p>
+						<button style="margin-top:10px;width:100%;" class="btn btn-secondary">搜尋</button>
+						</div>
+						
 						<button style="margin-top:10px" class="btn btn-secondary">產生圖表</button>
 					</div>
 				</div>
@@ -416,6 +477,7 @@ $(function() {
 
 
 	</article>
+	<script src="js/gmQueryMemberOrder.js"></script><!--秉毅用-->
 	<script src="js/basic.js"></script>
 <script src="js/backpage.js"></script>
 <script src="js/crawler.js"></script>

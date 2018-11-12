@@ -114,7 +114,7 @@ article {
 //                 count++
 //             }
 // 		})
-		sessionStorage.CartId = 1;	
+		
 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
 			if(status=="success"){
 				var querydata = $.parseJSON(data);
@@ -254,42 +254,57 @@ function modifyAmount(){
 							sessionStorage.OrderID=querydata.orderid
 								$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
 									var query = $.parseJSON(data);
-									$.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
-										if (status == "success") {
-											$("#OPay").html(data)
+									if($("input[name='RadioOptionsToPay']:checked").val() == "歐付寶"){
+										
+									    $.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+										    if (status == "success") {
+									    		$("#OPay").html(data)
+									    	}
+								    	})
+									}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
+										document.cookie = "Price=" + sessionStorage.TotalPrice;
+										
+										$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
+											if(status == "success"){
+												window.location.href = data ;
+											}
+											
+											})
 										}
+										
 									})
-									alert("交易已成功，共有"+query+"筆訂單細項")
-// 		 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
-								})
-			             }
-					})
+								}
+			             })
+					
 				}else if($("input[name='inlineRadioOptions']:checked").val()=="門市取貨"){
 	            	 $.post("CheckOrderListByShop",{"Name":$("#CheckName").val(),"Address":$("#SelectShop").find("option:selected").text(),"Price":sessionStorage.TotalPrice},function(data,status){
 	            		 if (status == "success") {
-				 				var querydata = $.parseJSON(data);
+	            			 var querydata = $.parseJSON(data);
 								sessionStorage.OrderID=querydata.orderid
 									$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
 										var query = $.parseJSON(data);
-										$.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
-											if (status == "success") {
-												$("#OPay").html(data)
+										if($("input[name='RadioOptionsToPay']:checked").val() == "歐付寶"){
+											
+										    $.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+											    if (status == "success") {
+										    		$("#OPay").html(data)
+										    	}
+									    	})
+										}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
+													alert(sessionStorage.TotalPrice)
+											$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
+												if(status == "success"){
+													window.location.href = data;
+												}
+												
+												})
 											}
-										})
-										alert("交易已成功，共有"+query+"筆訂單細項")
-// 			 			 				window.location.href="http://localhost:8081/FinalProject/FirstPage.html"
 									})
 				             }
 	            	 })
 	             }
 					
 	}
-// 		$.post("CheckProductsToPay",function(data,status){
-// 			if (status == "success") {
-// 				var querydata = $.parseJSON(data);
-				
-//         	}
-// 		})
 </script>
 
 
@@ -327,35 +342,23 @@ function modifyAmount(){
 			<div class="navv">
 				<ul>
 					<li>
-
 						<a id="test" href="/FinalProject/ShowCart.html">
-						<img src="image/shopping-cart.png" width="30px">
-
-						</a>
-
+						    <img src="image/shopping-cart.png" width="30px">
+                        </a>
+				        <fieldset id="myModal" class="mymodal">
+					        <div class="dropdown-divider"></div>
+					        <a href='ShowCart.html'><button style="width: 300px" class='btn btn-dark'>查看購物車</button></a>
+			            </fieldset>
 					</li>
 					<li>
 						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
 						</a>
-
 					</li>
 				</ul>
 
-				<fieldset id="myModal" class="mymodal">
-					<div class="dropdown-divider"></div>
-					<a href='ShowCart.html'><button style="width: 300px"
-							class='btn btn-dark'>查看購物車</button></a>
-			</fieldset>
 
-					</li>
-					<li>
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-							<img src="image/avatar.png" width="30px">
-						</a>
-
-					</li>
-				</ul>
+					
 			</div>
 		</div>
 
@@ -582,14 +585,14 @@ function modifyAmount(){
 						<div class="card-body">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="RadioOptionsToPay" id="inlineRadio1" value="刷卡">
+									name="RadioOptionsToPay" id="inlineRadio1" value="歐付寶" checked>
 								<label class="form-check-label" for="inlineRadio1"><img
 									src="image/credit-card.png" width="45px"> 歐付寶</label>
 							</div>
 							<div class="dropdown-divider"></div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="RadioOptionsToPay" id="inlineRadio2" value="option2">
+									name="RadioOptionsToPay" id="inlineRadio2" value="linepay">
 								<label class="form-check-label" for="inlineRadio2"><img
 									src="image/linepay_logo.png" width="45px"> Line Pay</label>
 							</div>
@@ -639,7 +642,7 @@ function modifyAmount(){
 
 								<div class="form-group">
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" id="gridCheck">
+										<input class="form-check-input" type="checkbox" id="gridCheck" name="memberData" value="123456">
 										<label class="form-check-label" for="gridCheck"> 同會員資料
 										</label>
 									</div>
@@ -697,6 +700,47 @@ function modifyAmount(){
 		</div>
 
 	</footer>
+	<script type="text/javascript">
+	$('#gridCheck').click(function(){
+	//alert($("input[name='memberData']:checked").val())
+	var chcekboxValue = $("input[name='memberData']:checked").val();
+	if(chcekboxValue != null){
+		$.ajax({
+			type:"POST",
+			url:"GetMemberData",
+			data:{
+				email:"wenchen@gmail.com",
+				},
+				success:function(data){
+					//alert(data);
+					var members = $.parseJSON(data)
+					$('#CheckName').attr("value",members.email)
+					$('#CheckPhone').attr("value",members.phone)
+					$('#CheckAddress').attr("value",members.memberaddress)
+					$('#CheckName').attr("placeholder","您尚未輸入Email")
+					$('#CheckPhone').attr("placeholder","您尚未輸入電話")
+					$('#CheckAddress').attr("placeholder","您尚未輸入地址")
+// 					document.getElementById("CheckName").innerhtml=members.email;
+// 				  	document.getElementById("CheckPhone").innerhtml=members.phone;
+// 				 	document.getElementById("CheckAddress").innerhtml=members.memberaddress;
+				}
+		});
+	}else{
+		$('#CheckName').attr("value","")
+		$('#CheckPhone').attr("value","")
+		$('#CheckAddress').attr("value","")
+// 		document.getElementById("CheckName").innerhtml=""
+//   		document.getElementById("CheckPhone").innerhtml=""
+//  		document.getElementById("CheckAddress").innerhtml=""
+	}
+	
+	})
+	
+	
+
+
+	
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script

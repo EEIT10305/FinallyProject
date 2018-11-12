@@ -1,8 +1,5 @@
 package model.bean;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="order_list")
@@ -19,7 +15,7 @@ public class OrderListBean {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer orderid;
 	@Column(nullable=false)
-	private String date;
+	private String dat;
 	@Column(nullable=false)
 	private Integer memberid;
 	@Column(nullable=false)
@@ -27,7 +23,7 @@ public class OrderListBean {
 	@Column(nullable=false)
 	private String shipping;
 	@Column(nullable=false)
-	private String address;
+	private String addres;
 	@Column(nullable=false)
 	private String statu;
 	@Column(nullable=false)
@@ -39,28 +35,28 @@ public class OrderListBean {
 	public OrderListBean() {
 		super();
 	}
-	public OrderListBean(Integer orderid, String date, Integer memberid, Integer total, String shipping,
-			String arrive,String statu,String address,MemberBean memberBean) {
+	public OrderListBean(Integer orderid, String dat, Integer memberid, Integer total, String shipping,
+			String arrive,String statu,String addres,MemberBean memberBean) {
 		super();
 		this.orderid = orderid;
-		this.date = date;
+		this.dat = dat;
 		this.memberid = memberid;
 		this.total = total;
 		this.shipping = shipping;
-		this.address = address;
+		this.addres = addres;
 		this.arrive = arrive;
 		this.statu = statu;
 		this.memberBean = memberBean;
 	}
-	public OrderListBean(Integer orderid,String address,String arrive, String date, Integer memberid, String shipping, Integer total,String statu) {
+	public OrderListBean(Integer orderid,String addres,String arrive, String dat, Integer memberid, String shipping, Integer total,String statu) {
 		super();
 		this.orderid = orderid;
-		this.date = date;
+		this.dat = dat;
 		this.memberid = memberid;
 		this.total = total;
 		this.shipping = shipping;
 		this.statu = statu;
-		this.address = address;
+		this.addres = addres;
 		this.arrive = arrive;
 	}
 	public Integer getOrderid() {
@@ -69,11 +65,11 @@ public class OrderListBean {
 	public void setOrderid(Integer orderid) {
 		this.orderid = orderid;
 	}
-	public String getDate() {
-		return date;
+	public String getDat() {
+		return dat;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDat(String dat) {
+		this.dat = dat;
 	}
 	public Integer getMemberid() {
 		return memberid;
@@ -94,11 +90,11 @@ public class OrderListBean {
 		this.shipping = shipping;
 	}
 	
-	public String getAddress() {
-		return address;
+	public String getAddres() {
+		return addres;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddres(String addres) {
+		this.addres = addres;
 	}
 	public String getStatu() {
 		return statu;
@@ -117,6 +113,12 @@ public class OrderListBean {
 	}
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+	
+	@Override
+	public String toString() {
+		return "OrderListBean [orderid=" + orderid + ", date=" + dat + ", memberid=" + memberid + ", total=" + total
+				+ ", shipping=" + shipping + ", address=" + addres + ", statu=" + statu + ", arrive=" + arrive + "]";
 	}
 
 	

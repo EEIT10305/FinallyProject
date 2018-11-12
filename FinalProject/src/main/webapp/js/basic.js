@@ -26,4 +26,5 @@ $(document).ready(function() {
 				$("#mymail").hide();
 			}
 		})
+
 	})
