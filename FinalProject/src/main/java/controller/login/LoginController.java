@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +36,36 @@ public class LoginController {
 	private CartService cartService;
 
 	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
+	
+	private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,})";
+	private Pattern pattern = null;
+	private Matcher matcher = null;
 //--------------------------------------一般會員登入判斷-----------------------------------------------------------
 	@RequestMapping(path = "processlogin", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String processLogin(String email, String password) {
 		// 接收資料
-		System.out.println("email:");
-		System.out.println(email);
-		System.out.println("password:");
-		System.out.println(password);
+		System.out.println("進入一般會員登入的controller");
+		System.out.println("接收到的前端email資料:::"+email);
+		System.out.println("接收到的前端password資料:::"+password);
 
 		// 驗證資料
 		if (email == null || email.length() == 0 || email.equals("")) {// 判斷email是否為空
+			System.out.println("email為空");
 			return "email";
 		}
 
 		if (password == null || password.length() == 0 || password.equals("")) {// 判斷password是否為空
+			System.out.println("password為空");
 			return "password";
+		}else if(password != null && password.length() != 0 && !password.equals("")) {
+			System.out.println("password不是空的 進入判斷有沒有符合指定格式");
+			pattern = Pattern.compile(PASSWORD_PATTERN);
+			matcher = pattern.matcher(password);
+			if(!matcher.matches()) {
+				System.out.println("輸入的密碼不符合規定格式");
+				return "passwordTypeError";
+			}
 		}
 
 		// 呼叫model_service
@@ -195,15 +210,6 @@ public class LoginController {
 			return new Gson().toJson(bean);
 		} 
 		else {
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			return new Gson().toJson(bean);
 		}
 	}

@@ -116,18 +116,23 @@ $("#gogogsubmit").click(function () {
         },
         success: function (data) {
             alert(data)
-            // var cartIdUseInfo= data ; 
             $("#memberLoginErrorEmail").html("");
             $("#memberLoginErrorPassword").html("");
             $("#memberBothErrorMsg").html("");
 
             if(data=="email"){
                 $("#memberLoginErrorEmail").html(data+"不能為空");
-            } else if (data=="password"){
+            }
+            else if (data=="password"){
                 $("#memberLoginErrorPassword").html(data+"不能為空");
-            }else if (data=="notFoundData"){
+            }
+            else if (data=="passwordTypeError"){
+                $("#memberLoginErrorPassword").html(data+"格式輸入錯誤");
+            }
+            else if (data=="notFoundData"){
                 $("#memberBothErrorMsg").html("←找不到您的資料!如未註冊請點選左邊加入我們!");
-            }else if(data=="gmLogin"){
+            }
+            else if(data=="gmLogin"){
                 alert(data+'登入者是GM 請導入GM畫面');
             }
             else{

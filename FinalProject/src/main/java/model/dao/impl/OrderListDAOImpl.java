@@ -2,6 +2,10 @@ package model.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +123,31 @@ public class OrderListDAOImpl implements OrderListDAO {
 		orderListBean.setArrive("arrived");
 		this.getSession().update(orderListBean);
 		return true;
+	}
+
+	@Override
+	public List<OrderListBean> selectOrderListByMemberDate(String dateStart, String dateEnd, Integer memberId) {
+		String hql = "FROM OrderListBean where date between :dateStart and :dateEnd and memberid=:memberid ORDER BY date DESC";
+		
+		return this.getSession().createQuery(hql, OrderListBean.class).setParameter("dateStart", dateStart).setParameter("dateEnd", dateEnd).setParameter("memberid", memberId).list();
+	}
+
+	@Override
+	public List<OrderListBean> selectAllMemberOrderListByDateStatu(String dateStart, String dateEnd, String statu) {
+		String hql = "FROM OrderListBean where date between :dateStart and :dateEnd and statu=:statu ORDER BY date DESC";
+		
+//		       CriteriaBuilder builder = this.getSession().getCriteriaBuilder() ; 
+//		       CriteriaQuery<OrderListBean> query = builder.createQuery(OrderListBean.class) ; 
+//		       Root<OrderListBean> classgo = query.from(OrderListBean.class) ; 
+//		       
+//		       query.orderBy(builder.desc(classgo.get("date"))) ; 
+//		       
+//		       query.select(classgo).where(builder.between(classgo.get("date"), dateStart, dateEnd)) ; 
+//		       List<OrderListBean> rrr = this.getSession().createQuery(query).getResultList() ; 
+		
+		return this.getSession().createQuery(hql, OrderListBean.class).setParameter("dateStart", dateStart).setParameter("dateEnd", dateEnd).setParameter("statu", statu).list();
+//		               return rrr ; 
+		               
 	}
 	
 	
