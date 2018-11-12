@@ -1,12 +1,13 @@
 package model.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.BrandBean;
 import model.bean.CabinetBean;
@@ -37,6 +38,16 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductBean> selectAll() {
 		return this.getSession().createQuery("FROM ProductBean", ProductBean.class).setMaxResults(50).list();
+	}
+	@Override
+	public Map<String,Integer> selectAllByHashMap() {
+		Map<String,Integer> map= new HashMap<String,Integer>();
+		String hql ="From ProductBean";
+		List<ProductBean> Pb=this.getSession().createQuery(hql,ProductBean.class).getResultList();
+		for(int x=0;x<Pb.size();x++) {
+			map.put(Pb.get(x).getModel(), 0);
+		}
+		return map;
 	}
 
 	@Override
