@@ -36,7 +36,7 @@ article {
 </style>
 <script>
 	$(document).ready(function() {
-		
+		sessionStorage.CartId=1;
 // 		alert(sessionStorage.TotalPrice)
 // 		alert(sessionStorage.MBname)
 // 		alert(sessionStorage.CPUname)
@@ -262,7 +262,7 @@ function modifyAmount(){
 									    	}
 								    	})
 									}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
-										document.cookie = "Price=" + sessionStorage.TotalPrice;
+										document.cookie = "OrderID=" + sessionStorage.OrderID;
 										
 										$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
 											if(status == "success"){
@@ -291,7 +291,7 @@ function modifyAmount(){
 										    	}
 									    	})
 										}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
-													alert(sessionStorage.TotalPrice)
+											document.cookie = "OrderID=" + sessionStorage.OrderID;
 											$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
 												if(status == "success"){
 													window.location.href = data;

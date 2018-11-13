@@ -77,7 +77,6 @@ public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderList
 		obj.setTotalAmount("30");
 		obj.setTradeDesc("test Description");
 		obj.setItemName("3C產品");
-	//	obj.setItemName("3c產品");
 		obj.setReturnURL("http://localhost:8081/FinalProject/FirstPage.html");		//ex返回的網頁
 		obj.setClientBackURL("http://localhost:8081/FinalProject/FirstPage.html");
 //		obj.setNeedExtraPaidInfo("N");
