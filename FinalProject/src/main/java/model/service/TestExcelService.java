@@ -6,6 +6,6 @@ import model.bean.BranchStockBean;
 
 public interface TestExcelService {
 
-	List<BranchStockBean> ShowExcelInService(String yyyy, String MM, String dd);
+	List<BranchStockBean> ShowExcelInService(String yyyy, String MM, String dd, Integer d);
 
 }

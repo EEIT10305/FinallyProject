@@ -267,28 +267,32 @@
             </a>
         </div>
         </nav>
-        <div style="overflow: auto">
+        <div style="overflow: auto;font-family:微軟正黑體">
         <aside>
-            <div style="background-color:gainsboro;height:45px"></div>
-            <div style="border:1px solid gainsboro;padding:10px;text-align: center;height:300px;">
-                <h5>會員專區</h5>
-                <ul>
+            <div style="width:100%;background-color:gainsboro;height:45px"></div>
+            <div style="width:100%;border:1px solid gainsboro;padding:10px;text-align: center;height:300px;">
+                <div style="width:100%;margin:0px auto;height:300px;font-family:微軟正黑體">
+                <h5 style="font-weight:bold">會員專區</h5>
+                <ol>
                     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfOrderInfo">我的訂單紀錄</li>
                     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfWishInfo">我的願望清單</li>
                     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfProInfo">我的貨到通知商品</li>
                     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfInfo">修改我的會員資料</li>
                     <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfPassword">修改我的密碼</li>
-                </ul>
+                </ol>
+                </div>
             </div>
             
-            <div style="background-color:gainsboro;height:45px"></div>
-            <div style="border:1px solid gainsboro;padding:10px;text-align: center;height:300px;">
-                <h5>常見問題</h5>
-                <ul>
+            <div style="width:100%;background-color:gainsboro;height:45px"></div>
+            <div style="width:100%;border:1px solid gainsboro;padding:10px;text-align: center;height:300px;">
+            <div style="width:100%;margin:0px auto;height:300px;font-family:微軟正黑體">
+                <h5 style="font-weight:bold">常見問題</h5>
+                <ol>
                     <li><a style="color:#6c757d" href="">啊是怎樣</a></li>
                     <li><a style="color:#6c757d" href="">啊是怎樣</a></li>
                     <li><a style="color:#6c757d"href="">啊是怎樣</a></li>
-                </ul>
+                </ol>
+                </div>
             </div>
         </aside>
         <article>
@@ -313,52 +317,63 @@
                         </ul>
                         </div>
                     </div>
-                    不知道要放什麼先空白
+                  
             </div>
-            
-            <!-- <div id="">參考的表格樣式，如果要顯示商品資料可以用
-                    <div style="text-align: center">
-                            <table class="table table-striped table-mycolor ">
-                                <thead class="thead-mycolor">
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">商品圖片</th>
-                                        <th scope="col">商品型號</th>
-                                        <th scope="col">商品名稱</th>
-                                        <th scope="col">價格</th>
-                                        <th scope="col">數量</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                     
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                     
-                                    </tr>
-        
-                                </tbody>
-                            </table>
-                            </div>
-           
-            </div> -->
-            <div>參考的會員資料樣式
-                   
-                </div>
-                <div class="dropdown-divider"></div>
+<!--             -----------------------------------訂單--------------------------------------------------- -->
+            <div id="" style="display:none" >
+                    <div style="width: 80%; height: 800px; align-items: flex-start;">
+				<div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th scope="col">#</th><th scope="col">購買人</th><th scope="col">購買日期</th><th scope="col">訂單總價</th><th scope="col">訂單細項</th></tr>
+               </thead>
+               <tbody id="showOrderList">
+               <tr><th scope="row">1</th><td></td><td></td><td></td><td> <button data-toggle='modal' data-target='#fororderdetail' class='btn btn-dark' style='width:100%' value='"+orders[i].orderid+"' onclick='memberchoose("+orders[i].orderid+")'>查看細項</button></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
               
+				</tbody>
+				</table>
+                </div>
+			</div>
+           
+            </div> 
+        
+                <!-- 		-----ordermodal----------------------------------------------- -->
+		<div class="modal fade bd-example-modal-lg" id="fororderdetail" tabindex="-1" role="dialog"
+			aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">訂單編號:</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<table style="width:100%" class="myordertable table-striped">
+                        <thead>
+                            <tr><th scope="col">#</th><th scope="col">商品型號</th><th scope="col">商品分類</th><th scope="col">商品品牌</th><th scope="col">商品單價</th><th scope="col">數量</th></tr>
+               </thead>
+               <!-- <tbody id="gmchooseMemberOrderDetail"> -->
+			   <tbody id="memberchooseMemberOrderDetail"><!--秉毅測試用-->
+				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr>  -->
+				</tbody>
+				</table>
+						</div>
+						<div class="modal-footer">
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+<!-- 		-----------------------會員修改資料 --------------------------------------------------------------->
+               <div style = "display:none">
+                <div class="dropdown-divider"></div>
+                 <div style="width:80%;margin:20px;">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputName">姓名</label>
@@ -380,11 +395,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <!-- <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"> -->
+                             <label for="inputEmail">Email</label>
+                             <input type="email" class="form-control" id="inputEmail" placeholder="Email"> --> -->
                         </div>
                         <div class="form-group col-md-6">
-                            <!-- <label for="memberInputPassword4">密碼</label>
+                            <label for="memberInputPassword4">密碼</label>
                             <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password"> -->
                         </div>
                     </div>
@@ -400,7 +415,8 @@
                     
                     
                     <button type="submit" class="btn btn-secondary" id="memberUpdateInfo">修改</button>
-               
+               </div>
+               </div>
     </article>
 </div>
     <footer>

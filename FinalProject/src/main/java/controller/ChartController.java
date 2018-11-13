@@ -18,10 +18,10 @@ public class ChartController {
 	
 	@RequestMapping(path="ChartSelect",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String method() {
+	public String method(String start,String end) {
 		System.out.println("meow");
-		System.out.println(chartService.getSoldPro());
-		return new Gson().toJson(chartService.getSoldPro());	
+		System.out.println(chartService.getSoldPro(start,end));
+		return new Gson().toJson(chartService.getSoldPro(start,end));	
 	}
 
 }

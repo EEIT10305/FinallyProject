@@ -59,10 +59,13 @@ public class OrderListDAOImpl implements OrderListDAO {
 		if(bean!=null) {
 			OrderListBean temp = this.getSession().get(OrderListBean.class, bean.getOrderid());
 			if(temp!=null) {
-				temp.setDate(bean.getDate());
+				temp.setDat(bean.getDat());
+				temp.setAddres(bean.getAddres());
 				temp.setMemberid(bean.getMemberid());
 				temp.setTotal(bean.getTotal());
 				temp.setShipping(bean.getShipping());
+				temp.setStatu(bean.getStatu());
+				temp.setDat(bean.getDat());
 				this.getSession().flush();
 				return true;
 			}			

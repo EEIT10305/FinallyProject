@@ -20,8 +20,7 @@ $(document).ready(function(){
 			if(status == "success"){
 				var query = $.parseJSON(data);
 			    var str = '<div style="text-align:center;line-height:30px;background:gainsboro;">未讀訊息</div>'
-			    
-			    
+
 				$.each(query, function(index,json){			
 					str += '<div value="'+json.message_id+'" class="toMail" style="cursor:pointer;margin:5px 0px;padding:5px;line-height:25px;background:floralwhite">'
 					str += '<table class="mailtable"><tr>'
