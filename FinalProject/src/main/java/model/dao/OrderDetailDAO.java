@@ -20,7 +20,7 @@ public interface OrderDetailDAO {
 
 	void setMemberId(Integer memberid);
 
-	List<Map<String, Object>> countSoldPro();
+	List<Map<String, Object>> countSoldPro(Integer orderid,Integer orderid2);
 
 	List<OrderDetailBean> selectAllByOrderId(Integer OrderId);
 

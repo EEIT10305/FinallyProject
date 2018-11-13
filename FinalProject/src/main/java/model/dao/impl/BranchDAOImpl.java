@@ -43,7 +43,7 @@ public class BranchDAOImpl implements BranchDAO {
 			BranchBean temp = this.getSession().get(BranchBean.class, bean.getBranchid());
 			if (temp != null) {
 				try {
-					temp.setName(bean.getName());
+					temp.setShopname(bean.getShopname());
 					temp.setAddress(bean.getAddress());
 					temp.setPhone(bean.getPhone());
 					return true;

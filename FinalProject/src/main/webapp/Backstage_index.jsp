@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>後台</title>
+	<title>倉儲系統</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style>
 		* {
@@ -155,31 +155,25 @@
 
 				<div class="n1" id="s1">
 					<a href="./Backstage_index.jsp" title="Beats">
-						<p>
-							<br>本月公告</p>
+						<p>本月公告</p></a>
 				</div>
 				<div class="n1" id="s2">
 					<a href="./Backstage_Transfer_Index.jsp" title="Beats">
-						<p>
-							<br>庫存管理</p>
+						<p>庫存管理</p></a>
 				</div>
 				<div class="n1" id="s3">
 					<a href="./Backstage_Import_Index.jsp" title="Beats">
-						<p>
-							<br>進貨作業</p>
+						<p>進貨作業</p></a>
 				</div>
 				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
-						<p>
-							<br>員工管理</p>
+						<p>員工管理</p></a>
 				</div>
 				</c:if>
 				<div class="n2" id="s4">
 					<a href="./shopping.jsp" title="Beats">
-						<p>
-
-						</p>
+						<p></p></a>
 				</div>
 				<div class="n2" id="s5">
 					<a href="./vip1.jsp" title="Beats">

@@ -50,12 +50,15 @@ article {
 				if(url.indexOf("&") == -1){
 					if(url.indexOf("transactionId=") != -1){
 						var tranid = url.split("=")[1]
+						var total = 0;
 						$.post("PayToLinePayConfirm",{"transactionId":tranid,"price":sum},function(){
 								$("#successpay").html("");
-								$("#successpay").append("<tr><th></th><th>分類</th><th>商品名稱</th><th>數量</th><th>價錢</th></tr>");
+								$("#successpay").append('<tr><th scope="col"></th><th scope="col">分類</th><th scope="col">商品名稱</th><th scope="col">數量</th><th scope="col">價錢</th></tr>');
 								$.each(querydata, function (index, json) {
-									$("#successpay").append("<tr><td>"+(index+1)+"</td><td>"+json.category+"</td><td>"+json.model+"</td><td>"+json.amount+"</td><td>"+json.price+"</td></tr>");
+									$("#successpay").append('<tr><th scope="row">'+(index+1)+"</th><td>"+json.category+"</td><td>"+json.model+"</td><td>"+json.amount+"</td><td>"+json.price+"</td></tr>");
+									total += json.price * json.amount
 								})
+								$("#showtotal").html("總共 " + total + " 元")
 							
 						})
 					}
@@ -267,12 +270,13 @@ article {
 		<article
 			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
 			<div>
-			<table>
+				<h3 style="text-align:center;color:red;">恭喜您 !!付款完成</h3>
+			<table class="table table-striped">
 			<tbody id="successpay">
 			
 			</tbody>
 			</table>
-				恭喜您 !!付款完成
+			<h3 id="showtotal" style="text-align:right;color:red;"></h3>
 			</div>
 		</article>
 	</div>

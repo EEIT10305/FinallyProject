@@ -25,10 +25,10 @@ public class BranchBean {
 	public void setBranchid(Integer branchid) {
 		this.branchid = branchid;
 	}
-	public String getName() {
+	public String getShopname() {
 		return shopname;
 	}
-	public void setName(String shopname) {
+	public void setShopname(String shopname) {
 		this.shopname = shopname;
 	}
 	public String getAddress() {

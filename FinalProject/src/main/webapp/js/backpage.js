@@ -21,7 +21,7 @@
                             var text = '';
                             var bugsel = '<option>---</option>';
             				$.each(querydata, function(index, json) {
-            					text +='<li><table style="font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+            					text +='<li><table style="width:100%;font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
             				
             				})
             				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
@@ -57,7 +57,7 @@
         							 "amount":amount
         						 },function(){
         							 if (status == "success") {
-        		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+        		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
         		            				amount = $('#fordatainput').children().length;
 //        		            				alert("222:"+amount);
         						     }
@@ -72,7 +72,7 @@
             				var querydata = $.parseJSON(data);
                             var text = '';
             				$.each(querydata, function(index, json) {
-            					text +='<li><table style="font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px"></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+            					text +='<li><table style="width:100%;font-size:10px;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" height="40px"></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
 
             				})  
             				$("#fordatainput").html(text);//資料庫拉到的資料放到<ol>標籤
@@ -125,7 +125,7 @@
             							 "amount":amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
 //            		            				alert("333:"+amount);
             						     }
@@ -171,7 +171,7 @@
            							 "amount": amount
            						 },function(){
            							 if (status == "success") {
-           		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+           		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
            		            				amount = $('#fordatainput').children().length;
            						     }
            						 })
@@ -247,7 +247,7 @@
             							 "amount": amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
             						     }
             						 })
@@ -341,7 +341,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
@@ -364,7 +364,7 @@
                 				var querydata = $.parseJSON(data);
                                 var text = '';
                 				$.each(querydata, function(index, json) {
-                					text +='<li><table style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+                					text +='<li><table style="width:100%;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
                 				})
                 				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
                 			    
@@ -398,7 +398,7 @@
             							 "amount": amount
             						 },function(){
             							 if (status == "success") {
-            		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+            		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
             		            				amount = $('#fordatainput').children().length;
             						     }
             						 })
@@ -456,7 +456,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
@@ -480,7 +480,7 @@
                 				var querydata = $.parseJSON(data);
                                 var text = '';
                 				$.each(querydata, function(index, json) {
-                					text +='<li><table style="text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
+                					text +='<li><table style="width:100%;text-align:center;height:50px;border:1px solid rgb(63, 60, 60)" id = "'+json.proid+'"><tr><td><img src="image/'+json.model+'.jpg" width="30px" ></td><td>'+json.brandBean.brand+'</td><td>'+json.categoryBean.category+'</td><td>'+json.model+'</td><td>'+json.price+'</td></tr></table></li>';							
                 				})
                 				$("#fordatainput2").html(text);//資料庫拉到的資料放到<ol>標籤
                 			    
@@ -515,7 +515,7 @@
                							 "amount": amount
                						 },function(){
                							 if (status == "success") {
-               		            				$('iframe')[1].contentWindow.location.reload(true);//成功之後重新整理
+               		            				$('iframe')[0].contentWindow.location.reload(true);//成功之後重新整理
                		            				amount = $('#fordatainput').children().length;
                						     }
                						 })
