@@ -44,7 +44,7 @@ public interface CartService {
 	Integer CheckAmount(String Model);
 	
 
-	Boolean updateProidamount(Integer proid);
+//	Boolean updateProidamount(Integer proid);
 	
 	
 	

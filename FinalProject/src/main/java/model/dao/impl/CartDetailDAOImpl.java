@@ -144,11 +144,11 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 	}
 
 	@Override
-	public boolean checkProductisAlive(int proid) {
+	public boolean checkProductisAlive(int proid,int cartid) {
 		boolean dup = false ;
-		String hql = "FROM CartDetailBean Where proid=:proid";
+		String hql = "FROM CartDetailBean Where proid=:proid and cartid=:cartid";
 		List<CartBean>list = this.getSession().
-		createQuery(hql).setParameter("proid", proid).getResultList();
+		createQuery(hql).setParameter("proid", proid).setParameter("cartid", cartid).getResultList();
 		if(list.size()>0) {
 			dup = true ;
 		}
@@ -156,10 +156,10 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 	}
 
 	@Override
-	public CartDetailBean selectByProductId(int proid) {
-		String hql = "FROM CartDetailBean Where proid=:proid";
+	public CartDetailBean selectByProductId(int proid,int cartid) {
+		String hql = "FROM CartDetailBean Where proid=:proid and cartid=:cartid";
 		CartDetailBean cartDetailBean = (CartDetailBean) this.getSession().
-		createQuery(hql).setParameter("proid", proid).getSingleResult();
+		createQuery(hql).setParameter("proid", proid).setParameter("cartid", cartid).getSingleResult();
 		return cartDetailBean;
 		
 	}
