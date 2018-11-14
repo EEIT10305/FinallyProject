@@ -160,6 +160,10 @@ $("#gogogsubmit").click(function () {
                     }
                 });
 
+                $('#originallogout').attr("style","display:block;width: 300px");
+                $('#googlelogout').attr("style","display:none;width: 300px");
+                $('#fblogout').attr("style","display:none;width: 300px");
+
                  var Days = 30;//cookie設定30天
                  var exp = new Date();
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
@@ -170,4 +174,14 @@ $("#gogogsubmit").click(function () {
         }
     });
 
-})
+});
+
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.reload(true);
+}
