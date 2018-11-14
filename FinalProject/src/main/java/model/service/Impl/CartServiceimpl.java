@@ -44,7 +44,7 @@ public class CartServiceimpl implements CartService {
 
 	@Override
 	public void insert(String model , Integer CartId) {		//之後再這裡傳入MemberId
-		
+
 //		String hql = "from ProductBean where model=: model";
 //		ProductBean productbean = produtDAOImpl.getSession().			//已經改為下方Dao方法直接匯入並找尋對應的product
 //				createQuery(hql,ProductBean.class).setParameter("model", model).getSingleResult();		//利用model這個條件去得到productbean
@@ -58,9 +58,9 @@ public class CartServiceimpl implements CartService {
 //		cartbean.setStatus("nopay");		
 //		Dao.insert(cartbean);
 		System.out.println("進入購物車");
-		Boolean isdup = cartDetailDao.checkProductisAlive(productbean.getProid());
+		Boolean isdup = cartDetailDao.checkProductisAlive(productbean.getProid(),CartId);
 		if(isdup == true) {
-			CartDetailBean  cdb= cartDetailDao.selectByProductId(productbean.getProid());
+			CartDetailBean  cdb= cartDetailDao.selectByProductId(productbean.getProid(),CartId);
 //			List<CartDetailBean> cdb = this.getSession()
 //					.createQuery(hql,CartDetailBean.class)
 //					.setParameter("cartid", cartid).getResultList();
@@ -161,11 +161,11 @@ public class CartServiceimpl implements CartService {
 		
 	}
 
-	@Override
-	public Boolean updateProidamount(Integer proid) {
-		Boolean isDup = cartDetailDao.checkProductisAlive(proid);
-		return isDup;
-	}
+//	@Override
+//	public Boolean updateProidamount(Integer proid) {
+//		Boolean isDup = cartDetailDao.checkProductisAlive(proid);
+//		return isDup;
+//	}
 
 	
 	

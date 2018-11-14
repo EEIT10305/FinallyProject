@@ -19,9 +19,11 @@ public interface CartDetailDAO {
 	    //CartDetailBean selectCartId(int cartid);
 
 	    //void setMemberId(Integer memberid);		
-	    boolean checkProductisAlive(int proid);
-	    CartDetailBean selectByProductId(int proid);
+//	    boolean checkProductisAlive(int proid);
+//	    CartDetailBean selectByProductId(int proid);
 
 		boolean updateBean(Integer cartid, Integer amount, Integer proid);
+		boolean checkProductisAlive(int proid, int cartid);
+		CartDetailBean selectByProductId(int proid, int cartid);
 
 }

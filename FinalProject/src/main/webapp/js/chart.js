@@ -49,7 +49,7 @@ $("#chartselect").change(function(){
                     str += '</tbody></table>'
                     
 					var dataset = [ {
-						label : "數量",
+						label : "Amount",
 						data : datata,
 						color : "grey"
 					} ];
@@ -68,13 +68,13 @@ $("#chartselect").change(function(){
 					axisLabelUseCanvas : true,
 					axisLabelFontSizePixels : 12,
 					axisLabelFontFamily : '微軟正黑體',
-					axisLabelPadding : 20,
+					axisLabelPadding : 10,
 					ticks : ticks
 				},
 				yaxis : {
-					axisLabel : "數量",
+					axisLabel : "Amount",
 					axisLabelUseCanvas : true,
-					axisLabelFontSizePixels : 12,
+					axisLabelFontSizePixels : 8,
 					axisLabelFontFamily : '微軟正黑體',
 					axisLabelPadding : 3,
 					tickFormatter : function(v, axis) {

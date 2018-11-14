@@ -36,23 +36,35 @@ article {
 </style>
 <script>
 	$(document).ready(function() {
-		var url = window.location.href.split("?")[1];
-		if(url.indexOf("&") == -1){
-			if(url.indexOf("transactionId=") != -1){
-				var tranid = url.split("=")[1]
-				alert(tranid)
-				var cookies = document.cookie;
-				var cookie = cookies.split("&");
-				var price = cookies.split("Price=")[1].split(";")[0];
-				alert(price)
-				$.post("PayToLinePayConfirm",{
-					"transactionId":tranid,
-					"price":price
-				},function(){
-					alert(交易確認成功)
+		var cookies = document.cookie;
+		var cookie = cookies.split("&");
+		var OrderID = cookies.split("OrderID=")[1].split(";")[0];
+		$.post("ShowOrderDetailByLinePay",{"OrderID":OrderID},function(data,status){
+			if(status == "success"){
+				var querydata = $.parseJSON(data);
+				var sum =0;
+				$.each(querydata, function (index, json) {
+					sum+= json.price
 				})
+				var url = window.location.href.split("?")[1];
+				if(url.indexOf("&") == -1){
+					if(url.indexOf("transactionId=") != -1){
+						var tranid = url.split("=")[1]
+						var total = 0;
+						$.post("PayToLinePayConfirm",{"transactionId":tranid,"price":sum},function(){
+								$("#successpay").html("");
+								$("#successpay").append('<tr><th scope="col"></th><th scope="col">分類</th><th scope="col">商品名稱</th><th scope="col">數量</th><th scope="col">價錢</th></tr>');
+								$.each(querydata, function (index, json) {
+									$("#successpay").append('<tr><th scope="row">'+(index+1)+"</th><td>"+json.category+"</td><td>"+json.model+"</td><td>"+json.amount+"</td><td>"+json.price+"</td></tr>");
+									total += json.price * json.amount
+								})
+								$("#showtotal").html("總共 " + total + " 元")
+							
+						})
+					}
+				}
 			}
-		}
+		})
 	})
 </script>
 
@@ -257,8 +269,14 @@ article {
 	<div style="overflow: auto; background-color: whitesmoke;">
 		<article
 			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
-			<div id="successpay">
-				恭喜您 !!付款完成
+			<div>
+				<h3 style="text-align:center;color:red;">恭喜您 !!付款完成</h3>
+			<table class="table table-striped">
+			<tbody id="successpay">
+			
+			</tbody>
+			</table>
+			<h3 id="showtotal" style="text-align:right;color:red;"></h3>
 			</div>
 		</article>
 	</div>

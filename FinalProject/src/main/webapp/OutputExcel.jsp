@@ -10,6 +10,8 @@
 <title>後台</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 * {
 	margin: 0;
@@ -155,8 +157,13 @@
 	;
 }
 
-td {
-	width: 100px;
+.excelTable {
+	margin: 10px auto;
+	border-collapse: collapse;
+}
+
+.excelTable tr td {
+	border: 1px solid black;
 }
 </style>
 
@@ -172,41 +179,27 @@ td {
 					<img src="./pic/unnamed.png" width="200px">
 				</div>
 				<div class="n1" id="s1">
-					<a href="/FinalProject/Backstage_index.jsp" title="Beats">
-						<p>
-							<br>本月公告
-						</p>
+					<a href="./Backstage_index.jsp" title="Beats">本月公告</a>
 				</div>
 
 				<div class="n1" id="s2">
-					<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">
-						<p>
-							<br>庫存管理
-						</p>
+					<a href="./Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
 				</div>
 				<div class="n1" id="s3">
-					<a href="/FinalProject/Backstage_Import_Index.jsp" title="Beats">
-						<p>
-							<br>進貨作業
-						</p>
+					<a href="./Backstage_Import_Index.jsp" title="Beats">進貨作業</a>
 				</div>
 				<c:if test="${staffBean.permission=='boss'}">
 					<div class="n1" id="s4">
-						<a href="./coat.jsp" title="Beats">
-							<p>
-								<br>員工管理
-							</p>
+						<a href="./coat.jsp" title="Beats">員工管理</a>
 					</div>
 				</c:if>
 				<div class="n2" id="s4">
-					<a href="./shopping.jsp" title="Beats">
-						<p></p>
+					<a href="./shopping.jsp" title="Beats"></a>
 				</div>
 				<div class="n2" id="s5">
-					<a href="./vip1.jsp" title="Beats"> <br> <img
+					<a href="./vip1.jsp" title="Beats"> <img
 						src="./images/account.png" width="100px">
-					</a> </a>
-
+					</a>
 				</div>
 				<div class="n2" id="s6">
 					<a href="./index.jsp" title="Beats"> </a>
@@ -221,57 +214,97 @@ td {
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				${sessionScope.login} </span> <span>&nbsp;&nbsp;&nbsp;您好!!</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置： <a
-					href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
-				<span>/</span> <a
-					href="/FinalProject/Backstage_Transfer_Search_Result.jsp"
-					title="Beats">調撥貨品</a>
+					href="./Backstage_Import_Index.jsp" title="Beats">進貨作業</a> <span>/</span>
+				<a href="./Backstage_Search_Import.jsp" title="Beats">查詢進貨</a> <span>/</span>
+				報表輸出
 			</div>
 			<br> <br> <br>
 
-
 		</header>
-	</div>
-<body>
-	Search Result
-
-		<table border="2px">
-			<caption>Transfer</caption>
-			<thead>
-
-				<tr>
-					<th>Branch Stock ID</th>
-					<th>Branch Name</th>
-					<th>Amount</th>
-					<th>Product Brand</th>
-					<th>Product Model</th>
-					<th>Product ID</th>
-					<th>Product Category</th>
-			</thead>
-
-		</table>
-		<c:forEach var="row" items="${transfer}">
-			<form action="/FinalProject/pages/transfer.controller?shopname=${row.branchBean.shopname}" method="post">
-				<table>
-					
-						<tr>
-							<td>${row.branch_stock_id}</td>
-							<td>${row.branchBean.shopname}</td>
-							<td>${row.amount}<input type="hidden" name="amount" value="${row.amount}"></td>
-							<td>${row.productBean.brandBean.brand}<input type="hidden" name="model" value="${row.productBean.model}"><input type="hidden" name="branchid" value="${row.branchid}"></td>
-							<td>${row.productBean.model}</td>
-							<td>${row.proid}<input type="hidden" name="proid" value="${row.proid}"></td>
-							<td>${row.productBean.categoryBean.category}</td>
-			
-							<%-- 			<td><a href="/FinalProject/pages/transfer.controller?branchstockid=${row.branch_stock_id}&amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}">Transfer</a></td>			 --%>
-							<td><input type="submit" value="送出"></td>
-							<!--/FinalProject/pages/transfer.controller?amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}-->
-
-						</tr>
-					
+</div>
+		<p class="d2">報表輸出</p>
+		
+    <div style="display:flex;flex-wrap:wrap;margin-top:20px;height:450px;">
+			<div style="justify-content: center;line-height: 48px;width: 50%;text-align:center;padding-top:100px;">
+				<span>西元</span> <input id="yyyy" type="text" maxlength="4" size="4"><span>年</span>
+				<input id="MM" type="text" maxlength="2" size="2"><span>月</span>
+				<input id="dd" type="text" maxlength="2" size="2"><span>日</span>
+				<br> 請輸入天數<input id="d" type="text" maxlength="2" size="2">
+				<button id="show" type="button">製作報表</button>
+			</div>
+			<div style="justify-content: center;width: 50%; height: 400px;overflow: auto;">
+				<table class="excelTable">
+					<tbody id="ShowReport">
+					</tbody>
 				</table>
-			
-	       </form>
-		</c:forEach>
+			</div>
+	</div>
+
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$("#show").click(showexcel)
+
+							function showexcel() {
+								$
+										.post(
+												"ShowExcel",
+												{
+													"yyyy" : $("#yyyy").val(),
+													"MM" : $("#MM").val(),
+													"dd" : $("#dd").val(),
+													"d" : parseInt($("#d")
+															.val())
+												},
+												function(data, status) {
+													if (status == "success") {
+														$("#ShowReport")
+																.html(
+																		"<tr><th>產品編號</th><th>產品名稱</th><th>倉庫編號</th><th>數量</th><th>狀態</th></tr>")
+														var querydata = $
+																.parseJSON(data);
+														$
+																.each(
+																		querydata,
+																		function(
+																				index,
+																				json) {
+																			$(
+																					"#ShowReport")
+																					.append(
+																							"<tr><td>"
+																									+ json.proid
+																									+ "</td><td>"
+																									+ json.productBean.model
+																									+ "</td><td>"
+																									+ json.branchid
+																									+ "</td><td>"
+																									+ json.amount
+																									+ "</td><td>"
+																									+ json.statu
+																									+ "</td></tr>")
+																		})
+													}
+												})
+							}
+						})
+	</script>
+</body>
+
+<div>
+	<footer>
+		<div class="f0">
+
+			<p>E-amil:aaa@gmail.com &nbsp; Tel:(02)2222-2222 &nbsp;</p>
+			<p>台北市復興南路一段390號 &nbsp; &copy; 2018 All Rights Reserved Quality
+				Art Technology CO.</p>
+
+		</div>
+	</footer>
+	<br>
+</div>
 
 </body>
 </html>

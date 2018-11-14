@@ -70,14 +70,14 @@ public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderList
 		AllInOne all =  new AllInOne(""); 
 		AioCheckOutDevide obj = new AioCheckOutDevide();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		String price123 = Price;
 		Date today = new Date();
 		String now = sdf.format(today);
 		obj.setMerchantTradeNo("Official2018"+"CCC"+OrderID);			//產生自己的訂單邏輯  每次訂單編號必須不一樣否則網頁會說重複不給執行 !!!訂單編號必定要是大小寫英文加上數字
 		obj.setMerchantTradeDate(now);
-		obj.setTotalAmount("30");
+		obj.setTotalAmount(price123);
 		obj.setTradeDesc("test Description");
 		obj.setItemName("3C產品");
-	//	obj.setItemName("3c產品");
 		obj.setReturnURL("http://localhost:8081/FinalProject/FirstPage.html");		//ex返回的網頁
 		obj.setClientBackURL("http://localhost:8081/FinalProject/FirstPage.html");
 //		obj.setNeedExtraPaidInfo("N");

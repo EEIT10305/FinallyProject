@@ -98,6 +98,7 @@ $(document).ready(function(){
                     alert("已判斷使用者是GM登入")
                    }
                    else{
+                	   $("#lodinno").show();
                        alert('此使用者的cookie內有mail的資訊,但不是我們家的會員 可秀出登入按鈕')
                     //$('#未登入的圖示').hide();
                    }
@@ -105,6 +106,7 @@ $(document).ready(function(){
            });
         }else {
             //判斷有沒有email資訊 
+        	$("#lodinno").show();
            alert('使用者有cookie,但沒有email的資訊,秀出可登入圖示');
             // $('#未登入的圖示').hide();
         }
