@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="css/fp.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+
+<script src="https://apis.google.com/js/api:client.js"></script><!--google登入用-->
 <title>首頁</title>
 <script>
     $(document).ready(function(){
@@ -30,7 +32,7 @@
 				var querydata = $.parseJSON(data);	
 				var text=""
 				$.each(querydata, function(index, json) {
-				text +='<div class="card" style="width: 15%; padding: 10px;">'+
+				text +='<div class="card" style="width: 15rem; padding: 10px;">'+
 				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="230px" alt="Card image cap">'+
 				'<div class="card-body">'+
 				'<img class="wishheart" src="image/heart.png" width="20px">'+
@@ -170,11 +172,12 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button class="mymodelbtn btn-primary" onclick="fbLogin()">使用facebook登入</button>
+							<button class="mymodelbtn btn-light" id="customBtn">Google登入</button>
+							<button class="mymodelbtn btn-primary" onclick="fbLogin()">FB登入</button>
 							<!-- <div style="display: inline;" class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div> -->
 							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
 							<!-- <div class="fb-login-button" data-width="400" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false" onlogin="FBLogin()"></div> -->
-							<div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="465"></div>
+							<!-- <div style="display: inline;" class="g-signin2" data-onsuccess="onSignIn" data-width="465"></div> -->
 						</div>
 						
 					
@@ -328,7 +331,8 @@
 		<!--google登入用-->
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<!--google登入用-->
-        <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'>
+		<script>startApp();</script>
+        <!-- <meta name="google-signin-client_id" content='104571294251-h62qr1fa8502dmuolcrt6tmfa3brto1f.apps.googleusercontent.com'> -->
 		
 		<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>

@@ -51,7 +51,8 @@ article {
 					if(url.indexOf("transactionId=") != -1){
 						var tranid = url.split("=")[1]
 						var total = 0;
-						$.post("PayToLinePayConfirm",{"transactionId":tranid,"price":sum},function(){
+						$.post("PayToLinePayConfirm",{"transactionId":tranid,"price":sum},function(data){
+							if(data == "0000"){
 								$("#successpay").html("");
 								$("#successpay").append('<tr><th scope="col"></th><th scope="col">分類</th><th scope="col">商品名稱</th><th scope="col">數量</th><th scope="col">價錢</th></tr>');
 								$.each(querydata, function (index, json) {
@@ -59,6 +60,9 @@ article {
 									total += json.price * json.amount
 								})
 								$("#showtotal").html("總共 " + total + " 元")
+							}else{
+								alert("付款失敗")
+							}
 							
 						})
 					}
@@ -112,10 +116,19 @@ article {
 			            </fieldset>
 					</li>
 					<li>
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-							<img src="image/avatar.png" width="30px">
-						</a>
-					</li>
+							<a id="lodinyes" style="display:none;" href="Customer.html" >
+								<img src="image/avatar_login.png" width="30px">
+							</a>
+							 <fieldset id="logoutbtn" class="mymodal"> 
+							<button id="originallogout" style="display:none;width: 300px" class='btn btn-dark' onclick="clearAllCookie()">登出</button>
+							<button id="fblogout" style="display:none;width: 300px" class='btn btn-primary' onclick="fbLogout()">fb登出</button>
+							<button id="googlelogout" style="display:none;width: 300px" class='btn btn-light' onclick="signOut();">Google登出</button>
+						</fieldset>
+							<a id="lodinno" style="display:none" href="" data-toggle="modal" data-target="#exampleModalCenter">
+								<img src="image/avatar.png" width="30px">
+							</a>
+	
+						</li>
 				</ul>
 
 
@@ -161,8 +174,8 @@ article {
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
-							
+							<button type="reset" class="mymodelbtn btn-primary">FB登入</button>
+							<button class="mymodelbtn btn-light" id="customBtn">Google登入</button>
 						</div>
 					</form>
 				</div>
@@ -309,6 +322,7 @@ article {
 		</div>
 
 	</footer>
+	<script src="js/login.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script
