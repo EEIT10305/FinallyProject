@@ -210,9 +210,8 @@
 
 		<div class="t9" align="center">
 			<table>
-				<tr>
-					查詢庫存
-					<td>
+				<tr>	
+					<td><p>查詢庫存</p>
 						<a href="/FinalProject/Backstage_Transfer_Search.jsp" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
@@ -223,8 +222,7 @@
 		<div class="t9" align="center">
 			<table>
 				<tr>
-					調撥貨品
-					<td>
+					<td><p>調撥貨品</p>
 						<a href="/FinalProject/pages/search.transfer.controller" title="Beats">
 							<img src="./images/account.png" width="100px">
 						</a>
@@ -235,9 +233,8 @@
 		<div class="t9" align="center">
 			<table>
 				<tr>
-					修改資料
-					<td>
-						<a href="vipDelete.jsp" onclick="return(confirm('確定刪除?'))">
+					<td><p>輸出報表</p>
+						<a href="OutputExcel.jsp">
 							<img src="./images/account.png" width="100px">
 						</a>
 					</td>

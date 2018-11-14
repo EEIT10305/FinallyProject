@@ -8,28 +8,28 @@
 				$(".search").css("opacity", "0.5");
 				$("#carouselExampleIndicatorsup").css("opacity", "0.5")
 				$("footer").css("opacity", "0.5");
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				flag1 = false;
 			} else if (!flag1 && flag2) {//卡被按過按卡
 				$("header").css("opacity", "1");
 				$(".search").css("opacity", "1");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
 				$("footer").css("opacity", "1");
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				flag1 = true;
 			} else if (flag1 && !flag2) {//牆被按過按卡
 				$("header").css("opacity", "0.5");
 				$(".search").css("opacity", "0.5");
 				$("#carouselExampleIndicatorsup").css("opacity", "0.5")
 				$("footer").css("opacity", "0.5");
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				flag1 = false;
 			} else {//都被按過按卡
 				$("header").css("opacity", "1");
 				$(".search").css("opacity", "1");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
 				$("footer").css("opacity", "1");
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				flag1 = true;
 			}
 			// $("#carouselExampleIndicators").css("-webfilter","opacity(0.5)")
@@ -38,20 +38,20 @@
 				$("header").css("opacity", "0.5");
 				$(".search").css("opacity", "0.5");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
-				$(".forcard").css("opacity", "0.5");
+				$(".forcard2").css("opacity", "0.5");
 				$("footer").css("opacity", "0.5");
 				flag2 = false;
 			} else if (flag1 && !flag2) {//牆被按過按牆
 				$("header").css("opacity", "1");
 				$(".search").css("opacity", "1");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				$("footer").css("opacity", "1");
 				flag2 = true;
 			} else if (!flag1 && flag2) {//卡被按過按牆
 				$("header").css("opacity", "0.5");
 				$(".search").css("opacity", "0.5");
-				$(".forcard").css("opacity", "0.5");
+				$(".forcard2").css("opacity", "0.5");
 				$("footer").css("opacity", "0.5");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
 				flag2 = false;
@@ -59,7 +59,7 @@
 				$("header").css("opacity", "1");
 				$(".search").css("opacity", "1");
 				$("#carouselExampleIndicatorsup").css("opacity", "1")
-				$(".forcard").css("opacity", "1");
+				$(".forcard2").css("opacity", "1");
 				$("footer").css("opacity", "1");
 				flag2 = true;
 			}
@@ -73,7 +73,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------
 	$(document).ready(function() {	
 		//傳值iframe-----------------------
-		$('.forcard').click(function() {
+		$('.forcard2').click(function() {
 			window.parent.postMessage("card", '*');
 		})
 		$("#carouselExampleIndicatorsup").click(function() {

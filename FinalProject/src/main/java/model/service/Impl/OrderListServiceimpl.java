@@ -84,4 +84,9 @@ public class OrderListServiceimpl implements OrderListService {
 		return dao.selectAllMemberOrderListByDateStatu(dateStart, dateEnd, statu);
 	}
 
+	@Override
+	public List<OrderListBean> selectMemberAllOrderListByMemberId(Integer memberid) {
+		return dao.selectMemberAllOrderListByMemberId(memberid);
+	}
+
 }

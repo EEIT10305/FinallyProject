@@ -33,9 +33,9 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	}
     
 	@Override
-	public List<Map<String,Object>> countSoldPro() {
+	public List<Map<String,Object>> countSoldPro(Integer orderid,Integer orderid2) {
 //		Query list = this.getSession().createQuery("SELECT new map(proid,SUM(amount)) FROM OrderDetailBean GROUP BY proid").setMaxResults(50);
-		List<Map<String,Object>> map =this.getSession().createQuery("SELECT new Map(proid as pro,SUM(amount) as sum) FROM OrderDetailBean GROUP BY proid").list();
+		List<Map<String,Object>> map =this.getSession().createQuery("SELECT new Map(proid as pro,SUM(amount) as sum) FROM OrderDetailBean Where orderid BETWEEN "+ orderid + " AND " + orderid2 +" GROUP BY proid").list();
 		return map;
 	}
 

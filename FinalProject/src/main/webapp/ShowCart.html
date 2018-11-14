@@ -36,7 +36,6 @@ article {
 </style>
 <script>
 	$(document).ready(function() {
-		sessionStorage.CartId=1;
 // 		alert(sessionStorage.TotalPrice)
 // 		alert(sessionStorage.MBname)
 // 		alert(sessionStorage.CPUname)
@@ -704,7 +703,7 @@ function modifyAmount(){
 	$('#gridCheck').click(function(){
 	//alert($("input[name='memberData']:checked").val())
 	var chcekboxValue = $("input[name='memberData']:checked").val();
-	if(chcekboxValue != null){
+	if(chcekboxValue != null){					//直接在checkbox給值讓程式能夠抓到
 		$.ajax({
 			type:"POST",
 			url:"GetMemberData",
@@ -725,7 +724,7 @@ function modifyAmount(){
 // 				 	document.getElementById("CheckAddress").innerhtml=members.memberaddress;
 				}
 		});
-	}else{
+	}else{											//當沒有勾選的時候就會直接沒有值
 		$('#CheckName').attr("value","")
 		$('#CheckPhone').attr("value","")
 		$('#CheckAddress').attr("value","")

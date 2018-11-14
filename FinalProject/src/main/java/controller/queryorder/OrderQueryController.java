@@ -1,4 +1,4 @@
-package controller.queryoder;
+package controller.queryorder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,13 +34,13 @@ public class OrderQueryController {
 /*========================處理"會員"查詢自己的訂單======================*/	
 	@RequestMapping(path = "processMemberQueryorderlist", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String processMemberQueryOrder(String email, String dateStart, String dateEnd, String statu) {
+	public String processMemberQueryOrder(String email) {
 		//接收資料
 		System.out.println("進入會員查詢訂單的controller");
-		System.out.println("接收前端資料mail=>"+email+"接收前端的資料dateStart=>"+dateStart+"接收前端的資料dateEnd=>"+dateEnd+"接收前端資料statu=>"+statu);
+		System.out.println("接收前端資料mail=>"+email);
 		System.out.println("根據前端傳回的email查不查得到會員id=>"+loginService.checkEmail(email).getMemberid());
 		
-		List<OrderListBean> membeOrderList = orderListService.selectOrderListByMemberDate(dateStart, dateEnd, loginService.checkEmail(email).getMemberid());
+		List<OrderListBean> membeOrderList = orderListService.selectMemberAllOrderListByMemberId(loginService.checkEmail(email).getMemberid());
 		System.out.println("是否有撈到會員的訂單資料"+membeOrderList);
 		
 		System.out.println("查詢到的List資料 轉json的格式長什麼樣子???");

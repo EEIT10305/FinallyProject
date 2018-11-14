@@ -46,12 +46,15 @@ public class TestExcelServiceImpl implements TestExcelService {
 		String date="";
 		int ProductAmount=0;
 		int total=0;
-		
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
+		Date today=new Date();
+		String now =sdf.format(today);
+		SimpleDateFormat sdf1 =new SimpleDateFormat("yyyyMMddhhmmss");
+		outputFile="C:\\temp\\test"+sdf1.format(today)+".xls";
 		try {
 			
-				SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
-				Date today=new Date();
-				String now =sdf.format(today);
+				
+				
 				HSSFWorkbook workbook = new HSSFWorkbook();
 
 				HSSFSheet sheet = workbook.createSheet();
