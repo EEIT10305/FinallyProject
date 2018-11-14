@@ -138,7 +138,7 @@ public class CartDetailDAOImpl implements CartDetailDAO{
 				.createQuery(hql,CartDetailBean.class)
 				.setParameter("cartid", cartid).getResultList();
 		for(int x=0;x<cdb.size();x++) {
-			this.getSession().delete(cdb.get(x));			//如果是多項東西的泛型必須用迴圈把每一個bean給分別取出來，程式才知道要刪除的是一個bean物件，而非
+			this.getSession().delete(cdb.get(x));			//如果是多項東西的泛型必須用迴圈把每一個bean給分別取出來，程式才知道要刪除的是一個bean物件，而非整個
 		}
 		return true;
 	}

@@ -31,7 +31,7 @@ public class OrderListDAOImpl implements OrderListDAO {
 	}
 	@Override
 	public List<OrderListBean> selectAllByTime(String Time) {
-		return this.getSession().createQuery("FROM OrderListBean where date=:Time",OrderListBean.class).setParameter("Time", Time).list();
+		return this.getSession().createQuery("FROM OrderListBean where dat=:Time",OrderListBean.class).setParameter("Time", Time).list();
 	}
 
 	@Override
