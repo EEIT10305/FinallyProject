@@ -41,6 +41,7 @@ public class TestExcelServiceImpl implements TestExcelService {
 	public List<BranchStockBean> ShowExcelInService(String yyyy,String MM,String dd,Integer d) {
 		List<BranchStockBean> BB = branchStockDAO.selectAllByBranchId(1);
 		Map<String,Integer> map=productDAO.selectAllByHashMap();
+		
 		String days="";
 		String date="";
 		int ProductAmount=0;
@@ -69,7 +70,7 @@ public class TestExcelServiceImpl implements TestExcelService {
 				
 				int countx=1;
 				int county=1;
-
+				
 				for(int x = 0 ; x<BB.size();x++) {
 					HSSFCell row1cellx = row1.createCell((short) countx);
 					row1cellx.setCellValue(BB.get(x).getProductBean().getModel());
@@ -78,7 +79,6 @@ public class TestExcelServiceImpl implements TestExcelService {
 					row2cellx.setCellValue(BB.get(x).getAmount());
 					countx++;
 				}
-
 						for(int y= 0; y<d;y++) {
 							days=yyyy+"/"+MM+"/"+(Integer.parseInt(dd)+y);
 							date=sdf.format(sdf.parse(days));
@@ -87,10 +87,11 @@ public class TestExcelServiceImpl implements TestExcelService {
 							HSSFRow rowx = sheet.createRow((short) (3+y));
 								for(int z=0;z<OLB.size();z++) {
 									List<OrderDetailBean> ODB=orderDetailDAO.selectAllByOrderId(OLB.get(z).getOrderid());
-										for(int i=0;i<ODB.size();i++) {
+									for(int i=0;i<ODB.size();i++) {
 											ProductAmount =map.get(ODB.get(i).getModel());
 											total=ProductAmount + ODB.get(i).getAmount();
 											map.put(ODB.get(i).getModel(), total);
+											
 										}
 									}
 								for(int j=0;j<BB.size();j++) {
@@ -101,6 +102,7 @@ public class TestExcelServiceImpl implements TestExcelService {
 										county++;
 								}
 							}
+						
 				FileOutputStream fOut = new FileOutputStream(outputFile);
 
 				workbook.write(fOut);
