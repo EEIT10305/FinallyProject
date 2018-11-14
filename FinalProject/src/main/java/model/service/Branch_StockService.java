@@ -28,6 +28,9 @@ public interface Branch_StockService {
 
 	BrandBean selectByBrand(String brand);
 	
-	
+	List<BranchStockBean> selectAllAmountByProId(Integer proid);
 
+	Integer getAmountByproid(Integer proid);
+	
+	BranchStockBean selectADataByProid(Integer proid);
 }

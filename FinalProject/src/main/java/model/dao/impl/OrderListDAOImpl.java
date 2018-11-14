@@ -31,7 +31,7 @@ public class OrderListDAOImpl implements OrderListDAO {
 	}
 	@Override
 	public List<OrderListBean> selectAllByTime(String Time) {
-		return this.getSession().createQuery("FROM OrderListBean where date=:Time",OrderListBean.class).setParameter("Time", Time).list();
+		return this.getSession().createQuery("FROM OrderListBean where dat=:Time",OrderListBean.class).setParameter("Time", Time).list();
 	}
 
 	@Override
@@ -130,27 +130,29 @@ public class OrderListDAOImpl implements OrderListDAO {
 
 	@Override
 	public List<OrderListBean> selectOrderListByMemberDate(String dateStart, String dateEnd, Integer memberId) {
-		String hql = "FROM OrderListBean where date between :dateStart and :dateEnd and memberid=:memberid ORDER BY date DESC";
+		String hql = "FROM OrderListBean where date between :dateStart and :dateEnd and memberid=:memberid ORDER BY dat DESC";
 		
 		return this.getSession().createQuery(hql, OrderListBean.class).setParameter("dateStart", dateStart).setParameter("dateEnd", dateEnd).setParameter("memberid", memberId).list();
 	}
 
 	@Override
 	public List<OrderListBean> selectAllMemberOrderListByDateStatu(String dateStart, String dateEnd, String statu) {
-		String hql = "FROM OrderListBean where date between :dateStart and :dateEnd and statu=:statu ORDER BY date DESC";
-		
+		String hql = "FROM OrderListBean where dat between :dateStart and :dateEnd and statu=:statu ORDER BY dat DESC";
 //		       CriteriaBuilder builder = this.getSession().getCriteriaBuilder() ; 
 //		       CriteriaQuery<OrderListBean> query = builder.createQuery(OrderListBean.class) ; 
 //		       Root<OrderListBean> classgo = query.from(OrderListBean.class) ; 
-//		       
 //		       query.orderBy(builder.desc(classgo.get("date"))) ; 
-//		       
 //		       query.select(classgo).where(builder.between(classgo.get("date"), dateStart, dateEnd)) ; 
 //		       List<OrderListBean> rrr = this.getSession().createQuery(query).getResultList() ; 
 		
 		return this.getSession().createQuery(hql, OrderListBean.class).setParameter("dateStart", dateStart).setParameter("dateEnd", dateEnd).setParameter("statu", statu).list();
 //		               return rrr ; 
-		               
+	}
+
+	@Override
+	public List<OrderListBean> selectMemberAllOrderListByMemberId(Integer memberid) {
+		String hql = "FROM OrderListBean where memberid=:memberid ORDER BY dat DESC";
+		return this.getSession().createQuery(hql, OrderListBean.class).setParameter("memberid", memberid).list();
 	}
 	
 	

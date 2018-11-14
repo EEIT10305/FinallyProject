@@ -158,6 +158,20 @@ public class Branch_StockServiceImpl implements Branch_StockService{
 		return result;		
 		
 	}
+	@Override
+	public List<BranchStockBean> selectAllAmountByProId(Integer proid) {
+		return branchStockDAO.selectByProId(proid);
+	}
+	@Override
+	public Integer getAmountByproid(Integer proid) {
+		return branchStockDAO.getAmountByproid(proid);
+	}
+	
+	
+	@Override
+	public BranchStockBean selectADataByProid(Integer proid) {
+		return branchStockDAO.selectAllBy(proid);
+	}
 	
 		
 	
