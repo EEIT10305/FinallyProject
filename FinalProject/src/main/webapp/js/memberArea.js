@@ -57,7 +57,7 @@ if($(this).attr("value")=="memberClickSelfInfo"){//如果點選的是=====會員
     $('#thisdivShowMemberInfoUpdate').attr("style","display:block");//會員訂單查詢設定為顯示
 
     $.post("showMemberInfo",{
-        email:"123@gmail.com"      //=====記得要從cookie抓mail資訊======
+        email:isUserInside      //=====記得要從cookie抓mail資訊======
     },function(data,status){
         if(status == "success"){
 //            alert('資料從後端controller傳回來成功')

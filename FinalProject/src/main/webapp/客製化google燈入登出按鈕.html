@@ -265,12 +265,9 @@ function modifyAmount(){
 										
 										$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
 											if(status == "success"){
-												if(data != "沒東西是怎樣拉!!"){
-    												window.location.href = data ;												
-												}else{
-													alert(data);
-												}
+												window.location.href = data ;
 											}
+											
 											})
 										}
 										
