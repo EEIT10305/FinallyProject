@@ -71,7 +71,7 @@ public class Branch_StockServiceImpl implements Branch_StockService{
 		for(int x = 0 ; x < branchStockBean.size(); x++) {
 			System.out.println("forrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 			branchStockBean.get(x).getBranch_stock_id();
-			branchStockBean.get(x).getBranchBean().getName();
+			branchStockBean.get(x).getBranchBean().getShopname();
 			branchStockBean.get(x).getAmount();
 			branchStockBean.get(x).getProductBean().getBrandBean().getBrand();
 			branchStockBean.get(x).getProductBean().getModel();
@@ -157,6 +157,20 @@ public class Branch_StockServiceImpl implements Branch_StockService{
 	
 		return result;		
 		
+	}
+	@Override
+	public List<BranchStockBean> selectAllAmountByProId(Integer proid) {
+		return branchStockDAO.selectByProId(proid);
+	}
+	@Override
+	public Integer getAmountByproid(Integer proid) {
+		return branchStockDAO.getAmountByproid(proid);
+	}
+	
+	
+	@Override
+	public BranchStockBean selectADataByProid(Integer proid) {
+		return branchStockDAO.selectAllBy(proid);
 	}
 	
 		

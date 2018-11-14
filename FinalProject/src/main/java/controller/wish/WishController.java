@@ -1,6 +1,9 @@
 package controller.wish;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import model.bean.BranchStockBean;
 import model.bean.MemberBean;
 import model.bean.WishBean;
+import model.service.Branch_StockService;
 import model.service.login.LoginService;
 import model.service.wish.WishService;
 
@@ -22,6 +27,9 @@ public class WishController {
 	
 	@Autowired
 	WishService wishService;
+	
+	@Autowired
+	Branch_StockService beanchStockService;
 	
 /*========================================================處理會員點選愛心 還是 貨到付款按鈕========================================================*/
 	@RequestMapping(path = "processMemberWish", produces = "text/html;charset=utf-8")
@@ -119,7 +127,31 @@ public class WishController {
 	}
 
 
-
+	/*========================================================處理會員查看自己的貨到通知========================================================*/
+	@RequestMapping(path = "processMemberSelectEmailWish", produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String processMemberSelectEmailWish(String email) {
+		System.out.println("會員點選貨到通知的controllerl：");
+		System.out.println(email);
+		loginService.checkEmail(email).getMemberid();
+		System.out.println("會員ID=>"+loginService.checkEmail(email).getMemberid());
+		
+		List<WishBean> memberWishList = wishService.selectByMemberId(loginService.checkEmail(email).getMemberid());
+		List<WishBean> WishList = new ArrayList<WishBean>();
+		List<BranchStockBean> productList = new ArrayList<BranchStockBean>();
+		for(WishBean temp:memberWishList) {
+			if(temp.getTracked()==2) {//取出每一筆追蹤狀態是2的願望清單
+				WishList.add(temp);
+//				BranchStockBean stockData = beanchStockService.selectADataByProid(temp.getProid());
+				productList.add(beanchStockService.selectADataByProid(temp.getProid()));//利用這一筆資料的proid取出庫存物件
+			}
+		}
+		System.out.println("查詢到的會員願望清單資料轉成json的格式:::");
+		System.out.println(new Gson().toJson(WishList));
+		System.out.println(new Gson().toJson(productList));
+		System.out.println(new Gson().toJson(WishList)+"|"+new Gson().toJson(productList));
+		return new Gson().toJson(WishList)+"|"+new Gson().toJson(productList);
+	}
 
 
 

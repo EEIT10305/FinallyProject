@@ -21,4 +21,9 @@ public interface OrderListDAO {
 	List<OrderListBean> selectOrderListByMemberDate(String dateStart, String dateEnd, Integer memberId);
 	List<OrderListBean> selectAllMemberOrderListByDateStatu(String dateStart, String dateEnd, String statu);
 
+	List<OrderListBean> selectMemberAllOrderListByMemberId(Integer memberid);
+
+	List<OrderListBean> selectBetweenTime(String start, String end);
+
+
 }

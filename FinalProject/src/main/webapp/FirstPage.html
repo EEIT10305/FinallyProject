@@ -12,9 +12,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/firstpage.js"></script>
-<script src="js/wall.js"></script>
-<script src="js/basic.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <title>首頁</title>
 <script>
     $(document).ready(function(){
@@ -32,16 +30,18 @@
 				var querydata = $.parseJSON(data);	
 				var text=""
 				$.each(querydata, function(index, json) {
-				text +='<div class="card" style="width: 15rem; padding: 10px;">'+
-				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="220px" alt="Card image cap">'+
+				text +='<div class="card" style="width: 15%; padding: 10px;">'+
+				'<img class="card-img-top" src="image/'+json.model+'.jpg" width="100px" height="230px" alt="Card image cap">'+
 				'<div class="card-body">'+
 				'<img class="wishheart" src="image/heart.png" width="20px">'+
-				'<h5 class="card-title">'+json.model+'</h5>'+
+				'<div style="height:50px;">'+
+				'<h5 style="line-height:25px;" class="card-title">'+json.model+'</h5>'+
+				'</div>'+
 				'<h5 class="card-title" style="color: red">$'+json.price+'</h5>'+
 				'<a href="#" class="btn btn-danger">加入購物車 <img src="image/shopping-cart (1).png" width="20px"></a>'+
                 '</div></div>'
 				})
-				$(".forcard").html(text);
+				$(".forcard2").html(text);
 			}})
 	});
 	
@@ -50,7 +50,22 @@
 
 
 </script>
+<style>
+ .forcard2 {
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid #dad7cc;
+    border-radius:30px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:50px;
+    background:whitesmoke;
+    padding:30px 50px;
+    justify-content:space-around
 
+}
+
+</style>
 <script src="js/firstpageyuan.js"></script>
 </head>
 
@@ -103,9 +118,9 @@
 							<img src="image/avatar_login.png" width="30px">
 						</a>
 						 <fieldset id="logoutbtn" class="mymodal"> 
-						<button id="originallogout" style="display:none;width: 300px" class='btn btn-dark'>登出</button>
+						<button id="originallogout" style="display:none;width: 300px" class='btn btn-dark' onclick="clearAllCookie()">登出</button>
 						<button id="fblogout" style="display:none;width: 300px" class='btn btn-primary' onclick="fbLogout()">fb登出</button>
-						<button id="googlelogout" style="display:none;width: 300px" class='btn btn-light'>Google登出</button>
+						<button id="googlelogout" style="display:none;width: 300px" class='btn btn-light' onclick="signOut();">Google登出</button>
 					</fieldset>
 						<a id="lodinno" style="display:none" href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
@@ -270,7 +285,7 @@
 	</nav>
 	<article>
 			<h3 style="color:rgb(236, 215, 25);font-family:微軟正黑體;text-align:center;margin:20px 0px">推薦商品</h3>			
-		<div class="forcard"></div>
+		<div class="forcard2"></div>
 
 	</article>
 	<footer>

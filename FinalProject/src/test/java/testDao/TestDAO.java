@@ -208,11 +208,7 @@ public class TestDAO {
 //		dao.insert(bean);
 //		System.out.println(dao.selectAll());
 //		System.out.println(dao.selectById(1));
-		List<Map<String, Object>> list = dao.countSoldPro();
-		for(int i = 0 ; i < list.size() ; i ++) {
-			System.out.println(list.get(i).get("pro"));
-			System.out.println(list.get(i).get("sum"));
-		}
+		
 //		System.out.println(dao.update(bean));
 	}
 	
