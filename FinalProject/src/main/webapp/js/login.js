@@ -182,3 +182,9 @@ function clearAllCookie() {
     }
     window.location.href = "/FinalProject/FirstPage.html";
 }
+
+//一鍵帶入
+$('#userOneKeyInputLogin').click(function(){
+$('#memberInputEmail').attr("value","gn01046294@hotmail.com");
+$('#memberInputPassword').attr("value","Do!NG123");
+});

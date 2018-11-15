@@ -203,6 +203,7 @@
                   </div> -->
             </div>
             <button id="userSend" type="submit" class="btn btn-secondary">送出</button><span class="errorMsg" id="errorBoth"></span>
+            <button id="oneKeyInputNewLogin" type="submit" class="btn btn-secondary">一鍵帶入</button>
         </article>
     </div>
     <footer>
@@ -301,6 +302,13 @@
         })
     </script>
     <script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
+    <script>
+    //一鍵帶入
+$('#oneKeyInputNewLogin').click(function(){
+$('#userInputEmail').attr("value","gn01046294@hotmail.com");
+$('#userInputPassword').attr("value","Do!NG123");
+});
+    </script>
 </body>
 
 </html>
