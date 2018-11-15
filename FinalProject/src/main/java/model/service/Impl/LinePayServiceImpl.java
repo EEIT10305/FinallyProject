@@ -74,7 +74,7 @@ public class LinePayServiceImpl implements LinePayService {
 		String jsonData = response.body().string();
 		JSONObject json = new JSONObject(jsonData);
 		Object iwant = json.get("returnMessage");
-		System.out.println("info.paymentUrl.web:" + iwant);
+		System.out.println("returnMessage:" + iwant);
 		return iwant.toString();
 	}
 	@Override
