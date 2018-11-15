@@ -138,8 +138,7 @@
 		<header>
 			<div class="n0">
 				<div class="n_1" id="s0">
-					
-					<img src="./pic/unnamed.png" width="200px">
+				
 				</div>
 
 				<div class="n1" id="s1">
