@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import model.bean.OrderListBean;
@@ -74,6 +72,21 @@ public class OrderListServiceimpl implements OrderListService {
 	@Override
 	public boolean updateOrderArriveByMemberId(int memberid) {
 		return dao.updateOrderArriveByMemberId(memberid);
+	}
+
+	@Override
+	public List<OrderListBean> selectOrderListByMemberDate(String dateStart, String dateEnd, Integer memberId) {
+		return dao.selectOrderListByMemberDate(dateStart, dateEnd, memberId);
+	}
+
+	@Override
+	public List<OrderListBean> selectAllMemberOrderListByDateStatu(String dateStart, String dateEnd, String statu) {
+		return dao.selectAllMemberOrderListByDateStatu(dateStart, dateEnd, statu);
+	}
+
+	@Override
+	public List<OrderListBean> selectMemberAllOrderListByMemberId(Integer memberid) {
+		return dao.selectMemberAllOrderListByMemberId(memberid);
 	}
 
 }

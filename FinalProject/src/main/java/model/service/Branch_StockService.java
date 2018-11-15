@@ -37,5 +37,10 @@ public interface Branch_StockService {
 	List<BranchStockBean> selectByProModel(String promodel);
 	
 
+	List<BranchStockBean> selectAllAmountByProId(Integer proid);
 
+
+	Integer getAmountByproid(Integer proid);
+	
+	BranchStockBean selectADataByProid(Integer proid);
 }

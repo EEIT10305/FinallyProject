@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/fp.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/firstpageyuan.js"></script>
+<script src="js/basic.js"></script>
+<title>購物車頁</title>
+<style>
+aside {
+	float: left;
+	width: 20%;
+	margin: 10px;
+}
+
+article {
+	width: 75%;
+	margin: 10px;
+	padding: 100px;
+}
+.btn-mystylelink {
+	font-weight: 400;
+	color: grey;
+	background-color: transparent;
+}
+</style>
+<script>
+	$(document).ready(function() {
+// 		alert(sessionStorage.TotalPrice)
+// 		alert(sessionStorage.MBname)
+// 		alert(sessionStorage.CPUname)
+// 		alert(sessionStorage.RAMname)
+// 		alert(sessionStorage.POWERSUPPLIERname)
+// 		alert(sessionStorage.CABINETname)
+// 		alert(sessionStorage.VGAname)
+// 		alert(sessionStorage.STORAGEname)
+		sessionStorage.pay="false";
+		$.post("TestController")
+		$("form > select").hide();
+		$("#inlineRadio4").click(function() {
+			$("form > select").show();
+		})
+		$("#inlineRadio3").click(function() {
+			$("form > select").hide();
+		})
+		ShowCartItems()
+// 		$("#CheckCar").click(CheckProducts)
+// 		$("#CheckOrder").click(CheckPay)
+		$("#CheckOrderSubmit").click(CheckOrderByPay)
+		$("[name='inlineRadioOptions']").click(HideAddress)
+	});
+	function ShowCartItems(){
+
+// 		var count=1;
+// 		sessionStorage.CartId=4
+// 		$.post("showCartDetail",{"model":sessionStorage.MBname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                     $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                     count++
+//                }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CPUname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.RAMname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.POWERSUPPLIERname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.CABINETname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+//                 var querydata = $.parseJSON(data);
+//                 var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.VGAname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+// 		$.post("showCartDetail",{"model":sessionStorage.STORAGEname,"CartId":sessionStorage.CartId},function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+//                 $("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+querydata.picture+"</td><td>"+querydata.model+"</td><td>"+querydata.price+"</td><td>1</td><tr>");
+//                 count++
+//             }
+// 		})
+		
+		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+			if(status=="success"){
+				var querydata = $.parseJSON(data);
+				var count=1;
+				var sum=0;
+                $.each(querydata, function (index, json) {
+                	
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+//                 			"<select id='select"+count+"' name='amount'></select></td></tr>");
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
+
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
+                	
+                	
+                 	sum += json.productBean.price * json.amount
+                	count++
+                })
+			$("#show").append("總價: "+sum + " 元")
+			sessionStorage.TotalPrice=sum
+			}
+		})
+		
+	}
+
+function modifyAmount(){
+	var proid = $(this).attr("value")
+	var amount = $("#select" + proid).val();	
+// 	alert("amount= "+amount)
+	$.post("updateCartDetailAmount",
+		   {"cartid":sessionStorage.CartId,"proid":proid,"amount":amount},function(data,status){ 			
+			    alert("修改數量成功");	
+				$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+					if(status=="success"){
+						var querydata = $.parseJSON(data);
+						var count=1;
+						var sum=0;
+						 $("#itembody").html("");
+		                $.each(querydata, function (index, json) {
+		                	
+  $("#itembody").append("<tr><th scope='row'>"+count+"</th><td><img src='image/"+json.productBean.model+".jpg' width='50px' height='70px'></td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+
+                			"<select id='select"+json.proid+"' name='amount'></select></td><td><button type='button' class='btn btn-secondary' id='modify"+json.proid+"' value='"+json.proid+"'>修改數量</button></td></tr>");
+                	for(var i=1; i<=10;i++){
+                		if(i==json.amount){
+                			$("#select"+json.proid).append("<option value='"+i+"' selected>"+i+"</option>")
+                		}else {                			
+                		$("#select"+json.proid).append("<option value='"+i+"'>"+i+"</option>")
+                		}
+                	}
+
+                	 document.getElementById("modify"+json.proid).addEventListener("click",modifyAmount);
+		                	
+		                	
+		                 	sum += json.productBean.price * json.amount
+		                	count++
+		                })
+		            $("#show").html("總價: "+sum + " 元");   
+					
+					sessionStorage.TotalPrice=sum
+					}
+				})
+	         	
+	})
+	
+}
+
+
+//----------------------這是敬諺的---------------------------------------
+// 		sessionStorage.CartId = 1;	
+// 		$.post("ShowCartDetail",{"Cartid":sessionStorage.CartId},function(data,status){
+// 			if(status=="success"){
+// 				var querydata = $.parseJSON(data);
+// 				var count=1;
+// 				var sum=0;
+//                 $.each(querydata, function (index, json) {
+//                 	$("#itembody").append("<tr><th scope='row'>"+count+"</th><td>"+json.productBean.picture+"</td><td>"+json.productBean.model+"</td><td>"+json.productBean.price+"</td><td>"+json.amount+"</td></tr>");
+//                  	sum += json.productBean.price
+//                 	count++
+//                 })
+// 			$("#show").append("總價:"+sum)
+// 			sessionStorage.TotalPrice=sum
+// 			}
+// 		})
+		
+// 	}
+//----------------------------------------------------------------	
+	//確認產品進購物車
+// 	function CheckProducts(){
+// 		$.post("XXX",{"":""},function)(data,status){
+			
+// 		})
+// 	}
+	//確認已結帳
+	
+// 	function CheckPay(){
+// 		$.post("CheckProductsToPay",function(data,status){
+// 			if (status == "success") {
+// 				var querydata = $.parseJSON(data);
+// 				sessionStorage.pay=querydata
+// 				if(sessionStorage.pay!="true"){
+// 					alert("付款失敗，請重新選擇")
+// 					$("#CheckOrderByPay").hide()
+// 				}else if(sessionStorage.pay=="true"){
+// 					$("#CheckOrderByPay").show()
+// 				}
+//             }
+// 		})
+// 	}
+	function HideAddress(){
+		if($("input[name='inlineRadioOptions']:checked").val()=="宅配"){
+			$("#CheckAddressDiv").show()
+			
+		}else if($("input[name='inlineRadioOptions']:checked").val()=="門市取貨"){
+			$("#CheckAddressDiv").hide()
+		}
+	}
+	function CheckOrderByPay(){
+// 				alert()
+// 				alert()
+// 				alert($("input[name='RadioOptionsToPay']:checked").val())
+// 				alert($("#CheckName").val())
+// 				alert($("#CheckPhone").val())
+// 				alert($("#CheckAddress").val())
+// 				$.post("")
+
+				if($("input[name='inlineRadioOptions']:checked").val()=="宅配"){
+					$.post("CheckOrderListByHome",{"Name":$("#CheckName").val(),"Address":$("#CheckAddress").val(),"Price":sessionStorage.TotalPrice},function(data,status){
+						if (status == "success") {
+			 				var querydata = $.parseJSON(data);
+							sessionStorage.OrderID=querydata.orderid
+								$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
+									var query = $.parseJSON(data);
+									if($("input[name='RadioOptionsToPay']:checked").val() == "歐付寶"){
+										
+									    $.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+										    if (status == "success") {
+									    		$("#OPay").html(data)
+									    	}
+								    	})
+									}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
+										document.cookie = "OrderID=" + sessionStorage.OrderID;
+										
+										$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
+											if(status == "success"){
+												window.location.href = data ;
+											}
+											
+											})
+										}
+										
+									})
+								}
+			             })
+					
+				}else if($("input[name='inlineRadioOptions']:checked").val()=="門市取貨"){
+	            	 $.post("CheckOrderListByShop",{"Name":$("#CheckName").val(),"Address":$("#SelectShop").find("option:selected").text(),"Price":sessionStorage.TotalPrice},function(data,status){
+	            		 if (status == "success") {
+	            			 var querydata = $.parseJSON(data);
+								sessionStorage.OrderID=querydata.orderid
+									$.post("CheckOrderDetail",{"OrderID":sessionStorage.OrderID,"CartID":sessionStorage.CartId},function(data,status){
+										var query = $.parseJSON(data);
+										if($("input[name='RadioOptionsToPay']:checked").val() == "歐付寶"){
+											
+										    $.post("PayToOPay",{"OrderID":sessionStorage.OrderID,"Price":sessionStorage.TotalPrice},function(data,status){
+											    if (status == "success") {
+										    		$("#OPay").html(data)
+										    	}
+									    	})
+										}else if($("input[name='RadioOptionsToPay']:checked").val() == "linepay"){
+											document.cookie = "OrderID=" + sessionStorage.OrderID;
+											$.post("PayToLinePay",{"orderId":sessionStorage.OrderID,"price":sessionStorage.TotalPrice},function(data,status){
+												if(status == "success"){
+													window.location.href = data;
+												}
+												
+												})
+											}
+									})
+				             }
+	            	 })
+	             }
+					
+	}
+</script>
+
+
+</head>
+
+<body>
+	<div id="OPay"></div>
+	<header style="width:100%">
+		<div style="align-items: baseline;"
+			class="d-flex justify-content-between">
+			<div class="navv">
+				<ul>
+					<li>
+						<a href="FirstPage.html"> <img src="image/001.png"
+							width="120px">
+						</a>
+					</li>
+				</ul>
+
+			</div>
+			<div class="navv">
+				<a href="FirstPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/shopping-bag.png" width="20px"> <br>線上購物
+					</button></a> <a href="CustomizedPage.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img src="image/note.png" width="20px"> <br>自組電腦
+					</button></a> <a href="Pk.html"><button type="button"
+						class="btn btn-dark btnchoose">
+						<img
+							src="image/football-signal-of-a-game-announcement-of-one-team-vs-other_w.png"
+							width="20px"> <br>商品比較
+					</button></a>
+			</div>
+			<div class="navv">
+				<ul>
+					<li>
+						<a id="test" href="/FinalProject/ShowCart.html">
+						    <img src="image/shopping-cart.png" width="30px">
+                        </a>
+				        <fieldset id="myModal" class="mymodal">
+					        <div class="dropdown-divider"></div>
+					        <a href='ShowCart.html'><button style="width: 300px" class='btn btn-dark'>查看購物車</button></a>
+			            </fieldset>
+					</li>
+					<li>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+							<img src="image/avatar.png" width="30px">
+						</a>
+					</li>
+				</ul>
+
+
+					
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Login登入</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									type="email" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" placeholder="Enter email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">密碼</label> <input
+									type="password" class="form-control" id="exampleInputPassword1"
+									placeholder="Password">
+							</div>
+
+							<span> <a href="Register.html"> 尚未註冊?</a>
+							</span>
+							
+						    <br>
+							<button id="gogogsubmit"  class="mymodelbtn btn-dark">送出</button>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input"
+									id="exampleCheck1"> <label class="form-check-label"
+									for="exampleCheck1">記住密碼</label>
+							</div>
+							
+							<div class="dropdown-divider"></div>
+							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<nav>
+		<div class="search">
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">分類</button>
+				<button id="catebtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="categorybtn" class="dropdown-menu dropdown-menu-right menustyle" aria-labelledby="dropdownMenu2">
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">桌上型電腦</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">主機板</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">CPU</button> -->
+<!-- 					<button name="category" class="dropdown-item menuitemstyle" -->
+<!-- 						type="button">記憶體</button> -->
+				</div>
+			</div>
+
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">廠牌</button>
+				<button name="becheckbtn" type="button"
+					class="btn btn-secondary dropdown-toggle" data-toggle="modal"
+					data-target="#mustchoose">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div id="brandbtn" class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2"></div>
+
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-secondary btnwidth">價格</button>
+				<button name="becheckbtn" type="button" data-toggle="modal"
+					data-target="#mustchoose" class="btn btn-secondary dropdown-toggle">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<button type="button" class="btn btn-secondary dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right menustyle"
+					aria-labelledby="dropdownMenu2">
+					  <button id="pricebtn1" name="price" class="dropdown-item menuitemstyle" value="1" type="button">$5000↓</button>
+                    <button id="pricebtn2" name="price" class="dropdown-item menuitemstyle" value="5000" type="button">$5000-$10000</button>
+                    <button id="pricebtn3" name="price" class="dropdown-item menuitemstyle" value="10000" type="button">$10000-$15000</button>
+                    <button id="pricebtn4" name="price" class="dropdown-item menuitemstyle" value="15000" type="button">$15000-$20000</button>
+                    <button id="pricebtn5" name="price" class="dropdown-item menuitemstyle" value="20000" type="button">$20000↑</button>
+					</div>
+			</div>
+			<div class="modal fade" id="mustchoose" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img src="image/exclamation-mark.png" width="80px">
+							<h5 style="color: red">請選擇分類</h5>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<input id="searchspace" type="text" style="line-height: 45px;" size="30px">
+			<button id="searchbtn" style="padding: 0px 50px" type="button"
+				class="btn btn-secondary btnwidth">
+				搜尋 <span> <img src="image/loupe.png" width="20px;">
+				</span>
+			</button>
+		</div>
+
+
+
+	</nav>
+	<div style="overflow: auto; background-color: whitesmoke;">
+		<article
+			style="height: 1000px; border-radius: 15px; border: 1px solid grey; margin: 40px auto; width: 70%; background-color: white;">
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<h5 class="mb-0">
+							<button class="btn btn-mystylelink" type="button"
+								data-toggle="collapse" data-target="#collapseOne"
+								aria-expanded="true" aria-controls="collapseOne">確認購物車
+							</button>
+						</h5>
+					</div>
+
+					<div id="collapseOne" class="collapse show"
+						aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body" style="height:500px;overflow:auto;">
+							<div style="text-align: center">
+								<table class="table table-striped table-mycolor ">
+									<thead class="thead-mycolor">
+										<tr>
+											<th scope="col"></th>
+											<th scope="col">商品圖片</th>
+											<th scope="col">商品型號</th>
+											<th scope="col">價格</th>
+											<th scope="col">數量</th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+
+									<tbody id="itembody">
+<!-- 										<tr> -->
+<!-- 											<th scope="row">1</th> -->
+
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 										</tr> -->
+<!-- 										<tr> -->
+<!-- 											<th scope="row">1</th> -->
+
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 											<td></td> -->
+<!-- 										</tr> -->
+										
+									</tbody>
+								</table>
+								
+								
+							</div>
+						</div>
+								<div id="show" style="font-size:24px;font-weight:bold;color:red;text-align:right;padding-right:100px;padding-top:20px"></div>
+								<div id="showtotal"></div>
+						<div style="padding: 30px">
+							<button id="CheckCart" class="btn btn-secondary collapsed" type="button"
+								data-toggle="collapse" data-target="#collapseTwo"
+								aria-expanded="false" aria-controls="collapseThree">下一步1</button>
+						</div>
+					</div>
+				</div>
+				<!-- 付款block -->
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h5 class="mb-0">
+							<button class="btn btn-mystylelink collapsed" type="button"
+								data-toggle="collapse" data-target="#collapseTwo"
+								aria-expanded="false" aria-controls="collapseTwo">付款方式
+							</button>
+						</h5>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="RadioOptionsToPay" id="inlineRadio1" value="歐付寶" checked>
+								<label class="form-check-label" for="inlineRadio1"><img
+									src="image/credit-card.png" width="45px"> 歐付寶</label>
+							</div>
+							<div class="dropdown-divider"></div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="RadioOptionsToPay" id="inlineRadio2" value="linepay">
+								<label class="form-check-label" for="inlineRadio2"><img
+									src="image/linepay_logo.png" width="45px"> Line Pay</label>
+							</div>
+
+						</div>
+						<div id="CheckOrder" style="padding: 30px">
+							<button class="btn btn-secondary collapsed" type="button"
+								data-toggle="collapse" data-target="#collapseThree"
+								aria-expanded="false" aria-controls="collapseThree">下一步2</button>
+						</div>
+
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingThree">
+						<h5 class="mb-0">
+							<button class="btn btn-mystylelink collapsed" type="button"
+								data-toggle="collapse" data-target="#collapseThree"
+								aria-expanded="false" aria-controls="collapseThree">
+								運送方式</button>
+						</h5>
+					</div>
+					<div id="collapseThree" class="collapse"
+						aria-labelledby="headingThree" data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="inlineRadioOptions" id="inlineRadio3" value="宅配"
+									checked> <label class="form-check-label"
+									for="inlineRadio3"><img src="image/truck.png"
+									width="45px"> 宅配</label>
+							</div>
+							<div class="dropdown-divider"></div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									name="inlineRadioOptions" id="inlineRadio4" value="門市取貨">
+								<label class="form-check-label" for="inlineRadio4"><img
+									src="image/shop.png" width="45px"> 門市取貨</label>
+							</div>
+
+							<form>
+								<div class="dropdown-divider"></div>
+								<br> <select id="SelectShop" class="form-control form-control-sm">
+									<option>大選電腦:大安店</option>
+									<option>大選電腦:板橋店</option>
+								</select>
+
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck" name="memberData" value="123456">
+										<label class="form-check-label" for="gridCheck"> 同會員資料
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="inputEmail4">姓名</label> <input id="CheckName" type="email"
+											class="form-control" id="inputEmail4" placeholder="Email">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCity">手機</label> <input id="CheckPhone" type="text"
+										class="form-control" id="inputCity" placeholder="09xxxxxxxx">
+								</div>
+								<div id="CheckAddressDiv" class="form-group">
+									<label for="inputAddress2">地址</label> <input id="CheckAddress" type="text"
+										class="form-control" id="inputAddress2">
+								</div>
+								<div class="form-row"></div>
+
+								<button id="CheckOrderSubmit" type="button" class="btn btn-secondary">送出</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+	<footer>
+		<div style="background-color: #dad7cc;">
+			<ul class="nav">
+				<li class="nav-item"><a style="color: #6c757d"
+					class="nav-link active" href="#">隱私權政策</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">購物流程</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">付款方式</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">會員權益</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">售後服務</a></li>
+				<li class="nav-item"><a style="color: #6c757d" class="nav-link"
+					href="#">網路客服</a></li>
+
+			</ul>
+
+		</div>
+		<div
+			style="background-color: #dad7cc; color: #6c757d; font-size: 10px; padding: 10px 60px">
+			<a href=""> <img src="image/001.png" width="80px">
+			</a>
+			<p>大選電腦股份有限公司　版權所有© BigVote Digital Corporation. All rights reserved.</p>
+            <p>臺灣  臺北市信義區市府路1號 ·  　網購客服專線(市話撥打)：02 2720 8889　網購客服專線(手機撥打)：1999</p>
+			<p>客服服務專線 服務時間：10:00 ~ 17:00</p>
+		</div>
+
+	</footer>
+	<script type="text/javascript">
+	$('#gridCheck').click(function(){
+	//alert($("input[name='memberData']:checked").val())
+	var chcekboxValue = $("input[name='memberData']:checked").val();
+	if(chcekboxValue != null){					//直接在checkbox給值讓程式能夠抓到
+		$.ajax({
+			type:"POST",
+			url:"GetMemberData",
+			data:{
+				email:"wenchen@gmail.com",
+				},
+				success:function(data){
+					//alert(data);
+					var members = $.parseJSON(data)
+					$('#CheckName').attr("value",members.email)
+					$('#CheckPhone').attr("value",members.phone)
+					$('#CheckAddress').attr("value",members.memberaddress)
+					$('#CheckName').attr("placeholder","您尚未輸入Email")
+					$('#CheckPhone').attr("placeholder","您尚未輸入電話")
+					$('#CheckAddress').attr("placeholder","您尚未輸入地址")
+// 					document.getElementById("CheckName").innerhtml=members.email;
+// 				  	document.getElementById("CheckPhone").innerhtml=members.phone;
+// 				 	document.getElementById("CheckAddress").innerhtml=members.memberaddress;
+				}
+		});
+	}else{											//當沒有勾選的時候就會直接沒有值
+		$('#CheckName').attr("value","")
+		$('#CheckPhone').attr("value","")
+		$('#CheckAddress').attr("value","")
+// 		document.getElementById("CheckName").innerhtml=""
+//   		document.getElementById("CheckPhone").innerhtml=""
+//  		document.getElementById("CheckAddress").innerhtml=""
+	}
+	
+	})
+	
+	
+
+
+	
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

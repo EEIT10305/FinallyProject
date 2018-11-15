@@ -116,6 +116,12 @@ public class OrderDetailBean {
 	public void setOrderListBean(OrderListBean orderListBean) {
 		this.orderListBean = orderListBean;
 	}
+	@Override
+	public String toString() {
+		return "OrderDetailBean [order_detail_id=" + order_detail_id + ", orderid=" + orderid + ", proid=" + proid
+				+ ", brand=" + brand + ", category=" + category + ", model=" + model + ", amount=" + amount + ", price="
+				+ price + "]";
+	}
 	
 	
 }

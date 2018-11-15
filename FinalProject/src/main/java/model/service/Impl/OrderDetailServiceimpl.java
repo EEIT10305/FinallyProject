@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import model.bean.OrderDetailBean;
@@ -31,7 +28,7 @@ public class OrderDetailServiceimpl implements OrderDetailService {
 	}
 
 	@Override
-	public OrderDetailBean selectById(int id) {
+	public OrderDetailBean selectById(Integer id) {
 		return Dao.selectById(id);
 	}
 
@@ -52,6 +49,10 @@ public class OrderDetailServiceimpl implements OrderDetailService {
 	public void setMemberId(Integer memberid) {
 		this.memberid= memberid;
 		
+	}
+	@Override
+	public List<OrderDetailBean> selectAllByOrderId(Integer OrderId) {
+		return Dao.selectAllByOrderId(OrderId);
 	}
 
 }

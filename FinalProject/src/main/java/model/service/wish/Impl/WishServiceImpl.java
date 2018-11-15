@@ -39,4 +39,9 @@ public class WishServiceImpl implements WishService {
 		return wishDao.selectByMemberId(memberId);
 	}
 
+	@Override
+	public WishBean insertAWishBean(WishBean bean) {
+		return wishDao.insert(bean);
+	}
+
 }

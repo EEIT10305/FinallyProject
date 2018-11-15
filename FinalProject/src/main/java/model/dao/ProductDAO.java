@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonElement;
 
@@ -75,5 +76,10 @@ public interface ProductDAO {
 	List<ProductBean> selectByCatBraPriorderbyprice(Integer categoryid, Integer brandid, Integer price);
 	List<ProductBean> selectByCatBraPriBiggerorderbyprice(Integer categoryid, Integer brandid, Integer price);
 	List<ProductBean> selectByCatBraorderbyprice(Integer categoryid, Integer brandid);
+
 	List<ProductBean> selectByModel(String model);
+
+	Map<String, Integer> selectAllByHashMap();
+
+
 }

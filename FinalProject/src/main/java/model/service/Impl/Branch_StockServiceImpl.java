@@ -173,6 +173,7 @@ public class Branch_StockServiceImpl implements Branch_StockService {
 
 	}
 
+
 	@Override
 	public List<BranchStockBean> selectByProModel(String promodel) {
 		List<BranchStockBean> result = new ArrayList<>();
@@ -186,5 +187,24 @@ public class Branch_StockServiceImpl implements Branch_StockService {
 		result.addAll(result2);
 		return result;
 	}
+
+
+	@Override
+	public List<BranchStockBean> selectAllAmountByProId(Integer proid) {
+		return branchStockDAO.selectByProId(proid);
+	}
+	@Override
+	public Integer getAmountByproid(Integer proid) {
+		return branchStockDAO.getAmountByproid(proid);
+	}
+	
+	
+	@Override
+	public BranchStockBean selectADataByProid(Integer proid) {
+		return branchStockDAO.selectAllBy(proid);
+	}
+	
+		
+	
 
 }

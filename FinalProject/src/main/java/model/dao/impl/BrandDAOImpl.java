@@ -58,4 +58,6 @@ public class BrandDAOImpl implements BrandDAO {
 		String hql ="From BrandBean where brand=:brand";
 		return this.getSession().createQuery(hql,BrandBean.class).setParameter("brand", brand).getSingleResult();
 	}
+	
+	
 }

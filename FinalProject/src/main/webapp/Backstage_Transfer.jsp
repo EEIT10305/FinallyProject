@@ -258,18 +258,24 @@
 <br>
 <br>
 Transfer
+
 <form action = "/FinalProject/pages/insert.transfer.controller" method = "post">
+
 <table>
 <caption>Transfer From</caption>
 	<tr>
+
 		<td>Branch ID : </td>		
 		<td><input type="hidden" name="branchidin" value="${param.branchid}" maxlength = "3"><input type="text" value="${param.shopname}" maxlength = "3"></td>		
+
 	</tr>
 	
 	
 	<tr>
+
 		<td>Product ID : </td>		
 		<td><input type="hidden" name="proidin" value="${param.proid}" maxlength = "6"><input type="text" value="${param.model}" maxlength = "6"></td>
+
 	</tr>
 
 

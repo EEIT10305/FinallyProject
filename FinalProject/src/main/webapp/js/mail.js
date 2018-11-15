@@ -5,7 +5,7 @@ $(document).ready(function(){
 	})
 	 $("#mailpage").hide();
 	$("#mailshow").mouseover(function(){
-	document.cookie = "email=test@gmail.com";
+	document.cookie = "test@gmail.com";
 	var cookies = document.cookie;
 	var cookie = cookies.split(";");
 	var who = ""
@@ -20,8 +20,7 @@ $(document).ready(function(){
 			if(status == "success"){
 				var query = $.parseJSON(data);
 			    var str = '<div style="text-align:center;line-height:30px;background:gainsboro;">未讀訊息</div>'
-			    
-			    
+
 				$.each(query, function(index,json){			
 					str += '<div value="'+json.message_id+'" class="toMail" style="cursor:pointer;margin:5px 0px;padding:5px;line-height:25px;background:floralwhite">'
 					str += '<table class="mailtable"><tr>'
@@ -89,5 +88,12 @@ $(document).ready(function(){
 		})
 	
 	})
+// 秉毅用的,查詢會員的訂單===========================================================
+
+
+
+
+
+
 })
 	

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>秉毅測試看不懂?之2.0</title>
+
+
+    <link rel="stylesheet" href="css/fp.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+</head>
+<body>
+    <li class="mouseOverChoosepointer" style="color:#6c757d" id="GMClickQueryMemberManage">會員管理</li>
+
+
+<table style="width:100%" class="myordertable table-striped">
+    <thead>
+        <tr><th scope="col">#</th><th scope="col">會員id</th><th scope="col">會員名稱</th><th scope="col">會員email</th><th scope="col">會員電話</th><th scope="col">會員地址</th><th scope="col">會員性別</th><th scope="col">權限</th><th scope="col">修改</th></tr>
+</thead>
+<tbody id="testMemberManageList"><!--秉毅測試用-->
+</tbody>
+</table>
+
+<script>
+$('#GMClickQueryMemberManage').click(function(){
+$.ajax({
+    type: "POST",
+    url: "processGMQueryMemberManage",
+
+    success: function (data) {
+        alert('controller回傳資料有沒有成功??')
+        var memberDataManage=$.parseJSON(data);
+        alert(data)
+        var txt = "";
+        var a = 1;
+        if(memberDataManage.length===0){
+            $('#testMemberManageList').html('您尚未關注任何商品');
+        }
+        else{
+            for(i=0;i<memberDataManage.length;i++){
+            txt+="<tr><th scope='row'>"+a+"</th>";
+            txt+="<td>"+memberDataManage[i].memberid+"</td>";//會員id
+            txt+="<td>"+memberDataManage[i].membername+"</td>";//會員名稱
+            txt+="<td>"+memberDataManage[i].email+"</td>";//會員email
+            txt+="<td>"+memberDataManage[i].phone+"</td>";//會員電話
+            txt+="<td>"+memberDataManage[i].memberaddress+"</td>";//會員地址
+            txt+="<td>"+memberDataManage[i].gender+"</td>";//會員性別
+            txt+="<td>"+memberDataManage[i].permission+"</td>";//會員權限
+            txt+="<td>"+"<span class='mouseOverChoosepointer'>update</span>"+"</td></tr>";//會員權限
+            a++;
+            }
+            $('#testMemberManageList').html(txt);
+        }
+    }
+});
+});
+
+
+
+</script>
+</body>
+</html>

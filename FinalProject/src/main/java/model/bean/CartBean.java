@@ -71,5 +71,10 @@ public class CartBean {
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
+	@Override
+	public String toString() {
+		return "CartBean [cartid=" + cartid + ", memberid=" + memberid + ", date=" + date + ", statu=" + statu + "]";
+	}
+
 
 }

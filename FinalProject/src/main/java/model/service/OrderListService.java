@@ -15,5 +15,7 @@ public interface OrderListService {
 	    boolean updateOrderArriveByOrderId(int orderid);
 	    boolean updateOrderStatusByMemberId(int memberid);
 	    boolean updateOrderArriveByMemberId(int memberid);
-	    
+	    List<OrderListBean> selectOrderListByMemberDate(String dateStart, String dateEnd, Integer memberId);
+	    List<OrderListBean> selectAllMemberOrderListByDateStatu(String dateStart, String dateEnd, String statu);
+	    List<OrderListBean> selectMemberAllOrderListByMemberId(Integer memberid);
 }
