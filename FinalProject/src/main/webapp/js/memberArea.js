@@ -3,7 +3,7 @@ var isUserInside ="";
 $(document).ready(function(){
     cookies = document.cookie;
     isUserInside = cookies.split("email=")[1].split(";")[0]
-     alert('有沒有抓到cookie內的email呢??→'+isUserInside);
+     console.log('有沒有抓到cookie內的email呢??→'+isUserInside);
 });
 
 /*----------------------------------------------------------------測試用來給會員查詢自己的訂單紀錄用的----------------------------------------------------------------*/ 
@@ -306,7 +306,7 @@ $('#memberUpdateInfo').click(function(){
    
    //======================購物車===================================================
    function addToCart(){
-alert($(this).val())
+console.log($(this).val())
      $.ajax({
          type: "post",
          url: "AddtToCartController",
