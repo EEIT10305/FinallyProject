@@ -33,7 +33,7 @@ public class LinePayServiceImpl implements LinePayService {
 			MediaType mediaType = MediaType.parse("application/json");
 			String str = "{\r\n\t\t\t\"productName\":\"3C產品\",\r\n\t\t\t\"amount\":" + price
 					+ ",\r\n\t\t\t\"currency\":\"TWD\",\r\n\t\t\t\"confirmUrl\":\"http://localhost:8081/FinalProject/PayFinishedPage.html\",\r\n\t\t\t\"orderId\":\"Official2018"
-					+ orderId + "\"\r\n\t\t}";
+					+ orderId + "qq\"\r\n\t\t}";
 			System.out.println(str);
 			RequestBody body = RequestBody.create(mediaType, str);
 			Request request = new Request.Builder().url("https://sandbox-api-pay.line.me/v2/payments/request")
@@ -73,8 +73,8 @@ public class LinePayServiceImpl implements LinePayService {
 		Response response = client.newCall(request).execute();
 		String jsonData = response.body().string();
 		JSONObject json = new JSONObject(jsonData);
-		Object iwant = json.get("returnMessage");
-		System.out.println("returnMessage:" + iwant);
+		Object iwant = json.get("returnCode");
+		System.out.println("returnCode:" + iwant);
 		return iwant.toString();
 	}
 	@Override

@@ -108,11 +108,19 @@
 			</fieldset>
 					</li>
 					<li>
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-							<img src="image/avatar.png" width="30px">
-						</a>
-
-					</li>
+                            <a id="lodinyes" style="display:none;" href="Customer.html" >
+                                <img src="image/avatar_login.png" width="30px">
+                            </a>
+                             <fieldset id="logoutbtn" class="mymodal"> 
+                            <button id="originallogout" style="display:none;width: 300px" class='btn btn-dark' onclick="clearAllCookie()">登出</button>
+                            <button id="fblogout" style="display:none;width: 300px" class='btn btn-primary' onclick="fbLogout()">fb登出</button>
+                            <button id="googlelogout" style="display:none;width: 300px" class='btn btn-light' onclick="signOut();">Google登出</button>
+                        </fieldset>
+                            <a id="lodinno" style="display:none" href="" data-toggle="modal" data-target="#exampleModalCenter">
+                                <img src="image/avatar.png" width="30px">
+                            </a>
+    
+                        </li>
 				</ul>
 			</div>
             </div>
@@ -149,8 +157,8 @@
 							</div>
 							
 							<div class="dropdown-divider"></div>
-							<button type="reset" class="mymodelbtn btn-primary">fb登入</button>
-							
+							<button type="reset" class="mymodelbtn btn-primary">FB登入</button>
+							<button class="mymodelbtn btn-light" id="customBtn">Google登入</button>
 						</div>
                     
                 </div>
@@ -274,11 +282,11 @@
                 <div style="width:100%;margin:0px auto;height:300px;font-family:微軟正黑體">
                 <h5 style="font-weight:bold">會員專區</h5>
                 <ol>
-                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfOrderInfo">我的訂單紀錄</li>
-                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfWishInfo">我的願望清單</li>
-                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfProInfo">我的貨到通知商品</li>
-                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfInfo">修改我的會員資料</li>
-                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfPassword">修改我的密碼</li>
+                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfOrderInfo" value='memberClickSelfOrderInfo'>我的訂單紀錄</li>
+                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfWishInfo" value='memberClickSelfWishInfo'>我的願望清單</li>
+                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfProInfo" value='memberClickSelfProInfo'>我的貨到通知商品</li>
+                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfInfo" value='memberClickSelfInfo'>修改我的會員資料</li>
+                    <li class="mouseOverChoosepointer" style="color:#6c757d" id="memberClickSelfPassword" value='memberClickSelfPassword'>修改我的密碼</li>
                 </ol>
                 </div>
             </div>
@@ -288,21 +296,23 @@
             <div style="width:100%;margin:0px auto;height:300px;font-family:微軟正黑體">
                 <h5 style="font-weight:bold">常見問題</h5>
                 <ol>
-                    <li><a style="color:#6c757d" href="">啊是怎樣</a></li>
-                    <li><a style="color:#6c757d" href="">啊是怎樣</a></li>
-                    <li><a style="color:#6c757d"href="">啊是怎樣</a></li>
+                    <li><a style="color:#6c757d" href="">服務條款</a></li>
+                    <li><a style="color:#6c757d" href="">隱私權政策</a></li>
+                    <li><a style="color:#6c757d"href="">常見問題簡易說明</a></li>
+                    <li><a style="color:#6c757d"href="">簡易故障排除</a></li>
                 </ol>
                 </div>
             </div>
         </aside>
         <article>
             <div>
-                <div class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="#">會員專區</a>
+                <img src="image/home.png" width="25px" style="margin-right:8px;"><span> 會員專區</span> <span id="memberNowWhere"></span>
+               
+                <!-- <div class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="#"></a>會員專區</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
-                      
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
@@ -316,26 +326,59 @@
                                       </li>
                         </ul>
                         </div>
-                    </div>
+                    </div> -->
                   
             </div>
 <!--             -----------------------------------訂單--------------------------------------------------- -->
-            <div id="" style="display:none" >
+                <div id="thisdivShowMemberOrderList" style="display:none" >
                     <div style="width: 80%; height: 800px; align-items: flex-start;">
 				<div>
                     <table class="table table-striped">
                         <thead>
-                            <tr><th scope="col">#</th><th scope="col">購買人</th><th scope="col">購買日期</th><th scope="col">訂單總價</th><th scope="col">訂單細項</th></tr>
+                            <tr><th scope="col">#</th><th scope="col">購買人</th><th scope="col">購買日期</th><th scope="col">訂單總價</th><th scope="col">訂單狀態</th><th scope="col">訂單細項</th></tr>
                </thead>
                <tbody id="showOrderList">
-               <tr><th scope="row">1</th><td></td><td></td><td></td><td> <button data-toggle='modal' data-target='#fororderdetail' class='btn btn-dark' style='width:100%' value='"+orders[i].orderid+"' onclick='memberchoose("+orders[i].orderid+")'>查看細項</button></td></tr> 
-				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr>
+               <!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td> <button data-toggle='modal' data-target='#fororderdetail' class='btn btn-dark' style='width:100%' value='"+orders[i].orderid+"' onclick='memberchoose("+orders[i].orderid+")'>查看細項</button></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr> -->
+				</tbody>
+				</table>
+                </div>
+			</div>
+            </div> 
+            <!-- -------------------------------------------願望清單-------------------------------------------------- -->
+            <div id="thisdivShowMemberWishList" style="display:none" >
+                    <div style="width: 80%; height: 800px; align-items: flex-start;">
+				<div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th scope="col">#</th><th scope="col">型號</th><th scope="col">類別</th><th scope="col">品牌</th><th scope="col">價格</th><th scope="col">圖片</th></tr>
+               </thead>
+               <tbody id="showWishList">
+               <!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td> <button data-toggle='modal' data-target='#fororderdetail' class='btn btn-dark' style='width:100%' value='"+orders[i].orderid+"' onclick='memberchoose("+orders[i].orderid+")'>查看細項</button></td></tr> 
+				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr> -->
               
 				</tbody>
 				</table>
                 </div>
 			</div>
-           
+            </div> 
+
+            <!-- -------------------------------------------貨到通知-------------------------------------------------- -->
+            <div id="thisdivShowMemberWishProInfoEmail" style="display:none" >
+                    <div style="width: 80%; height: 800px; align-items: flex-start;">
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th scope="col">#</th><th scope="col">型號</th><th scope="col">類別</th><th scope="col">品牌</th><th scope="col">價格</th><th scope="col">商品狀態</th><th scope="col">圖片</th></tr>
+                </thead>
+                <tbody id="showWishEmailList">
+                <!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td> <button data-toggle='modal' data-target='#fororderdetail' class='btn btn-dark' style='width:100%' value='"+orders[i].orderid+"' onclick='memberchoose("+orders[i].orderid+")'>查看細項</button></td></tr> 
+                <tr><th scope="row">2</th><td></td><td></td><td></td><td></td></tr> -->
+                
+                </tbody>
+                </table>
+                </div>
+            </div>
             </div> 
         
                 <!-- 		-----ordermodal----------------------------------------------- -->
@@ -357,7 +400,7 @@
                             <tr><th scope="col">#</th><th scope="col">商品型號</th><th scope="col">商品分類</th><th scope="col">商品品牌</th><th scope="col">商品單價</th><th scope="col">數量</th></tr>
                </thead>
                <!-- <tbody id="gmchooseMemberOrderDetail"> -->
-			   <tbody id="memberchooseMemberOrderDetail"><!--秉毅測試用-->
+			   <tbody ><!--秉毅測試用-->
 				<!-- <tr><th scope="row">1</th><td></td><td></td><td></td><td></td><td></td></tr> 
 				<tr><th scope="row">2</th><td></td><td></td><td></td><td></td><td></td></tr>  -->
 				</tbody>
@@ -369,54 +412,83 @@
 					</form>
 				</div>
 			</div>
-		</div>
-<!-- 		-----------------------會員修改資料 --------------------------------------------------------------->
-               <div style = "display:none">
+        </div>
+        <!-- 會員修改資料 -->
+                <div id="thisdivShowMemberInfoUpdate" style = "display:none">
                 <div class="dropdown-divider"></div>
                  <div style="width:80%;margin:20px;">
                     <div class="form-row">
+                            <div class="form-group col-md-6">
+                                   <span>您接收訊息的Email： </span><span id="onlyShowMemberEmail"></span>
+                                </div>
+
+                                <div class="form-group col-md-6"></div>
+
                         <div class="form-group col-md-6">
                             <label for="inputName">姓名</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="">
+                            <input type="text" class="form-control" id="inputName" placeholder="" style="width:250px">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">性別</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man" >
                                 <label class="form-check-label" for="inlineRadio1">男</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman">
                                 <label class="form-check-label" for="inlineRadio2">女</label>
                             </div>
-                        </div>
+                        </div> 
     
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                             <label for="inputEmail">Email</label>
-                             <input type="email" class="form-control" id="inputEmail" placeholder="Email"> --> -->
+                             <!-- <label for="inputEmail">Email</label>
+                             <input type="email" class="form-control" id="inputEmail" placeholder="Email">  -->
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="memberInputPassword4">密碼</label>
-                            <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password"> -->
+                            <!-- <label for="memberInputPassword4">密碼</label>
+                            <input type="password" class="form-control" id="memberInputPassword4" placeholder="Password">  -->
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPhone">手機</label>
-                        <input type="text" class="form-control" id="inputPhone" placeholder="">
+                        <input type="text" class="form-control" id="inputPhone" placeholder="" style="width:250px">
                     </div>
     
                     <div class="form-group">
                         <label for="inputAddress">地址</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="">
+                        <input type="text" class="form-control" id="inputAddress" placeholder=""  style="width:550px">
                     </div>
                     
                     
                     <button type="submit" class="btn btn-secondary" id="memberUpdateInfo">修改</button>
                </div>
                </div>
+ <!-- -------------------------------------------修改密碼-------------------------------------------------- -->
+               <div id="thisdivShowMemberPasswordUpdate" style = "display:none">
+                <div class="dropdown-divider"></div>
+                 <div style="width:80%;margin:20px;">
+             
+                    <div >
+                        <div class="form-group col-md-6">
+                             <label for="inputEmail">舊密碼</label><span class="errorMsg" id="errorInputOldPassword"></span>
+                             <input id="memberInputOldPassword" type="password" class="form-control" id="" placeholder="請輸入您的舊密碼"> 
+                        </div>                        
+                        <div class="form-group col-md-6">
+                            <label for="memberInputPassword4">新密碼</label><span class="errorMsg" id="errorInputNewPassword"></span>
+                            <input id="memberInputNewPassword" type="password" class="form-control" id="" placeholder="Password"> 
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="memberInputPassword4">再次輸入新密碼</label><span class="errorMsg" id="errorInputCheckPassword"></span>
+                            <input id="memberInputCheckPassword" type="password" class="form-control" id="" placeholder="Password"> 
+                        </div>
+                    </div> 
+                    <button type="submit" class="btn btn-secondary" id="memberClickUpdatePassword">確認修改</button>
+               </div>
+               </div>
+
     </article>
 </div>
     <footer>
@@ -453,12 +525,14 @@
         </div>
 
     </footer>
+    <script src="js/login.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/memberArea.js"></script><!--秉毅用-->
     <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-       <script src="js/updateMemberInfo.js"></script><!--  秉毅用 -->
 
     </body>
 

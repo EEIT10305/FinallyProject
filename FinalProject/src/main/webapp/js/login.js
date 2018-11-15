@@ -2,7 +2,7 @@
 //===============================首頁一載入時要做的判斷================================================
 
 $(document).ready(function(){
-   alert("近來網站之前有沒有先進來判斷cookie的方訊")
+//    alert("近來網站之前有沒有先進來判斷cookie的方訊")
    var cookies = document.cookie;//先取cookie
   alert(cookies);
 
@@ -15,18 +15,15 @@ $(document).ready(function(){
        if(cookies.indexOf("email=")!=-1){//    cookies.indexOf("email=");//-1是不存在
           alert('使用者有email的資訊,判斷是否為我們家的會員')
         var isUserInside = cookies.split("email=")[1].split(";")[0];
-        alert('cookie內的email:'+isUserInside);//測試完刪除
            $.ajax({
                type: "POST",
                url: "processFirstUser",
                data: {email:isUserInside},
                success: function (data) {
                    
-                //    alert(data);
                    var returnData = $.parseJSON(data);
                    if(returnData.email==isUserInside){
                     alert('使用者的cookie內的mail資料是我們家的會員 隱藏登入按鈕!秀出會員按鈕');
-                    //$('#已登入的圖示').hide();
                     $.ajax({
                         type: "POST",
                         url: "catchMemberCartId",
@@ -35,7 +32,6 @@ $(document).ready(function(){
                         },
                         success: function (data) {
                             alert('有沒有抓到cartId??');
-                            // alert(data);
                             sessionStorage.CartId=data;
                             alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
     
@@ -57,7 +53,6 @@ $(document).ready(function(){
                                 email: returnData.email, 
                             },
                             success: function (data) {
-                                alert('有沒有抓到cartId??');
                                 // alert(data);
                                 sessionStorage.CartId=data;
                                 alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
@@ -81,7 +76,6 @@ $(document).ready(function(){
                             email: returnData.email, 
                         },
                         success: function (data) {
-                            alert('有沒有抓到cartId??');
                             // alert(data);
                             sessionStorage.CartId=data;
                             alert('將cartId存入sessionStorage呢??：'+sessionStorage.CartId);
@@ -93,14 +87,13 @@ $(document).ready(function(){
                             $("#googlelogout").show();
                         }
                     });
-                    //$('#未登入的圖示').hide();
                    }else if(data=="gmLogin"){
                     alert("已判斷使用者是GM登入")
+                    window.location.href = "/FinalProject/BackPage.html";
                    }
                    else{
                 	   $("#lodinno").show();
                        alert('此使用者的cookie內有mail的資訊,但不是我們家的會員 可秀出登入按鈕')
-                    //$('#未登入的圖示').hide();
                    }
                }
            });
@@ -108,7 +101,6 @@ $(document).ready(function(){
             //判斷有沒有email資訊 
         	$("#lodinno").show();
            alert('使用者有cookie,但沒有email的資訊,秀出可登入圖示');
-            // $('#未登入的圖示').hide();
         }
     }
 })
@@ -141,6 +133,7 @@ $("#gogogsubmit").click(function () {
             }
             else if(data=="gmLogin"){
                 alert(data+'登入者是GM 請導入GM畫面');
+                window.location.href = "/FinalProject/BackPage.html";
             }
             else{
                 $.ajax({
@@ -160,6 +153,10 @@ $("#gogogsubmit").click(function () {
                     }
                 });
 
+                $('#originallogout').attr("style","display:block;width: 300px");
+                $('#googlelogout').attr("style","display:none;width: 300px");
+                $('#fblogout').attr("style","display:none;width: 300px");
+
                  var Days = 30;//cookie設定30天
                  var exp = new Date();
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
@@ -170,4 +167,14 @@ $("#gogogsubmit").click(function () {
         }
     });
 
-})
+});
+
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "/FinalProject/FirstPage.html";
+}
