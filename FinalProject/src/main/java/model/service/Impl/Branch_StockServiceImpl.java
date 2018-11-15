@@ -179,12 +179,17 @@ public class Branch_StockServiceImpl implements Branch_StockService {
 		List<BranchStockBean> result = new ArrayList<>();
 		List<BranchStockBean> result2 = new ArrayList<>();
  		List<ProductBean> product = productDAO.selectByModel(promodel);
-		for (int x = 0; x < product.size(); x++) {
-			List<BranchStockBean> branch = branchStockDAO.selectByProId(product.get(x).getProid());	
-			result.add(branch.get(0));	
-			result2.add(branch.get(1));	
-		}
-		result.addAll(result2);
+ 		if(product != null && !product.isEmpty()) {
+ 			for (int x = 0; x < product.size(); x++) {
+ 				List<BranchStockBean> branch = branchStockDAO.selectByProId(product.get(x).getProid());	
+ 				if(branch != null && !branch.isEmpty()) {
+ 					result.add(branch.get(0));	
+ 					result2.add(branch.get(1));	
+ 				} 
+ 			}
+ 			result.addAll(result2);
+ 			
+ 		}
 		return result;
 	}
 

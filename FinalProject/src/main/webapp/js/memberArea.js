@@ -261,9 +261,10 @@ $('#memberUpdateInfo').click(function(){
         },
         success: function (data) {
             if(data=="updatesuccess"){
-                alert('會員資料更新成功')
+                alert('會員資料更新成功');
+                window.location.href = "/FinalProject/Customer.html";
             }else{
-                alert('會員資料更新失敗')
+                alert('會員資料更新失敗');
             }
         }
     });
