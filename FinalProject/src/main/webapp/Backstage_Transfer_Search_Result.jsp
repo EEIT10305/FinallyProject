@@ -10,6 +10,14 @@
 	<title>後台</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style>
+	table, td, th {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    
+		}
+	
+	
+	
 		* {
 			margin: 0;
 			padding: 0;
@@ -240,7 +248,7 @@
 
 				<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
 				<span>/</span>
-				<a href="/FinalProject/Backstage_Transfer_Search_Result.jsp" title="Beats">調撥貨品</a>
+				<a href="/FinalProject/pages/search.transfer.controller" title="Beats">調撥貨品</a>
 			</div>
 			<br>
 			<br>
@@ -253,44 +261,45 @@
 <body>
 Search Result
 
-<form action = "/FinalProject/pages/transfer.controller">
-<table border = "2px">
+
+<table style = "text-align:center; width :70%; font-size : 20px;">
 <caption>Transfer</caption>
-<thead>
+
 
 	<tr>
-		<th>Branch Stock ID</th>
-		<th>Branch Name</th>
-		<th>Amount</th>
-		<th>Product Brand</th>
-		<th>Product Model</th>
-		<th>Product ID</th>
-		<th>Product Category</th>
-		
-		
-		
-		
-</thead>
-<tbody>
+		<th style = "width:5%">Branch Stock ID</th>
+		<th style = "width:6%">Branch Name</th>
+		<th style = "width:2%">Amount</th>
+		<th style = "width:4%">Brand</th>
+		<th style = "width:10%">Model</th>
+		<th style = "width:2%">ID</th>
+		<th style = "width:3%">Category</th>
+		<th style = "width:3%">Submit</th>
+</tr>
+<!-- </table> -->
+
 	<c:forEach var="row" items="${transfer}" >
-
-		<tr>
-			<td>${row.branch_stock_id}</td>
-			<td>${row.branchBean.name}</td>
-			<td>${row.amount}</td>
-			<td>${row.productBean.brandBean.brand}</td>
-			<td>${row.productBean.model}</td>
-			<td>${row.proid}</td>
-			<td>${row.productBean.categoryBean.category}</td>						
-			<td><a href="/FinalProject/pages/transfer.controller?branchstockid=${row.branch_stock_id}&amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}">Transfer</a></td>			
-			<!--/FinalProject/pages/transfer.controller?amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}-->
-		</tr>
+		<form action="/FinalProject/pages/transfer.controller?shopname=${row.branchBean.shopname}" method="post">
+		<!-- http://localhost:8081/FinalProject/Backstage_Transfer.jsp -->
 		
+			<!-- <table style = "text-align:center"> -->
+				<tr>
+					<td style = "width:5%">${row.branch_stock_id}</td>
+					<td style = "width:6%">${row.branchBean.shopname}</td>
+					<td style = "width:2%"><input type = "hidden" name = "amount" value = "${row.amount}">${row.amount}</td>
+					<td style = "width:4%">${row.productBean.brandBean.brand}</td>
+					<td style = "width:10%"><input type="hidden" name="model" value="${row.productBean.model}">${row.productBean.model}</td>
+					<td style = "width:2%"><input type="hidden" name="proid" value="${row.proid}">${row.proid}</td>
+					<td style = "width:3%">${row.productBean.categoryBean.category}</td>					
+					<td style = "width:3%"><input type="hidden" name="branchid" value="${row.branchid}"><input type = "submit" value = "送出" style = "width:60%"></td>	
+				</tr>
+		</form>
 	</c:forEach>
-
-</tbody>
 </table>
-</form>
+
+
+
+
 
 </body>
 </html>

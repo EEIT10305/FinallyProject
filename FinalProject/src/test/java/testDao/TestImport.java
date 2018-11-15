@@ -9,11 +9,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import misc.SpringJavaConfiguration;
 import model.bean.ImportBean;
+import model.bean.TransferBean;
 import model.dao.BranchStockDAO;
 import model.dao.impl.BranchStockDAOImpl;
 import model.dao.impl.ImportDAOImpl;
 import model.dao.impl.ImportDetailDAOImpl;
 import model.dao.impl.ProductDAOImpl;
+import model.dao.impl.TransferDAOImpl;
 import model.service.ImportService;
 
 public class TestImport {
@@ -78,6 +80,14 @@ public class TestImport {
 //		System.out.println(bean.selectAll());
 	}
 	
+	@Test
+	public void testTransferBean() {
+		TransferDAOImpl bean = context.getBean(TransferDAOImpl.class);
+		System.out.println(bean.selectAll());
+		
+		
+		
+	}
 	
 	
 	

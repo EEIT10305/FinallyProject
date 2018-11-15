@@ -395,7 +395,16 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	
-	//---------------------------------------------------
+	//---------------------------------------------------kai
+	
+	@Override
+	public List<ProductBean> selectByModel(String model){
+		String hql = "From ProductBean where model like : model";
+		return this.getSession().createQuery(hql,ProductBean.class).setParameter("model", "%" + model + "%").getResultList();		
+		
+	}
+	
+	
 	
 	
 }

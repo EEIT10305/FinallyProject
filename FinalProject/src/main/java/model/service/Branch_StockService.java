@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.BranchStockBean;
 import model.bean.BrandBean;
+import model.bean.ProductBean;
 import model.bean.TransferBean;
 
 public interface Branch_StockService {
@@ -27,7 +28,14 @@ public interface Branch_StockService {
 	List<TransferBean> selectAll();
 
 	BrandBean selectByBrand(String brand);
+
+	List<TransferBean> selectLatestRecord(String date);
+
+
+	List<BranchStockBean> selectByProID(Integer proid);
+
+	List<BranchStockBean> selectByProModel(String promodel);
 	
-	
+
 
 }
