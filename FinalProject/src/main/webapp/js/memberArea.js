@@ -202,9 +202,9 @@ $.ajax({
     url: "processMemberUpdatePassword",
     data: {
         email: isUserInside ,  //=======目前寫死的 要記得從cookie內抓=====
-        oldPassword:$('#userInputOldPassword').val(),
-        newPassword:$('#userInputNewPassword').val(),
-        checkPassword:$('#userInputCheckPassword').val()
+        oldPassword:$('#memberInputOldPassword').val(),
+        newPassword:$('#memberInputNewPassword').val(),
+        checkPassword:$('#memberInputCheckPassword').val()
     },
     success: function (data) {
         $('#errorInputOldPassword').html("");
@@ -239,7 +239,8 @@ $.ajax({
             $('#errorInputCheckPassword').html("確認密碼和您設定的新密碼不相同!");
         }
         if(data=="updatePasswordSuccess"){
-        alert('修改成功!')
+        alert('修改成功!即將將您導回首頁!重新登入您的新密碼')
+        clearAllCookie();
         }
     }
 });
@@ -318,6 +319,17 @@ console.log($(this).val())
          }
      });
 }
+
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "/FinalProject/FirstPage.html";
+}
+
    
    
    

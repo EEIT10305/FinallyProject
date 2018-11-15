@@ -82,25 +82,7 @@
                 </a>
             </div>
             <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="/FinalProject/ShowCart.html">
-                            <img src="image/shopping-cart.png" width="30px">
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
-
-                    </ul>
-                </li>
-                <fieldset id="myModal" class="mymodal">
-                    <div class="dropdown-divider"></div>
-                    <a href='ShowCart.html'>
-                        <button style="width:300px" class='btn btn-dark'>查看購物車</button>
-                    </a>
-            </div>
-            </fieldset>
+               <ul></ul>
         </div>
         </div>
 
@@ -307,7 +289,7 @@
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
                  document.cookie = "email=" + data+";expires=" + exp.toGMTString();
                  alert('一般會員登入+把email塞到cookie裡面');
-                 window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                 window.location.href = "/FinalProject/FirstPage.html";
                     }
                     
                     else if (data=="notFoundData"){
@@ -318,6 +300,7 @@
 
         })
     </script>
+    <script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
 </body>
 
 </html>

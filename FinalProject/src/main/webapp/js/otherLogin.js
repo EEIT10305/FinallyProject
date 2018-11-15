@@ -5,7 +5,7 @@ function clearAllCookie() {
         for(var i = keys.length; i--;)
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
     }
-    window.location.reload(true);
+    window.location.href = "/FinalProject/FirstPage.html";
 }
 //----------------------------------------------------------------------------------------------fb登入4
 window.fbAsyncInit = function () {
