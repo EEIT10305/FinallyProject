@@ -11,19 +11,19 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/fp.css">
 <link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+	href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 
 <link rel="stylesheet" href="datepicker/css/bootstrap-datepicker3.min.css">
  
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/js/flot/jquery.flot.min.js"></script>    
 <script type="text/javascript" src="/js/flot/jquery.flot.symbol.js"></script>
 <script type="text/javascript" src="/js/flot/jquery.flot.axislabels.js"></script>
 <script type="text/javascript" src="js/flot/jquery.js"></script>
 <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-<script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="https://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
 
 <script src="datepicker/js/bootstrap-datepicker.js"></script>
  
@@ -109,7 +109,7 @@ tr td {
 $(document).ready(function(){//信件功能
     var t = setInterval(request,100000);
 
-	document.cookie = "email=test@gmail.com";
+// 	document.cookie = "email=test@gmail.com";
 	var cookies = document.cookie;
 	var cookie = cookies.split(";");
 	var who = ""
@@ -161,7 +161,7 @@ $(document).ready(function(){//信件功能
 $(function() {
 	 $('#datepicker3').datepicker({
 		    format: "yyyy/mm/dd",
-		    startDate: "2018-02-25",
+		    startDate: "2018/02/25",
 		    autoclose: true,
 		    clearBtn: true,
 		    calendarWeeks: true,
@@ -170,7 +170,10 @@ $(function() {
 		});
 	 
 	 $('#datepicker3').change(function(){
-		 var da = $('#datepicker4').val()
+		 var da = $('#datepicker3').val()
+		 $('#datepicker4').removeClass('calendarclass');
+         $('#datepicker4').removeClass('hasDatepicker');
+         $('#datepicker4').unbind();
 	     $('#datepicker4').datepicker({
 		    format: "yyyy/mm/dd",
 		    startDate: da,
@@ -228,7 +231,7 @@ $(function() {
 					<img src="image/cat.png" width="30px"></a>
 				<fieldset id="myModal" class="mymodal">
 					<a href='FirstPage.html'>
-						<button style="width: 300px" class='btn btn-dark'>登出</button>
+						<button style="width: 300px" class='btn btn-dark' onclick="clearAllCookie()">登出</button>
 					</a>
 				</fieldset>
 					</li>

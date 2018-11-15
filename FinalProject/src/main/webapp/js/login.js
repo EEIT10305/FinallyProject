@@ -89,6 +89,8 @@ $(document).ready(function(){
                     });
                    }else if(data=="gmLogin"){
                     console.log("已判斷使用者是GM登入")
+                    console.log($("#memberInputEmail").val());
+                    document.cookie = "email=" + $("#memberInputEmail").val();
                     window.location.href = "/FinalProject/BackPage.html";
                    }
                    else{
@@ -133,6 +135,8 @@ $("#gogogsubmit").click(function () {
             }
             else if(data=="gmLogin"){
                 console.log(data+'登入者是GM 請導入GM畫面');
+                console.log($("#memberInputEmail").val());
+                document.cookie = "email=" + $("#memberInputEmail").val();
                 window.location.href = "/FinalProject/BackPage.html";
             }
             else{

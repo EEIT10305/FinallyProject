@@ -172,11 +172,14 @@ public class ImportServiceImpl implements ImportService {
 //                新增到庫存表
 				BranchStockBean bean = new BranchStockBean(null, importDetailBean.get(x).getAmount(), 1,
 						importDetailBean.get(x).getProid(), "on");
+				BranchStockBean bean2 = new BranchStockBean(null, 0, 2,
+						importDetailBean.get(x).getProid(), "on");
 				branchStockDAO.insert(bean);
+				branchStockDAO.insert(bean2);
 //				新增一筆到message表格
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 				String da = sdf.format(new Date());
-				MessageBean mbean = new MessageBean(null, 3, 6, da, "Dear同事:\\n請協助商品"+importDetailBean.get(x).getProductBean().getModel()+"上架，謝謝。\\n\\n  Best Regards", "請協助商品上架", "notyet");
+				MessageBean mbean = new MessageBean(null, 3, 5, da, "Dear同事:\\n請協助商品"+importDetailBean.get(x).getProductBean().getModel()+"上架，謝謝。\\n\\n  Best Regards", "請協助商品上架", "notyet");
 				messageDAO.insert(mbean);
 				
 				result.add(bean);
