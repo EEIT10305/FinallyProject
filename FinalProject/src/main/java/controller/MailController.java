@@ -18,6 +18,7 @@ public class MailController {
 	@RequestMapping(path="MailController",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String method(String who) {
+		System.out.println("登入的仁兄:" + who);
 		System.out.println("mailService.getMailForMe(who):" + mailService.getMailForMe(who));
 		return new Gson().toJson(mailService.getMailForMe(who));	
 	}
