@@ -50,7 +50,7 @@ $("#userSend").click(function () {
                 $("#errorInputData").html("您輸入的email已註冊!請重新輸入");
              }
             if(data==$("#userInputEmail").val()){
-               window.location.href="http://localhost:8080/FinalProject/OnlyProcessLogin.html";
+               window.location.href="/FinalProject/OnlyProcessLogin.html";
                 }
         }
     });

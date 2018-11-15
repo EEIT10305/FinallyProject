@@ -240,7 +240,7 @@
 
 				<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
 				<span>/</span>
-				<a href="/FinalProject/Backstage_Transfer_Search_Result.jsp" title="Beats">調撥貨品</a>
+				<a href="/FinalProject/pages/search.transfer.controller" title="Beats">調撥貨品</a>
 				<span>/</span>
 				<a href="/FinalProject/Backstage_Transfer.jsp">調撥</a>
 			</div>
@@ -254,24 +254,28 @@
 
 <body>
 
-<a href = "/FinalProject/Backstage_Transfer_Search_Result.jsp">Back to Detail</a>
+<a href = "/FinalProject/pages/search.transfer.controller">回到貨品</a>
 <br>
 <br>
 Transfer
-<form action = "/FinalProject/pages/insert.transfer.controller" method="post">
+
+<form action = "/FinalProject/pages/insert.transfer.controller" method = "post">
+
 <table>
 <caption>Transfer From</caption>
 	<tr>
-		<td>Branch ID : </td>
-		<td><input type="text" name="branchidin" value="${param.branchid}" maxlength = "3"></td>		
-		<td><input type="text" value="${param.shopname}" maxlength = "3"></td>		
+
+		<td>Branch ID : </td>		
+		<td><input type="hidden" name="branchidin" value="${param.branchid}" maxlength = "3"><input type="text" value="${param.shopname}" maxlength = "3"></td>		
+
 	</tr>
 	
 	
 	<tr>
-		<td>Product ID : </td>
-		<td><input type="text" name="proidin" value="${param.proid}" maxlength = "6"></td>		
-		<td><input type="text" value="${param.model}" maxlength = "6"></td>		
+
+		<td>Product ID : </td>		
+		<td><input type="hidden" name="proidin" value="${param.proid}" maxlength = "6"><input type="text" value="${param.model}" maxlength = "6"></td>
+
 	</tr>
 
 
@@ -299,10 +303,10 @@ Transfer
 				
 				<br>
 				<br>
+
+
+			<input type="submit" value="調撥">
 </div>
-
-			<input type="submit" value="Transfer">
-
 
 </form>
 

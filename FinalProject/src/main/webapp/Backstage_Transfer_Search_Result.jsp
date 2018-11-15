@@ -4,17 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>後台</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
-	rel="stylesheet">
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>後台</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<style>
+	table, td, th {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    
+		}
+	
+	
+	
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
 
 /*頁首格式*/
 .n0 {
@@ -219,12 +228,16 @@ td {
 
 			<div style="margin-right: 60%">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				${sessionScope.login} </span> <span>&nbsp;&nbsp;&nbsp;您好!!</span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置： <a
-					href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
-				<span>/</span> <a
-					href="/FinalProject/Backstage_Transfer_Search_Result.jsp"
-					title="Beats">調撥貨品</a>
+
+				${sessionScope.login}
+				</span>
+				<span>&nbsp;&nbsp;&nbsp;您好!!</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 當前位置：
+
+				<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">庫存管理</a>
+				<span>/</span>
+				<a href="/FinalProject/pages/search.transfer.controller" title="Beats">調撥貨品</a>
+
 			</div>
 			<br> <br> <br>
 
@@ -234,44 +247,46 @@ td {
 <body>
 	Search Result
 
-		<table border="2px">
-			<caption>Transfer</caption>
-			<thead>
 
+
+<table style = "text-align:center; width :70%; font-size : 20px;">
+<caption>Transfer</caption>
+
+
+
+
+	<tr>
+		<th style = "width:5%">Branch Stock ID</th>
+		<th style = "width:6%">Branch Name</th>
+		<th style = "width:2%">Amount</th>
+		<th style = "width:4%">Brand</th>
+		<th style = "width:10%">Model</th>
+		<th style = "width:2%">ID</th>
+		<th style = "width:3%">Category</th>
+		<th style = "width:3%">Submit</th>
+</tr>
+<!-- </table> -->
+
+	<c:forEach var="row" items="${transfer}" >
+		<form action="/FinalProject/pages/transfer.controller?shopname=${row.branchBean.shopname}" method="post">
+		<!-- http://localhost:8081/FinalProject/Backstage_Transfer.jsp -->
+		
+			<!-- <table style = "text-align:center"> -->
 				<tr>
-					<th>Branch Stock ID</th>
-					<th>Branch Name</th>
-					<th>Amount</th>
-					<th>Product Brand</th>
-					<th>Product Model</th>
-					<th>Product ID</th>
-					<th>Product Category</th>
-			</thead>
+					<td style = "width:5%">${row.branch_stock_id}</td>
+					<td style = "width:6%">${row.branchBean.shopname}</td>
+					<td style = "width:2%"><input type = "hidden" name = "amount" value = "${row.amount}">${row.amount}</td>
+					<td style = "width:4%">${row.productBean.brandBean.brand}</td>
+					<td style = "width:10%"><input type="hidden" name="model" value="${row.productBean.model}">${row.productBean.model}</td>
+					<td style = "width:2%"><input type="hidden" name="proid" value="${row.proid}">${row.proid}</td>
+					<td style = "width:3%">${row.productBean.categoryBean.category}</td>					
+					<td style = "width:3%"><input type="hidden" name="branchid" value="${row.branchid}"><input type = "submit" value = "送出" style = "width:60%"></td>	
+				</tr>
+		</form>
+	</c:forEach>
+</table>
 
-		</table>
-		<c:forEach var="row" items="${transfer}">
-			<form action="/FinalProject/pages/transfer.controller?shopname=${row.branchBean.shopname}" method="post">
-				<table>
-					
-						<tr>
-							<td>${row.branch_stock_id}</td>
-							<td>${row.branchBean.shopname}</td>
-							<td>${row.amount}<input type="hidden" name="amount" value="${row.amount}"></td>
-							<td>${row.productBean.brandBean.brand}<input type="hidden" name="model" value="${row.productBean.model}"><input type="hidden" name="branchid" value="${row.branchid}"></td>
-							<td>${row.productBean.model}</td>
-							<td>${row.proid}<input type="hidden" name="proid" value="${row.proid}"></td>
-							<td>${row.productBean.categoryBean.category}</td>
-			
-							<%-- 			<td><a href="/FinalProject/pages/transfer.controller?branchstockid=${row.branch_stock_id}&amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}">Transfer</a></td>			 --%>
-							<td><input type="submit" value="送出"></td>
-							<!--/FinalProject/pages/transfer.controller?amount=${row.amount}&proid=${row.proid}&branchid=${row.branchid}-->
 
-						</tr>
-					
-				</table>
-			
-	       </form>
-		</c:forEach>
 
 </body>
 </html>

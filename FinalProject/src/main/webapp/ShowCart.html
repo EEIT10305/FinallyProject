@@ -703,6 +703,10 @@ function modifyAmount(){
 
 	</footer>
 	<script type="text/javascript">
+	var cookies = "";
+	cookies = document.cookie;
+	var memberEmail = cookies.split("email=")[1].split(";")[0];
+	
 	$('#gridCheck').click(function(){
 	//alert($("input[name='memberData']:checked").val())
 	var chcekboxValue = $("input[name='memberData']:checked").val();
@@ -711,7 +715,7 @@ function modifyAmount(){
 			type:"POST",
 			url:"GetMemberData",
 			data:{
-				email:"wenchen@gmail.com",
+				email: memberEmail,
 				},
 				success:function(data){
 					//alert(data);
@@ -743,6 +747,7 @@ function modifyAmount(){
 
 	
 	</script>
+	<script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 	<script

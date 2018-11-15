@@ -3,7 +3,7 @@ var isUserInside ="";
 $(document).ready(function(){
     cookies = document.cookie;
     isUserInside = cookies.split("email=")[1].split(";")[0]
-     alert('有沒有抓到cookie內的email呢??→'+isUserInside);
+     console.log('有沒有抓到cookie內的email呢??→'+isUserInside);
 });
 
 /*----------------------------------------------------------------測試用來給會員查詢自己的訂單紀錄用的----------------------------------------------------------------*/ 
@@ -202,9 +202,9 @@ $.ajax({
     url: "processMemberUpdatePassword",
     data: {
         email: isUserInside ,  //=======目前寫死的 要記得從cookie內抓=====
-        oldPassword:$('#userInputOldPassword').val(),
-        newPassword:$('#userInputNewPassword').val(),
-        checkPassword:$('#userInputCheckPassword').val()
+        oldPassword:$('#memberInputOldPassword').val(),
+        newPassword:$('#memberInputNewPassword').val(),
+        checkPassword:$('#memberInputCheckPassword').val()
     },
     success: function (data) {
         $('#errorInputOldPassword').html("");
@@ -239,7 +239,8 @@ $.ajax({
             $('#errorInputCheckPassword').html("確認密碼和您設定的新密碼不相同!");
         }
         if(data=="updatePasswordSuccess"){
-        alert('修改成功!')
+        alert('修改成功!即將將您導回首頁!重新登入您的新密碼')
+        clearAllCookie();
         }
     }
 });
@@ -306,7 +307,7 @@ $('#memberUpdateInfo').click(function(){
    
    //======================購物車===================================================
    function addToCart(){
-alert($(this).val())
+console.log($(this).val())
      $.ajax({
          type: "post",
          url: "AddtToCartController",
@@ -318,6 +319,17 @@ alert($(this).val())
          }
      });
 }
+
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "/FinalProject/FirstPage.html";
+}
+
    
    
    

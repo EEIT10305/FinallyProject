@@ -169,7 +169,6 @@
 		}
 	</style>
 
-
 </head>
 
 <body>
@@ -260,12 +259,13 @@
 					<div class="sut1">
 						<label class="tid"> 下單日期:</label>
 						<input type="date" name="orderdate" value = "${param.orderdate}"maxlength="10">
+						
 					</div>
 					<div class="sut1">
 						<label for="" class="tid"  > 貨物狀態:</label>
 						<select  style="width:150px" name="statu" value = "${param.statu}">
 							<option value = "on">已進貨</option>
-							<option value = "off">未進貨</option>
+							<option value = "off">進貨完成</option>
 
 						</select>
 					</div>

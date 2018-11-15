@@ -257,10 +257,10 @@
 
 				<div class="sut1">
 				
-				<%-- 	<div class="sut1">
-						<label class="tid"> 產品品牌:</label>
-						<input type="text" name="brand" value = "${param.brand}"maxlength="10">
-					</div>  --%>
+				<div class="sut1">
+						<label class="tid"> 產品型號:</label>
+						<input type="text" name="promodel" value = "${param.model}"maxlength="10">
+					</div>
 
 					<br>
 					<br>

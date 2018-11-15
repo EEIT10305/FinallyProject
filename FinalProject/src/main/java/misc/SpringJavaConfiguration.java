@@ -38,7 +38,7 @@ public class SpringJavaConfiguration {
 		}
 		return (DataSource) factory.getObject();
 	}
-	@Bean//一般JAVA應用程式連資料庫
+//	@Bean//一般JAVA應用程式連資料庫
 	public DataSource dataSourcemanager() {
 		DriverManagerDataSource DMDS = new DriverManagerDataSource();
 		DMDS.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -51,7 +51,7 @@ public class SpringJavaConfiguration {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder =
-				new LocalSessionFactoryBuilder(dataSourcemanager());//看程式執行地方換datasource
+				new LocalSessionFactoryBuilder(dataSource());//看程式執行地方換datasource
 
 		Properties props = new Properties();
 
