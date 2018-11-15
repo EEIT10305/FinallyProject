@@ -139,25 +139,27 @@ public class ImportServiceImpl implements ImportService {
 				branchStockDAO.update(branch);
 				
 				
-				List<WishBean> allProWishList = wishDAO.selectAllByProId(importDetailBean.get(x).getProid());
-				System.out.println("補貨");
-				System.out.println("有沒有抓到會員的願望清單"+allProWishList);
-					for(WishBean everyWishList:allProWishList) {
-						System.out.println("進入迴圈");
-						if(everyWishList.getTracked()==2) {
-							MemberBean memberBean = memberDAO.selectById(everyWishList.getMemberid());
-							ProductBean productBean = productDAO.selectById(importDetailBean.get(x).getProid());
-							System.out.println("會員mail="+memberBean.getEmail()+"大選電腦提醒您!關注商品已到貨"+"商品名稱為："+productBean.getModel());
-							System.out.println("自動發mail第幾封?=>"+x);
+//				List<WishBean> allProWishList = wishDAO.selectAllByProId(importDetailBean.get(x).getProid());
+//				System.out.println("補貨");
+//				System.out.println("有沒有抓到會員的願望清單"+allProWishList);
+//					for(WishBean everyWishList:allProWishList) {
+//						System.out.println("進入迴圈");
+//						if(everyWishList.getTracked()==2) {
+//							MemberBean memberBean = memberDAO.selectById(everyWishList.getMemberid());
+//							ProductBean productBean = productDAO.selectById(importDetailBean.get(x).getProid());
+//							System.out.println("會員mail="+memberBean.getEmail()+"大選電腦提醒您!關注商品已到貨"+"商品名稱為："+productBean.getModel());
+//							System.out.println("自動發mail第幾封?=>"+x);
 //							AutoSendEmailByJava.processMemberWishNotice(memberBean.getEmail(), "大選電腦提醒您!關注商品已到貨", "親愛的會員您好!您關注的商品:"+productBean.getModel()+"已到貨");
-						}
-					}
+//						}
+//					}
 					
 					
 				result.add(branch);
 				
 				break;
 			}
+//如果branch_stock裡面沒有ImportDetailBean的proid
+//insert		
 			else if(branch.getProid()== null){
 
 				System.out.println("insert into stock+++++++++++++++++++++++++++++++++++++++++++++++");
@@ -171,8 +173,6 @@ public class ImportServiceImpl implements ImportService {
 			}
 
 		}
-//如果branch_stock裡面沒有ImportDetailBean的proid
-//insert		
 
 		return result;
 	}

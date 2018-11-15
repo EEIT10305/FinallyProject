@@ -24,7 +24,18 @@ public class TransferDAOImpl implements TransferDAO {
 	public List<TransferBean> selectAll() {
 		return this.getSession().createQuery("FROM TransferBean", TransferBean.class).setMaxResults(50).list();
 	}
+	
+	@Override
+	public List<TransferBean> selectLatestRecord(String transferdate){
+		
+		
+		
+		return this.getSession().createQuery("FROM TransferBean where transferdate =: transferdate", TransferBean.class).setParameter("transferdate", transferdate).list();
+		
+	}
 
+	
+	
 	@Override
 	public TransferBean selectById(int id) {
 		return this.getSession().get(TransferBean.class, id);

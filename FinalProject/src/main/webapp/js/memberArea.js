@@ -3,7 +3,7 @@ var isUserInside ="";
 $(document).ready(function(){
     cookies = document.cookie;
     isUserInside = cookies.split("email=")[1].split(";")[0]
-     alert('有沒有抓到cookie內的email呢??→'+isUserInside);
+     console.log('有沒有抓到cookie內的email呢??→'+isUserInside);
 });
 
 /*----------------------------------------------------------------測試用來給會員查詢自己的訂單紀錄用的----------------------------------------------------------------*/ 
@@ -57,7 +57,7 @@ if($(this).attr("value")=="memberClickSelfInfo"){//如果點選的是=====會員
     $('#thisdivShowMemberInfoUpdate').attr("style","display:block");//會員訂單查詢設定為顯示
 
     $.post("showMemberInfo",{
-        email:"123@gmail.com"      //=====記得要從cookie抓mail資訊======
+        email:isUserInside      //=====記得要從cookie抓mail資訊======
     },function(data,status){
         if(status == "success"){
 //            alert('資料從後端controller傳回來成功')
@@ -306,7 +306,7 @@ $('#memberUpdateInfo').click(function(){
    
    //======================購物車===================================================
    function addToCart(){
-alert($(this).val())
+console.log($(this).val())
      $.ajax({
          type: "post",
          url: "AddtToCartController",

@@ -9,4 +9,5 @@ public interface TransferDAO {
 	    TransferBean selectById(int id);
 	    TransferBean insert(TransferBean bean);
 	    boolean update(TransferBean bean);
+		List<TransferBean> selectLatestRecord(String date);
 }

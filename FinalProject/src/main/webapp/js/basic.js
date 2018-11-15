@@ -26,5 +26,15 @@ $(document).ready(function() {
 				$("#mymail").hide();
 			}
 		})
+		
+		$('#lodinyes').mouseover(function() {
+			$("#logoutbtn").show();
+		});
+		$('#lodinyes').mouseout(function() {
+			if (!$("#logoutbtn:hover").length) {
+				$("#logoutbtn").hide();
+			}
+		})
+    	
 
 	})

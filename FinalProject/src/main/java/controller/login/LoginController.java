@@ -77,7 +77,7 @@ public class LoginController {
 			return "notFoundData";
 		} 
 		
-		else if (bean.getPermission() == "gm" && bean.getPermission().equals("gm")) {
+		else if (bean.getPermission() != null && bean.getPermission().equals("gm")) {
 			System.out.println("是否能抓到權限是gm呢?? : " + bean.getPermission());
 			return "gmLogin";
 		}

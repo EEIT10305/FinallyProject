@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import model.bean.ImportBean;
 import model.bean.ImportDetailBean;
@@ -22,17 +23,20 @@ public class ImportController {
 	@Autowired
 	private ImportService importService;
 
-	@Autowired
-	private ImportDetailService importDetailService;
 	
 	@RequestMapping("/pages/search.controller")
 	public String searchResult(ImportBean bean, String arrivedate, String orderdate, String statu, Integer improtid,
-			Model model) {
+			Model model, WebRequest request) {
 //
 //		System.out.println("arrivedate1------------------" + arrivedate);
 //		System.out.println("orderdate1-------------------" + orderdate);
 //		System.out.println("statu------------------------" + statu);
 
+		request.removeAttribute("detail", WebRequest.SCOPE_SESSION);	
+		
+		
+		
+		
 //Converts arrivedate format from yyyy-mm-dd to yyyy/mm/dd
 		if (arrivedate.contains("-")) {
 			String Arrive = arrivedate;
