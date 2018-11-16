@@ -203,6 +203,7 @@
                   </div> -->
             </div>
             <button id="userSend" type="submit" class="btn btn-secondary">送出</button><span class="errorMsg" id="errorBoth"></span>
+            <button id="oneKeyInputNewLogin" type="submit" class="btn btn-secondary">一鍵帶入</button>
         </article>
     </div>
     <footer>
@@ -275,7 +276,7 @@
                         // alert('有沒有抓到cartId??');
                         // alert(data);
                         sessionStorage.CarId=data;
-                        alert('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
+                        console.log('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
 
                         var Days = 30;//cookie設定30天
                         var exp = new Date();
@@ -288,7 +289,7 @@
                  var exp = new Date();
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
                  document.cookie = "email=" + data+";expires=" + exp.toGMTString();
-                 alert('一般會員登入+把email塞到cookie裡面');
+                 console.log('一般會員登入+把email塞到cookie裡面');
                  window.location.href = "/FinalProject/FirstPage.html";
                     }
                     
@@ -301,6 +302,13 @@
         })
     </script>
     <script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
+    <script>
+    //一鍵帶入
+$('#oneKeyInputNewLogin').click(function(){
+$('#userInputEmail').attr("value","gn01046294@hotmail.com");
+$('#userInputPassword').attr("value","Do!NG123");
+});
+    </script>
 </body>
 
 </html>

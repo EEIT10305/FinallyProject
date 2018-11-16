@@ -352,10 +352,19 @@ function modifyAmount(){
 					        <a href='ShowCart.html'><button style="width: 300px" class='btn btn-dark'>查看購物車</button></a>
 			            </fieldset>
 					</li>
-					<li>
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+				    <li>
+						<a id="lodinyes" style="display:none;" href="Customer.html" >
+							<img src="image/avatar_login.png" width="30px">
+						</a>
+						 <fieldset id="logoutbtn" class="mymodal"> 
+						<button id="originallogout" style="display:none;width: 300px" class='btn btn-dark' onclick="clearAllCookie()">登出</button>
+						<button id="fblogout" style="display:none;width: 300px" class='btn btn-primary' onclick="fbLogout()">fb登出</button>
+						<button id="googlelogout" style="display:none;width: 300px" class='btn btn-light' onclick="signOut();">Google登出</button>
+					</fieldset>
+						<a id="lodinno" style="display:none" href="" data-toggle="modal" data-target="#exampleModalCenter">
 							<img src="image/avatar.png" width="30px">
 						</a>
+
 					</li>
 				</ul>
 
@@ -568,7 +577,7 @@ function modifyAmount(){
 						<div style="padding: 30px">
 							<button id="CheckCart" class="btn btn-secondary collapsed" type="button"
 								data-toggle="collapse" data-target="#collapseTwo"
-								aria-expanded="false" aria-controls="collapseThree">下一步1</button>
+								aria-expanded="false" aria-controls="collapseThree">下一步</button>
 						</div>
 					</div>
 				</div>
@@ -603,7 +612,7 @@ function modifyAmount(){
 						<div id="CheckOrder" style="padding: 30px">
 							<button class="btn btn-secondary collapsed" type="button"
 								data-toggle="collapse" data-target="#collapseThree"
-								aria-expanded="false" aria-controls="collapseThree">下一步2</button>
+								aria-expanded="false" aria-controls="collapseThree">下一步</button>
 						</div>
 
 					</div>
@@ -651,7 +660,7 @@ function modifyAmount(){
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="inputEmail4">姓名</label> <input id="CheckName" type="email"
+										<label for="inputEmail4">會員帳號</label> <input id="CheckName" type="email"
 											class="form-control" id="inputEmail4" placeholder="Email">
 									</div>
 								</div>
@@ -747,6 +756,8 @@ function modifyAmount(){
 
 	
 	</script>
+	<script src="js/otherLogin.js"></script>
+	<script src="js/login.js"></script><!--秉毅用-->
 	<script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
 	<script
 		src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>

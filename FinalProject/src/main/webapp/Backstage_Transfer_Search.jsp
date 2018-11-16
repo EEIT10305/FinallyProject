@@ -182,50 +182,42 @@
 			<div class="n0">
 				<div class="n_1" id="s0">
 
-					<img src="./pic/unnamed.png" width="200px">
 				</div>
 				<div class="n1" id="s1">
 					<a href="/FinalProject/Backstage_index.jsp" title="Beats">
 						<p>
-							<br>本月公告</p>
+							<br>本月公告</p></a>
 				</div>
 
 				<div class="n1" id="s2">
 					<a href="/FinalProject/Backstage_Transfer_Index.jsp" title="Beats">
 						<p>
-							<br>庫存管理</p>
+							<br>庫存管理</p></a>
 				</div>
 				<div class="n1" id="s3">
 					<a href="/FinalProject/Backstage_Import_Index.jsp" title="Beats">
 						<p>
-							<br>進貨作業</p>
+							<br>進貨作業</p></a>
 				</div>
 				<c:if test="${staffBean.permission=='boss'}">
 				<div class="n1" id="s4">
 					<a href="./coat.jsp" title="Beats">
 						<p>
-							<br>員工管理</p>
+							<br>員工管理</p></a>
 				</div>
 				</c:if>
 				<div class="n2" id="s4">
-					<a href="./shopping.jsp" title="Beats">
-						<p>
-
-						</p>
+					<a href="./shopping.jsp" title="Beats"></a>
 				</div>
 				<div class="n2" id="s5">
-					<a href="./vip1.jsp" title="Beats">
 						<br>
-
 						<img src="./images/account.png" width="100px">
-					</a>
-					
-
 				</div>
 				<div class="n2" id="s6">
 					<a href="./index.jsp" title="Beats"> </a>
 					<p>
-						<br>首頁</p>
+						<a href="staffLogoutController"><p><br>登出</p></a>
+					</p>
 				</div>
 			</div>
 			<br>
@@ -259,7 +251,7 @@
 				
 				<div class="sut1">
 						<label class="tid"> 產品型號:</label>
-						<input type="text" name="promodel" value = "${param.model}"maxlength="10">
+						<input type="text" name="promodel" value = "${param.model}" >
 					</div>
 
 					<br>

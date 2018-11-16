@@ -150,7 +150,6 @@
 			<div class="n0">
 				<div class="n_1" id="s0">
 
-					<img src="./pic/unnamed.png" width="200px">
 				</div>
 
 				<div class="n1" id="s1">
@@ -176,12 +175,7 @@
 						<p></p></a>
 				</div>
 				<div class="n2" id="s5">
-					<a href="./vip1.jsp" title="Beats">
-						<br>
-
 						<img src="./images/account.png" width="100px">
-					</a>
-
 				</div>
 				
 				<div class="n2" id="s6">

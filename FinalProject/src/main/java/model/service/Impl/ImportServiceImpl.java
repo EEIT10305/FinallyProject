@@ -179,7 +179,7 @@ public class ImportServiceImpl implements ImportService {
 //				新增一筆到message表格
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 				String da = sdf.format(new Date());
-				MessageBean mbean = new MessageBean(null, 3, 5, da, "Dear同事:\\n請協助商品"+importDetailBean.get(x).getProductBean().getModel()+"上架，謝謝。\\n\\n  Best Regards", "請協助商品上架", "notyet");
+				MessageBean mbean = new MessageBean(null, 1, 5, da, "Dear同事:\\n請協助商品"+importDetailBean.get(x).getProductBean().getModel()+"上架，謝謝。\\n\\n  Best Regards", "請協助商品上架", "notyet");
 				messageDAO.insert(mbean);
 				
 				result.add(bean);

@@ -31,6 +31,9 @@ $.ajax({
             console.log(data);
             var orders=$.parseJSON(data);
             var txt="";
+            if(data.length==0||data==""||data==null||data=="[]"){
+                txt="您尚未有訂單紀錄!"+"<a href='/FinalProject/ProductPage.html'>馬上來去逛逛吧!?</a>";
+            }
            for(i=0;i<orders.length;i++){
 //            alert(orders[i].orderid);
 //            alert(orders[i].memberBean.membername)
@@ -120,6 +123,9 @@ if($(this).attr("value")=="memberClickSelfWishInfo"){//如果點選的是=====�
             var wishs = $.parseJSON(data);
             var txt = "";
             var a = 1;
+            if(data.length==0||data==""||data==null||data=="[]"){
+                txt="您還沒有關注任何商品!"+"<a href='/FinalProject/ProductPage.html'>馬上來去瞧瞧吧!?</a>";
+            }
             for(i=0;i<wishs.length;i++){
                 if(wishs[i].tracked==1){
                 txt+="<tr style='height:60px;line-height:60px;'><th scope='row'>"+a+"</th>";
@@ -160,6 +166,9 @@ if($(this).attr("value")=="memberClickSelfProInfo"){//如果點選的是=====貨
 
             var txt = "";
             var a = 1;
+            if(data=="[]|[]"){
+                txt="您想知道哪一件商品呢?! → "+" <a href='/FinalProject/ProductPage.html'>馬上去看看吧!?</a>";
+            }
             for(i=0;i<wishList.length;i++){
                 txt+="<tr style='height:60px;line-height:60px;'><th scope='row'>"+a+"</th>";//頭
                 txt+="<td>"+wishList[i].productBean.model+"</td>";//型號
@@ -261,9 +270,10 @@ $('#memberUpdateInfo').click(function(){
         },
         success: function (data) {
             if(data=="updatesuccess"){
-                alert('會員資料更新成功')
+                alert('會員資料更新成功');
+                window.location.href = "/FinalProject/Customer.html";
             }else{
-                alert('會員資料更新失敗')
+                alert('會員資料更新失敗');
             }
         }
     });
