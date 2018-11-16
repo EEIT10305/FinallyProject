@@ -61,7 +61,7 @@ public class BugServiceImpl implements BugService {
 	    System.out.println(numberPage.size());
 	    System.out.println(proPage.size());
 	    Iterator<String> npi = numberPage.iterator();//頁數
-	    while (npi.hasNext()) {
+	    if (npi.hasNext()) {//應該要是while 為了demo時間 改成if
 	    	HashMap<String, Set<String>> pro = mwc.visitPage(orgin + npi.next());
 		    Set<String> proPage2 = pro.get("proPage");
 		    Iterator<String> ppi2 = proPage2.iterator();//其他頁數的商品
