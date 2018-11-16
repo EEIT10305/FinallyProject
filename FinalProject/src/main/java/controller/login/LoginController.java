@@ -125,11 +125,9 @@ public class LoginController {
 	@ResponseBody
 	public String isUserOurs(String email) {
 		
-		Date date = new Date();//建立進入這隻controller的時間
-		String strDate = sdFormat.format(date);//建立進入這隻controller的時間
+		String strDate = sdFormat.format(new Date());//建立進入這隻controller的時間
 		
-		System.out.println("網頁一進入的時候有沒有跑到這隻servlet");
-		System.out.println(email);
+		System.out.println("使用者一進入網站判斷登入方式的controller     前端傳回的資料:::=>"+email);
 
 		MemberBean bean = loginService.checkEmail(email);
 		System.out.println("網頁一進來的時候抓到的資料轉成json格式:"+new Gson().toJson(bean));

@@ -95,4 +95,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return mb;
 	}
 
+	@Override
+	public List<MemberBean> checkEmailList(String email) {
+		return this.getSession().createQuery("FROM MemberBean WHERE email =:email", MemberBean.class).setParameter("email", email).list();
+	}
+
 }
