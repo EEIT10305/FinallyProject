@@ -377,5 +377,13 @@ public class LoginController {
 		System.out.println(memberInfo.get("nopay").toString());
 		return memberInfo.get("nopay").toString();
 	}
+	/*------------------處理除了首頁之外的頁面的登出紐------------------------------------*/
+	@RequestMapping(path = "processOtherPageLogout", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String processOtherPageLogout(String email) {
+//		loginService.checkEmail(email);
+		return new Gson().toJson(loginService.checkEmail(email));
+	}
+	
 	
 }

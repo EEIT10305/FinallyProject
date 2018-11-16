@@ -65,18 +65,18 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberBean selectByEmail(String email) {// 查詢此email是否有人用過
-//		MemberBean mb = null;
+		MemberBean mb = null;
 		String hql = "FROM MemberBean WHERE email = :email ";
 //		Session session = getSession();
 //		Query query = session.createQuery(hql);
 //		query = query.setParameter("email", email);
-//		try {
-//			mb = (MemberBean) query.getSingleResult();
-//
-//		} catch (Exception ex) {// NoResultException
-//			mb = null;
-//		}
-		return this.getSession().createQuery(hql,MemberBean.class).setParameter("email", email).getSingleResult();
+		try {
+			mb = this.getSession().createQuery(hql,MemberBean.class).setParameter("email", email).getSingleResult();
+
+		} catch (Exception ex) {// NoResultException
+			mb = null;
+		}
+		return mb;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package model.service.Impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,12 +15,14 @@ import model.bean.BranchStockBean;
 import model.bean.ImportBean;
 import model.bean.ImportDetailBean;
 import model.bean.MemberBean;
+import model.bean.MessageBean;
 import model.bean.ProductBean;
 import model.bean.WishBean;
 import model.dao.BranchStockDAO;
 import model.dao.ImportDAO;
 import model.dao.ImportDetailDAO;
 import model.dao.MemberDAO;
+import model.dao.MessageDAO;
 import model.dao.ProductDAO;
 import model.dao.WishDAO;
 import model.service.ImportService;
@@ -37,14 +41,15 @@ public class ImportServiceImpl implements ImportService {
 
 	@Autowired
 	MemberDAO memberDAO;
-	
+
 	@Autowired
 	WishDAO wishDAO;
-	
+
 	@Autowired
 	ProductDAO productDAO;
 
-
+	@Autowired
+	MessageDAO messageDAO;
 
 	public ImportServiceImpl() {
 
@@ -111,7 +116,6 @@ public class ImportServiceImpl implements ImportService {
 
 	}
 
-
 	@Override
 	public List<BranchStockBean> insertBranchStock(Integer improtid, Integer proid) {
 		List<BranchStockBean> result = new ArrayList<>();
@@ -122,51 +126,62 @@ public class ImportServiceImpl implements ImportService {
 		for (int x = 0; x < importDetailBean.size(); x++) {
 			System.out.println("forrrrrrrrrrrrrrrrrrrr");
 
-			System.out.println(" proid ==================="+importDetailBean.get(x).getProid());
-					
+			System.out.println(" proid ===================" + importDetailBean.get(x).getProid());
+
 			BranchStockBean branch = branchStockDAO.selectAllBy(importDetailBean.get(x).getProid());
-			
+
 //如果branch_stock裡面有ImportDetailBean的proid
 //update				
-			
-			if (branch.getProid()==proid) {				
 
-				System.out.println("branchid============================" + branch.getBranchid());
-				int total = importDetailBean.get(x).getAmount() + branch.getAmount();
+			if (branch != null) {
+				if (branch.getProid() == proid) {
 
-				branch.setAmount(total);
-								
-				branchStockDAO.update(branch);
-				
-				
-//				List<WishBean> allProWishList = wishDAO.selectAllByProId(importDetailBean.get(x).getProid());
-//				System.out.println("補貨");
-//				System.out.println("有沒有抓到會員的願望清單"+allProWishList);
-//					for(WishBean everyWishList:allProWishList) {
-//						System.out.println("進入迴圈");
-//						if(everyWishList.getTracked()==2) {
-//							MemberBean memberBean = memberDAO.selectById(everyWishList.getMemberid());
-//							ProductBean productBean = productDAO.selectById(importDetailBean.get(x).getProid());
-//							System.out.println("會員mail="+memberBean.getEmail()+"大選電腦提醒您!關注商品已到貨"+"商品名稱為："+productBean.getModel());
-//							System.out.println("自動發mail第幾封?=>"+x);
-//							AutoSendEmailByJava.processMemberWishNotice(memberBean.getEmail(), "大選電腦提醒您!關注商品已到貨", "親愛的會員您好!您關注的商品:"+productBean.getModel()+"已到貨");
-//						}
-//					}
-					
-					
-				result.add(branch);
-				
+					System.out.println("branchid============================" + branch.getBranchid());
+					int total = importDetailBean.get(x).getAmount() + branch.getAmount();
+
+					branch.setAmount(total);
+
+					branchStockDAO.update(branch);
+
+					List<WishBean> allProWishList = wishDAO.selectAllByProId(importDetailBean.get(x).getProid());
+					System.out.println("補貨");
+					System.out.println("有沒有抓到會員的願望清單" + allProWishList);
+					for (WishBean everyWishList : allProWishList) {
+						System.out.println("進入迴圈");
+						if (everyWishList.getTracked() == 2) {
+							MemberBean memberBean = memberDAO.selectById(everyWishList.getMemberid());
+							ProductBean productBean = productDAO.selectById(importDetailBean.get(x).getProid());
+							System.out.println("會員mail=" + memberBean.getEmail() + "大選電腦提醒您!關注商品已到貨" + "商品名稱為："
+									+ productBean.getModel());
+							System.out.println("自動發mail第幾封?=>" + x);
+							AutoSendEmailByJava.processMemberWishNotice(memberBean.getEmail(), "大選電腦提醒您!關注商品已到貨",
+									"親愛的會員您好!您關注的商品:" + productBean.getModel() + "已到貨");
+						}
+					}
+
+					result.add(branch);
+				}
+
 				break;
 			}
 //如果branch_stock裡面沒有ImportDetailBean的proid
 //insert		
-			else if(branch.getProid()== null){
+			else {
 
 				System.out.println("insert into stock+++++++++++++++++++++++++++++++++++++++++++++++");
-
+//                新增到庫存表
 				BranchStockBean bean = new BranchStockBean(null, importDetailBean.get(x).getAmount(), 1,
 						importDetailBean.get(x).getProid(), "on");
+				BranchStockBean bean2 = new BranchStockBean(null, 0, 2,
+						importDetailBean.get(x).getProid(), "on");
 				branchStockDAO.insert(bean);
+				branchStockDAO.insert(bean2);
+//				新增一筆到message表格
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+				String da = sdf.format(new Date());
+				MessageBean mbean = new MessageBean(null, 1, 5, da, "Dear同事:\\n請協助商品"+importDetailBean.get(x).getProductBean().getModel()+"上架，謝謝。\\n\\n  Best Regards", "請協助商品上架", "notyet");
+				messageDAO.insert(mbean);
+				
 				result.add(bean);
 				break;
 
@@ -176,7 +191,5 @@ public class ImportServiceImpl implements ImportService {
 
 		return result;
 	}
-
-
 
 }

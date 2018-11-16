@@ -3,7 +3,7 @@
   <display-name>FinalProject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>FirstPage.html</welcome-file>
   </welcome-file-list>
   <resource-ref>
     <res-ref-name>jdbc/xxx</res-ref-name>
@@ -11,4 +11,13 @@
     <res-auth>Container</res-auth>
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>
+<!--   <security-constraint> -->
+<!--    <web-resource-collection> -->
+<!--    <web-resource-name>JSP/Servelt Example</web-resource-name> -->
+<!--       <url-pattern>/*</url-pattern> -->
+<!--    </web-resource-collection> -->
+<!--    <user-data-constraint> -->
+<!--       <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!--    </user-data-constraint> -->
+<!-- </security-constraint> -->
 </web-app>
