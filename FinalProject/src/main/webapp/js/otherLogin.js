@@ -5,7 +5,7 @@ function clearAllCookie() {
         for(var i = keys.length; i--;)
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
     }
-    window.location.reload(true);
+    window.location.href = "/FinalProject/FirstPage.html";
 }
 //----------------------------------------------------------------------------------------------fb登入4
 window.fbAsyncInit = function () {
@@ -49,7 +49,7 @@ function fbLogin() {
 function getFbUserData() {
     FB.api('/me?fields=name,first_name,last_name,email',
         function (response) {
-           alert('臉書登入登入登入登入登入登入登入');
+           console.log('臉書登入登入登入登入登入登入登入');
             $('#originallogout').attr("style","display:none;width: 300px");
             $('#googlelogout').attr("style","display:none;width: 300px");
             $('#fblogout').attr("style","display:block;width: 300px");
@@ -60,13 +60,13 @@ $.ajax({
          userInfo:JSON.stringify(response)
      },
      success:function(data){
-         alert("這裡是facebook的登入:"+data)
+         console.log("這裡是facebook的登入:"+data)
          
              var Days = 30;//cookie設定30天
              var exp = new Date();
              exp.setTime(exp.getTime() + Days*24*60*60*1000);
              document.cookie = "email=" + data+";expires=" + exp.toGMTString();
-             alert('facebook登入+把email塞到cookie裡面');
+             console.log('facebook登入+把email塞到cookie裡面');
              if($('#exampleModalCenter').is(':hidden')){
             }else{
              $('#exampleModalCenter').hide();
@@ -82,7 +82,7 @@ $.ajax({
 function fbLogout() {
     FB.logout(function () {
         clearAllCookie();
-        alert('臉書登出登出登出登出登出登出登出登出');
+        console.log('臉書登出登出登出登出登出登出登出登出');
     });
 }
 // =============================================================================================google登入
@@ -92,7 +92,7 @@ function signOut() {
    auth2.signOut().then(function() {
        console.log('User signed out.');
    });
-   alert("google登出");
+   console.log("google登出");
    clearAllCookie();
 }
 
@@ -123,7 +123,7 @@ var googleUser = {};
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         
         //測試有無進入google登入的方訊
-        alert("這裡是google的登入:"+profile.getEmail())
+        console.log("這裡是google的登入:"+profile.getEmail())
         $('#originallogout').attr("style","display:none;width: 300px");
         $('#fblogout').attr("style","display:none;width: 300px");
         $('#googlelogout').attr("style","display:block;width: 300px");
@@ -137,7 +137,7 @@ var googleUser = {};
            email:profile.getEmail()
            },
         success: function (data) {
-           alert('這裡是google的登入成功後的方訊 :'+data);
+           console.log('這裡是google的登入成功後的方訊 :'+data);
            var Days = 30;//cookie設定30天
            var exp = new Date();
            exp.setTime(exp.getTime() + Days*24*60*60*1000);

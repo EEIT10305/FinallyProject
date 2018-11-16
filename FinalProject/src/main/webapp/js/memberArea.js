@@ -3,7 +3,7 @@ var isUserInside ="";
 $(document).ready(function(){
     cookies = document.cookie;
     isUserInside = cookies.split("email=")[1].split(";")[0]
-     alert('有沒有抓到cookie內的email呢??→'+isUserInside);
+     console.log('有沒有抓到cookie內的email呢??→'+isUserInside);
 });
 
 /*----------------------------------------------------------------測試用來給會員查詢自己的訂單紀錄用的----------------------------------------------------------------*/ 
@@ -31,6 +31,9 @@ $.ajax({
             console.log(data);
             var orders=$.parseJSON(data);
             var txt="";
+            if(data.length==0||data==""||data==null||data=="[]"){
+                txt="您尚未有訂單紀錄!"+"<a href='/FinalProject/ProductPage.html'>馬上來去逛逛吧!?</a>";
+            }
            for(i=0;i<orders.length;i++){
 //            alert(orders[i].orderid);
 //            alert(orders[i].memberBean.membername)
@@ -120,6 +123,9 @@ if($(this).attr("value")=="memberClickSelfWishInfo"){//如果點選的是=====�
             var wishs = $.parseJSON(data);
             var txt = "";
             var a = 1;
+            if(data.length==0||data==""||data==null||data=="[]"){
+                txt="您還沒有關注任何商品!"+"<a href='/FinalProject/ProductPage.html'>馬上來去瞧瞧吧!?</a>";
+            }
             for(i=0;i<wishs.length;i++){
                 if(wishs[i].tracked==1){
                 txt+="<tr style='height:60px;line-height:60px;'><th scope='row'>"+a+"</th>";
@@ -160,6 +166,9 @@ if($(this).attr("value")=="memberClickSelfProInfo"){//如果點選的是=====貨
 
             var txt = "";
             var a = 1;
+            if(data=="[]|[]"){
+                txt="您想知道哪一件商品呢?! → "+" <a href='/FinalProject/ProductPage.html'>馬上去看看吧!?</a>";
+            }
             for(i=0;i<wishList.length;i++){
                 txt+="<tr style='height:60px;line-height:60px;'><th scope='row'>"+a+"</th>";//頭
                 txt+="<td>"+wishList[i].productBean.model+"</td>";//型號
@@ -202,9 +211,9 @@ $.ajax({
     url: "processMemberUpdatePassword",
     data: {
         email: isUserInside ,  //=======目前寫死的 要記得從cookie內抓=====
-        oldPassword:$('#userInputOldPassword').val(),
-        newPassword:$('#userInputNewPassword').val(),
-        checkPassword:$('#userInputCheckPassword').val()
+        oldPassword:$('#memberInputOldPassword').val(),
+        newPassword:$('#memberInputNewPassword').val(),
+        checkPassword:$('#memberInputCheckPassword').val()
     },
     success: function (data) {
         $('#errorInputOldPassword').html("");
@@ -239,7 +248,8 @@ $.ajax({
             $('#errorInputCheckPassword').html("確認密碼和您設定的新密碼不相同!");
         }
         if(data=="updatePasswordSuccess"){
-        alert('修改成功!')
+        alert('修改成功!即將將您導回首頁!重新登入您的新密碼')
+        clearAllCookie();
         }
     }
 });
@@ -260,9 +270,10 @@ $('#memberUpdateInfo').click(function(){
         },
         success: function (data) {
             if(data=="updatesuccess"){
-                alert('會員資料更新成功')
+                alert('會員資料更新成功');
+                window.location.href = "/FinalProject/Customer.html";
             }else{
-                alert('會員資料更新失敗')
+                alert('會員資料更新失敗');
             }
         }
     });
@@ -306,7 +317,7 @@ $('#memberUpdateInfo').click(function(){
    
    //======================購物車===================================================
    function addToCart(){
-alert($(this).val())
+console.log($(this).val())
      $.ajax({
          type: "post",
          url: "AddtToCartController",
@@ -318,6 +329,17 @@ alert($(this).val())
          }
      });
 }
+
+//清除cookie
+function clearAllCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if(keys) {
+        for(var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "/FinalProject/FirstPage.html";
+}
+
    
    
    

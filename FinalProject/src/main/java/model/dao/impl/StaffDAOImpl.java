@@ -68,6 +68,7 @@ public class StaffDAOImpl implements StaffDAO {
 												 .setParameter("password", password)
 												 .getSingleResult();
 		}catch(Exception ex) {
+			ex.printStackTrace();
 			sb=null;
 		}
 		return sb;

@@ -9,5 +9,6 @@ public interface BrandDAO {
 	    BrandBean selectById(int id);
 	    BrandBean insert(BrandBean bean);
 	    boolean update(BrandBean bean);
-		BrandBean getBrandBeanBybrand(String brand);	  
+		BrandBean getBrandBeanBybrand(String brand);
+
 }

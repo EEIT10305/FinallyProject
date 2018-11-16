@@ -82,25 +82,7 @@
                 </a>
             </div>
             <div class="navv">
-                <li>
-                    <ul>
-                        <a id="test" href="/FinalProject/ShowCart.html">
-                            <img src="image/shopping-cart.png" width="30px">
-                        </a>
-                    </ul>
-                    <ul>
-                        <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="image/avatar.png" width="30px"> </a>
-
-                    </ul>
-                </li>
-                <fieldset id="myModal" class="mymodal">
-                    <div class="dropdown-divider"></div>
-                    <a href='ShowCart.html'>
-                        <button style="width:300px" class='btn btn-dark'>查看購物車</button>
-                    </a>
-            </div>
-            </fieldset>
+               <ul></ul>
         </div>
         </div>
 
@@ -221,6 +203,7 @@
                   </div> -->
             </div>
             <button id="userSend" type="submit" class="btn btn-secondary">送出</button><span class="errorMsg" id="errorBoth"></span>
+            <button id="oneKeyInputNewLogin" type="submit" class="btn btn-secondary">一鍵帶入</button>
         </article>
     </div>
     <footer>
@@ -293,7 +276,7 @@
                         // alert('有沒有抓到cartId??');
                         // alert(data);
                         sessionStorage.CarId=data;
-                        alert('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
+                        console.log('將cartId存入sessionStorage呢??：'+sessionStorage.CarId);
 
                         var Days = 30;//cookie設定30天
                         var exp = new Date();
@@ -306,8 +289,8 @@
                  var exp = new Date();
                  exp.setTime(exp.getTime() + Days*24*60*60*1000);
                  document.cookie = "email=" + data+";expires=" + exp.toGMTString();
-                 alert('一般會員登入+把email塞到cookie裡面');
-                 window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                 console.log('一般會員登入+把email塞到cookie裡面');
+                 window.location.href = "/FinalProject/FirstPage.html";
                     }
                     
                     else if (data=="notFoundData"){
@@ -317,6 +300,14 @@
             });
 
         })
+    </script>
+    <script src="js/showloginlogoutbtn.js"></script><!--秉毅用-->
+    <script>
+    //一鍵帶入
+$('#oneKeyInputNewLogin').click(function(){
+$('#userInputEmail').attr("value","gn01046294@hotmail.com");
+$('#userInputPassword').attr("value","Do!NG123");
+});
     </script>
 </body>
 

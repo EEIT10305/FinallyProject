@@ -21,11 +21,11 @@ $("#testuserlogin").click(
                  }else if(data=="notFoundData"){
                     $("#errorBoth").html("←您尚未註冊,請按下確定開始註冊");
                     // alert('←您尚未註冊,請按下確定開始註冊');
-                     window.location.href = "http://localhost:8080/FinalProject/Register.html";
+                     window.location.href = "/FinalProject/Register.html";
                  }
                  else{
                     // document.cookie = "email=" + data;
-                    window.location.href = "http://localhost:8080/FinalProject/FirstPage.html";
+                    window.location.href = "/FinalProject/FirstPage.html";
                  }
     }
 });
