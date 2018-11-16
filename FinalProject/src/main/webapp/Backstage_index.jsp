@@ -175,12 +175,7 @@
 						<p></p></a>
 				</div>
 				<div class="n2" id="s5">
-					<a href="./vip1.jsp" title="Beats">
-						<br>
-
 						<img src="./images/account.png" width="100px">
-					</a>
-
 				</div>
 				
 				<div class="n2" id="s6">

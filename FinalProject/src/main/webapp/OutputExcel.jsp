@@ -196,14 +196,12 @@
 					<a href="./shopping.jsp" title="Beats"></a>
 				</div>
 				<div class="n2" id="s5">
-					<a href="./vip1.jsp" title="Beats"> <img
-						src="./images/account.png" width="100px">
-					</a>
+					<img src="./images/account.png" width="100px">
 				</div>
 				<div class="n2" id="s6">
 					<a href="./index.jsp" title="Beats"> </a>
 					<p>
-						<br>首頁
+						<a href="staffLogoutController"><p><br>登出</p></a>
 					</p>
 				</div>
 			</div>
