@@ -185,6 +185,6 @@ function clearAllCookie() {
 
 //一鍵帶入
 $('#userOneKeyInputLogin').click(function(){
-$('#memberInputEmail').attr("value","gn01046294@hotmail.com");
-$('#memberInputPassword').attr("value","Do!NG123");
+$('#memberInputEmail').val("gn01046294@hotmail.com");
+$('#memberInputPassword').val("Do!321NG1");
 });
