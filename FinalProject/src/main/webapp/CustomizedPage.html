@@ -500,6 +500,7 @@ article {
 						$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
 		                 		if (status == "success") {
 		                        var querydata = $.parseJSON(data);
+		                        $(".card").children(":last-child").html("");
 		                        $.each(querydata,function (index,json) {
 		                        	if(json.category=="主機板"){
 		                            	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
@@ -850,6 +851,7 @@ article {
 															            	 $.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
 		                                                                		 if (status == "success") {
 		                                                                                 var querydata = $.parseJSON(data);
+		                                                                                 $(".card").children(":last-child").html("");
 		                                                                                 $.each(querydata,function (index,json) {
 		                                                                                         if(json.category=="主機板"){
 		                                                                                        	 $(".card").children(":last-child").append("主機板:"+json.model+"<br>");
@@ -933,6 +935,7 @@ article {
 															$.post("showPinginDetailByImage",{"Pinginmodel":$(this).children().attr("value")},function(data,status){
 				                                           		 if (status == "success") {
 				                                                            var querydata = $.parseJSON(data);
+				                                                            $(".card").children(":last-child").html("");
 				                                                            $.each(querydata,function (index,json) {
 				                                                                    if(json.category=="主機板"){
 				                                                                    	$(".card").children(":last-child").append("主機板:"+json.model+"<br>");
