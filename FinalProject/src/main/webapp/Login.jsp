@@ -57,7 +57,7 @@
     </script>   
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/styleForLogin.css" />
-<title>大選電腦後台系統</title>
+<title>大選電腦倉儲管理系統</title>
 </head>
 <body  class="landing">
 
@@ -66,7 +66,7 @@
 <%-- <h3>看看session有沒有被清除?${staffBean.permission} </h3> --%>
 <%-- <h3>看看session${test} </h3> --%>
                 <form action="staffLoginController" method="post">
-                    <h2>大選電腦後台管理系統</h2>
+                    <h2>大選電腦倉儲管理系統</h2>
                     <p>請登入帳號以及密碼</p>
                     <p><i style="color:red">${errors.loginError}</i></p>
                     <ul class="actions">
