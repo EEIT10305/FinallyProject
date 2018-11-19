@@ -17,12 +17,12 @@ $(document).ready(function(){
         var isUserInside = cookies.split("email=")[1].split(";")[0];
            $.ajax({
                type: "POST",
-               url: "processFirstUser",
+               url: "testlogin",
                data: {email:isUserInside},
                success: function (data) {
                    
                    var returnData = $.parseJSON(data);
-                   if(returnData.email==isUserInside){
+                   if(returnData.email==isUserInside&&returnData.permission=="normal"){
                     console.log('使用者的cookie內的mail資料是我們家的會員 隱藏登入按鈕!秀出會員按鈕');
                     $.ajax({
                         type: "POST",
@@ -44,7 +44,7 @@ $(document).ready(function(){
                         }
                     });
                    }
-                   else if(returnData.permission=="facebook"){
+                   else if(returnData.email==isUserInside&&returnData.permission=="facebook"){
                         console.log("已判斷使用者是facebook登入")
                         $.ajax({
                             type: "POST",
@@ -67,7 +67,7 @@ $(document).ready(function(){
                         });
                         //$('#未登入的圖示').hide();
                    }
-                   else if(returnData.permission=="google"){
+                   else if(returnData.email==isUserInside&&returnData.permission=="google"){
                     console.log("已判斷使用者是google登入")
                     $.ajax({
                         type: "POST",
@@ -185,8 +185,6 @@ function clearAllCookie() {
 
 //一鍵帶入
 $('#userOneKeyInputLogin').click(function(){
-
-$('#memberInputEmail').val("gn01046294@hotmail.com");
-$('#memberInputPassword').val("Do!321NG1");
-
+$('#memberInputEmail').attr("value","gn01046294@hotmail.com");
+$('#memberInputPassword').attr("value","Do!NG123");
 });

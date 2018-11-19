@@ -60,6 +60,13 @@ public class LoginServiceImpl implements LoginService {
 		return memberDao.selectAll();
 	}
 
+	@Override
+	public List<MemberBean> checkEamilList(String email) {
+		
+		return memberDao.checkEmailList(email);
+		
+	}
+
 		
 	
 	

@@ -158,7 +158,9 @@ public class ImportServiceImpl implements ImportService {
 								AutoSendEmailByJava.processMemberWishNotice(memberBean.getEmail(), "大選電腦提醒您!關注商品已到貨",
 										"親愛的會員您好!您關注的商品:" + productBean.getModel() + "已到貨");
 							} catch (Exception e) {
-							           break;
+
+								break;
+
 							}
 						}
 					}
