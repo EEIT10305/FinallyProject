@@ -1,5 +1,12 @@
 $('#oneKeyInput').click(function(){
-    $('#inputUserName').attr("value","王小明");
+	$('#inputUserName').attr("value","");
+    $('#userInputEmail').attr("value","");
+    $('#inlineRadio1').prop("checked",true);
+    $('#userInputPassword').attr("value","");
+    $('#userInputPhone').attr("value","");
+    $('#userInputAddress').attr("value","");
+    
+	$('#inputUserName').attr("value","王小明");
     $('#userInputEmail').attr("value","gn01046294@hotmail.com");
     $('#inlineRadio1').prop("checked",true);
     $('#userInputPassword').attr("value","Do!NG123");
