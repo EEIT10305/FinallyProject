@@ -20,8 +20,8 @@ margin:0;
 %>
 
 <div style="width:100%;text-align:center;padding-top:50px">
-<img src="/FinalProject/image/5263.jpg" width="50%">
-<p style="font-family:微軟正黑體;font-size:80px;">Sorry,找不到你要的頁面</p>
+<img src="/FinalProject/image/IMG_9001.JPG" width="50%">
+<p style="font-family:微軟正黑體;font-size:80px;">感謝您的聆聽</p>
 </div>
 </body>
 </html>
