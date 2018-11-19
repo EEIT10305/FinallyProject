@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -243,7 +244,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<RamBean> checkRamByDDR(String DDR) {
-		String hql = "From RamBean where ddr= :DDR order by proid";
+		String hql = "From RamBean where ddr= :DDR order by proid";			
+//		String hql = "From RamBean where ddr in (:DDR) order by proid";
+//		String hql = "From RamBean where ddr ='"+DDR+"' order by proid";
 		return this.getSession().createQuery(hql, RamBean.class).setParameter("DDR", DDR).getResultList();
 	}
 

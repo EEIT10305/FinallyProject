@@ -60,7 +60,9 @@ public class SelectProductForCustomizedController {
 	@RequestMapping(path="checkRamForCustomized",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String checkRamInController(String Mbmodel) {
-		
+		for(int x=0;x<SPFCS.checkRamInService(Mbmodel).size();x++) {
+			System.out.println(SPFCS.checkRamInService(Mbmodel).get(x).getModel());
+		}
 		return new Gson().toJson(SPFCS.checkRamInService(Mbmodel));
 	}
 	@RequestMapping(path="checkCpuForCustomized",produces="text/html;charset=UTF-8")
