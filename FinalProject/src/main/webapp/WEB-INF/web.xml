@@ -5,6 +5,24 @@
     <welcome-file>FirstPage.html</welcome-file>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+   <error-page>
+        <error-code>404</error-code>
+        <location>/error/errorhandler.jsp</location>
+    </error-page>
+ 
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error/errorhandler500.jsp</location>
+    </error-page>
+       <error-page>
+        <error-code>500</error-code>
+        <location>/error/errorhandler500.jsp</location>
+    </error-page>
+      <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error/errorhandler500.jsp</location>
+    </error-page>
+
   <resource-ref>
     <res-ref-name>jdbc/xxx</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>

@@ -34,6 +34,7 @@ $(document).ready(function(){
 				
 			    
 				$(".toMail").click(function(){
+					click1('#mailpage')
 					$("#mailpage").show();
 					$("[id*='hehe']").hide();
 					var id = $(this).attr("value");
