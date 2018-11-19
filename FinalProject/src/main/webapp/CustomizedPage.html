@@ -1106,6 +1106,7 @@ article {
                     function checkMbByImg() {
                         $.post("checkRamForCustomized",{"Mbmodel": sessionStorage.mbmodel},function (data, status) {
                                 if (status == "success") {
+                                	$("#showRAM").html("")
                                     $("#showRAM").html("<option value='"+sessionStorage.rampsu+"' name='"+sessionStorage.rammodel+"'>"+ sessionStorage.rammodel+ "</option>");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
@@ -1118,6 +1119,7 @@ article {
                         $.post("checkCpuForCustomized",{"Mbmodel":sessionStorage.mbmodel},
                                 function (data, status) {
                                     if (status == "success") {
+                                    	$("#showCPU").html("")
                                         $("#showCPU").html("<option value='"+sessionStorage.cpupsu+"' name='"+sessionStorage.cpumodel+"'>"+ sessionStorage.cpumodel+ "</option>");
                                         var querydata = $.parseJSON(data);
                                         $.each(querydata,function (index,json) {
