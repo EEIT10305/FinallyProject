@@ -10,4 +10,5 @@ public interface MemberDAO {
 	    boolean update(MemberBean bean);
 	    MemberBean selectByEmail(String email);
 	    MemberBean checkEmailPwd(String email, String password);
+	    List<MemberBean> checkEmailList(String email);
 }

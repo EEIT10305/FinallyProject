@@ -13,4 +13,6 @@ public interface LoginService {
 	public MemberBean selectById(Integer memberId);
 	
 	public List<MemberBean> selectAll();
+	
+	public List<MemberBean> checkEamilList(String email);
 }
