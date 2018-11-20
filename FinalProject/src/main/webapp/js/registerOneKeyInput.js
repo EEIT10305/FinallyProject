@@ -1,5 +1,6 @@
 $('#oneKeyInput').click(function(){
 
+
     $('#inputUserName').val("");
     $('#userInputEmail').val("");
     $('#inlineRadio1').prop("checked",false);

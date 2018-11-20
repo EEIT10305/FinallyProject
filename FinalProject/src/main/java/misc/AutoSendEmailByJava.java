@@ -68,7 +68,7 @@ public class AutoSendEmailByJava {
 	
 	public static void processMemberWishNotice(String memberEmail, String subject, String text) {
 		String host = "smtp.gmail.com";
-		  int port = 587;
+		  int port = 587;//587
 		  final String username = "gn01046295@gmail.com";//帳號
 		  final String password = "fighter1003";//your password
 
