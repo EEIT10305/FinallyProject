@@ -1,6 +1,8 @@
 package model.service.Impl;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,10 +31,12 @@ public class LinePayServiceImpl implements LinePayService {
 	public String PayToLinePayInService(Integer price, Integer orderId) throws IOException {
 		if (price != null && orderId != null) {
 			OkHttpClient client = new OkHttpClient();
-
+            
+			SimpleDateFormat sdf = new SimpleDateFormat("hhmmss");
+			String oid = sdf.format(new Date());
 			MediaType mediaType = MediaType.parse("application/json");
 			String str = "{\r\n\t\t\t\"productName\":\"3C產品\",\r\n\t\t\t\"amount\":" + price
-					+ ",\r\n\t\t\t\"currency\":\"TWD\",\r\n\t\t\t\"confirmUrl\":\"http://localhost:8081/FinalProject/PayFinishedPage.html\",\r\n\t\t\t\"orderId\":\"Official2018"
+					+ ",\r\n\t\t\t\"currency\":\"TWD\",\r\n\t\t\t\"confirmUrl\":\"http://localhost:8081/FinalProject/PayFinishedPage.html\",\r\n\t\t\t\"orderId\":\""+ oid +"Official"
 					+ orderId + "qq\"\r\n\t\t}";
 			System.out.println(str);
 			RequestBody body = RequestBody.create(mediaType, str);
