@@ -102,12 +102,12 @@ public class Branch_StockServiceImpl implements Branch_StockService {
 	@Override
 	public List<TransferBean> insertTransfer(Integer amountin, Integer branchidin, Integer branchidout, Integer proidin,
 			HttpSession session) {
-		StaffBean staff = (StaffBean) session.getAttribute("staffBean");
+//		StaffBean staff = (StaffBean) session.getAttribute("staffBean");
 
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd 'at' HH:mm:ss");
 		String Date = dateFormat.format(date);
-
+		
 		System.out.println("Date in insert==============" + Date);
 		TransferBean bean = new TransferBean();
 		bean.setAmount(amountin);
@@ -115,8 +115,7 @@ public class Branch_StockServiceImpl implements Branch_StockService {
 		bean.setBranchidout(branchidout);
 		bean.setDate(Date);
 		bean.setProid(proidin);
-		System.out.println("staff id====================" + staff.getStaff_id());
-		bean.setStaff_id(staff.getStaff_id());
+		bean.setStaff_id(1);
 	
 		transferDAO.insert(bean);
 
