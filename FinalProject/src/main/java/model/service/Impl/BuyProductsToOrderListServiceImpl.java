@@ -76,8 +76,8 @@ public class BuyProductsToOrderListServiceImpl implements BuyProductsToOrderList
 		String now = sdf.format(today);
 		obj.setMerchantTradeNo("Ko"+sdf1.format(today)+OrderID);			//產生自己的訂單邏輯  每次訂單編號必須不一樣否則網頁會說重複不給執行 !!!訂單編號必定要是大小寫英文加上數字
 		obj.setMerchantTradeDate(now);
-		obj.setTotalAmount("30");
-		//obj.setTotalAmount(price123);		//前二天再把她打開
+//		obj.setTotalAmount("30");
+		obj.setTotalAmount(price123);		//前二天再把她打開
 		obj.setTradeDesc("test Description");
 		obj.setItemName("3C產品");
 		obj.setReturnURL("http://localhost:8081/FinalProject/FirstPage.html");		
